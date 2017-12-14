@@ -11,14 +11,14 @@ class Queue:
         def __next__(self):
             if self.current is None:
                 raise StopIteration
-            next_element = self.current
+            item = self.current.item
             self.current = self.current.next
-            return next_element.item
+            return item
 
     def __init__(self):
         self.first = None
         self.last = None
-        self._n = 0
+        self.n = 0
 
     def enqueue(self, item):
         old_last = self.last
@@ -27,13 +27,13 @@ class Queue:
             self.first = self.last
         else:
             old_last.next = self.last
-        self._n += 1
+        self.n += 1
 
     def dequeue(self):
         if not self.is_empty():
             item = self.first.item
             self.first = self.first.next
-            self._n -= 1
+            self.n -= 1
             if self.is_empty():
                 self.last = None
             return item
@@ -42,7 +42,7 @@ class Queue:
         return self.first is None
 
     def size(self):
-        return self._n
+        return self.n
 
     def peek(self):
         return self.first.item
