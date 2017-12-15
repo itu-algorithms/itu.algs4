@@ -29,6 +29,8 @@ Otto Stadel Clausen <otcl@itu.dk>
 
 # Coding style 
 
+## we have subdirectories for the code, one for each chapter
+
 ## things like 'node' are inside classes, no leading underscore
 
 ## java main becomes __main__ stuff; follow what is there; adjust the initial comment
