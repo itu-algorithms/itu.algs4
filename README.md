@@ -29,6 +29,8 @@ Otto Stadel Clausen <otcl@itu.dk>
 
 # Coding style 
 
+https://www.python.org/dev/peps/pep-0008/#prescriptive-naming-conventions
+
 ## we have subdirectories for the code, one for each chapter
 
 ## things like 'node' are inside classes, no leading underscore
