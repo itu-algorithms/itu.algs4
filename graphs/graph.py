@@ -1,4 +1,13 @@
-from bag import Bag
+#import sys
+#sys.path.insert(0, "../fundamentals")
+
+
+#try:
+#    from bag import Bag
+#except ImportError:
+#    print('No Import')
+
+from fundamentals.bag import Bag
 
 class Graph:
     def __init__(self, V):
@@ -8,6 +17,16 @@ class Graph:
 
         for _ in range(V):
             self._adj.append(Bag())
+
+    @staticmethod
+    def from_file(stream):
+        g = Graph(stream.readInt())
+        E = stream.readInt()
+        for _ in range(E):
+            v = stream.readInt()
+            w = stream.readInt()
+            g.addEdge(v, w)
+        return g
 
     def V(self):
         return self._V
@@ -43,3 +62,14 @@ class Graph:
             s.append("\n")
 
         return ''.join(s)
+
+
+if __name__ == '__main__':
+    g = Graph(10)
+    
+    g.addEdge(4,5)
+    g.addEdge(4,9)
+    
+    print(g)
+    
+    
