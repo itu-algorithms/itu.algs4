@@ -18,6 +18,16 @@ class Graph:
         for _ in range(V):
             self._adj.append(Bag())
 
+    @staticmethod
+    def from_file(stream):
+        g = Graph(stream.readInt())
+        E = stream.readInt()
+        for _ in range(E):
+            v = stream.readInt()
+            w = stream.readInt()
+            g.addEdge(v, w)
+        return g
+
     def V(self):
         return self._V
 
