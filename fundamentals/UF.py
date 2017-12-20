@@ -1,5 +1,12 @@
 class UF(object):
-    """Union-find implementation"""
+    """
+    Union-find implementation: QuickFind, union by rank, path halving
+
+
+    ?? more from the docstring there ??
+
+    corresponds to https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/UF.java.html
+    """
 
     def __init__(self, n):
         self.count = n
@@ -37,3 +44,5 @@ class UF(object):
 
     def count(self):
         return self.count
+
+# ?? the main method from .. (based on stdin)
