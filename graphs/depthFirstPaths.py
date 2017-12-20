@@ -1,8 +1,10 @@
+from fundamentals.stack import Stack
+
 class DepthFirstPaths:
     def __init__(self, G, s):
         self._marked = [False] * G.V() # Has dfs been called for this vertex?
         self._edgeTo = [0] * G.V() # last vertex on known path to this vertex
-        self.s = s # sourcepublic DepthFirstPathsGraph G, int s
+        self._s = s # sourcepublic DepthFirstPathsGraph G, int s
         self._dfs(G, s)
 
     def _dfs(self, G, v):
@@ -16,7 +18,12 @@ class DepthFirstPaths:
         return self._marked[v]
 
     def pathToPoint(self, v):
+        if not self.hasPathToPoint(v): return None
+        path = Stack()
         w = v
-        while w != self.s:
+        while w != self._s:
+            path.push(w)
             w = self._edgeTo[w]
-            yield w 
+        path.push(v)
+
+        return path
