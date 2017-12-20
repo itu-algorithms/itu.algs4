@@ -69,74 +69,130 @@ class TST(object):
             return None
         return x.val
 
-    // return subtrie corresponding to given key
-    private Node<Value> get(Node<Value> x, String key, int d) {
-        if (x == null) return null;
-        if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
-        char c = key.charAt(d);
-        if      (c < x.c)              return get(x.left,  key, d);
-        else if (c > x.c)              return get(x.right, key, d);
-        else if (d < key.length() - 1) return get(x.mid,   key, d+1);
-        else                           return x;
-    }
+    # return subtrie corresponding to given key
+    def _get(self, x key, d):
+        if x is None:
+            return None
+        if len(key) == 0:
+            raise Exception("key nust have length >= 1")
+        c = key[d] # TODO check for indexError? (d exceeding?) or is it covered in the cases?
+        if c < x.c: # TODO check ordening of chars (strings)
+            return self._get(x.left, key, d)
+        elif x > x.c:
+            return self._get(x.right, key, d)
+        elif d < len(key) -1:
+            return self._get(x.mid, key, d+1)
+        else:
+            return x
 
-    /**
-     * Inserts the key-value pair into the symbol table, overwriting the old value
-     * with the new value if the key is already in the symbol table.
-     * If the value is {@code null}, this effectively deletes the key from the symbol table.
-     * @param key the key
-     * @param val the value
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public void put(String key, Value val) {
-        if (key == null) {
-            throw new IllegalArgumentException("calls put() with null key");
-        }
-        if (!contains(key)) n++;
-        root = put(root, key, val, 0);
-    }
+    #private Node<Value> get(Node<Value> x, String key, int d) {
+    #    if (x == null) return null;
+    #    if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
+    #    char c = key.charAt(d);
+    #    if      (c < x.c)              return get(x.left,  key, d);
+    #    else if (c > x.c)              return get(x.right, key, d);
+    #    else if (d < key.length() - 1) return get(x.mid,   key, d+1);
+    #    else                           return x;
+    #}
 
-    private Node<Value> put(Node<Value> x, String key, Value val, int d) {
-        char c = key.charAt(d);
-        if (x == null) {
-            x = new Node<Value>();
-            x.c = c;
-        }
-        if      (c < x.c)               x.left  = put(x.left,  key, val, d);
-        else if (c > x.c)               x.right = put(x.right, key, val, d);
-        else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, val, d+1);
-        else                            x.val   = val;
-        return x;
-    }
+    # * Inserts the key-value pair into the symbol table, overwriting the old value
+    # * with the new value if the key is already in the symbol table.
+    # * If the value is {@code null}, this effectively deletes the key from the symbol table.
+    # * @param key the key
+    # * @param val the value
+    # * @throws IllegalArgumentException if {@code key} is {@code null}
+    
+    def put(self, key, val):
+        if key is None:
+            raise Exception("calls put() with null key") # TODO IllegalArgumentException 
+        if not self.contains(key):
+            self.n += 1
+        self.root = self._put(self.root, key, val)
 
-    /**
-     * Returns the string in the symbol table that is the longest prefix of {@code query},
-     * or {@code null}, if no such string.
-     * @param query the query string
-     * @return the string in the symbol table that is the longest prefix of {@code query},
-     *     or {@code null} if no such string
-     * @throws IllegalArgumentException if {@code query} is {@code null}
-     */
-    public String longestPrefixOf(String query) {
-        if (query == null) {
-            throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
-        }
-        if (query.length() == 0) return null;
-        int length = 0;
-        Node<Value> x = root;
-        int i = 0;
-        while (x != null && i < query.length()) {
-            char c = query.charAt(i);
-            if      (c < x.c) x = x.left;
-            else if (c > x.c) x = x.right;
-            else {
-                i++;
-                if (x.val != null) length = i;
-                x = x.mid;
-            }
-        }
-        return query.substring(0, length);
-    }
+   # public void put(String key, Value val) {
+   #     if (key == null) {
+   #         throw new IllegalArgumentException("calls put() with null key");
+   #     }
+   #     if (!contains(key)) n++;
+   #     root = put(root, key, val, 0);
+   # }
+    def _put(self, x, key, val, d):
+        c = key[d] # TODO check IndexError
+        if x is None:
+            x = Node() # TODO check scopoe for class node
+            x.c = c
+        if c < x.c:
+            x.left = self._put(x.left, key, val, d)
+        elif c > x.c:
+            x.right = self._put(x.right, key, val, d)
+        elif d < len(key) -1:
+            x.mid = self._put(x.mid, key, val, d+1)
+        else:
+            x.val = val
+
+        return x
+
+    #private Node<Value> put(Node<Value> x, String key, Value val, int d) {
+    #    char c = key.charAt(d);
+    #    if (x == null) {
+    #        x = new Node<Value>();
+    #        x.c = c;
+    #    }
+    #    if      (c < x.c)               x.left  = put(x.left,  key, val, d);
+    #    else if (c > x.c)               x.right = put(x.right, key, val, d);
+    #    else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, val, d+1);
+    #    else                            x.val   = val;
+    #    return x;
+    #}
+
+    # * Returns the string in the symbol table that is the longest prefix of {@code query},
+    # * or {@code null}, if no such string.
+    # * @param query the query string
+    # * @return the string in the symbol table that is the longest prefix of {@code query},
+    # *     or {@code null} if no such string
+    # * @throws IllegalArgumentException if {@code query} is {@code null}
+    
+    def longest_prefix_of(self, query):
+        if query is None:
+            raise Exception("calls longest_path_of() with None argument")
+        if len(query) == 0:
+            return None
+        length = 0
+        x = self.root
+        i = 0
+        while (x is not None and i < len(query)):
+            c = query[i]
+            if c < x.c:
+                x = x.left
+            elif c > x.c:
+                x = x.right
+            else:
+                i += 1
+                if x.val is not None:
+                    length = i
+                x = x.mid
+        return query[0:length]  # TODO control that is not length + 1
+
+    #public String longestPrefixOf(String query) {
+    #    if (query == null) {
+    #        throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
+    #    }
+    #    if (query.length() == 0) return null;
+    #    int length = 0;
+    #    Node<Value> x = root;
+    #    int i = 0;
+    #    while (x != null && i < query.length()) {
+    #        char c = query.charAt(i);
+    #        if      (c < x.c) x = x.left;
+    #        else if (c > x.c) x = x.right;
+    #        else {
+    #            i++;
+    #            if (x.val != null) length = i;
+    #            x = x.mid;
+    #        }
+    #    }
+    #    return query.substring(0, length);
+    #}
 
     /**
      * Returns all keys in the symbol table as an {@code Iterable}.
