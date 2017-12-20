@@ -14,11 +14,11 @@ class DepthFirstPaths:
                 self._edgeTo[w] = v
                 self._dfs(G, w)
 
-    def hasPathToPoint(self, v):
+    def has_path_to_point(self, v):
         return self._marked[v]
 
-    def pathToPoint(self, v):
-        if not self.hasPathToPoint(v): return None
+    def path_to_point(self, v):
+        if not self.has_path_to_point(v): return None
         path = Stack()
         w = v
         while w != self._s:
