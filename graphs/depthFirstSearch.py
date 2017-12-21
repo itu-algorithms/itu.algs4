@@ -19,19 +19,20 @@ class DepthFirstSearch:
         :param s: the source vertex
         :throws ValueError: unless 0 <= s < V
         """
-        self._marked = [False] * G.V()  # marked[v] = is there an s-v path?
+        self._marked = [False] * G.V()  # marked[v] = is there an s-v path?        
         self._count = 0                 # number of vertices connected to s
+        self._validateVertex(s)
         self._dfs(G, s)
     
     def _dfs(self, G, v):
-        # depth first search from v
+        # depth first search from v        
         self._marked[v] = True
         self._count += 1
         for w in G.adj(v):
             if not self._marked[w]:
                 self._dfs(G, w)
 
-    def marked(self, w):
+    def marked(self, v):
         """
         Is there a path between the source vertex s and vertex v?
      
@@ -39,7 +40,8 @@ class DepthFirstSearch:
         :returns: true if there is a path, false otherwise
         :raises ValueError: unless 0 <= v < V
         """
-        return self._marked[w]
+        self._validateVertex(v)
+        return self._marked[v]
 
     def count(self):
         """
@@ -50,8 +52,9 @@ class DepthFirstSearch:
         return self._count
     
     def _validateVertex(self, v):
+        # throw an ValueError unless 0 <= v < V
         V = len(self._marked)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
 
-        
+    
