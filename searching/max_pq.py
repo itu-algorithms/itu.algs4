@@ -10,8 +10,7 @@ testing if the priority queue is empty, and iterating through the keys.
 This implementation uses a binary heap.
 The insert and delete-the-maximum operations take logarithmic amortized time.
 The max, size and is_empty operations take constant time.
-Construction takes time proportional to the specified capacity or the number of
-items used to initialize the data structure.
+Construction takes time proportional to the specified capacity.
 """
 
 
@@ -36,7 +35,7 @@ class MaxPQ:
         self._n -= 1
         self._sink(1)
         self._pq[self._n + 1] = None
-        if self._n > 0 and self._n is (len(self._pq) - 1)//4:
+        if self._n > 0 and self._n is (len(self._pq) - 1) // 4:
             self._resize(len(self._pq) // 2)
         return _max
 
