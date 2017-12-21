@@ -83,8 +83,8 @@ class Bag:
         """
         current = self._first
         while not current is None:
-            yield current.item
-            current = current.next
+            yield current._item
+            current = current._next
 
 
 
