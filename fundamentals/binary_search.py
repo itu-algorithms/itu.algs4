@@ -1,3 +1,5 @@
+import sys
+from stdlib import stdio
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -24,7 +26,12 @@ def index_of(a, key):
 
 
 if __name__ == '__main__':
-    arr = [1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25]
-    for i in range(1, 25):
-        if index_of(arr, i) is -1:
-            print(i)
+    if len(sys.argv) is 3:
+        sys.stdin = open(sys.argv[1])
+        arr = stdio.readAllStrings()
+        arr.sort()
+        sys.stdin = open(sys.argv[2])
+        while not stdio.isEmpty():
+            key = stdio.readString()
+            if index_of(arr, key) is -1:
+                print(key)
