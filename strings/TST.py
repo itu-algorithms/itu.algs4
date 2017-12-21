@@ -1,4 +1,20 @@
 
+import sys, os
+def setpath():
+    exe = sys.argv[0]
+    p = os.path.split(exe)[0]
+    sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
+    sys.path.insert(0, p)
+    sys.path.insert(0, exe)
+setpath()
+
+from queue import Queue
+try:
+    q = Queue()
+    q.enqueue(1)
+except AttributeError:
+    print('WARNING - unable to import python algs4 Queue class')
+    sys.exit(1)
 
  # *  Symbol table with string keys, implemented using a ternary search
  # *  trie (TST).
@@ -70,7 +86,7 @@ class TST(object):
         return x.val
 
     # return subtrie corresponding to given key
-    def _get(self, x key, d):
+    def _get(self, x, key, d):
         if x is None:
             return None
         if len(key) == 0:
@@ -171,7 +187,7 @@ class TST(object):
                 if x.val is not None:
                     length = i
                 x = x.mid
-        return query[0:length]  # TODO control that is not length + 1
+        return query[0:length]  # TODO control that is not length + 1, what does java's substring do?
 
     #public String longestPrefixOf(String query) {
     #    if (query == null) {
@@ -194,74 +210,105 @@ class TST(object):
     #    return query.substring(0, length);
     #}
 
-    /**
-     * Returns all keys in the symbol table as an {@code Iterable}.
-     * To iterate over all of the keys in the symbol table named {@code st},
-     * use the foreach notation: {@code for (Key key : st.keys())}.
-     * @return all keys in the symbol table as an {@code Iterable}
-     */
-    public Iterable<String> keys() {
-        Queue<String> queue = new Queue<String>();
-        collect(root, new StringBuilder(), queue);
-        return queue;
-    }
+    
+    # * Returns all keys in the symbol table as an {@code Iterable}.
+    # * To iterate over all of the keys in the symbol table named {@code st},
+    # * use the foreach notation: {@code for (Key key : st.keys())}.
+    # * @return all keys in the symbol table as an {@code Iterable}
+    
+    def keys(self):
+        queue = Queue()
+        self._collect(self.root, "", queue)
+        return queue
+    #public Iterable<String> keys() {
+    #    Queue<String> queue = new Queue<String>();
+    #    collect(root, new StringBuilder(), queue);
+    #    return queue;
+    #}
 
-    /**
-     * Returns all of the keys in the set that start with {@code prefix}.
-     * @param prefix the prefix
-     * @return all of the keys in the set that start with {@code prefix},
-     *     as an iterable
-     * @throws IllegalArgumentException if {@code prefix} is {@code null}
-     */
-    public Iterable<String> keysWithPrefix(String prefix) {
-        if (prefix == null) {
-            throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
-        }
-        Queue<String> queue = new Queue<String>();
-        Node<Value> x = get(root, prefix, 0);
-        if (x == null) return queue;
-        if (x.val != null) queue.enqueue(prefix);
-        collect(x.mid, new StringBuilder(prefix), queue);
-        return queue;
-    }
+    
+    # * Returns all of the keys in the set that start with {@code prefix}.
+    # * @param prefix the prefix
+    # * @return all of the keys in the set that start with {@code prefix},
+    # *     as an iterable
+    # * @throws IllegalArgumentException if {@code prefix} is {@code null}
+    
+    def keys_with_prefix(self, prefix):
+        if prefix is None:
+            raise Exception("calls keys_with_prefix with null argument") # TODO IllegalArgumentException
+        queue = Queue()
+        x = self._get(self.root, prefix, 0)
+        if x is None:
+            return queue
+        if x.val is not None:
+            queue.enqueue(prefix)
+        self._collect(x.mid, prefix, queue)
+        return queue
+    #public Iterable<String> keysWithPrefix(String prefix) {
+    #    if (prefix == null) {
+    #        throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
+    #    }
+    #    Queue<String> queue = new Queue<String>();
+    #    Node<Value> x = get(root, prefix, 0);
+    #    if (x == null) return queue;
+    #    if (x.val != null) queue.enqueue(prefix);
+    #    collect(x.mid, new StringBuilder(prefix), queue);
+    #    return queue;
+    #}
 
-    // all keys in subtrie rooted at x with given prefix
-    private void collect(Node<Value> x, StringBuilder prefix, Queue<String> queue) {
-        if (x == null) return;
-        collect(x.left,  prefix, queue);
-        if (x.val != null) queue.enqueue(prefix.toString() + x.c);
-        collect(x.mid,   prefix.append(x.c), queue);
-        prefix.deleteCharAt(prefix.length() - 1);
-        collect(x.right, prefix, queue);
-    }
+    #// all keys in subtrie rooted at x with given prefix
+    def _collect(self, x, prefix, queue):
+        if x is None:
+            return
+        self._collect(x.left, prefix, queue)
+        if x.val is not None:
+            queue.enqueue(prefix + str(x.c))
+        self._collect(x.mid, prefix + str(x.c), queue)
+        #prefix = prefix[:-1] #TODO is this necessary? was this for append of before, or a step of the search?
+        self._collect(x.right, prefix, queue)
+    
+    #private void collect(Node<Value> x, StringBuilder prefix, Queue<String> queue) {
+    #    if (x == null) return;
+    #    collect(x.left,  prefix, queue);
+    #    if (x.val != null) queue.enqueue(prefix.toString() + x.c);
+    #    collect(x.mid,   prefix.append(x.c), queue);
+    #    prefix.deleteCharAt(prefix.length() - 1);
+    #    collect(x.right, prefix, queue);
+    #}
 
 
-    /**
-     * Returns all of the keys in the symbol table that match {@code pattern},
-     * where . symbol is treated as a wildcard character.
-     * @param pattern the pattern
-     * @return all of the keys in the symbol table that match {@code pattern},
-     *     as an iterable, where . is treated as a wildcard character.
-     */
-    public Iterable<String> keysThatMatch(String pattern) {
-        Queue<String> queue = new Queue<String>();
-        collect(root, new StringBuilder(), 0, pattern, queue);
-        return queue;
-    }
- 
-    private void collect(Node<Value> x, StringBuilder prefix, int i, String pattern, Queue<String> queue) {
-        if (x == null) return;
-        char c = pattern.charAt(i);
-        if (c == '.' || c < x.c) collect(x.left, prefix, i, pattern, queue);
-        if (c == '.' || c == x.c) {
-            if (i == pattern.length() - 1 && x.val != null) queue.enqueue(prefix.toString() + x.c);
-            if (i < pattern.length() - 1) {
-                collect(x.mid, prefix.append(x.c), i+1, pattern, queue);
-                prefix.deleteCharAt(prefix.length() - 1);
-            }
-        }
-        if (c == '.' || c > x.c) collect(x.right, prefix, i, pattern, queue);
-    }
+    # * Returns all of the keys in the symbol table that match {@code pattern},
+    # * where . symbol is treated as a wildcard character.
+    # * @param pattern the pattern
+    # * @return all of the keys in the symbol table that match {@code pattern},
+    # *     as an iterable, where . is treated as a wildcard character.
+    
+    def keys_that_match(self, pattern):
+        queue = Queue()
+        self._collect_match(self.root, "", 0, pattern, queue)
+        return queue
+    #public Iterable<String> keysThatMatch(String pattern) {
+    #    Queue<String> queue = new Queue<String>();
+    #    collect(root, new StringBuilder(), 0, pattern, queue);
+    #    return queue;
+    #}
+    
+    def _collect_match(self, x, prefix, i, pattern, queue):
+        pass
+
+    #private void collect(Node<Value> x, StringBuilder prefix, int i, String pattern, Queue<String> queue) {
+    #    if (x == null) return;
+    #    char c = pattern.charAt(i);
+    #    if (c == '.' || c < x.c) collect(x.left, prefix, i, pattern, queue);
+    #    if (c == '.' || c == x.c) {
+    #        if (i == pattern.length() - 1 && x.val != null) queue.enqueue(prefix.toString() + x.c);
+    #        if (i < pattern.length() - 1) {
+    #            collect(x.mid, prefix.append(x.c), i+1, pattern, queue);
+    #            prefix.deleteCharAt(prefix.length() - 1);
+    #        }
+    #    }
+    #    if (c == '.' || c > x.c) collect(x.right, prefix, i, pattern, queue);
+    #}
 
 
     /**
