@@ -71,4 +71,4 @@ class DepthFirstPaths:
         # throw an ValueError unless 0 <= v < V
         V = len(self._marked)
         if v < 0 or v >= V:
-            raise ValueError("vertex { is not between 0 and {".format(v, V-1))
+            raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
