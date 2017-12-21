@@ -1,3 +1,5 @@
 main_*.py
 *.pyc
 .vs/
+algs4-data/
+algs4/

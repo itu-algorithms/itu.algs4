@@ -7,23 +7,45 @@ import sys
 
 class Bag:
     """
-    The Bag class .....
+    The Bag class represents a bag (or multiset) of 
+    generic items. It supports insertion and iterating over the 
+    items in arbitrary order.
 
+    This implementation uses a singly linked list with a static nested class Node.
+    See LinkedBag for the version from the
+    textbook that uses a non-static nested class.
+    See ResizingArrayBag for a version that uses a resizing array.
+    The add, is_empty, and size operations
+    take constant time. Iteration takes time proportional to the number of items.
     """
     class Node:
+        # helper linked list class
         def __init__(self):
             self._next = None
             self._item = None
 
-
     def __init__(self):
-        self._first = None
-        self._n = 0
+        """
+        Initializes an empty bag.
+        """
+        self._first = None # beginning of bag
+        self._n = 0        # number of elements in bag 
 
     def is_empty(self):
+        """
+        Returns true if this bag is empty.
+
+        :returns: true if this bag is empty
+                  false otherwise
+        """
         return self._first is None
 
     def size(self):
+        """
+        Returns the number of items in this bag.
+
+        :returns: the number of items in this bag
+        """
         return self._n
 
     def add(self, item):
@@ -54,10 +76,15 @@ class Bag:
     #     return self.ListIterator(self._first)
 
     def __iter__(self):
+        """
+        Returns an iterator that iterates over the items in this bag in arbitrary order.
+
+        :returns: an iterator that iterates over the items in this bag in arbitrary order
+        """
         current = self._first
         while not current is None:
-            yield current.item
-            current = current.next
+            yield current._item
+            current = current._next
 
 
 

@@ -3,7 +3,7 @@
 # Python 3
 
 """
-The UF module implements several versions of the union-find data structure (also known as the 
+The UF module implements several versions of the union-find data structure (also known as the
     disjoint-sets data type). It supports the union and find operations, along
     with a connected operation for determining whether two sites are in the same
     component and a count operation that returns the total number of components.
@@ -20,11 +20,11 @@ class UF:
     """
     This is an implementation of the union-find data structure - see module documentation for
     more info.
-    
-    This implementation uses weighted quick union by rank with path compression by 
-    halving. Initializing a data structure with n sites takes linear time. Afterwards, 
-    the union, find, and connected operations take logarithmic time (in the worst case) 
-    and the count operation takes constant time. Moreover, the amortized time per union, 
+
+    This implementation uses weighted quick union by rank with path compression by
+    halving. Initializing a data structure with n sites takes linear time. Afterwards,
+    the union, find, and connected operations take logarithmic time (in the worst case)
+    and the count operation takes constant time. Moreover, the amortized time per union,
     find, and connected operation has inverse Ackermann complexity.
 
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
@@ -32,7 +32,7 @@ class UF:
 
     def __init__(self, n):
         """
-        Initializes an empty union-find data structure with n sites, 
+        Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
 
         :param n: the number of sites
@@ -68,7 +68,7 @@ class UF:
         else:
             self._parent[root_q] = root_p
             self._rank[root_p] += 1
-        
+
         self._count -= 1
 
     def find(self, p):
@@ -96,12 +96,12 @@ class UF:
 
     def count(self):
         return self._count
-    
+
 class QuickFindUF:
     """
     This is an implementation of the union-find data structure - see module documentation for
     more info.
-    
+
     This implementation uses quick find. Initializing a data structure with n sites takes linear time.
     Afterwards, the find, connected, and count operations take constant time but the union operation
     takes linear time.
@@ -111,7 +111,7 @@ class QuickFindUF:
 
     def __init__(self, n):
         """
-        Initializes an empty union-find data structure with n sites, 
+        Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
 
         :param n: the number of sites
@@ -135,10 +135,10 @@ class QuickFindUF:
         """
         self._validate(p)
         self._validate(q)
-        
+
         p_id = id[p] # needed for correctness
         q_id = id[q] # to reduce the number of array accesses
-        
+
         # p and q are already in the same component
         if p_id == q_id:
             return
@@ -146,7 +146,7 @@ class QuickFindUF:
         for i in range(len(id)):
             if id[i] == p_id():
                 id[i] = q_id
-        count -= 1   
+        count -= 1
 
     def find(self, p):
         """
@@ -176,14 +176,14 @@ class QuickFindUF:
 import sys
 import stdio
 
-# Reads in a an integer n and a sequence of pairs of integers 
-# (between 0 and n-1) from standard input or a file 
+# Reads in a an integer n and a sequence of pairs of integers
+# (between 0 and n-1) from standard input or a file
 # supplied as argument to the program, where each integer
-# in the pair represents some site; if the sites are in different 
+# in the pair represents some site; if the sites are in different
 # components, merge the two components and print the pair to standard output.
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        try: 
+        try:
             sys.stdin = open(sys.argv[1])
         except IOError:
             print("File not found, using standard input instead")
@@ -197,4 +197,4 @@ if __name__ == '__main__':
         uf.union(p, q)
         print('{} {}'.format(p, q))
     print('number of components: {}'.format(uf.count()))
-        
+
