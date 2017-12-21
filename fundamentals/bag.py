@@ -56,8 +56,8 @@ class Bag:
         """
         oldfirst = self._first
         self._first = self.Node()
-        self._first.item = item
-        self._first.next = oldfirst
+        self._first._item = item
+        self._first._next = oldfirst
         self._n += 1
 
         # DECISION: we do the other thing
