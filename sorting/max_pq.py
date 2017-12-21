@@ -1,3 +1,6 @@
+import sys
+from stdlib import stdio
+
 # Created for BADS 2018
 # see README.md for details
 # Python 3
@@ -79,19 +82,14 @@ class MaxPQ:
 
 if __name__ == '__main__':
     pq = MaxPQ()
-    pq.insert('s')
-    pq.insert('e')
-    pq.insert('a')
-    pq.insert('r')
-    pq.insert('c')
-    pq.insert('h')
-    pq.insert('e')
-    pq.insert('x')
-    pq.insert('a')
-    pq.insert('m')
-    pq.insert('p')
-    pq.insert('l')
-    pq.insert('e')
 
-    while not pq.is_empty():
-        print(pq.del_max())
+    if len(sys.argv) > 1:
+        sys.stdin = open(sys.argv[1])
+        while not stdio.isEmpty():
+            item = stdio.readString()
+            if item is not '-':
+                pq.insert(item)
+            elif not pq.is_empty():
+                print(pq.del_max())
+        print("({} left on pq)".format(pq.size()))
+        sys.stdin.close()
