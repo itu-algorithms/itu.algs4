@@ -1,20 +1,20 @@
 # Created for BADS 2018
-# see README.md for details
-# Python 3
+# See README.md for details
+# This is python3
 
 """
-The MaxPQ class represents a priority queue of generic keys.
-It supports the usual insert and delete-the-maximum
-operations, along with methods for peeking at the maximum key,
+The MinPQ class represents a priority queue of generic keys.
+It supports the usual insert and delete-the-minimum
+operations, along with methods for peeking at the minimum key,
 testing if the priority queue is empty, and iterating through the keys.
 This implementation uses a binary heap.
-The insert and delete-the-maximum operations take logarithmic amortized time.
-The max, size and is_empty operations take constant time.
+The insert and delete-the-minimum operations take logarithmic amortized time.
+The min, size and is-empty operations take constant time.
 Construction takes time proportional to the specified capacity.
 """
 
 
-class MaxPQ:
+class MinPQ:
     def __init__(self, _max=1):
         self._pq = [None] * (_max + 1)
         self._n = 0
@@ -26,21 +26,21 @@ class MaxPQ:
         self._pq[self._n] = x
         self._swim(self._n)
 
-    def max(self):
+    def min(self):
         return self._pq[1]
 
-    def del_max(self):
-        _max = self._pq[1]
+    def del_min(self):
+        _min = self._pq[1]
         self._exch(1, self._n)
         self._n -= 1
         self._sink(1)
         self._pq[self._n + 1] = None
         if self._n > 0 and self._n is (len(self._pq) - 1) // 4:
             self._resize(len(self._pq) // 2)
-        return _max
+        return _min
 
     def is_empty(self):
-        return self._n == 0
+        return self._n is 0
 
     def size(self):
         return self._n
@@ -48,15 +48,15 @@ class MaxPQ:
     def _sink(self, k):
         while 2*k <= self._n:
             j = 2*k
-            if j < self._n and self._less(j, j+1):
+            if j < self._n and self._greater(j, j+1):
                 j += 1
-            if not self._less(k, j):
+            if not self._greater(k, j):
                 break
             self._exch(k, j)
             k = j
 
     def _swim(self, k):
-        while k > 1 and self._less(k//2, k):
+        while k > 1 and self._greater(k//2, k):
             self._exch(k, k//2)
             k = k//2
 
@@ -66,8 +66,8 @@ class MaxPQ:
             temp[i] = self._pq[i]
         self._pq = temp
 
-    def _less(self, i, j):
-        return self._pq[i] < self._pq[j]
+    def _greater(self, i, j):
+        return self._pq[i] > self._pq[j]
 
     def _exch(self, i, j):
         self._pq[i], self._pq[j] = self._pq[j], self._pq[i]
@@ -78,7 +78,7 @@ class MaxPQ:
 
 
 if __name__ == '__main__':
-    pq = MaxPQ()
+    pq = MinPQ()
     pq.insert('s')
     pq.insert('e')
     pq.insert('a')
@@ -94,4 +94,4 @@ if __name__ == '__main__':
     pq.insert('e')
 
     while not pq.is_empty():
-        print(pq.del_max())
+        print(pq.del_min())
