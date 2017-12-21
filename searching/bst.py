@@ -18,7 +18,7 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 """
 
 # Missing methods:
-# ceiling, select, rank, keys, size (or rather, range_size)
+# ceiling, select, rank, size (or rather, range_size)
 
 class BST:
     def __init__(self):
@@ -185,7 +185,7 @@ class BST:
 
     def _max(self, node):
         if node.right == None:
-            return node.left
+            return node
         return self._max(node.right)
 
     def floor(self, key):
@@ -209,6 +209,38 @@ class BST:
             return temp_node
         return node
 
+    def keys(self):
+        """
+        Returns all keys in the symbol table as a list.
+        """
+        if self.is_empty():
+            return []
+        return self.range_keys(self.min(), self.max())
+
+    def range_keys(self, lo, hi):
+        """
+        Returns all keys in the symbol table in the given range as a list
+
+        :param lo: minimum endpoint
+        :param hi: maximum endpoint
+        :return: all keys in symbol table between lo (inclusive) and hi (inclusive)
+        """
+        queue = []
+        self._range_keys(self._root, queue, lo, hi)
+        return queue
+
+    def _range_keys(self, node, queue, lo, hi):
+        if node == None:
+            return
+        if lo < node.key:
+            self._range_keys(node.left, queue, lo, hi)
+        if lo <= node.key and hi >= node.key:
+            queue.append(node.key)
+        if hi > node.key:
+            self._range_keys(node.right, queue, lo, hi)
+
+
+
     def height(self):
         """
         Returns the height of the BST (for debugging)
@@ -224,7 +256,7 @@ class BST:
         """
         Returns the keys in the BST in level order (for debugging)
         """
-        queue, keys = []
+        queue, keys = [], []
         queue.append(self._root)
         while len(queue) > 0:
             node = queue.pop(0)
@@ -234,6 +266,38 @@ class BST:
             queue.append(node.left)
             queue.append(node.right)
         return keys
+
+
+# This is ugly but necessary to use stdlib
+# Need to find a better way of doing it
+import sys
+sys.path.append("..")
+from algo.stdlib import stdio
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        try:
+            sys.stdin = open(sys.argv[1])
+        except IOError:
+            print("File not found, using standard input instead")
+
+    data = stdio.readAllStrings()
+    st = BST()
+    i = 0
+    for key in data:
+        st.put(key, i)
+        i += 1
+
+    print("LEVELORDER:")
+    for key in st.level_order():
+        print(str(key) + " " + str(st.get(key)))
+
+    print()
+
+    print("KEYS:")
+    for key in st.keys():
+        print(str(key) + " " + str(st.get(key)))
+
 
 
 
