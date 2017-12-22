@@ -74,7 +74,7 @@ class SequentialSearchST:
         :raises ValueError: if key is None
         """
         if key is None: raise ValueError("argument to get() is None")
-        x = first
+        x = self._first
         while x is not None:
             if key == x._key:
                 return x._val
@@ -97,13 +97,14 @@ class SequentialSearchST:
             self.delete(key)
             return
 
-        x = first
+        x = self._first
         while x is not None:
-            if key = x._key:
+            if key == x._key:
                 x._val = val
                 return
+            x = x._next
 
-        self._first = Node(key, val, first)
+        self._first = self.Node(key, val, self._first)
         self._n += 1
 
     def delete(self, key):
@@ -115,7 +116,7 @@ class SequentialSearchST:
         :raises ValueError: if key is None
         """
         if key is None: raise ValueError("argument to delete() is None")
-        self._first = self._delete(first, key)
+        self._first = self._delete(self._first, key)
 
     def _delete(self, x, key):
         # delete key in linked list beginning at Node x
@@ -125,7 +126,7 @@ class SequentialSearchST:
             self._n -= 1
             return x._next
 
-        x._next = delete(x.next, key)
+        x._next = self._delete(x._next, key)
         return x
 
     def keys(self):
