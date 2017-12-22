@@ -16,9 +16,12 @@ try:
     q = Queue()
     q.enqueue(1)
 except AttributeError:
-    print('WARNING - unable to import python algs4 Queue class')
+    print('ERROR - unable to import python algs4 Queue class')
     sys.exit(1)
 
+ # TODO nicer format, remove all comments and java version
+ 
+ 
  # *  Symbol table with string keys, implemented using a ternary search
  # *  trie (TST).
  
@@ -94,8 +97,8 @@ class TST(object):
             return None
         if len(key) == 0:
             raise Exception("key nust have length >= 1")
-        c = key[d] # TODO check for indexError? (d exceeding?) or is it covered in the cases?
-        if c < x.c: # TODO check ordening of chars (strings)
+        c = key[d] # TODO check for indexError? (d exceeding?) or is it covered in the cases? #EDIT: java charAt can throw indexoutofbound, so can this
+        if c < x.c: 
             return self._get(x.left, key, d)
         elif c > x.c:
             return self._get(x.right, key, d)
@@ -136,9 +139,9 @@ class TST(object):
    #     root = put(root, key, val, 0);
    # }
     def _put(self, x, key, val, d):
-        c = key[d] # TODO check IndexError
+        c = key[d] # TODO check IndexError? EDIT: charAt doesn't
         if x is None:
-            x = self.Node() # TODO check scopoe for class node
+            x = self.Node()
             x.c = c
         if c < x.c:
             x.left = self._put(x.left, key, val, d)
@@ -190,7 +193,7 @@ class TST(object):
                 if x.val is not None:
                     length = i
                 x = x.mid
-        return query[0:length]  # TODO control that is not length + 1, what does java's substring do?
+        return query[0:length]  # TODO control that is not length + 1, what does java's substring do? #RESOLVED
 
     #public String longestPrefixOf(String query) {
     #    if (query == null) {
@@ -267,7 +270,7 @@ class TST(object):
         if x.val is not None:
             queue.enqueue(prefix + str(x.c))
         self._collect(x.mid, prefix + str(x.c), queue)
-        #prefix = prefix[:-1] #TODO is this necessary? was this for append of before, or a step of the search?
+        #prefix = prefix[:-1] #TODO is this necessary or to counter append? #EDIT not necessary, it's for stringbuilder (probably)
         self._collect(x.right, prefix, queue)
     
     #private void collect(Node<Value> x, StringBuilder prefix, Queue<String> queue) {
@@ -299,7 +302,7 @@ class TST(object):
     def _collect_match(self, x, prefix, i, pattern, queue):
         if x is None:
             return
-        c = pattern[i] # TODO IndexError
+        c = pattern[i] # TODO IndexError?
         if c == '.' or c <x.c:
             self._collect_match(x.left, prefix, i, pattern, queue)
         if c == '.' or c == x.c:
@@ -307,7 +310,7 @@ class TST(object):
                 queue.enqueue(prefix + str(x.c)) # TODO can x.c be something other than a character?
             if i < len(pattern) -1:
                 self._collect_match(x.mid, prefix + x.c, i+1, pattern, queue)
-                prefix = prefix[:-1] # TODO is this necessary or only because of append?
+                #prefix = prefix[:-1] # TODO is this necessary or only because of append? #EDIT that would be only to counter stringbuilder append, not necessary here
         if c == '.' or c > x.c:
             self._collect_match(x.right, prefix, i, pattern, queue)
 
