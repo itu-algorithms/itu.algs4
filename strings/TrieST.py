@@ -1,3 +1,21 @@
+import sys, os
+def setpath():
+    exe = sys.argv[0]
+    p = os.path.split(exe)[0]
+    sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
+    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
+    sys.path.insert(0, p)
+    sys.path.insert(0, exe)
+setpath()
+from queue import Queue
+import stdio
+try:
+    q = Queue()
+    q.enqueue(1)
+except AttributeError:
+    print('ERROR - Could not import algs4 queue')
+    sys.exit(1)
+
 
 """
  *  The TrieST class represents an symbol table of key-value
@@ -39,7 +57,7 @@ class TrieST(object):
             # TODO if I instantiate R nodes here we get infinite recursion
 
     def __init__(self):
-        self._root = Node()     # root of trie
+        self._root = self.Node()     # root of trie
         self._n;                # number of keys in trie
 
 
@@ -87,7 +105,7 @@ class TrieST(object):
 
     def _put(self, x, key, val, d):
         if x is None:
-            x = Node()
+            x = self.Node()
         if d == len(key):
             if x.val is None;
                 self._n +=1
@@ -127,9 +145,8 @@ class TrieST(object):
     # * @return all of the keys in the set that start with {@code prefix},
     # *     as an iterable
     
-    # TODO is  list a good equivalent for Iterable?
     def keys_with_prefix(self, prefix):
-        results = Queue() # TODO is this defined? need to import?
+        results = Queue()
         x = self._get(self._root, prefix, 0)
         self._collect(x, prefix, results)
         return results
@@ -168,9 +185,8 @@ class TrieST(object):
     # * @return all of the keys in the symbol table that match {@code pattern},
     # *     as an iterable, where . is treated as a wildcard character.
     
-    #TODO Iterable is list?
     def keys_that_match(self, pattern):
-        results = Queue() # TODO assuming Queue class, need to import?
+        results = Queue()
         self._collect_match(x, prefix, pattern, results) 
         return results
 
@@ -316,8 +332,8 @@ class TrieST(object):
 if __name__ == '__main__':
     st = TrieST()
     i = 0
-    while(not stdin.is_empty()): # TODO import stdin, also assumuing is_empty method
-        key = stdin.read_string()
+    while not stdio.isEmpty(): # TODO import stdin, also assumuing is_empty method
+        key = stdio.readString()
         st.put(key, i)
         i += 1
     # print results
@@ -339,46 +355,4 @@ if __name__ == '__main__':
     print('keys_that_match("he.l.")')
     for s in st.keys_that_match('he.l.'):
         print(s)
-
-#    /**
-#     * Unit tests the {@code TrieST} data type.
-#     *
-#     * @param args the command-line arguments
-#     */
-#    public static void main(String[] args) {
-#
-#        // build symbol table from standard input
-#        TrieST<Integer> st = new TrieST<Integer>();
-#        for (int i = 0; !StdIn.isEmpty(); i++) {
-#            String key = StdIn.readString();
-#            st.put(key, i);
-#        }
-#
-#        // print results
-#        if (st.size() < 100) {
-#            StdOut.println("keys(\"\"):");
-#            for (String key : st.keys()) {
-#                StdOut.println(key + " " + st.get(key));
-#            }
-#            StdOut.println();
-#       }
-#
-#        StdOut.println("longestPrefixOf(\"shellsort\"):");
-#        StdOut.println(st.longestPrefixOf("shellsort"));
-#        StdOut.println();
-#
-#        StdOut.println("longestPrefixOf(\"quicksort\"):");
-#        StdOut.println(st.longestPrefixOf("quicksort"));
-#        StdOut.println();
-#
-#        StdOut.println("keysWithPrefix(\"shor\"):");
-#        for (String s : st.keysWithPrefix("shor"))
-#            StdOut.println(s);
-#        StdOut.println();
-#
-#        StdOut.println("keysThatMatch(\".he.l.\"):");
-#        for (String s : st.keysThatMatch(".he.l."))
-#            StdOut.println(s);
-#    }
-#}
 
