@@ -1,6 +1,13 @@
-import sys
-from stdlib import stdio
+import sys, os
+def setpath():
+    exe = sys.argv[0]
+    p = os.path.split(exe)[0]
+    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
+    sys.path.insert(0, p)
+    sys.path.insert(0, exe)
+setpath()
 
+import stdio
 # Created for BADS 2018
 # See README.md for details
 # This is python3
