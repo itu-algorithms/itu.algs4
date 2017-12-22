@@ -1,4 +1,5 @@
 import sys
+from stdlib import stdio
 
 # Created for BADS 2018
 # see README.md for details
@@ -48,11 +49,8 @@ def main():
     Reads strings from an input file, sorts them, and prints the result.
     """
     if len(sys.argv) > 1:
-        a = []
-        with open(sys.argv[1]) as input_file:
-            for line in input_file:
-                for word in line.split():
-                    a.append(word)
+        sys.stdin = open(sys.argv[1])
+        a = stdio.readAllStrings()
         sort(a)
         _show(a)
 
