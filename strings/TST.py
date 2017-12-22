@@ -294,7 +294,19 @@ class TST(object):
     #}
     
     def _collect_match(self, x, prefix, i, pattern, queue):
-        pass
+        if x is None:
+            return
+        c = pattern[i] # TODO IndexError
+        if c == '.' or c <x.c:
+            self._collect_match(x.left, prefix, i, pattern, queue)
+        if c == '.' or c == x.c:
+            if i == len(pattern) -1 and x.val is not None:
+                queue.enqueue(prefix + str(x.c)) # TODO can x.c be something other than a character?
+            if i < len(pattern) -1:
+                self._collect_match(x.mid, prefix + x.c, i+1, pattern, queue)
+                prefix = prefix[:-1] # TODO is this necessary or only because of append?
+        if c == '.' or c > x.c:
+            self._collect_match(x.right, prefix, i, pattern, queue)
 
     #private void collect(Node<Value> x, StringBuilder prefix, int i, String pattern, Queue<String> queue) {
     #    if (x == null) return;
@@ -311,71 +323,38 @@ class TST(object):
     #}
 
 
-    /**
-     * Unit tests the {@code TST} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
+# * Unit tests the {@code TST} data type.
+# * @param args the command-line arguments
+if __name__ == '__main__':
+    st = TST()
+    i = 0
+    # build symbol table from stdin
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        st.put(key, i)
+        i += 1
+    # print results
+    if st.size() < 100:
+        print('keys(""):')
+        for key in st.keys():
+            print("{} {}".format(key, st.get(key)))
+        print()
+            
+        print("longestPrefixOf(\"shellsort\"):")
+        print(st.longest_prefix_of("shellsort"))
+        print()
 
-        // build symbol table from standard input
-        TST<Integer> st = new TST<Integer>();
-        for (int i = 0; !StdIn.isEmpty(); i++) {
-            String key = StdIn.readString();
-            st.put(key, i);
-        }
+        print("longestPrefixOf(\"shell\"):")
+        print(st.longest_prefix_of("shell"))
+        print()
 
-        // print results
-        if (st.size() < 100) {
-            StdOut.println("keys(\"\"):");
-            for (String key : st.keys()) {
-                StdOut.println(key + " " + st.get(key));
-            }
-            StdOut.println();
-        }
+        print("keysWithPrefix(\"shor\"):")
+        for s in st.keys_with_prefix("shor"):
+            print(s)
+        print()
 
-        StdOut.println("longestPrefixOf(\"shellsort\"):");
-        StdOut.println(st.longestPrefixOf("shellsort"));
-        StdOut.println();
+        print("keysThatMatch(\".he.l.\"):")
+        for s in st.keys_that_match(".he.l."):
+            print(s)
+    
 
-        StdOut.println("longestPrefixOf(\"shell\"):");
-        StdOut.println(st.longestPrefixOf("shell"));
-        StdOut.println();
-
-        StdOut.println("keysWithPrefix(\"shor\"):");
-        for (String s : st.keysWithPrefix("shor"))
-            StdOut.println(s);
-        StdOut.println();
-
-        StdOut.println("keysThatMatch(\".he.l.\"):");
-        for (String s : st.keysThatMatch(".he.l."))
-            StdOut.println(s);
-    }
-}
-
-/******************************************************************************
- *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.
- *
- *  This file is part of algs4.jar, which accompanies the textbook
- *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
- *
- *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
- ******************************************************************************/
-
-
-Last updated: Sat Jan 21 09:09:01 EST 2017.
