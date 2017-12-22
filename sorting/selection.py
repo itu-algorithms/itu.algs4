@@ -1,22 +1,61 @@
+import sys
+
+# Created for BADS 2018
+# see README.md for details
+# Python 3
+
+"""
+The selection module provides a function for sorting an
+array using selection sort.
+"""
+
+
 def sort(a):
+    """
+    Rearranges the array in ascending order, using the natural order.
+    :param a: the array to be sorted
+    """
     _n = len(a)
     for i in range(_n):
         _min = i
         for j in range(i+1, _n):
             if a[j] < a[_min]:
                 _min = j
-        a[i], a[_min] = a[_min], a[i]
+        _exch(a, i, _min)
 
 
-def sort_cmp(a, cmp):
-    _n = len(a)
-    for i in range(_n):
-        _min = i
-        for j in range(i + 1, _n):
-            if _less(a[j], a[_min], cmp):
-                _min = j
-        a[i], a[_min] = a[_min], a[i]
+def _exch(a, i, j):
+    """
+    Exchanges the the items at index i and j.
+    :param a: the array to be sorted
+    :param i: the index for the first item
+    :param j: the index for the second item
+    """
+    a[i], a[j] = a[j], a[i]
 
 
-def _less(v, w, cmp):
-    return cmp(v, w) < 0
+def _show(a):
+    """
+    Prints the content of the array.
+    :param a: The array to be shown
+    """
+    for i in range(len(a)):
+        print(a[i])
+
+
+def main():
+    """
+    Reads strings from an input file, sorts them, and prints the result.
+    """
+    if len(sys.argv) > 1:
+        a = []
+        with open(sys.argv[1]) as input_file:
+            for line in input_file:
+                for word in line.split():
+                    a.append(word)
+        sort(a)
+        _show(a)
+
+
+if __name__ == '__main__':
+    main()
