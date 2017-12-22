@@ -1,6 +1,10 @@
 import sys
 from stdlib import stdio
 
+# Created for BADS 2018
+# See README.md for details
+# Python 3
+
 """
 The heap module provides a function for heapsorting an array.
 """
