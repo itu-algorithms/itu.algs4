@@ -64,7 +64,7 @@ class Queue:
 if __name__ == '__main__':
     queue = Queue()
 
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         sys.stdin = open(sys.argv[1])
         while not stdio.isEmpty():
             input_item = stdio.readString()
