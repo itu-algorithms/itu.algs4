@@ -1,4 +1,5 @@
 from ..fundamentals.bag import Bag
+from ..fundamentals.stack import Stack
 
 class Graph:
     """
@@ -43,6 +44,7 @@ class Graph:
         followed by E pairs of vertices, with each entry separated by whitespace.
       
         :param stream: the input stream
+        :returns: new graph from stream
         :raises ValueError: if the endpoints of any edge are not in prescribed range
         :raises ValueError: if the number of vertices or edges is negative
         :raises ValueError: if the input stream is in the wrong format 
@@ -60,6 +62,24 @@ class Graph:
             g._validateVertex(w)
             g.addEdge(v, w)             # and add edge connecting them.
         return g
+
+    @staticmethod
+    def from_graph(G):
+        """
+        Initializes a new graph that is a deep copy of G
+
+        :param G: the graph to copy
+        :returns: copy of G 
+        """
+        g = Graph(G.V())
+        g._E = G.E()
+        for v in range(G.V()):
+            # reverse so that adjacency list is in same order as original
+            reverse = Stack()
+            for w in G._adj[v]:
+                reverse.push(w)
+            for w in reverse:
+                g._adj[v].add(w)
 
     def V(self):
         """
