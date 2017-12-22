@@ -4,11 +4,14 @@ def setpath():
     exe = sys.argv[0]
     p = os.path.split(exe)[0]
     sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
+    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
     sys.path.insert(0, p)
     sys.path.insert(0, exe)
 setpath()
 
 from queue import Queue
+import stdio
+
 try:
     q = Queue()
     q.enqueue(1)
@@ -94,7 +97,7 @@ class TST(object):
         c = key[d] # TODO check for indexError? (d exceeding?) or is it covered in the cases?
         if c < x.c: # TODO check ordening of chars (strings)
             return self._get(x.left, key, d)
-        elif x > x.c:
+        elif c > x.c:
             return self._get(x.right, key, d)
         elif d < len(key) -1:
             return self._get(x.mid, key, d+1)
@@ -123,7 +126,7 @@ class TST(object):
             raise Exception("calls put() with null key") # TODO IllegalArgumentException 
         if not self.contains(key):
             self.n += 1
-        self.root = self._put(self.root, key, val)
+        self.root = self._put(self.root, key, val, 0)
 
    # public void put(String key, Value val) {
    #     if (key == null) {
@@ -135,7 +138,7 @@ class TST(object):
     def _put(self, x, key, val, d):
         c = key[d] # TODO check IndexError
         if x is None:
-            x = Node() # TODO check scopoe for class node
+            x = self.Node() # TODO check scopoe for class node
             x.c = c
         if c < x.c:
             x.left = self._put(x.left, key, val, d)
