@@ -137,9 +137,8 @@ def main():
     Prints the amount of items left on the priority queue
     :return:
     """
-    pq = MaxPQ()
-
     if len(sys.argv) > 1:
+        pq = MaxPQ()
         sys.stdin = open(sys.argv[1])
         while not stdio.isEmpty():
             item = stdio.readString()
