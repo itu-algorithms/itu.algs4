@@ -30,7 +30,7 @@ class MinPQ:
         Adds a new key to this priority queue.
         :param x: the new key to add to this priority queue
         """
-        if self._n is len(self._pq) - 1:
+        if self._n == len(self._pq) - 1:
             self._resize(2 * len(self._pq))
         self._n += 1
         self._pq[self._n] = x
@@ -53,7 +53,7 @@ class MinPQ:
         self._n -= 1
         self._sink(1)
         self._pq[self._n + 1] = None
-        if self._n > 0 and self._n is (len(self._pq) - 1) // 4:
+        if self._n > 0 and self._n == (len(self._pq) - 1) // 4:
             self._resize(len(self._pq) // 2)
         return _min
 
@@ -62,7 +62,7 @@ class MinPQ:
         Returns True if this priority queue is empty.
         :return: True if this priority queue is empty otherwise False
         """
-        return self._n is 0
+        return self._n == 0
 
     def size(self):
         """
@@ -135,7 +135,7 @@ def main():
         sys.stdin = open(sys.argv[1])
         while not stdio.isEmpty():
             item = stdio.readString()
-            if item is not '-':
+            if item != '-':
                 pq.insert(item)
             elif not pq.is_empty():
                 print(pq.del_min())
