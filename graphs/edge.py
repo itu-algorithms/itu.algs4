@@ -22,8 +22,8 @@ class Edge:
         :param v: one vertex
         :param w: the other vertex
         :param weight: the weight of this edge
-        :raises ValueError if either v or w is a negative integer
-        :raises ValueError if weight is NaN
+        :raises ValueError: if either v or w is a negative integer
+        :raises ValueError: if weight is NaN
         """
         if v < 0:
             raise ValueError("vertex index must be a nonnegative integer")
@@ -54,7 +54,7 @@ class Edge:
         Returns the endpoint of this edge that is different from the given vertex.
         :param vertex: one endpoint of this edge
         :return: the other endpoint of this edge
-        :raises: ValueError if the vertex is not one of the endpoints of this edge
+        :raises ValueError: if the vertex is not one of the endpoints of this edge
         """
         if vertex is self._v:
             return self._w
