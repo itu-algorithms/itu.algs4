@@ -5,19 +5,18 @@ from stdlib import stdio
 # See README.md for details
 # This is python3
 
-"""
-The MinPQ class represents a priority queue of generic keys.
-It supports the usual insert and delete-the-minimum
-operations, along with methods for peeking at the minimum key,
-testing if the priority queue is empty, and iterating through the keys.
-This implementation uses a binary heap.
-The insert and delete-the-minimum operations take logarithmic amortized time.
-The min, size and is-empty operations take constant time.
-Construction takes time proportional to the specified capacity.
-"""
-
 
 class MinPQ:
+    """
+    The MinPQ class represents a priority queue of generic keys.
+    It supports the usual insert and delete-the-minimum
+    operations, along with methods for peeking at the minimum key,
+    testing if the priority queue is empty, and iterating through the keys.
+    This implementation uses a binary heap.
+    The insert and delete-the-minimum operations take logarithmic amortized time.
+    The min, size and is-empty operations take constant time.
+    Construction takes time proportional to the specified capacity.
+    """
     def __init__(self, _max=1):
         """
         Initializes an empty priority queue with the given initial capacity

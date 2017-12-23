@@ -12,18 +12,17 @@ import stdio
 # See README.md for details
 # This is python3
 
-"""
-The Queue class represents a first-in-first-out (FIFO)
-queue of generic items.
-It supports the usual enqueue and dequeue
-operations, along with methods for peeking at the first item,
-testing if the queue is empty, and iterating through the items in FIFO order
-This implementation uses a singly linked list with a nested class for the linked-list nodes
-The enqueue, dequeue, peek, size, and is_empty operations all take constant time in the worst case
-"""
-
 
 class Queue:
+    """
+    The Queue class represents a first-in-first-out (FIFO)
+    queue of generic items.
+    It supports the usual enqueue and dequeue
+    operations, along with methods for peeking at the first item,
+    testing if the queue is empty, and iterating through the items in FIFO order
+    This implementation uses a singly linked list with a nested class for the linked-list nodes
+    The enqueue, dequeue, peek, size, and is_empty operations all take constant time in the worst case
+    """
     class Node:
         def __init__(self, item, next):
             """

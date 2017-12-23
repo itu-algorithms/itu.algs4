@@ -5,19 +5,18 @@ from stdlib import stdio
 # see README.md for details
 # Python 3
 
-"""
-The MaxPQ class represents a priority queue of generic keys.
-It supports the usual insert and delete-the-maximum
-operations, along with methods for peeking at the maximum key,
-testing if the priority queue is empty, and iterating through the keys.
-This implementation uses a binary heap.
-The insert and delete-the-maximum operations take logarithmic amortized time.
-The max, size and is_empty operations take constant time.
-Construction takes time proportional to the specified capacity.
-"""
-
 
 class MaxPQ:
+    """
+    The MaxPQ class represents a priority queue of generic keys.
+    It supports the usual insert and delete-the-maximum
+    operations, along with methods for peeking at the maximum key,
+    testing if the priority queue is empty, and iterating through the keys.
+    This implementation uses a binary heap.
+    The insert and delete-the-maximum operations take logarithmic amortized time.
+    The max, size and is_empty operations take constant time.
+    Construction takes time proportional to the specified capacity.
+    """
     def __init__(self, _max=1):
         """
         Initializes an empty priority queue with the given initial capacity
@@ -132,7 +131,7 @@ class MaxPQ:
 
 def main():
     """
-    Reads strings from an input file and adds it to a priority queue.
+    Reads strings from an input file and adds them to a priority queue.
     When reading a '-' it removes a maximum item on the priority queue and prints it.
     Prints the amount of items left on the priority queue
     :return:
