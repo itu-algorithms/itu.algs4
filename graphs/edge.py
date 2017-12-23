@@ -4,17 +4,16 @@ import math
 # See README.md for details
 # Python 3
 
-"""
-The Edge class represents a weighted edge in an
-EdgeWeightedGraph. Each edge consists of two integers
-(naming the two vertices) and a real-value weight. The data type
-provides methods for accessing the two endpoints of the edge and
-the weight. The natural order for this data type is by
-ascending order of weight.
-"""
-
 
 class Edge:
+    """
+    The Edge class represents a weighted edge in an
+    EdgeWeightedGraph. Each edge consists of two integers
+    (naming the two vertices) and a real-value weight. The data type
+    provides methods for accessing the two endpoints of the edge and
+    the weight. The natural order for this data type is by
+    ascending order of weight.
+    """
     def __init__(self, v, w, weight):
         """
         Initializes an edge between vertices v and w of
