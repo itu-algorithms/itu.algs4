@@ -1,7 +1,7 @@
-import stdio
+import instream
 
-from ..fundamentals.bag import Bag
-from ..fundamentals.stack import Stack
+from fundamentals.bag import Bag
+from fundamentals.stack import Stack
 
 class Digraph:
     """
@@ -53,7 +53,7 @@ class Digraph:
         """
         V = stream.readInt()        # read V
         if V < 0: raise ValueError("Number of vertices must be nonnegative")
-        g = Graph(V)                # construct this graph
+        g = Digraph(V)                # construct this graph
         E = stream.readInt()        # read E    
         if E < 0: raise ValueError("Number of edges in a Graph must be nonnegative")
         for _ in range(E):
@@ -164,3 +164,14 @@ class Digraph:
             s.append("\n")
 
         return ''.join(s)
+    
+import sys
+
+if __name__ == '__main__':
+    # Create stream from file or the standard input,
+    # depending on whether a file name was passed.
+    stream = instream.InStream(sys.argv[1])
+    
+    d = Digraph.from_stream(stream)
+    print(d)
+    
