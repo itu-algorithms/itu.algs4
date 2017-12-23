@@ -1,3 +1,6 @@
+import sys
+from stdlib import stdio
+
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -60,11 +63,13 @@ class Queue:
 
 if __name__ == '__main__':
     queue = Queue()
-    queue.enqueue('a')
-    queue.enqueue('b')
-    queue.enqueue('c')
-    queue.enqueue('d')
-    queue.enqueue('e')
 
-    while not queue.is_empty():
-        print(queue.dequeue())
+    if len(sys.argv) > 0:
+        sys.stdin = open(sys.argv[1])
+        while not stdio.isEmpty():
+            input_item = stdio.readString()
+            if input_item is not '-':
+                queue.enqueue(input_item)
+            elif not queue.is_empty():
+                print(queue.dequeue())
+        print('({} left on queue)'.format(queue.size()))
