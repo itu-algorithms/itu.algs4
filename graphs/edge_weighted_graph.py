@@ -8,25 +8,24 @@ from graphs.edge import Edge
 # See README.md for details
 # Python 3
 
-"""
-The EdgeWeightedGraph class represents an edge-weighted
-graph of vertices named 0 through V-1, where each
-undirected edge is of type Edge and has a real-valued weight.
-It supports the following two primary operations: add an edge to the graph,
-iterate over all of the edges incident to a vertex. It also provides
-methods for returning the number of vertices V and the number
-of edges E. Parallel edges and self-loops are permitted.
-By convention, a self-loop v-v appears in the adjacency list of v twice and contributes two to the degree
-of v.
-This implementation uses an adjacency-list representation, which
-is a vertex-indexed array of Bag objects.
-All operations take constant time (in the worst case) except
-iterating over the edges incident to a given vertex, which takes
-time proportional to the number of such edges.
-"""
-
 
 class EdgeWeightedGraph:
+    """
+    The EdgeWeightedGraph class represents an edge-weighted
+    graph of vertices named 0 through V-1, where each
+    undirected edge is of type Edge and has a real-valued weight.
+    It supports the following two primary operations: add an edge to the graph,
+    iterate over all of the edges incident to a vertex. It also provides
+    methods for returning the number of vertices V and the number
+    of edges E. Parallel edges and self-loops are permitted.
+    By convention, a self-loop v-v appears in the adjacency list of v twice and contributes two to the degree
+    of v.
+    This implementation uses an adjacency-list representation, which
+    is a vertex-indexed array of Bag objects.
+    All operations take constant time (in the worst case) except
+    iterating over the edges incident to a given vertex, which takes
+    time proportional to the number of such edges.
+    """
     def __init__(self, V):
         """
         Initializes an empty edge-weighted graph with V vertices and 0 edges.
