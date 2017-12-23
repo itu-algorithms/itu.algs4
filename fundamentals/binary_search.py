@@ -1,5 +1,6 @@
 import sys
 from stdlib import stdio
+
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -12,6 +13,12 @@ The index_of operation takes logarithmic time in the worst case.
 
 
 def index_of(a, key):
+    """
+    Returns the index of the specified key in the specified array.
+    :param a: the array of items, must be sorted in ascending order
+    :param key: the search key
+    :return: index of key in array if present -1 otherwise
+    """
     lo = 0
     hi = len(a) - 1
     while hi >= lo:
@@ -25,7 +32,11 @@ def index_of(a, key):
     return -1
 
 
-if __name__ == '__main__':
+def main():
+    """
+    Reads strings from first input file and sorts them
+    Reads strings from second input file and prints every string not in first input file
+    """
     if len(sys.argv) is 3:
         sys.stdin = open(sys.argv[1])
         arr = stdio.readAllStrings()
@@ -35,3 +46,7 @@ if __name__ == '__main__':
             key = stdio.readString()
             if index_of(arr, key) is -1:
                 print(key)
+
+
+if __name__ == '__main__':
+    main()

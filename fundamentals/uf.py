@@ -133,7 +133,7 @@ class WeightedQuickUnionUF:
             return
 
         # make root of smaller rank point to root of larger rank
-        if self._rank[root_p] < self._rank[root_q]:
+        if self._size[root_p] < self._size[root_q]:
             small, large = root_p, root_q
         else:
             small, large = root_q, root_p
@@ -150,7 +150,7 @@ class WeightedQuickUnionUF:
         :param p: the integer representing one site
         :return: the component identifier for the component containing site p
         """
-        self._validate(p);
+        self._validate(p)
         while p != self._parent[p]:
             p = self._parent[p]
         return p
