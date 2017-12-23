@@ -30,7 +30,9 @@ class Node:
         self._next = None
         self._item = None
 
-class ListIterator:        
+from collections.abc import Iterator
+
+class ListIterator(Iterator):        
     def __init__(self, first):
         self.current = first
     
