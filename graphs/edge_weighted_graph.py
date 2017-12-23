@@ -31,7 +31,7 @@ class EdgeWeightedGraph:
         """
         Initializes an empty edge-weighted graph with V vertices and 0 edges.
         :param V: the number of vertices
-        :raises: ValueError if V < 0
+        :raises ValueError: if V < 0
         """
         if V < 0:
             raise ValueError("Number of vertices must be nonnegative")
@@ -99,7 +99,7 @@ class EdgeWeightedGraph:
         Returns the degree of vertex v.
         :param v: the vertex
         :return: the degree of vertex v
-        :raises: ValueError unless 0 <= v < V
+        :raises ValueError: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._adj[v].size()
