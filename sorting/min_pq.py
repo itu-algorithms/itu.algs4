@@ -123,10 +123,13 @@ class MinPQ:
 
     def __iter__(self):
         """
-        Iterates over all the items in this priority queue in heap order.
+        Iterates over all the items in this priority queue in ascending order.
         """
+        copy = MinPQ(self.size())
         for i in range(1, self._n + 1):
-            yield self._pq[i]
+            copy.insert(self._pq[i])
+        for i in range(1, copy._n + 1):
+            yield copy.del_min()
 
 
 def main():
