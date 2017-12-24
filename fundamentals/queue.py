@@ -97,6 +97,16 @@ class Queue:
             yield curr.item
             curr = curr.next
 
+    def __repr__(self):
+        """
+        Returns a string representation of this queue.
+        :return: the sequence of items in FIFO order, separated by spaces
+        """
+        s = []
+        for item in self:
+            s.append("{} ".format(item))
+        return ''.join(s)
+
 
 def main():
     """
