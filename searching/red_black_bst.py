@@ -597,7 +597,7 @@ class NoSuchElementError(Exception):
 
 def main():
     """
-    Read strings from input file, adds them to a red-black BST with values 0..n, and prints all key value pairs.
+    Reads strings from input file, adds them to a red-black BST with values 0..n, and prints all key value pairs.
     """
     if len(sys.argv) > 1:
         sys.stdin = open(sys.argv[1])
