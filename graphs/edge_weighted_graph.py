@@ -1,5 +1,5 @@
 import sys
-from stdlib import stdio
+from stdlib.instream import InStream
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
 from graphs.edge import Edge
@@ -57,6 +57,34 @@ class EdgeWeightedGraph:
                 g._adj[v].add(e)
         return g
 
+    @staticmethod
+    def from_stream(stream):
+        """
+        Initializes an edge-weighted graph from an input stream.
+        The format is the number of vertices V,
+        followed by the number of edges E,
+        followed by E pairs of vertices and edge weights,
+        with each entry separated by whitespace.
+        :param stream: the input stream
+        :raises IllegalArgumentError: if the endpoints of any edge are not in prescribed range
+        :raises IllegalArgumentError: if the number of vertices or edges is negative
+        :return: the edge-weighted graph
+        :rtype: EdgeWeightedGraph
+        """
+        g = EdgeWeightedGraph(stream.readInt())
+        E = stream.readInt()
+        if E < 0:
+            raise IllegalArgumentError("Number of edges must be nonnegative")
+        for i in range(E):
+            v = stream.readInt()
+            w = stream.readInt()
+            g._validate_vertex(v)
+            g._validate_vertex(w)
+            weight = stream.readFloat()
+            e = Edge(v, w, weight)
+            g.add_edge(e)
+        return g
+
     def add_edge(self, e):
         """
         Adds the undirected edge e to this edge-weighted graph.
@@ -108,17 +136,17 @@ class EdgeWeightedGraph:
         Returns all edges in this edge-weighted graph.
         :return: all edges in this edge-weighted graph
         """
-        _list = Bag()
+        edges = Bag()
         for v in range(self._V):
             self_loops = 0
             for e in self.adj(v):
                 if e.other(v) > v:
-                    _list.add(e)
+                    edges.add(e)
                 elif e.other(v) is v:
                     if self_loops % 2 is 0:
-                        _list.add(e)
+                        edges.add(e)
                     self_loops += 1
-        return _list
+        return edges
 
     def _validate_vertex(self, v):
         """
@@ -144,21 +172,18 @@ class EdgeWeightedGraph:
         return ''.join(s)
 
 
+class IllegalArgumentError(Exception):
+    pass
+
+
 def main():
     """
     Creates an edge-weighted graph from the given input file and prints it.
     """
     if len(sys.argv) > 1:
-        sys.stdin = open(sys.argv[1])
-        g = EdgeWeightedGraph(stdio.readInt())
-        E = stdio.readInt()
-        for i in range(E):
-            v = stdio.readInt()
-            w = stdio.readInt()
-            weight = stdio.readFloat()
-            e = Edge(v, w, weight)
-            g.add_edge(e)
-        print(g)
+        stream = InStream(sys.argv[1])
+        G = EdgeWeightedGraph.from_stream(stream)
+        print(G)
 
 
 if __name__ == '__main__':
