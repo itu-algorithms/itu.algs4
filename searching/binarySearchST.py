@@ -71,7 +71,7 @@ class BinarySearchST:
         """
         Does this symbol table contain the given key?
 
-        :param  key the key
+        :param key: the key
         :returns:  True if this symbol table contains  key and
                 False otherwise
         :raises ValueError: if  key is  None
@@ -98,7 +98,7 @@ class BinarySearchST:
         """
         Returns the number of keys in this symbol table strictly less than  key.
         
-        :param  key the key
+        :param key: the key
         :returns: the number of keys in the symbol table strictly less than  key
         :raises ValueError: if  key is  None
         """
@@ -234,9 +234,9 @@ class BinarySearchST:
         """
         Return the kth smallest key in this symbol table.
         
-        :param  k the order statistic
+        :param k: the order statistic
         :returns: the  kth smallest key in this symbol table
-        :raises ValueError: unless k is between 0 and n–1
+        :raises ValueError: unless k is between 0 and n-1
         """
         if k < 0 or k >= self.size():
             raise ValueError("called select() with invalid argument: {}".format(k))
@@ -295,11 +295,11 @@ class BinarySearchST:
         """
         Returns all keys in this symbol table as an  Iterable.
         To iterate over all of the keys in the symbol table named  st,
-        use the foreach notation:  for (Key key : st.keys()).
+        use the foreach notation: for (Key key : st.keys()).
         
         :returns: all keys in this symbol table
         """
-        return self.keys_between(min(), max())
+        return self.keys_between(self.min(), self.max())
     
     def keys_between(self, lo, hi):
         """
@@ -332,10 +332,10 @@ class BinarySearchST:
    #*************************************************************************
 
     def _check(self):
-        return self.isSorted() and self._rankCheck()
+        return self._is_sorted() and self._rank_check()
     
     
-    def isSorted(self):
+    def _is_sorted(self):
         # are the items in the array in ascending order?
         i = 1
         while i < self.size():
@@ -343,7 +343,7 @@ class BinarySearchST:
             i += 1
         return True
     
-    def _rankCheck(self):
+    def _rank_check(self):
         # check that rank(select(i)) = i
         for i in range(self.size()):
             if i != self.rank(self.select(i)): return False
