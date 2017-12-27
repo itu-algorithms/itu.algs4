@@ -1,3 +1,8 @@
+from ..searching.binarySearchST import BinarySearchST
+from ..stdlib.instream import InStream
+from ..stdlib import stdio
+from .graph import Graph
+
 class SymbolGraph:
     """
     The SymbolGraph class represents an undirected graph, where the
@@ -16,55 +21,45 @@ class SymbolGraph:
     The nameOf operation takes constant time.
     """
 
-    @staticmethod
-    def from_file(filename, delimiter):
-        pass
+    def __init__(self, filename, delimiter):
+        """
+        Initializes a graph from a file using the specified delimiter.
+        Each line in the file contains
+        the name of a vertex, followed by a list of the names
+        of the vertices adjacent to that vertex, separated by the delimiter.
 
-    # private ST<String, Integer> st;  # string -> index
-    # private String[] keys;           # index  -> string
-    # private Graph graph;             # the underlying graph
+        :param filename: the name of the file
+        :param delimiter: the delimiter between fields
+        """
+        self._st = BinarySearchST()             # string -> index
 
-    # /**  
-    #  * Initializes a graph from a file using the specified delimiter.
-    #  * Each line in the file contains
-    #  * the name of a vertex, followed by a list of the names
-    #  * of the vertices adjacent to that vertex, separated by the delimiter.
-    #  * @param filename the name of the file
-    #  * @param delimiter the delimiter between fields
-    #  */
-    # SymbolGraph(String filename, String delimiter) {
-    #     st = new ST<String, Integer>();
+        # First pass builds the index by reading strings to associate
+        # distinct strings with an index
+        stream = InStream(filename)
+        while not stream.isEmpty():
+            a = stream.readLine().split(delimiter)
+            for i in range(len(a)):
+                if not self._st.contains(a[i]):
+                    self._st.put(a[i], self._st.size())
 
-    #     # First pass builds the index by reading strings to associate
-    #     # distinct strings with an index
-    #     In in = new In(filename);
-    #     # while (in.hasNextLine()) {
-    #     while (!in.isEmpty()) {
-    #         String[] a = in.readLine().split(delimiter);
-    #         for (int i = 0; i < a.length; i++) {
-    #             if (!st.contains(a[i]))
-    #                 st.put(a[i], st.size());
-    #         
-    #     
-    #     StdOut.println("Done reading " + filename);
+        stdio.writeln("Done reading {}".format(filename))
 
-    #     # inverted index to get string keys in an aray
-    #     keys = new String[st.size()];
-    #     for (String name : st.keys()) {
-    #         keys[st.get(name)] = name;
-    #     
-
-    #     # second pass builds the graph by connecting first vertex on each
-    #     # line to all others
-    #     graph = new Graph(st.size());
-    #     in = new In(filename);
-    #     while (in.hasNextLine()) {
-    #         String[] a = in.readLine().split(delimiter);
-    #         int v = st.get(a[0]);
-    #         for (int i = 1; i < a.length; i++) {
-    #             int w = st.get(a[i]);
-    #             graph.addEdge(v, w);
+        # inverted index to get string keys in an aray
+        self._keys = [None] * self._st.size()   # index  -> string
+        for name in self._st.keys():
+            self._keys[self._st.get(name)] = name
     
+        # second pass builds the graph by connecting first vertex on each
+        # line to all others
+        self._graph = Graph(self._st.size())    # the underlying graph
+        stream = InStream(filename)
+        while stream.hasNextLine():
+            a = stream.readLine().split(delimiter)
+            v = self._st.get(a[0])
+            for i in range(1, len(a)):
+                w = self._st.get(a[i])
+                self._graph.addEdge(v, w)
+
     def contains(self, s):
         """
         Does the graph contain the vertex named s?

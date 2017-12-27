@@ -30,7 +30,7 @@ def _show(a):
 	#Prints the array on a single line
 	for item in a:
 		print(item, end=' ')
-	print
+	print()
 def is_sorted(a):
 	for i in range(1,len(a)):
 		if _less(a[i], a[i-1]):

@@ -103,3 +103,61 @@ class Stack:
         while current is not None:
             yield current._item
             current = current._next
+
+class FixedCapacityStack:            
+    def __init__(self, capacity):
+        self.a = [None] * capacity
+        self.n = 0
+    
+    def is_empty(self):
+        return self.n == 0
+
+    def size(self):
+        return self.n
+
+    def push(self, item):
+        self.a[self.n] = item
+        self.n += 1
+
+    def pop(self):
+        self.n -= 1
+        return self.a[self.n]
+
+class ResizingArrayStack:
+    def __init__(self):
+        self.a = [None]
+        self.n = 0
+
+    def is_empty(self):
+        return self.n == 0
+
+    def size(self):
+        return self.n
+
+    def resize(self, capacity):
+        temp = [None] * capacity
+        for i in range(self.n):
+            temp[i] = self.a[i]
+        a = temp
+
+    def push(self, item):
+        if self.n == len(self.a): 
+            self.resize(2 * len(self.a))
+        self.a[self.n] = item
+        self.n += 1
+
+    def pop(self):
+        self.n -= 1
+        item = self.a[self.n]
+        self.a[self.n] = None
+        if self.n > 0 and self.n == len(self.a)/4:
+            self.resize(len(self.a)/2)
+        return item
+
+    def __iter__(self):
+        i = self.n -1
+        while i >= 0:
+            yield self.a[i]
+            i -= 1
+
+
