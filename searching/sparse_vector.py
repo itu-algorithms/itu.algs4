@@ -140,9 +140,9 @@ def main():
 	a.put(6, 0.00)
 	b.put(3, 0.60)
 	b.put(4, 0.90)
-	print "a = %s" % a
-	print "a = %s" % b
-	print "a dot b = %s" % a.dot(b)
-	print "a + b = %s" % a.plus(b)
+	print("a       = {}".format(a))
+	print("b       = {}".format(b))
+	print("a dot b = {}".format(a.dot(b)))
+	print("a + b   = {}".format(a.plus(b)))
 if __name__ == "__main__":
     main()

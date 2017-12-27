@@ -4,7 +4,7 @@
 from sequentialSearchST import SequentialSearchST
 import sys
 """
-The SeparateChainingHashST class represents a symbol table of generic
+The SeparateChainingHashST class represents a symbol table of dynamic
 key-value pairs.
 It supports the usual put, get, contains, delete, size, 
 and is-empty methods.
@@ -35,7 +35,18 @@ class SeparateChainingHashST:
 		return (hash(key) & 0x7fffffff) % self.M
 
 	def get(self, key):
-		return self.st[self._hash(key)].get(key)
+		"""
+		Returns the value associated with the specified key.
+
+		:param key: the key
+		:returns: the value associated with the key in the symbol table;
+					None if no such value
+		:raises ValueError: if key is None
+		"""
+		if(key is None):
+			raise ValueError("argument to get() is None")
+		i = self._hash(key)
+		return self.st[i].get(key)
 
 	def put(self, key, value):
 		"""
@@ -62,6 +73,7 @@ class SeparateChainingHashST:
 	def size(self):
 		"""
 		Returns the number of key-value pairs in this symbol table.
+
 		:returns: the number of key-value pairs in this symbol table.
 		"""
 		return self.N
@@ -69,6 +81,7 @@ class SeparateChainingHashST:
 	def is_empty(self):
 		"""
 		Returns true if the symbol table is empty.
+
 		:returns: True if this symbol table is empty;
 					False otherwise.
 		"""
@@ -85,7 +98,7 @@ class SeparateChainingHashST:
 		"""
 		if(key == None):
 			raise ValueError("argument to contains() is None")
-		return not self.get(key) is None
+		return self.get(key) is not None
 
 	def delete(self, key):
 		"""
@@ -122,6 +135,6 @@ def main():
 		st.put(key, i)
 		i += 1
 	for key in st.keys():
-		print "%s %d" % (key, st.get(key))
+		print('{} {}'.format(key, st.get(key)))
 if __name__ == "__main__":
     main()
