@@ -1,4 +1,5 @@
 def count(a):
+    # Count triples that sum to 0
     n = len(a)
     count = 0
     for i in range(n):
