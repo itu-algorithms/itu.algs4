@@ -10,7 +10,7 @@ def _rabinMiller(n):
      s = n-1
      t = 0
      while s&1 == 0:
-         s = s/2
+         s = int(s/2)
          t +=1
      k = 0
      while k<128:
@@ -63,7 +63,7 @@ def longRandomPrime(k):
          r-=1
          if _isPrime(n) == True:
              return n
-     return "Failure after "+`r_` + " tries."
+     return "Failure after "+ r_ + " tries."
 """
 The RabinKarp class finds the first occurence of a pattern string
 in a text string.
@@ -121,16 +121,16 @@ def main():
 	Takes a pattern string and an input string as command-line arguments;
     searches for the pattern string in the text string; and prints
     the first occurrence of the pattern string in the text string.
-    Will print the pattern after the end of the string if not match is found.
+    Will print the pattern after the end of the string if no match is found.
 	"""
 	pat = sys.argv[1]
 	txt = sys.argv[2]
 	rk = RabinKarp(pat)
-	print "text:    %s" % txt
+	print("text:    {}".format(txt))
 	offset = rk.search(txt)
-	sys.stdout.write("pattern: ")
+	print("pattern:",end=" ")
 	for i in range(0,offset):
-		sys.stdout.write(" ")
-	print pat
+		print("",end=" ")
+	print(pat)
 if __name__ == "__main__":
     main()

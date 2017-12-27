@@ -53,16 +53,16 @@ def main():
 	Takes a pattern string and an input string as command-line arguments;
     searches for the pattern string in the text string; and prints
     the first occurrence of the pattern string in the text string.
-    Will print the pattern after the end of the string if not match is found.
+    Will print the pattern after the end of the string if no match is found.
 	"""
 	pat = sys.argv[1]
 	txt = sys.argv[2]
 	kmp = KMP(pat)
-	print "text:    %s" % txt
+	print("text:    {}".format(txt))
 	offset = kmp.search(txt)
-	sys.stdout.write("pattern: ")
+	print("pattern: ",end='')
 	for i in range(0,offset):
-		sys.stdout.write(" ")
-	print pat
+		print("",end=' ')
+	print(pat)
 if __name__ == "__main__":
     main()
