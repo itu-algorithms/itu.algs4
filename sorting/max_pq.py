@@ -125,8 +125,11 @@ class MaxPQ:
         """
         Iterates over all the items in this priority queue in heap order.
         """
+        copy = MaxPQ(self.size())
         for i in range(1, self._n + 1):
-            yield self._pq[i]
+            copy.insert(self._pq[i])
+        for i in range(1, copy._n + 1):
+            yield copy.del_max()
 
 
 def main():

@@ -37,7 +37,7 @@ def _char_at(s, d):
 		return -1
 def _show(a):
 	for item in a:
-		print item
+		print(item)
 def is_sorted(a):
 	for i in range(1,len(a)):
 		if _less(a[i], a[i-1]):

@@ -55,9 +55,9 @@ class Edge:
         :return: the other endpoint of this edge
         :raises ValueError: if the vertex is not one of the endpoints of this edge
         """
-        if vertex is self._v:
+        if vertex == self._v:
             return self._w
-        elif vertex is self._w:
+        elif vertex == self._w:
             return self._v
         else:
             raise ValueError("Illegal endpoint")
