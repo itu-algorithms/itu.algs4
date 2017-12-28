@@ -12,6 +12,7 @@ import instream
 
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
+from fundamentals.queue import Queue
 
 class Digraph:
     """
@@ -134,7 +135,7 @@ class Digraph:
         :raises ValueError: unless  0 <= v < V
         """
         self._validateVertex(v)        
-        return iter(self._adj[v])
+        return self._adj[v]
 
     def degree(self, v):
         """
@@ -175,7 +176,7 @@ class Digraph:
 
         return ''.join(s)
 
-# Not very pythonic and quite ugly due to all the field accesses
+
 class DirectedCycle:
     """
     The DirectedCycle class represents a data type for determining whether a 
@@ -203,17 +204,23 @@ class DirectedCycle:
         self._on_stack = [False]*digraph.V()
         self._edge_to  = [0]*digraph.V()
         self._marked = [False]*digraph.V()
-        self._marked = [self._dfs(digraph, v) for v in range(digraph.V()) if not self._marked[v]]
-        
+        for v in range(digraph.V()):
+            if not self._marked[v]:
+                self._dfs(digraph, v) 
+    
+    # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, digraph, v):
         self._on_stack[v] = True
         self._marked[v] = True
         for w in digraph.adj(v):
+            # short circuit if directed cycle found
             if self.has_cycle():
                 return
+            # found new vertex, so recur
             elif not self._marked[w]:
                 self._edge_to[w] = v
                 self._dfs(digraph, w)
+            # trace back directed cycle
             elif self._on_stack[w]:
                 self._cycle = Stack()
                 x = v
@@ -241,51 +248,33 @@ class DirectedCycle:
         """
         return self._cycle
 
-def cycle(digraph):
+class Topological:
     """
-    Determines whether the digraph has a directed cycle and, if so,
-    finds such a cycle.
+    The Topological class represents a data type for determining a topological
+    order of a directed acyclic graph (DAG). Recall, a digraph has a topological 
+    order if and only if it is a DAG. The hasOrder operation determines whether 
+    the digraph has a topological order, and if so, the order operation returns one.
     
-    :digraph: the digraph
-    :returns: a directed cycle (as an iterable) if the digraph 
-              has a directed cycle, and None otherwise
+    This implementation uses depth-first search. The constructor takes time 
+    proportional to V + E (in the worst case), where V is the number of vertices 
+    and E is the number of edges. Afterwards, the hasOrder and rank operations 
+    takes constant time; the order operation takes time proportional to V.
+
+    See DirectedCycle, DirectedCycleX, and EdgeWeightedDirectedCycle to compute 
+    a directed cycle if the digraph is not a DAG. See TopologicalX for a 
+    nonrecursive queue-based algorithm to compute a topological order of a DAG.
+
+    For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
-    cycle = None
-    V = digraph.V()
-    on_stack = [False]*V
-    edge_to  = [0]*V
-    marked = [False]*V
     
-    def dfs(digraph, v):
-        # ensures we don't create a new local variable with the same name
-        nonlocal cycle
-        on_stack[v] = True
-        marked[v] = True
-        for w in digraph.adj(v):
-            # short circuit if directed cycle found
-            if not cycle is None:
-                return
-            # found new vertex, so recur
-            elif not marked[w]:
-                edge_to[w] = v
-                dfs(digraph, w)
-            # trace back directed cycle
-            elif on_stack[w]:
-                cycle = Stack()
-                x = v
-                while x != w:
-                    cycle.push(x)
-                    x = edge_to[x]
-                cycle.push(w)
-                cycle.push(v)
-                
-        on_stack[v] = False     
-    
-    for v in range(V):
-        if not marked[v]:
-            dfs(digraph, v)  
-    
-    return cycle   
+    def __init__(self, digraph):
+        """
+        Determines whether the digraph G has a topological order and, if so, finds such a topological order.
+        
+        :param digraph: the digraph to check
+        """
+        finder = DirectedCycle(digraph)
+        
     
     
 import sys
@@ -297,5 +286,6 @@ if __name__ == '__main__':
     
     d = Digraph.from_stream(instream.InStream(stream))
     print(d)
-    print(list(iter(cycle(d))))
+    cyc = DirectedCycle(d)
+    print(list(cyc.cycle()))
     
