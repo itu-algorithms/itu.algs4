@@ -60,7 +60,7 @@ class Graph:
             w = stream.readInt()        # read another vertex,
             g._validateVertex(v)
             g._validateVertex(w)
-            g.addEdge(v, w)             # and add edge connecting them.
+            g.add_edge(v, w)             # and add edge connecting them.
         return g
 
     @staticmethod
@@ -102,7 +102,7 @@ class Graph:
         if v < 0 or v >= self._V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, self._V))
 
-    def addEdge(self, v, w):
+    def add_edge(self, v, w):
         """
         Adds the undirected edge v-w to this graph.
 

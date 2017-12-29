@@ -58,6 +58,7 @@ class IndexMinPQ:
         Is i an index on this priority queue?
         :param i: an index
         :return: True if i is an index on this priority queue False otherwise
+        :rtype: bool
         :raises IllegalArgumentError: unless 0 <= i < max_n
         """
         if i < 0 or i >= self.max_n:
@@ -138,6 +139,7 @@ class IndexMinPQ:
         """
         Returns an index associated with a minimum key.
         :return: an index associated with a minimum key
+        :rtype: int
         :raises NoSuchElementError: if this priority queue is empty
         """
         if self.n == 0:
@@ -159,6 +161,7 @@ class IndexMinPQ:
         Removes a minimum key and returns its associated index.
         :return: an index associated with a minimum key
         :raises NoSuchElementError: if this priority queue is empty
+        :rtype: int
         """
         if self.n == 0:
             raise NoSuchElementError("Priority queue underflow")
@@ -175,6 +178,7 @@ class IndexMinPQ:
         """
         Returns True if this priority queue is empty.
         :return: True if this priority queue is empty False otherwise
+        :rtype: bool
         """
         return self.n == 0
 
@@ -182,6 +186,7 @@ class IndexMinPQ:
         """
         Returns the number of keys on this priority queue.
         :return: the number of keys on this priority queue
+        :rtype: int
         """
         return self.n
 
@@ -215,6 +220,7 @@ class IndexMinPQ:
         :param i: index of the first item
         :param j: index of the second item
         :return: True if key at index i on the heap is greater than key at index j
+        :rtype: bool
         """
         return self.keys[self.pq[i]] > self.keys[self.pq[j]]
 
