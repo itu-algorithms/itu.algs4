@@ -85,12 +85,22 @@ class BinaryStdIn:
 		return sb
 
 	@staticmethod
-	def read_int():
+	def read_int(r=32):
+		if(r==32):
+			x = 0
+			for i in range(0,4):
+				c = BinaryStdIn.read_char()
+				x <<=8
+				x |= ord(c)
+			return x
+		if(r<1 or r>32):
+			raise ValueError("Illegal value for r = {}".format(r))
 		x = 0
-		for i in range(0,4):
-			c = BinaryStdIn.read_char()
-			x <<=8
-			x |= ord(c)
+		for i in range(0,r):
+			x <<= 1
+			bit = BinaryStdIn.read_bool()
+			if(bit):
+				x |= 1
 		return x
 
 def main():

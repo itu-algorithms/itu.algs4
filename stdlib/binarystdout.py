@@ -76,20 +76,38 @@ class BinaryStdOut:
 	def write_byte(x):
 		BinaryStdOut._writeByte(x & 0xff)
 
-	def write_int(x):
-		BinaryStdOut._writeByte(((x >> 24)& 0xff))
-		BinaryStdOut._writeByte(((x >> 16)& 0xff))
-		BinaryStdOut._writeByte(((x >> 8)& 0xff))
-		BinaryStdOut._writeByte(((x >> 0)& 0xff))
+	def write_int(x, r=32):
+		if(r == 32):
+			BinaryStdOut._writeByte(((x >> 24)& 0xff))
+			BinaryStdOut._writeByte(((x >> 16)& 0xff))
+			BinaryStdOut._writeByte(((x >> 8)& 0xff))
+			BinaryStdOut._writeByte(((x >> 0)& 0xff))
+			return
+		if(r < 1 or r > 16):
+			raise ValueError("Illegal value for r = {}".format(r))
+		if(x < 0 or x >= (1 << r)):
+			raise ValueError("Illegal {}-bit char = {}".format(r,x))
+		for i in range(0,r):
+			bit = ((x >> (r - i - 1)) & 1) == 1
+			BinaryStdOut._writeBit(bit)
 
-	def write_char(x):
-		if(ord(x)<0 or ord(x)>=256):
-			raise ValueError("Illegal 8-bit char = {}".format(x))
-		BinaryStdOut._writeByte(ord(x))
+	def write_char(x, r=8):
+		if(r==8):
+			if(ord(x)<0 or ord(x)>=256):
+				raise ValueError("Illegal 8-bit char = {}".format(x))
+			BinaryStdOut._writeByte(ord(x))
+			return
+		if(r < 1 or r > 16):
+			raise ValueError("Illegal value for r = {}".format(r))
+		if(ord(x) >= (1 << r)):
+			raise ValueError("Illegal {}-bit char = {}".format(r,x))
+		for i in range(0,r):
+			bit = ((x >> (r - i - 1)) & 1) == 1
+			BinaryStdOut._writeBit(bit)
 
-	def write_string(s):
+	def write_string(s, r=8):
 		for i in s:
-			BinaryStdOut.write_char(s[i])
+			BinaryStdOut.write_char(i,r)
 def main():
 	for i in sys.argv[1]:
 		BinaryStdOut.write_char(i)
