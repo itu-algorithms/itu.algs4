@@ -3,8 +3,8 @@
 # This is python3 
 import sys
 from sorting.min_pq import MinPQ
-from binaryin import BinaryIn
-from binaryout import BinaryOut
+from binarystdin import BinaryStdIn
+from binarystdout import BinaryStdOut
 """
 The Huffman compression module provides static methods for compressing
 and expanding a binary input using Huffman codes over the 8-bit extended
@@ -33,7 +33,7 @@ def compress():
 	using Huffman codes with an 8-bit alphabet; and writes the results
 	to standard input.
 	"""
-	s = BinaryIn.read_string()
+	s = BinaryStdIn.read_string()
 	#Tabulate frequency counts
 	freq = [0 for i in range(0,_R)]
 	for i in range(0,len(s)):
@@ -44,21 +44,20 @@ def compress():
 	st = [None for i in range(0,_R)]
 	_buildCode(st, root, "")
 	#Print trie for decoder
-	out = BinaryOut()
-	_writeTrie(root, out)
+	_writeTrie(root)
 	#Print number of bytes in original uncompressed message
-	out.write_int(len(s))
+	BinaryStdOut.write_int(len(s))
 	#Use Huffman code to encode input
 	for i in range (0,len(s)):
 		code = st[ord(s[i])]
 		for j in range(0,len(code)):
 			if(code[j]=='0'):
-				out.write_bool(False)
+				BinaryStdOut.write_bool(False)
 			elif(code[j]=='1'):
-				out.write_bool(True)
+				BinaryStdOut.write_bool(True)
 			else:
 				raise ValueError("Illegal state")
-	out.close()
+	BinaryStdOut.close()
 #Build the Huffman trie given frequencies
 def _buildTrie(freq):
 	pq = MinPQ()
@@ -79,14 +78,14 @@ def _buildTrie(freq):
 		pq.insert(parent)
 	return pq.del_min()
 #Write bitstring-encoded trie to standard output
-def _writeTrie(x, out):
+def _writeTrie(x):
 	if(x.is_leaf()):
-		out.write_bool(True)
-		out.write_char(x.ch)
+		BinaryStdOut.write_bool(True)
+		BinaryStdOut.write_char(x.ch)
 		return
-	out.write_bool(False)
-	_writeTrie(x.left, out)
-	_writeTrie(x.right, out)
+	BinaryStdOut.write_bool(False)
+	_writeTrie(x.left)
+	_writeTrie(x.right)
 #Make a lookup table from symbols and their encodings
 def _buildCode(st, x, s):
 	if(not x.is_leaf()):
@@ -100,24 +99,23 @@ def expand():
 	Reads a sequence of bits that represents a Huffman-compressed message from
 	standard input; expands them; and writes the results to standard output.
 	"""
-	BinaryIn.is_empty()
+	BinaryStdIn.is_empty()
 	root = _readTrie()
-	length = BinaryIn.read_int()
-	out = BinaryOut()
+	length = BinaryStdIn.read_int()
 	for i in range(0,length):
 		x = root
 		while(not x.is_leaf()):
-			bit = BinaryIn.read_bool()
+			bit = BinaryStdIn.read_bool()
 			if(bit):
 				x = x.right
 			else:
 				x = x.left
-		out.write_char(x.ch)
+		BinaryStdOut.write_char(x.ch)
 
 def _readTrie():
-	isLeaf = BinaryIn.read_bool()
+	isLeaf = BinaryStdIn.read_bool()
 	if(isLeaf):
-		return _Node(BinaryIn.read_char(), -1, None, None)
+		return _Node(BinaryStdIn.read_char(), -1, None, None)
 	else:
 		return _Node('\0', -1, _readTrie(), _readTrie())
 def main():
