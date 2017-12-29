@@ -58,7 +58,7 @@ class SymbolGraph:
             v = self._st.get(a[0])
             for i in range(1, len(a)):
                 w = self._st.get(a[i])
-                self._graph.addEdge(v, w)
+                self._graph.add_edge(v, w)
 
     def contains(self, s):
         """
@@ -69,7 +69,7 @@ class SymbolGraph:
         """
         return self._st.contains(s)
 
-    def indexOf(self, s):
+    def index_of(self, s):
         """
         Returns the integer associated with the vertex named s.
         :param s: the name of a vertex
@@ -77,7 +77,7 @@ class SymbolGraph:
         """
         return self._st.get(s)
     
-    def nameOf(self, v):
+    def name_of(self, v):
         """
         Returns the name of the vertex associated with the integer v.
         @param  v the integer corresponding to a vertex (between 0 and V - 1) 
