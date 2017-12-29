@@ -27,7 +27,7 @@ class Bipartite:
     class UnsupportedOperationException(Exception):
         pass
 
-    def __init(self, G):
+    def __init__(self, G):
         """
         Determines whether an undirected graph is bipartite and finds either a
         bipartition or an odd-length cycle.
