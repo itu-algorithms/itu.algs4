@@ -254,11 +254,13 @@ def test():
     st.put("jello", 30)
     q = st.keys_that_match(".e.l.")
     assert q.size() == 2 and "jello" in q and "hello" in q
+    print("tests passed.")
 
 if __name__ == '__main__':
     test()
     st = TrieST()
     i = 0
+    print("Insert keys (Ctrl-D to stop):")
     while not stdio.isEmpty(): 
         key = stdio.readString()
         st.put(key, i)
