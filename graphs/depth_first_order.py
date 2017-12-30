@@ -1,3 +1,6 @@
+from fundamentals.stack import Stack
+from fundamentals.queue import Queue
+
 class DepthFirstOrder:
     """
     The DepthFirstOrder class represents a data type for determining depth-first 
@@ -79,8 +82,8 @@ class DepthFirstOrder:
         self._pre_counter += 1
         self._preorder.enqueue(v);
         for w in digraph.adj(v):
-            if not marked[w]:
-                self._dfs(G, w);
+            if not self._marked[w]:
+                self._dfs(digraph, w);
         self._postorder.enqueue(v);
         self._post[v] = self._post_counter
         self._post_counter += 1
