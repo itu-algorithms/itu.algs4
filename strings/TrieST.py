@@ -1,3 +1,7 @@
+# created for BADS 2018
+# See README.md for details
+# Python 3
+
 import sys, os
 def setpath():
     exe = sys.argv[0]
@@ -20,30 +24,24 @@ except AttributeError:
 """
  *  The TrieST class represents an symbol table of key-value
  *  pairs, with string keys and generic values.
- *  It supports the usual <em>put</em>, <em>get</em>, <em>contains</em>,
- *  <em>delete</em>, <em>size</em>, and <em>is-empty</em> methods.
+ *  It supports the usual put, get, contains,
+ *  delete, size, and is-empty methods.
  *  It also provides character-based methods for finding the string
- *  in the symbol table that is the <em>longest prefix</em> of a given prefix,
- *  finding all strings in the symbol table that <em>start with</em> a given prefix,
- *  and finding all strings in the symbol table that <em>match</em> a given pattern.
- *  A symbol table implements the <em>associative array</em> abstraction:
+ *  in the symbol table that is the longest prefix of a given prefix,
+ *  finding all strings in the symbol table that start with a given prefix,
+ *  and finding all strings in the symbol table that match a given pattern.
+ *  A symbol table implements the associative array abstraction:
  *  when associating a value with a key that is already in the symbol table,
  *  the convention is to replace the old value with the new value.
- *  Unlike {@link java.util.Map}, this class uses the convention that
- *  values cannot be {@code null}â€”setting the
- *  value associated with a key to {@code null} is equivalent to deleting the key
+ *  This class uses the convention that
+ *  values cannot be None, setting the
+ *  value associated with a key to None is equivalent to deleting the key
  *  from the symbol table.
- *  <p>
  *  This implementation uses a 256-way trie.
- *  The <em>put</em>, <em>contains</em>, <em>delete</em>, and
- *  <em>longest prefix</em> operations take time proportional to the length
+ *  The put, contains, delete, and
+ *  longest prefix operations take time proportional to the length
  *  of the key (in the worst case). Construction takes constant time.
- *  The <em>size</em>, and <em>is-empty</em> operations take constant time.
- *  Construction takes constant time.
- *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/52trie">Section 5.2</a> of
- *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- */
+ *  The size, and is-empty operations take constant time.
  """
 
 
@@ -62,22 +60,22 @@ class TrieST(object):
         self._n = 0                 # number of keys in trie
 
 
-    # * Returns the value associated with the given key.
-    # * @param key the key
-    # * @return the value associated with the given key if the key is in the symbol table
-    # *     and {@code null} if the key is not in the symbol table
-    # * @throws NullPointerException if {@code key} is {@code null}
+    # Returns the value associated with the given key.
+    # @param key: the key
+    # @return: the value associated with the given key if the key is in the symbol table
+    #     and None if the key is not in the symbol table
+    # @raises TypeError if key is None
     
     def get(self, key):
         x = self._get(self._root, key, 0)
         return None if x is None else x._val
 
-    # * Does this symbol table contain the given key?
-    # * @param key the key
-    # * @return {@code true} if this symbol table contains {@code key} and
-    # *     {@code false} otherwise
-    # * @throws NullPointerException if {@code key} is {@code null}
-     
+    # Does this symbol table contain the given key?
+    # @param key: the key
+    # @returns True if this symbol table contains key and
+    #     False otherwise
+    # @raises TypeError if key is None
+
     def contains(self, key):
         return self.get(key) is not None
     
@@ -89,12 +87,12 @@ class TrieST(object):
         c = key[d]
         return self._get(x._next[ord(c)], key, d+1) 
 
-    # * Inserts the key-value pair into the symbol table, overwriting the old value
-    # * with the new value if the key is already in the symbol table.
-    # * If the value is {@code null}, this effectively deletes the key from the symbol table.
-    # * @param key the key
-    # * @param val the value
-    # * @throws NullPointerException if {@code key} is {@code null}
+    # Inserts the key-value pair into the symbol table, overwriting the old value
+    # with the new value if the key is already in the symbol table.
+    # If the value is None, this effectively deletes the key from the symbol table.
+    # @param key: the key
+    # @param val: the value
+    # @raises TypeError if key is None
     
     def put(self, key, val):
         if val is None:
@@ -114,29 +112,28 @@ class TrieST(object):
         x._next[ord(c)] = self._put(x._next[ord(c)], key, val, d+1)
         return x
     
-    # * Returns the number of key-value pairs in this symbol table.
-    # * @return the number of key-value pairs in this symbol table
+    # @return the number of key-value pairs in this symbol table
     def size(self):
         return self._n
 
-    # * Is this symbol table empty?
-    # * @return {@code true} if this symbol table is empty and {@code false} otherwise
+    # Is this symbol table empty?
+    # @return True if this symbol table is empty and False otherwise
     def is_empty(self):
         return self.size() == 0
     
     
-    # * Returns all keys in the symbol table as an {@code Iterable}.
-    # * To iterate over all of the keys in the symbol table named {@code st},
-    # * use the foreach notation: {@code for (Key key : st.keys())}.
-    # * @return all keys in the symbol table as an {@code Iterable}
+    # Returns all keys in the symbol table as an iterable object.
+    # To iterate over all of the keys in the symbol table named st,
+    # use the foreach notation: for key in st.keys().
+    # @return all keys in the symbol table as an iterable object
     
     def keys(self):
         return self.keys_with_prefix('')
 
-    # * Returns all of the keys in the set that start with {@code prefix}.
-    # * @param prefix the prefix
-    # * @return all of the keys in the set that start with {@code prefix},
-    # *     as an iterable
+    # Returns all of the keys in the set that start with prefix.
+    # @param prefix: the prefix
+    # @return all of the keys in the set that start with prefix,
+    #     as an iterable
     
     def keys_with_prefix(self, prefix):
         results = Queue()
@@ -152,11 +149,11 @@ class TrieST(object):
         for c in range(0, self.R):
             self._collect(x._next[c], prefix + chr(c), results)
 
-    # * Returns all of the keys in the symbol table that match {@code pattern},
-    # * where . symbol is treated as a wildcard character.
-    # * @param pattern the pattern
-    # * @return all of the keys in the symbol table that match {@code pattern},
-    # *     as an iterable, where . is treated as a wildcard character.
+    # Returns all of the keys in the symbol table that match {@code pattern},
+    # where . symbol is treated as a wildcard character.
+    # @param pattern the pattern
+    # @return all of the keys in the symbol table that match {@code pattern},
+    #     as an iterable, where . is treated as a wildcard character.
     
     def keys_that_match(self, pattern):
         results = Queue()
@@ -179,12 +176,12 @@ class TrieST(object):
             self._collect_match(x._next[ord(c)], prefix + c, pattern, results)
 
     
-    # * Returns the string in the symbol table that is the longest prefix of {@code query},
-    # * or {@code null}, if no such string.
-    # * @param query the query string
-    # * @return the string in the symbol table that is the longest prefix of {@code query},
-    # *  or {@code null} if no such string
-    # * @throws NullPointerException if {@code query} is {@code null}
+    # Returns the string in the symbol table that is the longest prefix of {@code query},
+    # or {@code None}, if no such string.
+    # @param query the query string
+    # @return the string in the symbol table that is the longest prefix of {@code query},
+    #  or {@code None} if no such string
+    # @raises TypeError if {@code query} is {@code None}
     
     def longest_prefix_of(self, query):
         length = self._longest_prefix_of(self._root, query, 0, -1)
@@ -208,9 +205,9 @@ class TrieST(object):
         c = query[d]
         return self._longest_prefix_of(x._next[ord(c)], query, d+1, length) 
   
-    # * Removes the key from the set if the key is present.
-    # * @param key the key
-    # * @throws NullPointerException if {@code key} is {@code null}
+    # Removes the key from the set if the key is present.
+    # @param key the key
+    # @raises TypeError if {@code key} is {@code None}
     
     def delete(self, key):
         self._root = self._delete(self._root, key, 0)
@@ -231,14 +228,39 @@ class TrieST(object):
         if x._val is not None:
             return x
         for c in range(0, self.R):
-            if x._next[ord(c)] is not None:
+            if x._next[c] is not None:
                 return x
         return None
 
+def test():
+    st = TrieST()
+    st.put("abc", 0)
+    keys = [k for k in st.keys()]
+    assert keys == ["abc"]
+    assert st.get("abc") == 0
+    st.put("a", 1)
+    st.put("b", 2)
+    st.put("c", 3)
+    st.delete("abc")
+    assert "abc" not in [k for k in st.keys()]
+    assert st.get("a") == 1
+    assert st.get("b") == 2
+    assert st.get("c") == 3
+    st.put("hello", 10)
+    assert st.contains("hello")
+    assert st.contains("not there") is False
+    st.put("he", 20)
+    assert st.longest_prefix_of("hell") == "he"
+    st.put("jello", 30)
+    q = st.keys_that_match(".e.l.")
+    assert q.size() == 2 and "jello" in q and "hello" in q
+    print("tests passed.")
 
 if __name__ == '__main__':
+    test()
     st = TrieST()
     i = 0
+    print("Insert keys (Ctrl-D to stop):")
     while not stdio.isEmpty(): 
         key = stdio.readString()
         st.put(key, i)
@@ -261,5 +283,4 @@ if __name__ == '__main__':
     print()
     print('keys_that_match("he.l.")')
     for s in st.keys_that_match('he.l.'):
-        print(s)
-
+        print()

@@ -1,3 +1,6 @@
+# created for BADS 2018
+# see README.md for details
+# Python 3
 
 import sys, os
 def setpath():
@@ -18,34 +21,28 @@ try:
 except AttributeError:
     print('ERROR - unable to import python algs4 Queue class')
     sys.exit(1)
-
- # TODO nicer format, remove all comments and java version
  
+ # Symbol table with string keys, implemented using a ternary search
+ # trie (TST).
  
- # *  Symbol table with string keys, implemented using a ternary search
- # *  trie (TST).
- 
-
-# *  The {@code TST} class represents an symbol table of key-value
-# *  pairs, with string keys and generic values.
-# *  It supports the usual <em>put</em>, <em>get</em>, <em>contains</em>,
-# *  <em>delete</em>, <em>size</em>, and <em>is-empty</em> methods.
-# *  It also provides character-based methods for finding the string
-# *  in the symbol table that is the <em>longest prefix</em> of a given prefix,
-# *  finding all strings in the symbol table that <em>start with</em> a given prefix,
-# *  and finding all strings in the symbol table that <em>match</em> a given pattern.
-# *  A symbol table implements the <em>associative array</em> abstraction:
-# *  when associating a value with a key that is already in the symbol table,
-# *  the convention is to replace the old value with the new value.
-# *  Unlike {@link java.util.Map}, this class uses the convention that
-# *  values cannot be {@code null}â€”setting the
-# *  value associated with a key to {@code null} is equivalent to deleting the key
-# *  from the symbol table.
-# *  <p>
-# *  This implementation uses a ternary search trie.
-# *  <p>
-# *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/52trie">Section 5.2</a> of
-# *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+"""
+  The {@code TST} class represents an symbol table of key-value
+  pairs, with string keys and generic values.
+  It supports the usual put, get, contains,
+  delete, size, and is-empty methods.
+  It also provides character-based methods for finding the string
+  in the symbol table that is the longest prefix of a given prefix,
+  finding all strings in the symbol table that start with a given prefix,
+  and finding all strings in the symbol table that match a given pattern.
+  A symbol table implements the associative array abstraction:
+  when associating a value with a key that is already in the symbol table,
+  the convention is to replace the old value with the new value.
+  This class uses the convention that
+  values cannot be {@code None} setting the
+  value associated with a key to {@code None} is equivalent to deleting the key
+  from the symbol table.
+  This implementation uses a ternary search trie.
+"""
 
 class TST(object):
     class Node():
@@ -61,31 +58,30 @@ class TST(object):
         self.root = None   # root of TST
 
     
-    # * Returns the number of key-value pairs in this symbol table.
-    # * @return the number of key-value pairs in this symbol table
+    # @return the number of key-value pairs in this symbol table
     def size(self):
         return self.n
 
-    # * Does this symbol table contain the given key?
-    # * @param key the key
-    # * @return {@code true} if this symbol table contains {@code key} and
-    # *     {@code false} otherwise
-    # * @throws IllegalArgumentException if {@code key} is {@code null}
+    # Does this symbol table contain the given key?
+    # @param key the key
+    # @return {@code True} if this symbol table contains {@code key} and
+    #     {@code False} otherwise
+    # @raises ValueError if {@code key} is {@code None}
     def contains(self, key):
         if key is None:
-            raise Exception("argument of contains is None") # TODO maybe get a specific exception, lilke IllegalArgumentException in Java
+            raise ValueError("argument of contains is None") # TODO maybe get a specific exception, like IllegalArgumentException in Java
         return self.get(key) is not None
 
-    # * Returns the value associated with the given key.
-    # * @param key the key
-    # * @return the value associated with the given key if the key is in the symbol table
-    # *     and {@code null} if the key is not in the symbol table
-    # * @throws IllegalArgumentException if {@code key} is {@code null}
+    # Returns the value associated with the given key.
+    # @param key the key
+    # @return the value associated with the given key if the key is in the symbol table
+    #     and {@code null} if the key is not in the symbol table
+    # @raises ValueError if {@code key} is {@code None}
     def get(self, key):
         if key is None:
-            raise Exception("calls get() with null argument" ) # TODO IllegalArgumentException?
+            raise ValueError("calls get() with null argument" ) # TODO IllegalArgumentException?
         if len(key) == 0:
-            raise Exception("key must have length >=1") # TODO IllegalArgumentException?
+            raise ValueError("key must have length >=1") # TODO IllegalArgumentException?
         x = self._get(self.root, key, 0)
         if x is None:
             return None
@@ -96,8 +92,8 @@ class TST(object):
         if x is None:
             return None
         if len(key) == 0:
-            raise Exception("key nust have length >= 1")
-        c = key[d] # TODO check for indexError? (d exceeding?) or is it covered in the cases? #EDIT: java charAt can throw indexoutofbound, so can this
+            raise ValueError("key nust have length >= 1")
+        c = key[d]
         if c < x.c: 
             return self._get(x.left, key, d)
         elif c > x.c:
@@ -107,39 +103,22 @@ class TST(object):
         else:
             return x
 
-    #private Node<Value> get(Node<Value> x, String key, int d) {
-    #    if (x == null) return null;
-    #    if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
-    #    char c = key.charAt(d);
-    #    if      (c < x.c)              return get(x.left,  key, d);
-    #    else if (c > x.c)              return get(x.right, key, d);
-    #    else if (d < key.length() - 1) return get(x.mid,   key, d+1);
-    #    else                           return x;
-    #}
-
-    # * Inserts the key-value pair into the symbol table, overwriting the old value
-    # * with the new value if the key is already in the symbol table.
-    # * If the value is {@code null}, this effectively deletes the key from the symbol table.
-    # * @param key the key
-    # * @param val the value
-    # * @throws IllegalArgumentException if {@code key} is {@code null}
+    # Inserts the key-value pair into the symbol table, overwriting the old value
+    # with the new value if the key is already in the symbol table.
+    # If the value is {@code None}, this effectively deletes the key from the symbol table.
+    # @param key the key
+    # @param val the value
+    # @raises ValueError if {@code key} is {@code None}
     
     def put(self, key, val):
         if key is None:
-            raise Exception("calls put() with null key") # TODO IllegalArgumentException 
+            raise ValueError("calls put() with null key") # TODO IllegalArgumentException 
         if not self.contains(key):
             self.n += 1
         self.root = self._put(self.root, key, val, 0)
 
-   # public void put(String key, Value val) {
-   #     if (key == null) {
-   #         throw new IllegalArgumentException("calls put() with null key");
-   #     }
-   #     if (!contains(key)) n++;
-   #     root = put(root, key, val, 0);
-   # }
     def _put(self, x, key, val, d):
-        c = key[d] # TODO check IndexError? EDIT: charAt doesn't
+        c = key[d]
         if x is None:
             x = self.Node()
             x.c = c
@@ -154,29 +133,16 @@ class TST(object):
 
         return x
 
-    #private Node<Value> put(Node<Value> x, String key, Value val, int d) {
-    #    char c = key.charAt(d);
-    #    if (x == null) {
-    #        x = new Node<Value>();
-    #        x.c = c;
-    #    }
-    #    if      (c < x.c)               x.left  = put(x.left,  key, val, d);
-    #    else if (c > x.c)               x.right = put(x.right, key, val, d);
-    #    else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, val, d+1);
-    #    else                            x.val   = val;
-    #    return x;
-    #}
-
-    # * Returns the string in the symbol table that is the longest prefix of {@code query},
-    # * or {@code null}, if no such string.
-    # * @param query the query string
-    # * @return the string in the symbol table that is the longest prefix of {@code query},
-    # *     or {@code null} if no such string
-    # * @throws IllegalArgumentException if {@code query} is {@code null}
+    # Returns the string in the symbol table that is the longest prefix of {@code query},
+    # or {@code None}, if no such string.
+    # @param query the query string
+    # @return the string in the symbol table that is the longest prefix of {@code query},
+    #     or {@code None} if no such string
+    # @raises ValueError if {@code query} is {@code None}
     
     def longest_prefix_of(self, query):
         if query is None:
-            raise Exception("calls longest_path_of() with None argument")
+            raise ValueError("calls longest_path_of() with None argument")
         if len(query) == 0:
             return None
         length = 0
@@ -193,55 +159,27 @@ class TST(object):
                 if x.val is not None:
                     length = i
                 x = x.mid
-        return query[0:length]  # TODO control that is not length + 1, what does java's substring do? #RESOLVED
+        return query[0:length]
 
-    #public String longestPrefixOf(String query) {
-    #    if (query == null) {
-    #        throw new IllegalArgumentException("calls longestPrefixOf() with null argument");
-    #    }
-    #    if (query.length() == 0) return null;
-    #    int length = 0;
-    #    Node<Value> x = root;
-    #    int i = 0;
-    #    while (x != null && i < query.length()) {
-    #        char c = query.charAt(i);
-    #        if      (c < x.c) x = x.left;
-    #        else if (c > x.c) x = x.right;
-    #        else {
-    #            i++;
-    #            if (x.val != null) length = i;
-    #            x = x.mid;
-    #        }
-    #    }
-    #    return query.substring(0, length);
-    #}
-
-    
-    # * Returns all keys in the symbol table as an {@code Iterable}.
-    # * To iterate over all of the keys in the symbol table named {@code st},
-    # * use the foreach notation: {@code for (Key key : st.keys())}.
-    # * @return all keys in the symbol table as an {@code Iterable}
+    # Returns all keys in the symbol table as an {@code Iterable}.
+    # To iterate over all of the keys in the symbol table named {@code st},
+    # use the foreach notation: {@code for key in st.keys()}.
+    # @return all keys in the symbol table as an {@code Iterable}
     
     def keys(self):
         queue = Queue()
         self._collect(self.root, "", queue)
         return queue
-    #public Iterable<String> keys() {
-    #    Queue<String> queue = new Queue<String>();
-    #    collect(root, new StringBuilder(), queue);
-    #    return queue;
-    #}
-
-    
-    # * Returns all of the keys in the set that start with {@code prefix}.
-    # * @param prefix the prefix
-    # * @return all of the keys in the set that start with {@code prefix},
-    # *     as an iterable
-    # * @throws IllegalArgumentException if {@code prefix} is {@code null}
+        
+    # Returns all of the keys in the set that start with {@code prefix}.
+    # @param prefix the prefix
+    # @return all of the keys in the set that start with {@code prefix},
+    #     as an iterable
+    # @raises ValueError if {@code prefix} is {@code None}
     
     def keys_with_prefix(self, prefix):
         if prefix is None:
-            raise Exception("calls keys_with_prefix with null argument") # TODO IllegalArgumentException
+            raise ValueError("calls keys_with_prefix with null argument") # TODO IllegalArgumentException
         queue = Queue()
         x = self._get(self.root, prefix, 0)
         if x is None:
@@ -250,19 +188,8 @@ class TST(object):
             queue.enqueue(prefix)
         self._collect(x.mid, prefix, queue)
         return queue
-    #public Iterable<String> keysWithPrefix(String prefix) {
-    #    if (prefix == null) {
-    #        throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
-    #    }
-    #    Queue<String> queue = new Queue<String>();
-    #    Node<Value> x = get(root, prefix, 0);
-    #    if (x == null) return queue;
-    #    if (x.val != null) queue.enqueue(prefix);
-    #    collect(x.mid, new StringBuilder(prefix), queue);
-    #    return queue;
-    #}
 
-    #// all keys in subtrie rooted at x with given prefix
+    # all keys in subtrie rooted at x with given prefix
     def _collect(self, x, prefix, queue):
         if x is None:
             return
@@ -270,71 +197,64 @@ class TST(object):
         if x.val is not None:
             queue.enqueue(prefix + str(x.c))
         self._collect(x.mid, prefix + str(x.c), queue)
-        #prefix = prefix[:-1] #TODO is this necessary or to counter append? #EDIT not necessary, it's for stringbuilder (probably)
         self._collect(x.right, prefix, queue)
     
-    #private void collect(Node<Value> x, StringBuilder prefix, Queue<String> queue) {
-    #    if (x == null) return;
-    #    collect(x.left,  prefix, queue);
-    #    if (x.val != null) queue.enqueue(prefix.toString() + x.c);
-    #    collect(x.mid,   prefix.append(x.c), queue);
-    #    prefix.deleteCharAt(prefix.length() - 1);
-    #    collect(x.right, prefix, queue);
-    #}
-
-
-    # * Returns all of the keys in the symbol table that match {@code pattern},
-    # * where . symbol is treated as a wildcard character.
-    # * @param pattern the pattern
-    # * @return all of the keys in the symbol table that match {@code pattern},
-    # *     as an iterable, where . is treated as a wildcard character.
+    # Returns all of the keys in the symbol table that match {@code pattern},
+    # where . symbol is treated as a wildcard character.
+    # @param pattern the pattern
+    # @return all of the keys in the symbol table that match {@code pattern},
+    #     as an iterable, where . is treated as a wildcard character.
     
     def keys_that_match(self, pattern):
         queue = Queue()
         self._collect_match(self.root, "", 0, pattern, queue)
         return queue
-    #public Iterable<String> keysThatMatch(String pattern) {
-    #    Queue<String> queue = new Queue<String>();
-    #    collect(root, new StringBuilder(), 0, pattern, queue);
-    #    return queue;
-    #}
-    
+        
     def _collect_match(self, x, prefix, i, pattern, queue):
         if x is None:
             return
-        c = pattern[i] # TODO IndexError?
+        c = pattern[i] 
         if c == '.' or c <x.c:
             self._collect_match(x.left, prefix, i, pattern, queue)
         if c == '.' or c == x.c:
             if i == len(pattern) -1 and x.val is not None:
-                queue.enqueue(prefix + str(x.c)) # TODO can x.c be something other than a character?
+                queue.enqueue(prefix + str(x.c)) 
             if i < len(pattern) -1:
                 self._collect_match(x.mid, prefix + x.c, i+1, pattern, queue)
-                #prefix = prefix[:-1] # TODO is this necessary or only because of append? #EDIT that would be only to counter stringbuilder append, not necessary here
         if c == '.' or c > x.c:
             self._collect_match(x.right, prefix, i, pattern, queue)
 
-    #private void collect(Node<Value> x, StringBuilder prefix, int i, String pattern, Queue<String> queue) {
-    #    if (x == null) return;
-    #    char c = pattern.charAt(i);
-    #    if (c == '.' || c < x.c) collect(x.left, prefix, i, pattern, queue);
-    #    if (c == '.' || c == x.c) {
-    #        if (i == pattern.length() - 1 && x.val != null) queue.enqueue(prefix.toString() + x.c);
-    #        if (i < pattern.length() - 1) {
-    #            collect(x.mid, prefix.append(x.c), i+1, pattern, queue);
-    #            prefix.deleteCharAt(prefix.length() - 1);
-    #        }
-    #    }
-    #    if (c == '.' || c > x.c) collect(x.right, prefix, i, pattern, queue);
-    #}
-
-
 # * Unit tests the {@code TST} data type.
-# * @param args the command-line arguments
+def test():
+    st = TST()
+    st.put("abc", 0)
+    keys = [k for k in st.keys()]
+    assert keys == ["abc"]
+    assert st.get("abc") == 0
+    st.put("a", 1)
+    st.put("b", 2)
+    st.put("c", 3)
+    #st.delete("abc")
+    #assert "abc" not in [k for k in st.keys()]
+    assert st.get("a") == 1
+    assert st.get("b") == 2
+    assert st.get("c") == 3
+    st.put("hello", 10)
+    assert st.contains("hello")
+    assert st.contains("not there") is False
+    st.put("he", 20)
+    assert st.longest_prefix_of("hell") == "he"
+    st.put("jello", 30)
+    q = st.keys_that_match(".e.l.")
+    assert q.size() == 2 and "jello" in q and "hello" in q
+    print("tests passed.")
+
 if __name__ == '__main__':
+    test()
     st = TST()
     i = 0
     # build symbol table from stdin
+    print("Insert keys (Ctrl-D to stop):")
     while not stdio.isEmpty():
         key = stdio.readString()
         st.put(key, i)
