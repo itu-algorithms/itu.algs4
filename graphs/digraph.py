@@ -3,7 +3,7 @@
 # Python 3
 
 """
-This module implements the digraph related algorithms described in 
+This module implements the directed graph data structure described in 
 Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
@@ -134,7 +134,7 @@ class Digraph:
         :raises ValueError: unless  0 <= v < V
         """
         self._validateVertex(v)        
-        return iter(self._adj[v])
+        return self._adj[v]
 
     def degree(self, v):
         """
@@ -174,118 +174,6 @@ class Digraph:
             s.append("\n")
 
         return ''.join(s)
-
-# Not very pythonic and quite ugly due to all the field accesses
-class DirectedCycle:
-    """
-    The DirectedCycle class represents a data type for determining whether a 
-    digraph has a directed cycle. The hasCycle operation determines whether the 
-    digraph has a directed cycle and, and of so, the cycle operation returns one.
-
-    This implementation uses depth-first search. The constructor takes time proportional 
-    to V + E (in the worst case), where V is the number of vertices and E is the 
-    number of edges. Afterwards, the hasCycle operation takes constant time; the 
-    cycle operation takes time proportional to the length of the cycle.
-
-    See Topological to compute a topological order if the digraph is acyclic.
-
-    For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
-    """    
-    
-    def __init__(self, digraph):
-        """
-        Determines whether the digraph has a directed cycle and, if so,
-        finds such a cycle.
-        
-        :digraph: the digraph
-        """
-        self._cycle = None
-        self._on_stack = [False]*digraph.V()
-        self._edge_to  = [0]*digraph.V()
-        self._marked = [False]*digraph.V()
-        self._marked = [self._dfs(digraph, v) for v in range(digraph.V()) if not self._marked[v]]
-        
-    def _dfs(self, digraph, v):
-        self._on_stack[v] = True
-        self._marked[v] = True
-        for w in digraph.adj(v):
-            if self.has_cycle():
-                return
-            elif not self._marked[w]:
-                self._edge_to[w] = v
-                self._dfs(digraph, w)
-            elif self._on_stack[w]:
-                self._cycle = Stack()
-                x = v
-                while x != w:
-                    self._cycle.push(x)
-                    x = self._edge_to[x]
-                self._cycle.push(w)
-                self._cycle.push(v)
-                
-        self._on_stack[v] = False
-    
-    def has_cycle(self):
-        """
-        Does the digraph have a directed cycle?
-        
-        :returns: true if there is a cycle, false otherwise
-        """
-        return self._cycle != None
-    
-    def cycle(self):
-        """
-        Returns a directed cycle if the digraph has a directed cycle, and null otherwise.
-        
-        :returns: a directed cycle (as an iterable) if the digraph has a directed cycle, and null otherwise
-        """
-        return self._cycle
-
-def cycle(digraph):
-    """
-    Determines whether the digraph has a directed cycle and, if so,
-    finds such a cycle.
-    
-    :digraph: the digraph
-    :returns: a directed cycle (as an iterable) if the digraph 
-              has a directed cycle, and None otherwise
-    """
-    cycle = None
-    V = digraph.V()
-    on_stack = [False]*V
-    edge_to  = [0]*V
-    marked = [False]*V
-    
-    def dfs(digraph, v):
-        # ensures we don't create a new local variable with the same name
-        nonlocal cycle
-        on_stack[v] = True
-        marked[v] = True
-        for w in digraph.adj(v):
-            # short circuit if directed cycle found
-            if not cycle is None:
-                return
-            # found new vertex, so recur
-            elif not marked[w]:
-                edge_to[w] = v
-                dfs(digraph, w)
-            # trace back directed cycle
-            elif on_stack[w]:
-                cycle = Stack()
-                x = v
-                while x != w:
-                    cycle.push(x)
-                    x = edge_to[x]
-                cycle.push(w)
-                cycle.push(v)
-                
-        on_stack[v] = False     
-    
-    for v in range(V):
-        if not marked[v]:
-            dfs(digraph, v)  
-    
-    return cycle   
     
     
 import sys
@@ -297,5 +185,4 @@ if __name__ == '__main__':
     
     d = Digraph.from_stream(instream.InStream(stream))
     print(d)
-    print(list(iter(cycle(d))))
     
