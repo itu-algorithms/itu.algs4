@@ -87,4 +87,4 @@ while not stdio.isEmpty():
         for keys in ts.get(query):
             print("  " + keys)
 
-
+file.close()
