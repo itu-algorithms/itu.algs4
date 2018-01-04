@@ -11,7 +11,6 @@ setpath()
 import stdio
 
 #  Execution:    python FileIndex file1.txt file2.txt file3.txt ...
-#  Dependencies: ST.py SET.py stdio.py  #TODO -> In.java ?
 #
 #  % python FileIndex ex*.txt
 #  age
@@ -38,6 +37,7 @@ import stdio
 
 # key = word, value = set of files containing that word
 st = {} 
+        # TODO use ST instead?
 args = sys.argv[1:]
 
 # create inverted index of all files
