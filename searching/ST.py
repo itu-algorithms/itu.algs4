@@ -22,10 +22,10 @@ class ST:
         self._st = dict()
 
     # Returns the value associated with the given key in this symbol table.
-       def get(self, key):
-           if key is None:
-               raise IllegalArgumentException("called get() with None key")
-           return self._st.get(key)
+    def get(self, key):
+        if key is None:
+           raise IllegalArgumentException("called get() with None key")
+        return self._st.get(key)
 
     # Inserts the specified key-value pair into the symbol table, overwriting the old 
     # value with the new value if the symbol table already contains the specified key.
@@ -52,8 +52,6 @@ class ST:
             raise IllegalArgumentException("called contains() with None key")
         return key in self._st
 
-
-    
     # Returns the number of key-value pairs in this symbol table.
     def size(self):
         return len(self._st)
@@ -89,44 +87,52 @@ class ST:
         if key is None:
             raise IllegalArgumentException("called ceiling() with None key")
         keys = self.keys()
+        ceiling = None
+        for k in keys:
+            if (ceiling is None and k >= key) or (ceiling is not None and k>=key and k<ceiling):
+                ceiling = k
+        if ceiling is None:
+            raise NoSuchElementException("all keys are less than " + str(key))
+        return ceiling
 
-        #TODO continue.. 
-      
+    # Returns the largest key in this symbol table less than or equal to {@code key}.
+    def floor(self, key):
+        if key is None:
+            raise IllegalArgumentException("called floor() with None key")
+        keys = self.keys()
+        floor = None
+        for k in keys:
+            if (floor is None and k <= key) or (floor is not None and k<=key and k>floor):
+                floor = k
+        if floor is None:
+            raise NoSuchElementException("all keys are greater than " + str(key))
+        return floor
 
-    public Key ceiling(Key key) {
-        if (key == null) throw new IllegalArgumentException("called ceiling() with null key");
-        Key k = st.ceilingKey(key);
-        if (k == null) throw new NoSuchElementException("all keys are less than " + key);
-        return k;
-    }
+def test():
+    st = ST()
+    st.put("one", 1)
+    assert ["one"] == list(st.keys()) 
+    assert st.get("one") == 1
+    assert st.contains("one")
+    st.delete("one")
+    assert st.is_empty()
+    st.put("aaa", 1)
+    st.put("bbb", 2)
+    st.put("ccc", 3)
+    st.put("ddd", 4)
+    st.put("eee", 5)
+    assert st.ceiling("ccc") == "ccc"
+    assert st.ceiling("dad") == "ddd"
+    assert st.floor("ccc") == "ccc"
+    assert st.floor("dad") == "ccc"
 
-    /**
-     * Returns the largest key in this symbol table less than or equal to {@code key}.
-     *
-     * @param  key the key
-     * @return the largest key in this symbol table less than or equal to {@code key}
-     * @throws NoSuchElementException if there is no such key
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public Key floor(Key key) {
-        if (key == null) throw new IllegalArgumentException("called floor() with null key");
-        Key k = st.floorKey(key);
-        if (k == null) throw new NoSuchElementException("all keys are greater than " + key);
-        return k;
-    }
-
-    /**
-     * Unit tests the {@code ST} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        ST<String, Integer> st = new ST<String, Integer>();
-        for (int i = 0; !StdIn.isEmpty(); i++) {
-            String key = StdIn.readString();
-            st.put(key, i);
-        }
-        for (String s : st.keys())
-            StdOut.println(s + " " + st.get(s));
-    }
-}
+if __name__ == '__main__':
+    test()
+    st = ST()
+    i = 0
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        st.put(key, i)
+        i += 1
+    for s in st.keys():
+        print(s + " " + str(st.get(s)))
