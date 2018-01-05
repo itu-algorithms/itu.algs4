@@ -127,6 +127,9 @@ def test():
     assert st.floor("dad") == "ccc"
     for k in st:
         assert k in st.keys()
+    assert st.min() == "aaa"
+    assert st.max() == "eee"
+    print("tests passed.")
 
 if __name__ == '__main__':
     test()
