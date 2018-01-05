@@ -125,6 +125,8 @@ def test():
     assert st.ceiling("dad") == "ddd"
     assert st.floor("ccc") == "ccc"
     assert st.floor("dad") == "ccc"
+    for k in st:
+        assert k in st.keys()
 
 if __name__ == '__main__':
     test()
