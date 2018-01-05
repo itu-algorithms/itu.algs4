@@ -7,3 +7,6 @@ class NoSuchElementException(Exception):
 
 class IllegalArgumentException(Exception):
 	pass
+
+class UnsupportedOperationException(Exception):
+    pass
