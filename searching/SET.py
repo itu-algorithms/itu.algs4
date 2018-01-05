@@ -9,7 +9,7 @@ def setpath():
     sys.path.insert(0, p)
 setpath()
 
-from errors import NoSuchElementException, IllegalArgumentException
+from errors import NoSuchElementException, IllegalArgumentException, UnsupportedOperationException
 
 """
 Set implementation using Python's set() type.
