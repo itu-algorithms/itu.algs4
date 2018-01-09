@@ -1,13 +1,17 @@
-from ..searching.binarySearchST import BinarySearchST
-from ..stdlib.instream import InStream
-from ..stdlib import stdio
-from .graph import Graph
+import sys
+if __name__ == "__main__":
+    sys.path.append("..")
+
+from searching.binary_search_st import BinarySearchST
+from stdlib.instream import InStream
+from stdlib import stdio
+from graphs.graph import Graph
 
 class SymbolGraph:
     """
     The SymbolGraph class represents an undirected graph, where the
     vertex names are arbitrary strings.
-    By providing mappings between string vertex names and integers,
+    By providing mappings between vertex names and integers,
     it serves as a wrapper around the
     Graph data type, which assumes the vertex names are integers
     between 0 and V - 1.
@@ -31,7 +35,7 @@ class SymbolGraph:
         :param filename: the name of the file
         :param delimiter: the delimiter between fields
         """
-        self._st = BinarySearchST()             # string -> index
+        self._st = BinarySearchST()             # -> index
 
         # First pass builds the index by reading strings to associate
         # distinct strings with an index
@@ -42,9 +46,9 @@ class SymbolGraph:
                 if not self._st.contains(a[i]):
                     self._st.put(a[i], self._st.size())
 
-        stdio.writeln("Done reading {}".format(filename))
+        stdio.writef("Done reading %s\n", filename)
 
-        # inverted index to get string keys in an aray
+        # inverted index to get keys in an array
         self._keys = [None] * self._st.size()   # index  -> string
         for name in self._st.keys():
             self._keys[self._st.get(name)] = name
@@ -96,3 +100,17 @@ class SymbolGraph:
         V = self._graph.V()
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+
+if __name__ == "__main__":
+    filename  = sys.argv[1]    
+    delimiter = sys.argv[2]
+    sg = SymbolGraph(filename, delimiter)
+    graph = sg.graph()
+    while stdio.hasNextLine():
+        source = stdio.readLine()
+        if sg.contains(source):
+            s = sg.index_of(source)
+            for v in graph.adj(s):
+                stdio.writef("\t%s\n",sg.name_of(v))
+        else:
+            stdio.writef("input not contain '%i'", source)
