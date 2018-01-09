@@ -33,7 +33,7 @@ class Stack:
         """
         Returns true if this stack is empty.
      
-        :returns: true if this stack is empty; false otherwise
+        :returns: true if this stack is empty false otherwise
         """
         return self._n == 0
 
@@ -161,3 +161,17 @@ class ResizingArrayStack:
             i -= 1
 
 
+if __name__ == '__main__':
+    import sys
+    sys.path.append("..")
+    from stdlib import stdio
+
+    stack = Stack()
+    while not stdio.isEmpty():
+        item = stdio.readString()
+        if not item == "-":
+            stack.push(item)
+        elif not stack.is_empty():
+            stdio.write(stack.pop() + " ")
+    
+    stdio.writef("(%i left on stack)\n", stack.size())
