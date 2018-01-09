@@ -3,8 +3,6 @@
 # see README.md for details
 # this is python3 
 
-import sys
-
 class Bag:
     """
     The Bag class represents a bag (or multiset) of 
@@ -90,13 +88,17 @@ class Bag:
 
 # start of the script itself
 if __name__ == '__main__':
-    b = Bag()
-    b.add(3)
-    b.add(5)
-    print('size ', b.size())
-    b.add(3)
+    import sys
+    sys.path.append("..")
+    from stdlib import stdio
 
-    print(b)
+    bag = Bag()
+    while not stdio.isEmpty():
+        item = stdio.readString()
+        bag.add(item)
+
+    stdio.writef("size of bag = %i\n", bag.size())
     
-    for item in b:
-        print(item)
+    for s in bag:
+        stdio.writeln(s)
+    
