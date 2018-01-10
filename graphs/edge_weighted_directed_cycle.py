@@ -39,13 +39,13 @@ class EdgeWeightedDirectedCycle:
      :param G the edge-weighted digraph
     """
     def __init__(self, G):
-        self.marked = [False] * G.V()       # marked[v] = has vertex v been marked?
-        self.edgeTo = [None] * G.V()        # edgeTo[v] = previous DirectedEdge on path to v
-        self.onStack = [False] * G.V()      # onStack[v] = is vertex on the stack?
-        self.cycle = None                   # directed cycle (or None if no such cycle)
+        self._marked = [False] * G.V()       # marked[v] = has vertex v been marked?
+        self._edgeTo = [None] * G.V()        # edgeTo[v] = previous DirectedEdge on path to v
+        self._onStack = [False] * G.V()      # onStack[v] = is vertex on the stack?
+        self._cycle = None                   # directed cycle (or None if no such cycle)
 
         for v in range(G.V()):
-            if not self.marked[v]: 
+            if not self._marked[v]: 
                 self._dfs(G, v)
 
         # check that digraph has a cycle
@@ -53,45 +53,45 @@ class EdgeWeightedDirectedCycle:
 
     # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, G, v):
-        self.onStack[v] = True;
-        self.marked[v] = True;
+        self._onStack[v] = True;
+        self._marked[v] = True;
         for e in G.adj(v):
             w = e.to_vertex()
 
             # short circuit if directed cycle found
-            if self.cycle is not None: 
+            if self._cycle is not None: 
                 return
 
             # found new vertex, so recur
-            elif not self.marked[w]:
-                self.edgeTo[w] = e
+            elif not self._marked[w]:
+                self._edgeTo[w] = e
                 self._dfs(G, w)
             
             # trace back directed cycle
-            elif self.onStack[w]:
-                self.cycle = Stack()
+            elif self._onStack[w]:
+                self._cycle = Stack()
                 f = e
                 while f.from_vertex() != w:
-                    self.cycle.push(f)
-                    f = self.edgeTo[f.from_vertex()]
+                    self._cycle.push(f)
+                    f = self._edgeTo[f.from_vertex()]
                 
-                self.cycle.push(f)
+                self._cycle.push(f)
                 return
-        self.onStack[v] = False
+        self._onStack[v] = False
 
 
     # Does the edge-weighted digraph have a directed cycle?
     # @return {@code True} if the edge-weighted digraph has a directed cycle,
     # {@code False} otherwise
     def has_cycle(self):
-        return self.cycle is not None
+        return self._cycle is not None
 
     # Returns a directed cycle if the edge-weighted digraph has a directed cycle,
     # and {@code None} otherwise.
     # @return a directed cycle (as an iterable) if the edge-weighted digraph
     #    has a directed cycle, and {@code None} otherwise
     def cycle(self):
-        return self.cycle
+        return self._cycle
 
     # certify that digraph is either acyclic or has a directed cycle
     def _check(self):
@@ -101,7 +101,7 @@ class EdgeWeightedDirectedCycle:
             # verify cycle
             first = None
             last = None
-            for e in self.cycle():
+            for e in self._cycle():
                 if first is None: 
                     first = e
                 if last is not None:
@@ -148,7 +148,7 @@ def main(args):
     if finder.has_cycle():
         print("Cycle: ")
         for e in finder.cycle():
-            print(e + " ")    
+            print("{}  ".format(e), end='')    
         print()
     # or give topologial sort
     else: 
