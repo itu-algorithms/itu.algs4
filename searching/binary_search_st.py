@@ -1,4 +1,8 @@
-from ..fundamentals.queue import Queue
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+
+from fundamentals.queue import Queue
 
 class BinarySearchST:
     """
@@ -351,5 +355,15 @@ class BinarySearchST:
             if self._keys[i] != self.select(self.rank(self._keys[i])): return False
         return True
         
-    
-    
+if __name__ == "__main__":
+    from stdlib import stdio
+
+    st = BinarySearchST()
+    i = 0
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        st.put(key, i)
+        i += 1
+        
+    for s in st.keys():
+        stdio.writef("%s %i\n", s, st.get(s))

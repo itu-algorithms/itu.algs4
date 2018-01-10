@@ -16,7 +16,7 @@ class SequentialSearchST:
     It relies on the  equals() method to test whether two keys
     are equal. It does not call either the  compareTo() or
     hashCode() method. 
-    The put and delete operations take linear time; the
+    The put and delete operations take linear time the
     get and contains operations takes linear time in the worst case.
     The size, and is-empty operations take constant time.
     Construction takes constant time.
@@ -47,7 +47,7 @@ class SequentialSearchST:
         """
         Returns true if this symbol table is empty.
         
-        :returns:  true if this symbol table is empty;
+        :returns:  true if this symbol table is empty
                  false otherwise
         """
         return self.size() == 0
@@ -57,7 +57,7 @@ class SequentialSearchST:
         Returns true if this symbol table contains the specified key.
 
         :param  key the key
-        :returns: true if this symbol table contains key;
+        :returns: true if this symbol table contains key
                   false otherwise
         :raises ValueError: if key is None
         """
@@ -141,3 +141,19 @@ class SequentialSearchST:
         while x is not None:
             yield x._key
             x = x._next
+
+
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+    from stdlib import stdio
+
+    st = SequentialSearchST()
+    i = 0
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        st.put(key, i)
+        i += 1
+        
+    for s in st.keys():
+        stdio.writef("%s %i\n", s, st.get(s))

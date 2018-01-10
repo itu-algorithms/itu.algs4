@@ -1,5 +1,11 @@
-from ..fundamentals.bag import Bag
-from ..fundamentals.stack import Stack
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+    from stdlib import stdio
+    from stdlib.instream import InStream
+
+from fundamentals.bag import Bag
+from fundamentals.stack import Stack
 
 class Graph:
     """
@@ -151,3 +157,8 @@ class Graph:
             s.append("\n")
 
         return ''.join(s)
+
+if __name__ == "__main__":
+    In = InStream(sys.argv[1])
+    G = Graph.from_stream(In)
+    stdio.writeln(G)

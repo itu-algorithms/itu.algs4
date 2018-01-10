@@ -1,7 +1,11 @@
-from ..fundamentals.stack import Stack
-from ..stdlib import stdio
-
 import sys
+if __name__ == "__main__":
+    sys.path.append("..")
+
+from fundamentals.stack import Stack
+from graphs.graph import Graph
+from stdlib.instream import InStream
+from stdlib import stdio
 
 class Bipartite:
     """
@@ -136,3 +140,21 @@ class Bipartite:
         V = len(self._marked)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+
+
+if __name__ == "__main__":
+    In = InStream(sys.argv[1])
+    G = Graph.from_stream(In)
+    stdio.writeln(G)
+
+    b = Bipartite(G)
+    if b.is_bipartite():
+        stdio.writeln("Graph is bipartite")
+        for v in range(G.V()):
+            stdio.writef("%i: %i\n", v, b.color(v))
+    else:
+        stdio.writeln("Graph has an odd-length cycle: ")
+        for x in b.odd_cycle():
+            stdio.writef("%i ", x)
+        stdio.writeln()
+    
