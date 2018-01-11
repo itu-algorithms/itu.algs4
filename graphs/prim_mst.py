@@ -1,9 +1,11 @@
-from ..fundamentals.queue import Queue
-from ..fundamentals.uf import UF
-from ..sorting.index_min_pq import IndexMinPQ
-
-import math
 import sys
+import math
+if __name__ == "__main__":
+    sys.path.append("..")
+
+from fundamentals.queue import Queue
+from fundamentals.uf import UF
+from sorting.index_min_pq import IndexMinPQ
 
 class PrimMST:
     """
@@ -142,3 +144,15 @@ class PrimMST:
                         print(error, file=sys.stderr)
                         return False
         return True
+
+if __name__ == "__main__":
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    from graphs.edge_weighted_graph import EdgeWeightedGraph
+
+    In = InStream(sys.argv[1])
+    G = EdgeWeightedGraph.from_stream(In)
+    mst = PrimMST(G)
+    for e in mst.edges():
+        stdio.writeln(e)    
+    stdio.writef("%.5f\n", mst.weight())    
