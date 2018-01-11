@@ -1,9 +1,13 @@
-from ..fundamentals.uf import UF
-from ..fundamentals.queue import Queue
-from ..sorting.min_pq import MinPQ
-
 import sys
 import math
+if __name__ == "__main__":
+    sys.path.append("..")
+
+from fundamentals.uf import UF
+from fundamentals.queue import Queue
+from sorting.min_pq import MinPQ
+
+
 
 class LazyPrimMST:
     """
@@ -132,3 +136,15 @@ class LazyPrimMST:
                         print(error, file=sys.stderr)
                         return False
         return True
+
+if __name__ == "__main__":
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    from graphs.edge_weighted_graph import EdgeWeightedGraph
+
+    In = InStream(sys.argv[1])
+    G = EdgeWeightedGraph.from_stream(In)
+    mst = LazyPrimMST(G)
+    for e in mst.edges():
+        stdio.writeln(e)    
+    stdio.writef("%.5f\n", mst.weight())
