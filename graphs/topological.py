@@ -66,7 +66,7 @@ class Topological:
         """
         return self._order != None
     
-    def rank(selv, v):
+    def rank(self, v):
         """
         The the rank of vertex v in the topological order; -1 if the digraph is not a DAG
         
@@ -81,7 +81,7 @@ class Topological:
     
     # throw an IllegalArgumentException unless {@code 0 <= v < V}
     def _validate_vertex(self, v):
-        V = rank.length;
+        V = len(self._rank)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}", v, (V-1))
 
