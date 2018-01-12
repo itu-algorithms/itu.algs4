@@ -40,7 +40,7 @@ class AcyclicLp:
         self._dist_to = [float("-inf")]*graph.V()
         self._edge_to = [None]*graph.V()
         
-        self._validate_vertex(v)
+        self._validate_vertex(s)
         
         self._dist_to[s] = 0.
         
@@ -51,7 +51,7 @@ class AcyclicLp:
         
         for v in topological.order():
             for edge in graph.adj(v):
-                self._relax(e)
+                self._relax(edge)
                 
     def dist_to(self, v):
         """
@@ -76,7 +76,7 @@ class AcyclicLp:
         Returns a longest path from the source vertex s to vertex v.
         
         :param: the destination vertex
-        :returns: a longest path from the source vertex s to vertex v as an iterable of edges, and null if no such path
+        :returns: a longest path from the source vertex s to vertex v as an iterable of edges, and None if no such path
         """
         self._validate_vertex(v)
         if not self.has_path_to(v):
@@ -85,7 +85,7 @@ class AcyclicLp:
         edge = self._edge_to[v]
         while not edge is None:
             path.push(edge)
-            edge = edge.from_vertex()
+            edge = self._edge_to[edge.from_vertex()]
         return path
         
                 
@@ -94,23 +94,26 @@ class AcyclicLp:
         v, w = edge.from_vertex(), edge.to_vertex()
         if self._dist_to[w] < self._dist_to[v] + edge.weight():
             self._dist_to[w] = self._dist_to[v] + edge.weight()
-            self._edge_to[w] = e
+            self._edge_to[w] = edge
         
     # throw an IllegalArgumentException unless {@code 0 <= v < V}    
     def _validate_vertex(self, v):
         V = len(self._dist_to)
-        if not (0 < v < V):
+        if not (0 <= v < V):
             raise ValueError('vertex {} is not between 0 and {}'.format(v, V-1))
 
 
 import sys
+import instream
 from graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
-    d = EdgeWeightedDigraph.from_stream(instream.Instream(stream))
-    a = AcyclicLp(edge_weighted_digraph, 0)
+    d = EdgeWeightedDigraph.from_stream(instream.InStream(stream))
+    a = AcyclicLp(d, 3)
     
-    print(a.path_to(5))
+    # print longest paths to all other vertices
+    for i in range(d.V()):
+        print('{} to {}'.format(i, a.path_to(i)))

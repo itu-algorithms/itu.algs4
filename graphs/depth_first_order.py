@@ -1,5 +1,6 @@
 from fundamentals.stack import Stack
 from fundamentals.queue import Queue
+from graphs.digraph import Digraph
 
 class DepthFirstOrder:
     """
@@ -30,9 +31,14 @@ class DepthFirstOrder:
         self._pre_counter  = 0
         self._post_counter = 0
         
+        if isinstance(digraph, Digraph):
+            dfs = self._dfs
+        else:
+            dfs = self._dfs_edge_weighted
+        
         for v in range(digraph.V()):
             if (not self._marked[v]):
-                self._dfs(digraph, v)
+                dfs(digraph, v)
     
     def post(self, v=None):
         """
@@ -83,10 +89,24 @@ class DepthFirstOrder:
         self._preorder.enqueue(v);
         for w in digraph.adj(v):
             if not self._marked[w]:
-                self._dfs(digraph, w);
-        self._postorder.enqueue(v);
+                self._dfs(digraph, w)
+        self._postorder.enqueue(v)
         self._post[v] = self._post_counter
         self._post_counter += 1
+    
+    # run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
+    def _dfs_edge_weighted(self, graph, v):
+        self._marked[v] = True
+        self._pre[v] = self._pre_counter
+        self._pre_counter += 1
+        self._preorder.enqueue(v);
+        for edge in graph.adj(v):
+            w = edge.to_vertex()
+            if not self._marked[w]:
+                self._dfs_edge_weighted(graph, w)
+        self._postorder.enqueue(v)
+        self._post[v] = self._post_counter
+        self._post_counter += 1    
     
     # throw an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):

@@ -8,6 +8,7 @@ information, see chapter 4.2 of the book.
 """
 
 from graphs.directed_cycle import DirectedCycle
+from graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
 from graphs.depth_first_order import DepthFirstOrder
 
 class Topological:
@@ -31,13 +32,17 @@ class Topological:
     
     def __init__(self, digraph):
         """
-        Determines whether the digraph has a topological order and, if so, finds such a topological order.
+        Determines whether the digraph (or edge weighted digraph) 
+        has a topological order and, if so, finds such a topological order.
         
         :param digraph: the Digraph or EdgeWeightedDigraph to check
         """
         self._order = None
         
-        finder = DirectedCycle(digraph)
+        if isinstance(digraph, Digraph):
+            finder = DirectedCycle(digraph)
+        else:
+            finder = EdgeWeightedDirectedCycle(digraph)
 
         if not finder.has_cycle():
             dfs = DepthFirstOrder(digraph)
@@ -66,7 +71,7 @@ class Topological:
         """
         return self._order != None
     
-    def rank(selv, v):
+    def rank(self, v):
         """
         The the rank of vertex v in the topological order; -1 if the digraph is not a DAG
         
@@ -89,13 +94,14 @@ import sys
 import instream
 
 from graphs.digraph import Digraph
+from graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
     
-    d = Digraph.from_stream(instream.InStream(stream))
+    d = EdgeWeightedDigraph.from_stream(instream.InStream(stream))
     top = Topological(d)
     if top.has_order():
         print(list(top.order()))
