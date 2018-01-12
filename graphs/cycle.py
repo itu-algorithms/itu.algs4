@@ -1,4 +1,9 @@
-from ..fundamentals.stack import Stack
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+
+
+from fundamentals.stack import Stack
 
 class Cycle:
     """
@@ -96,3 +101,18 @@ class Cycle:
                     x = self._edgeTo[x]
                 self._cycle.push(w)
                 self._cycle.push(v)
+
+if __name__ == "__main__":
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    from graphs.graph import Graph    
+
+    In = InStream(sys.argv[1])
+    G = Graph.from_stream(In)
+    finder = Cycle(G)
+    if finder.has_cycle():
+        for v in finder.cycle():
+            stdio.writef("%i ", v)
+        stdio.writeln()
+    else:
+        stdio.writeln("Graph is acyclic")

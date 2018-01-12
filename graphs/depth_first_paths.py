@@ -1,4 +1,8 @@
-from ..fundamentals.stack import Stack
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+
+from fundamentals.stack import Stack
 
 class DepthFirstPaths:
     """
@@ -9,7 +13,7 @@ class DepthFirstPaths:
     This implementation uses depth-first search.
     The constructor takes time proportional to V + E,
     where V is the number of vertices and E is the number of edges.
-    Each call to hasPathTo(int) takes constant time;
+    Each call to hasPathTo(int) takes constant time
     each call to pathTo(int) takes time proportional to the length
     of the path.
     It uses extra space (not including the graph) proportional to V.
@@ -72,3 +76,23 @@ class DepthFirstPaths:
         V = len(self._marked)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+
+if __name__ == "__main__":
+    from stdlib import stdio
+    from graphs.graph import Graph
+    from stdlib.instream import InStream
+
+    In = InStream(sys.argv[1])
+    G = Graph.from_stream(In)
+    s = int(sys.argv[2])
+    dfs = DepthFirstPaths(G, s)
+
+    for v in range(G.V()):
+        if dfs.has_path_to(v):
+            stdio.writef("%d to %d:  ", s, v)
+            for x in dfs.path_to(v):
+                if x == s: stdio.write(x)
+                else:      stdio.writef("-%i", x)            
+            stdio.writeln()
+        else:
+            stdio.writef("%d to %d:  not connected\n", s, v)            

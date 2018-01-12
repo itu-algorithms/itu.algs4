@@ -54,7 +54,7 @@ class RedBlackBST:
         """
         Initializes an empty symbol table.
         """
-        self.root = None
+        self._root = None
 
     def put(self, key, val):
         """
@@ -72,8 +72,8 @@ class RedBlackBST:
             self.delete(key)
             return
 
-        self.root = self._put(self.root, key, val)
-        self.root.color = self.BLACK
+        self._root = self._put(self._root, key, val)
+        self._root.color = self.BLACK
 
     def _put(self, h, key, val):
         """
@@ -112,7 +112,7 @@ class RedBlackBST:
         """
         if key is None:
             raise IllegalArgumentError("argument to get() is None")
-        return self._get(self.root, key)
+        return self._get(self._root, key)
 
     def _get(self, x, key):
         """
@@ -138,11 +138,11 @@ class RedBlackBST:
         """
         if self.is_empty():
             raise NoSuchElementError("RedBlackBST underflow")
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete_min(self.root)
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete_min(self._root)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete_min(self, h):
         """
@@ -163,11 +163,11 @@ class RedBlackBST:
         """
         if self.is_empty():
             raise NoSuchElementError("RedBlackBST underflow")
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete_max(self.root)
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete_max(self._root)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete_max(self, h):
         """
@@ -194,11 +194,11 @@ class RedBlackBST:
             raise IllegalArgumentError("argument to delete() is None")
         if not self.contains(key):
             return
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete(self.root, key)
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete(self._root, key)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete(self, h, key):
         """
@@ -231,7 +231,7 @@ class RedBlackBST:
         :return: the number of key-value pairs in this symbol table
         :rtype: int
         """
-        return self._size(self.root)
+        return self._size(self._root)
 
     def _size(self, x):
         """
@@ -259,7 +259,7 @@ class RedBlackBST:
         :return: True if this symbol table is empty and False otherwise
         :rtype: bool
         """
-        return self.root is None
+        return self._root is None
 
     def _is_red(self, x):
         """
@@ -358,7 +358,7 @@ class RedBlackBST:
         :return: the height of the RedBlackBST (a 1-node tree has height 0)
         :rtype: int
         """
-        return self._height(self.root)
+        return self._height(self._root)
 
     def _height(self, x):
         """
@@ -377,7 +377,7 @@ class RedBlackBST:
         """
         if self.is_empty():
             raise NoSuchElementError("calls min() with empty symbol table")
-        return self._min(self.root).key
+        return self._min(self._root).key
 
     def _min(self, x):
         """
@@ -397,7 +397,7 @@ class RedBlackBST:
         """
         if self.is_empty():
             raise NoSuchElementError("calls max() with empty symbol table")
-        return self._max(self.root).key
+        return self._max(self._root).key
 
     def _max(self, x):
         """
@@ -430,7 +430,7 @@ class RedBlackBST:
         if hi is None:
             raise IllegalArgumentError("second argument to keys() is None")
         queue = Queue()
-        self._keys(self.root, queue, lo, hi)
+        self._keys(self._root, queue, lo, hi)
         return queue
 
     def _keys(self, x, queue, lo, hi):
@@ -456,7 +456,7 @@ class RedBlackBST:
         """
         if k < 0 or k >= self.size():
             raise IllegalArgumentError("argument to select() is invalid: {}".format(k))
-        x = self._select(self.root, k)
+        x = self._select(self._root, k)
         return x.key
 
     def _select(self, x, k):
@@ -482,7 +482,7 @@ class RedBlackBST:
         """
         if key is None:
             raise IllegalArgumentError("argument to rank() is None")
-        return self._rank(key, self.root)
+        return self._rank(key, self._root)
 
     def _rank(self, key, x):
         """
@@ -531,7 +531,7 @@ class RedBlackBST:
             raise IllegalArgumentError("argument to floor() is None")
         if self.is_empty():
             raise NoSuchElementError("calls floor() with empty symbol table")
-        x = self._floor(self.root, key)
+        x = self._floor(self._root, key)
         if x is None:
             return None
         return x.key
@@ -563,7 +563,7 @@ class RedBlackBST:
             raise IllegalArgumentError("argument to ceiling is None")
         if self.is_empty():
             raise NoSuchElementError("calls ceiling() with empty symbol table")
-        x = self._ceiling(self.root, key)
+        x = self._ceiling(self._root, key)
         if x is None:
             return None
         return x.key

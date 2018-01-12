@@ -86,7 +86,7 @@ class Topological:
     
     # throw an IllegalArgumentException unless {@code 0 <= v < V}
     def _validate_vertex(self, v):
-        V = rank.length;
+        V = len(self._rank)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}", v, (V-1))
 
