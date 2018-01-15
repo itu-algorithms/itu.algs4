@@ -3,8 +3,8 @@
 # This is python3 
 import sys
 from sorting.min_pq import MinPQ
-from binarystdin import BinaryStdIn
-from binarystdout import BinaryStdOut
+from stdlib.binary_stdin import BinaryStdIn
+from stdlib.binary_stdout import BinaryStdOut
 """
 The Huffman compression module provides static methods for compressing
 and expanding a binary input using Huffman codes over the 8-bit extended
@@ -39,12 +39,12 @@ def compress():
 	for i in range(0,len(s)):
 		freq[ord(s[i])] += 1
 	#Build Huffman trie
-	root = _buildTrie(freq)
+	root = _build_trie(freq)
 	#Build code table
 	st = [None for i in range(0,_R)]
-	_buildCode(st, root, "")
+	_build_code(st, root, "")
 	#Print trie for decoder
-	_writeTrie(root)
+	_write_trie(root)
 	#Print number of bytes in original uncompressed message
 	BinaryStdOut.write_int(len(s))
 	#Use Huffman code to encode input
@@ -59,7 +59,7 @@ def compress():
 				raise ValueError("Illegal state")
 	BinaryStdOut.close()
 #Build the Huffman trie given frequencies
-def _buildTrie(freq):
+def _build_trie(freq):
 	pq = MinPQ()
 	for i in range(0,_R):
 		if(freq[i] > 0):
@@ -78,19 +78,19 @@ def _buildTrie(freq):
 		pq.insert(parent)
 	return pq.del_min()
 #Write bitstring-encoded trie to standard output
-def _writeTrie(x):
+def _write_trie(x):
 	if(x.is_leaf()):
 		BinaryStdOut.write_bool(True)
 		BinaryStdOut.write_char(x.ch)
 		return
 	BinaryStdOut.write_bool(False)
-	_writeTrie(x.left)
-	_writeTrie(x.right)
+	_write_trie(x.left)
+	_write_trie(x.right)
 #Make a lookup table from symbols and their encodings
-def _buildCode(st, x, s):
+def _build_code(st, x, s):
 	if(not x.is_leaf()):
-		_buildCode(st, x.left, s+'0')
-		_buildCode(st, x.right, s+'1')
+		_build_code(st, x.left, s+'0')
+		_build_code(st, x.right, s+'1')
 	else:
 		st[ord(x.ch)] = s
 
@@ -100,7 +100,7 @@ def expand():
 	standard input; expands them; and writes the results to standard output.
 	"""
 	BinaryStdIn.is_empty()
-	root = _readTrie()
+	root = _read_trie()
 	length = BinaryStdIn.read_int()
 	for i in range(0,length):
 		x = root
@@ -111,13 +111,13 @@ def expand():
 			else:
 				x = x.left
 		BinaryStdOut.write_char(x.ch)
-
-def _readTrie():
+	BinaryStdOut.close()
+def _read_trie():
 	isLeaf = BinaryStdIn.read_bool()
 	if(isLeaf):
 		return _Node(BinaryStdIn.read_char(), -1, None, None)
 	else:
-		return _Node('\0', -1, _readTrie(), _readTrie())
+		return _Node('\0', -1, _read_trie(), _read_trie())
 def main():
 	if(sys.argv[1] == '-'):
 		compress()
