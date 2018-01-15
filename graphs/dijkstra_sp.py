@@ -3,6 +3,7 @@ from stdlib.instream import InStream
 from sorting.index_min_pq import IndexMinPQ
 from fundamentals.stack import Stack
 from graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -27,12 +28,12 @@ class DijkstraSP:
         vertex in the edge-weighted digraph G.
         :param G: The edge-weighted digraph
         :param s: The source vertex
-        :raises IllegalArgumentError: if an edge weight is negative
-        :raises IllegalArgumentError: unless 0 <= s < V
+        :raises IllegalArgumentException: if an edge weight is negative
+        :raises IllegalArgumentException: unless 0 <= s < V
         """
         for e in G.edges():
             if e.weight() < 0:
-                raise IllegalArgumentError("edge {} has negative weight".format(e))
+                raise IllegalArgumentException("edge {} has negative weight".format(e))
         self._dist_to = [float('inf')] * G.V()
         self._edge_to = [None] * G.V()
         self._validate_vertex(s)
@@ -50,7 +51,7 @@ class DijkstraSP:
         :param v: the destination vertex
         :return: the length of a shortest path from the source vertex s to vertex v
         :rtype: float
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._dist_to[v]
@@ -62,7 +63,7 @@ class DijkstraSP:
         :return: True if there is a path from the source vertex
         s to vertex v. Otherwise returns False
         :rtype: bool
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._dist_to[v] < float('inf')
@@ -73,7 +74,7 @@ class DijkstraSP:
         :param v: the destination vertex
         :return: a shortest path from the source vertex s to vertex v
         :rtype: collections.iterable[DirectedEdge]
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         if not self.has_path_to(v):
@@ -102,16 +103,12 @@ class DijkstraSP:
 
     def _validate_vertex(self, v):
         """
-        Raises an IllegalArgumentError unless 0 <= v < V
+        Raises an IllegalArgumentException unless 0 <= v < V
         :param v: the vertex to be validated
         """
         V = len(self._dist_to)
         if v < 0 or v >= V:
-            raise IllegalArgumentError("vertex {} is not between 0 and {}".format(v, V-1))
-
-
-class IllegalArgumentError(Exception):
-    pass
+            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, V-1))
 
 
 def main():
