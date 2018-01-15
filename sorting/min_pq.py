@@ -1,5 +1,6 @@
 import sys
 from stdlib import stdio
+from errors.errors import NoSuchElementException
 
 # Created for BADS 2018
 # See README.md for details
@@ -40,14 +41,22 @@ class MinPQ:
         """
         Returns a smallest key on this priority queue.
         :return: a smallest key on the priority queue
+        :raises NoSuchElementException: if this priority queue is empty
         """
+        if self.is_empty():
+            raise NoSuchElementException("Priority queue underflow")
+
         return self._pq[1]
 
     def del_min(self):
         """
         Removes and returns a smallest key on this priority queue.
         :return: a smallest key on this priority queue
+        :raises NoSuchElementException: if this priority queue is empty
         """
+        if self.is_empty():
+            raise NoSuchElementException("Priority queue underflow")
+
         _min = self._pq[1]
         self._exch(1, self._n)
         self._n -= 1
@@ -61,6 +70,7 @@ class MinPQ:
         """
         Returns True if this priority queue is empty.
         :return: True if this priority queue is empty otherwise False
+        :rtype: bool
         """
         return self._n == 0
 
@@ -68,6 +78,7 @@ class MinPQ:
         """
         Returns the number of keys on this priority queue.
         :return: the number of keys on this priority queue
+        :rtype: int
         """
         return self._n
 
