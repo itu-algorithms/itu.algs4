@@ -54,13 +54,15 @@ class Queue:
         :return: the item on this queue that was least recently added.
         :raises NoSuchElementException: if this queue is empty
         """
-        if not self.is_empty():
-            item = self._first.item
-            self._first = self._first.next
-            self._n -= 1
-            if self.is_empty():
-                self._last = None
-            return item
+        if self.is_empty():
+            raise NoSuchElementException("Queue underflow")
+
+        item = self._first.item
+        self._first = self._first.next
+        self._n -= 1
+        if self.is_empty():
+            self._last = None
+        return item
 
     def is_empty(self):
         """
@@ -86,6 +88,7 @@ class Queue:
         """
         if self.is_empty():
             raise NoSuchElementException("Queue underflow")
+
         return self._first.item
 
     def __iter__(self):
@@ -119,7 +122,7 @@ def main():
         sys.stdin = open(sys.argv[1])
         while not stdio.isEmpty():
             input_item = stdio.readString()
-            if input_item is not '-':
+            if input_item != '-':
                 queue.enqueue(input_item)
             elif not queue.is_empty():
                 print(queue.dequeue())
