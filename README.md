@@ -34,7 +34,7 @@ https://www.python.org/dev/peps/pep-0008/#prescriptive-naming-conventions
 ## we have subdirectories for the code, one for each chapter
 
 ## things like 'node' are inside classes, no leading underscore
-## file names are CamelCase, replicating algs4
+## file names are file_name (and not CamelCase, adjustting from algs4)
 ## there is one file per version of an algorithm / data structure (like in algs4), the name, and importantly the docstring, reflects which version it is
 ## java main becomes __main__ stuff; follow what is there; adjust the initial comment
 ## don't replicate imports unless 
