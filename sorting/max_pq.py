@@ -1,5 +1,6 @@
 import sys
 from stdlib import stdio
+from errors.errors import NoSuchElementException
 
 # Created for BADS 2018
 # see README.md for details
@@ -40,14 +41,22 @@ class MaxPQ:
         """
         Returns a largest key on this priority queue.
         :return: a largest key on the priority queue
+        :raises NoSuchElementException: if this priority queue is empty
         """
+        if self.is_empty():
+            raise NoSuchElementException("Priority queue underflow")
+
         return self._pq[1]
 
     def del_max(self):
         """
         Removes and returns a largest key on this priority queue.
         :return: a largest key on this priority queue
+        :raises NoSuchElementException: if this priority queue is empty
         """
+        if self.is_empty():
+            raise NoSuchElementException("Priority queue underflow")
+
         _max = self._pq[1]
         self._exch(1, self._n)
         self._n -= 1
@@ -61,6 +70,7 @@ class MaxPQ:
         """
         Returns True if this priority queue is empty.
         :return: True if this priority queue is empty otherwise False
+        :rtype: bool
         """
         return self._n == 0
 
@@ -68,6 +78,7 @@ class MaxPQ:
         """
         Returns the number of keys on this priority queue.
         :return: the number of keys on this priority queue
+        :rtype: int
         """
         return self._n
 
