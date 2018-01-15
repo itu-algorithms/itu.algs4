@@ -32,7 +32,16 @@ Otto Stadel Clausen <otcl@itu.dk>
 https://www.python.org/dev/peps/pep-0008/#prescriptive-naming-conventions
 
 ## we have subdirectories for the code, one for each chapter
+## if java relies on having different implementations depending on the type:
+Use somehting like
+```
+class DirectedDFS:
+	def __init__(self, G, *s):
+```
+like in `graphs/directed_dfs.py`
 
+Otherwise we use static factory methods where the name indicates the expected type.
+If appropriate we use `isinstance()` and its variants, for example to distinguish undirected and directed graphs. 
 ## things like 'node' are inside classes, no leading underscore
 ## file names, variables, methods are file_name (and not CamelCase, adjustting from algs4), only classes are CamelCase (PascalCase)
 ## there is one file per version of an algorithm / data structure (like in algs4), the name, and importantly the docstring, reflects which version it is
