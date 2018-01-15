@@ -10,9 +10,9 @@ def setpath():
 setpath()
 import stdio
 
-#  Execution:    python FileIndex file1.txt file2.txt file3.txt ...
+#  Execution:    python file_index.py file1.txt file2.txt file3.txt ...
 #
-#  % python FileIndex ex*.txt
+#  % python file_index.py ex*.txt
 #  age
 #   ex3.txt
 #   ex4.txt 
@@ -24,9 +24,9 @@ import stdio
 #   ex3.txt
 #   ex4.txt 
 #
-#  % python FileIndex *.txt
+#  % python file_index.py *.txt
 #
-#  % python FileIndex *.py
+#  % python file_index.py *.py
 
 
 """
