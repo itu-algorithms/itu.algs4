@@ -18,9 +18,9 @@ except AttributeError:
     print('ERROR - Could not import algs4 queue')
     sys.exit(1)
 
-# Execution:    python LookupIndex movies.txt "/"
+# Execution:    python lookup_index.py movies.txt "/"
 # Dependencies: queue.py stdio.py
-# % python LookupIndex aminoI.csv ","
+# % python lookup_index.py aminoI.csv ","
 # Serine
 #   TCT
 #   TCA
@@ -30,7 +30,7 @@ except AttributeError:
 # TCG
 #   Serine
 #
-# % python LookupIndex movies.txt "/"
+# % python lookup_index.py movies.txt "/"
 # Bacon, Kevin
 #   Animal House (1978)
 #   Apollo 13 (1995)
