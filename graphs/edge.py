@@ -1,4 +1,5 @@
 import math
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -21,15 +22,15 @@ class Edge:
         :param v: one vertex
         :param w: the other vertex
         :param weight: the weight of this edge
-        :raises ValueError: if either v or w is a negative integer
-        :raises ValueError: if weight is NaN
+        :raises IllegalArgumentException: if either v or w is a negative integer
+        :raises IllegalArgumentException: if weight is NaN
         """
         if v < 0:
-            raise ValueError("vertex index must be a nonnegative integer")
+            raise IllegalArgumentException("vertex index must be a nonnegative integer")
         if w < 0:
-            raise ValueError("vertex index must be a nonnegative integer")
+            raise IllegalArgumentException("vertex index must be a nonnegative integer")
         if math.isnan(weight):
-            raise ValueError("Weight is NaN")
+            raise IllegalArgumentException("Weight is NaN")
         self._v = v
         self._w = w
         self._weight = weight
@@ -38,6 +39,7 @@ class Edge:
         """
         Returns the weight of this edge.
         :return: the weight of this edge
+        :rtype: float
         """
         return self._weight
 
@@ -45,6 +47,7 @@ class Edge:
         """
         Returns either endpoint of this edge.
         :return: either endpoint of this edge
+        :rtype: int
         """
         return self._v
 
@@ -53,14 +56,15 @@ class Edge:
         Returns the endpoint of this edge that is different from the given vertex.
         :param vertex: one endpoint of this edge
         :return: the other endpoint of this edge
-        :raises ValueError: if the vertex is not one of the endpoints of this edge
+        :rtype: int
+        :raises IllegalArgumentException: if the vertex is not one of the endpoints of this edge
         """
         if vertex == self._v:
             return self._w
         elif vertex == self._w:
             return self._v
         else:
-            raise ValueError("Illegal endpoint")
+            raise IllegalArgumentException("Illegal endpoint")
 
     def __lt__(self, other):
         """
@@ -70,14 +74,6 @@ class Edge:
         """
         return self.weight() < other.weight()
 
-    def __le__(self, other):
-        """
-        Checks if this edge has smaller than or equal weight compared to other edge
-        :param other: the edge to compare with
-        :return: True if weight of this edge is less than or equal to weight of other edge otherwise False
-        """
-        return self.weight() <= other.weight()
-
     def __gt__(self, other):
         """
         Checks if this edge has greater weight than other edge
@@ -85,14 +81,6 @@ class Edge:
         :return: True if weight of this edge is greater than weight of other edge otherwise returns False
         """
         return self.weight() > other.weight()
-
-    def __ge__(self, other):
-        """
-        Checks if this edge has greater than or equal weight compared to other edge
-        :param other:  the edge to compare with
-        :return: True if weight of this edge is greater than or equal to weight of other edge otherwise False
-        """
-        return self.weight() >= other.weight()
 
     def __repr__(self):
         """
