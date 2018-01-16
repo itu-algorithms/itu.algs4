@@ -1,16 +1,9 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
-    sys.path.insert(0, p)
-setpath()
-import stdio
-from queue import Queue
+import sys
+from stdlib import stdio
+from fundamentals.queue import Queue
 try:
     q = Queue()
     q.enqueue(1)

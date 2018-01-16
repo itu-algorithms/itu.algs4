@@ -1,15 +1,8 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'errors'))
-    sys.path.insert(0, p)
-setpath()
-
-from errors import NoSuchElementException, IllegalArgumentException, UnsupportedOperationException
+import sys
+from errors.errors import NoSuchElementException, IllegalArgumentException, UnsupportedOperationException
 
 """
 Set implementation using Python's set() type.
