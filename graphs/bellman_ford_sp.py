@@ -1,22 +1,15 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
-    sys.path.insert(0, os.path.join(p, '..', 'errors'))
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, p)
-setpath()
-from edge_weighted_digraph import EdgeWeightedDigraph
-from directed_edge import DirectedEdge
-from edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
-from queue import Queue
-from errors import IllegalArgumentException, UnsupportedOperationException
-import stdio
-from instream import InStream
+import sys
+from graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from graphs.directed_edge import DirectedEdge
+from graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
+from fundamentals.queue import Queue
+from fundamentals.stack import Stack
+from errors.errors import IllegalArgumentException, UnsupportedOperationException
+from stdlib import stdio
+from stdlib.instream import InStream
 
 try:
     q = Queue()
@@ -68,8 +61,8 @@ class BellmanFordSP:
         self.distTo[s] = 0.0
         self.queue.enqueue(s)
         self.onQueue[s] = True
-        while not queue.is_empty() and not self.has_negative_cycle():
-            v = queue.dequeue()
+        while not self.queue.is_empty() and not self.has_negative_cycle():
+            v = self.queue.dequeue()
             self.onQueue[v] = False
             self._relax(G, v)
         assert self._check(G, s)
@@ -144,7 +137,7 @@ class BellmanFordSP:
     #         from the source vertex {@code s}
     # @throws IllegalArgumentException unless {@code 0 <= v < V}
     def path_to(self, v):
-        self.validate_vertex(v)
+        self._validate_vertex(v)
         if self.has_negative_cycle():
             raise UnsupportedOperationException("Negative cost cycle exists")
         if not self.has_path_to(v): return None
@@ -228,7 +221,7 @@ def main(args):
     else:
         for v in range(G.V()):
             if sp.has_path_to(v):
-                print("{} to {} ({})  ".format( s, v, sp.distTo(v)))
+                print("{} to {} ({})  ".format( s, v, sp.dist_to(v)))
                 for e in sp.path_to(v):
                     print("{}   ".format(e), end='')
                 print()
@@ -236,7 +229,7 @@ def main(args):
                 print("{} to {}           no path".format(s, v))
 
 if __name__ == '__main__':
-    main(sys.args[1:])
+    main(sys.argv[1:])
 
  # *  % python BellmanFordSP.py tinyEWDn.txt 0
  # *  0 to 0 ( 0.00)  
