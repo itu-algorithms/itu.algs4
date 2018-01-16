@@ -50,20 +50,20 @@ class BellmanFordSP:
     # @param s the source vertex
     # @throws IllegalArgumentException unless {@code 0 <= s < V}
     def __init__(self, G, s):
-        self.distTo = [sys.float_info.max] * G.V()  #distTo[v] = distance  of shortest s->v path
-        self.edgeTo = [None] * G.V()                #edgeTo[v] = last edge on shortest s->v path
-        self.onQueue = [False] * G.V()              #onQueue[v] = is v currently on the queue?
-        self.queue = Queue()                        #queue of vertices to relax
-        self.cost = 0                               #number of calls to relax()
-        self.cycle = None                           #negative cycle (or None if no such cycle)
+        self._distTo = [sys.float_info.max] * G.V()  #distTo[v] = distance  of shortest s->v path
+        self._edgeTo = [None] * G.V()                #edgeTo[v] = last edge on shortest s->v path
+        self._onQueue = [False] * G.V()              #onQueue[v] = is v currently on the queue?
+        self._queue = Queue()                        #queue of vertices to relax
+        self._cost = 0                               #number of calls to relax()
+        self._cycle = None                           #negative cycle (or None if no such cycle)
         
         #Bellman-Ford algorithm
-        self.distTo[s] = 0.0
-        self.queue.enqueue(s)
-        self.onQueue[s] = True
-        while not self.queue.is_empty() and not self.has_negative_cycle():
-            v = self.queue.dequeue()
-            self.onQueue[v] = False
+        self._distTo[s] = 0.0
+        self._queue.enqueue(s)
+        self._onQueue[s] = True
+        while not self._queue.is_empty() and not self.has_negative_cycle():
+            v = self._queue.dequeue()
+            self._onQueue[v] = False
             self._relax(G, v)
         assert self._check(G, s)
 
@@ -71,41 +71,41 @@ class BellmanFordSP:
     def _relax(self, G, v):
         for e in G.adj(v):
             w = e.to_vertex()
-            if self.distTo[w] > self.distTo[v] + e.weight():
-                self.distTo[w] = self.distTo[v] + e.weight()
-                self.edgeTo[w] = e
-                if not self.onQueue[w]:
-                    self.queue.enqueue(w)
-                    self.onQueue[w] = True
-            if self.cost % G.V() == 0:
+            if self._distTo[w] > self._distTo[v] + e.weight():
+                self._distTo[w] = self._distTo[v] + e.weight()
+                self._edgeTo[w] = e
+                if not self._onQueue[w]:
+                    self._queue.enqueue(w)
+                    self._onQueue[w] = True
+            if self._cost % G.V() == 0:
                 self._find_negative_cycle()
                 if self.has_negative_cycle():
                     return  #found a negative cycle
-            self.cost += 1
+            self._cost += 1
         
     # Is there a negative cycle reachable from the source vertex {@code s}?
     # @return {@code true} if there is a negative cycle reachable from the
     #    source vertex {@code s}, and {@code false} otherwise
     def has_negative_cycle(self):
-        return self.cycle is not None
+        return self._cycle is not None
 
     # Returns a negative cycle reachable from the source vertex {@code s}, or {@code None}
     # if there is no such cycle.
     # @return a negative cycle reachable from the soruce vertex {@code s} 
     #    as an iterable of edges, and {@code None} if there is no such cycle
     def negative_cycle(self):
-        return self.cycle
+        return self._cycle
 
     #by finding a cycle in predecessor graph
     def _find_negative_cycle(self):
-        V = len(self.edgeTo)
+        V = len(self._edgeTo)
         spt = EdgeWeightedDigraph(V)
         for v in range(V):
-            if self.edgeTo[v] is not None:
-                spt.add_edge(self.edgeTo[v])
+            if self._edgeTo[v] is not None:
+                spt.add_edge(self._edgeTo[v])
 
         finder = EdgeWeightedDirectedCycle(spt)
-        self.cycle = finder.cycle()
+        self._cycle = finder.cycle()
 
     # Returns the length of a shortest path from the source vertex {@code s} to vertex {@code v}.
     # @param  v the destination vertex
@@ -118,7 +118,7 @@ class BellmanFordSP:
         self._validate_vertex(v);
         if self.has_negative_cycle():
             raise UnsupportedOperationException("Negative cost cycle exists")
-        return self.distTo[v]
+        return self._distTo[v]
     
     # Is there a path from the source {@code s} to vertex {@code v}?
     # @param  v the destination vertex
@@ -127,7 +127,7 @@ class BellmanFordSP:
     # @throws IllegalArgumentException unless {@code 0 <= v < V}
     def has_path_to(self, v):
         self._validate_vertex(v)
-        return self.distTo[v] < sys.float_info.max
+        return self._distTo[v] < sys.float_info.max
 
     # Returns a shortest path from the source {@code s} to vertex {@code v}.
     # @param  v the destination vertex
@@ -142,10 +142,10 @@ class BellmanFordSP:
             raise UnsupportedOperationException("Negative cost cycle exists")
         if not self.has_path_to(v): return None
         path = Stack()
-        e = self.edgeTo[v]
+        e = self._edgeTo[v]
         while e is not None:
             path.push(e)
-            e = self.edgeTo[e.from_vertex()]
+            e = self._edgeTo[e.from_vertex()]
         return path
 
     #check optimality conditions: either 
@@ -168,13 +168,13 @@ class BellmanFordSP:
         else:
 
             #check that distTo[v] and edgeTo[v] are consistent
-            if self.distTo[s] != 0.0 or self.edgeTo[s] is not None:
+            if self._distTo[s] != 0.0 or self._edgeTo[s] is not None:
                 print("distanceTo[s] and edgeTo[s] inconsistent")
                 return False;
             
             for v in range(G.V()):
                 if v == s: continue
-                if self.edgeTo[v] is None and self.distTo[v] != sys.float_info.max:
+                if self._edgeTo[v] is None and self._distTo[v] != sys.float_info.max:
                     print("distTo[] and edgeTo[] inconsistent")
                     return False
 
@@ -182,17 +182,17 @@ class BellmanFordSP:
             for v in range(G.V()):
                 for e in G.adj(v):
                     w = e.to_vertex()
-                    if self.distTo[v] + e.weight() < self.distTo[w]:
+                    if self._distTo[v] + e.weight() < self._distTo[w]:
                         print("edge {} not relaxed".format(e))
                         return False;
 
             #check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
             for w in range(G.V()):
-                if self.edgeTo[w] is None: continue
-                e = self.edgeTo[w]
+                if self._edgeTo[w] is None: continue
+                e = self._edgeTo[w]
                 v = e.from_vertex()
                 if w != e.to_vertex(): return False
-                if self.distTo[v] + e.weight() != self.distTo[w]:
+                if self._distTo[v] + e.weight() != self._distTo[w]:
                     print("edge {} on shortest path not tight".format(e))
                     return False
 
@@ -202,7 +202,7 @@ class BellmanFordSP:
 
     #raise an IllegalArgumentException unless {@code 0 <= v < V}
     def _validate_vertex(self, v):
-        V = len(self.distTo)
+        V = len(self._distTo)
         if v < 0 or v >= V:
             raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, V-1))
     
