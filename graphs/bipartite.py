@@ -1,11 +1,9 @@
-import sys
-if __name__ == "__main__":
-    sys.path.append("..")
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 from fundamentals.stack import Stack
 from graphs.graph import Graph
-from stdlib.instream import InStream
-from stdlib import stdio
 
 class Bipartite:
     """
@@ -143,6 +141,10 @@ class Bipartite:
 
 
 if __name__ == "__main__":
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    import sys
+    
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)
     stdio.writeln(G)

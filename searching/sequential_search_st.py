@@ -1,3 +1,7 @@
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+
 class SequentialSearchST:
     """
     The  SequentialSearchST class represents an (unordered)
@@ -144,8 +148,6 @@ class SequentialSearchST:
 
 
 if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
     from stdlib import stdio
 
     st = SequentialSearchST()

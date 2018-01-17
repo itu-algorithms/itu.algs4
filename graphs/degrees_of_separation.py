@@ -1,7 +1,3 @@
-if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
-
 from graphs.breadth_first_paths import BreadthFirstPaths
 from graphs.symbol_graph import SymbolGraph
 from stdlib import stdio
@@ -43,9 +39,9 @@ class DegreesOfSeparation:
         
         :param args: the command-line arguments
         """
-        filename  = args[0]
-        delimiter = args[1]
-        source = args[2]
+        filename  = args[1]
+        delimiter = args[2]
+        source = args[3]
 
         sg = SymbolGraph(filename, delimiter)
         G = sg.graph()
@@ -69,6 +65,7 @@ class DegreesOfSeparation:
                 stdio.writeln("\tNot in database.")
         
 if __name__ == "__main__":
-    DegreesOfSeparation.main([sys.argv[1], sys.argv[2], sys.argv[3]])
+    import sys
+    DegreesOfSeparation.main(sys.argv)
     
     

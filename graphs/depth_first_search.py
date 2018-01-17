@@ -1,3 +1,7 @@
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+ 
 class DepthFirstSearch:
     """
     The DepthFirstSearch class represents a data type for 
@@ -58,3 +62,20 @@ class DepthFirstSearch:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
 
     
+if __name__ == "__main__":
+    from graphs.graph import Graph
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    import sys
+
+    In = InStream(sys.argv[1])
+    G = Graph.from_stream(In)
+    s = int(sys.argv[2])
+    search = DepthFirstSearch(G, s)
+    for v in range(G.V()):
+        if search.marked(v):
+            stdio.writef("%i ", v)
+    stdio.writeln()
+
+    if search.count() != G.V(): stdio.writeln("NOT connected")
+    else:                       stdio.writeln("connected")

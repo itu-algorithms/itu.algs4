@@ -1,13 +1,12 @@
-import sys
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+
 import math
-if __name__ == "__main__":
-    sys.path.append("..")
 
 from fundamentals.uf import UF
 from fundamentals.queue import Queue
 from sorting.min_pq import MinPQ
-
-
 
 class LazyPrimMST:
     """
@@ -94,7 +93,7 @@ class LazyPrimMST:
             totalWeight += e.weight()
         
         if abs(totalWeight - self.weight()) > LazyPrimMST.FLOATING_POINT_EPSILON:
-            error = "Weight of edges does not equal weight(): {} vs. {}\n".format(totalWeight, self.weight())
+            error = "Weight of edges does not equal weight(): {} vs. {}\n".format(totalWeight, self.weight())           
             print(error, file=sys.stderr)
             return False
 
@@ -138,10 +137,11 @@ class LazyPrimMST:
         return True
 
 if __name__ == "__main__":
+    import sys
     from stdlib.instream import InStream
     from stdlib import stdio
     from graphs.edge_weighted_graph import EdgeWeightedGraph
-
+    
     In = InStream(sys.argv[1])
     G = EdgeWeightedGraph.from_stream(In)
     mst = LazyPrimMST(G)

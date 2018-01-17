@@ -1,6 +1,6 @@
-import sys
-if __name__ == "__main__":
-    sys.path.append("..")
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 from searching.binary_search_st import BinarySearchST
 from stdlib.instream import InStream
@@ -20,9 +20,9 @@ class SymbolGraph:
     This implementation uses an ST to map from strings to integers,
     an array to map from integers to strings, and a Graph to store
     the underlying graph.
-    The indexOf and contains operations take time 
+    The index_of and contains operations take time 
     proportional to log V, where V is the number of vertices.
-    The nameOf operation takes constant time.
+    The name_of operation takes constant time.
     """
 
     def __init__(self, filename, delimiter):
@@ -35,7 +35,7 @@ class SymbolGraph:
         :param filename: the name of the file
         :param delimiter: the delimiter between fields
         """
-        self._st = BinarySearchST()             # -> index
+        self._st = BinarySearchST()             # string -> index
 
         # First pass builds the index by reading strings to associate
         # distinct strings with an index
@@ -102,6 +102,8 @@ class SymbolGraph:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
 
 if __name__ == "__main__":
+    import sys
+
     filename  = sys.argv[1]    
     delimiter = sys.argv[2]
     sg = SymbolGraph(filename, delimiter)

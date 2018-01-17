@@ -85,7 +85,7 @@ class DirectedCycle:
         return self._cycle
 
 import sys
-import instream
+from stdlib.instream import InStream
 
 from graphs.digraph import Digraph
 
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
     
-    d = Digraph.from_stream(instream.InStream(stream))
+    d = Digraph.from_stream(InStream(stream))
  
     cyc = DirectedCycle(d)
     print(cyc.cycle())
