@@ -1,7 +1,6 @@
-#!/python ??
 # Created for BADS 2018
 # see README.md for details
-# this is python3 
+# This is python3 
 
 class Bag:
     """
@@ -88,8 +87,6 @@ class Bag:
 
 # start of the script itself
 if __name__ == '__main__':
-    import sys
-    sys.path.append("..")
     from stdlib import stdio
 
     bag = Bag()

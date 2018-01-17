@@ -162,8 +162,6 @@ class ResizingArrayStack:
 
 
 if __name__ == '__main__':
-    import sys
-    sys.path.append("..")
     from stdlib import stdio
 
     stack = Stack()

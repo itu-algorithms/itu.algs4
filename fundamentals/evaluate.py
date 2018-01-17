@@ -1,5 +1,9 @@
-from .stack import Stack
-from ..stdlib import stdio
+# Created for BADS 2018
+# See README.md for details
+# Python 3
+
+from fundamentals.stack import Stack
+from stdlib import stdio
 
 import math
 
@@ -29,3 +33,6 @@ def evaluate():
         else:   
             vals.push(float(s))
     stdio.writeln(vals.pop())
+
+if __name__ == "__main__":
+    evaluate()
