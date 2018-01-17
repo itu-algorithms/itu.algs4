@@ -1,6 +1,10 @@
-from .breadthFirstPaths import BreadthFirstPaths
-from .symbolGraph import SymbolGraph
-from ..stdlib import stdio
+if __name__ == "__main__":
+    import sys
+    sys.path.append("..")
+
+from graphs.breadth_first_paths import BreadthFirstPaths
+from graphs.symbol_graph import SymbolGraph
+from stdlib import stdio
 
 class DegreesOfSeparation:
     """
@@ -58,12 +62,13 @@ class DegreesOfSeparation:
                 t = sg.index_of(sink)
                 if bfs.has_path_to(t):
                     for v in bfs.path_to(t):
-                      stdio.writeln(sg.name_of(v))
+                      stdio.writef("\t%s\n", sg.name_of(v))
                 else:
-                    stdio.writeln("Not connected")
+                    stdio.writeln("\tNot connected")
             else:
-                stdio.writeln("Not in database.")
+                stdio.writeln("\tNot in database.")
         
-    
+if __name__ == "__main__":
+    DegreesOfSeparation.main([sys.argv[1], sys.argv[2], sys.argv[3]])
     
     

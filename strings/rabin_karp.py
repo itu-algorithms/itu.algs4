@@ -5,8 +5,8 @@ import sys
 import math
 import random
 #The following part is borrowed from https://langui.sh/2009/03/07/generating-very-large-primes/
-#in an effort to implement the missing longRandomPrime() function
-def _rabinMiller(n):
+#in an effort to implement the missing long_random_prime() function
+def _rabin_miller(n):
      s = n-1
      t = 0
      while s&1 == 0:
@@ -29,7 +29,7 @@ def _rabinMiller(n):
                      v = (v**2)%n
          k+=2
      return True
-def _isPrime(n):
+def _is_prime(n):
      #lowPrimes is all primes (sans 2, which is covered by the bitwise and operator)
      #under 1000. taking n modulo each lowPrime allows us to remove a huge chunk
      #of composite numbers from our potential pool without resorting to Rabin-Miller
@@ -50,9 +50,9 @@ def _isPrime(n):
                     return True
                  if (n % p == 0):
                      return False
-             return _rabinMiller(n)
+             return _rabin_miller(n)
      return False
-def longRandomPrime(k):
+def long_random_prime(k):
      #k is the desired bit length
      r=100*(math.log(k,2)+1) #number of attempts max
      r_ = r
@@ -61,7 +61,7 @@ def longRandomPrime(k):
         #unusable for serious crypto purposes
          n = random.randrange(2**(k-1),2**(k))
          r-=1
-         if _isPrime(n) == True:
+         if _is_prime(n) == True:
              return n
      return "Failure after "+ r_ + " tries."
 """
@@ -77,7 +77,7 @@ class RabinKarp:
 		"""
 		self.M = len(pat)
 		self.R = 256
-		self.Q = longRandomPrime(32)
+		self.Q = long_random_prime(32)
 		self.RM = 1
 		for i in range (1,self.M):
 			self.RM = (self.R * self.RM) % self.Q

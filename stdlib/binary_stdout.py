@@ -27,7 +27,7 @@ class BinaryStdOut:
 		BinaryStdOut.n = 0 #number of bits used in buffer
 		BinaryStdOut.is_init = True
 	@staticmethod
-	def _writeBit(x):
+	def _write_bit(x):
 		if(not BinaryStdOut.is_init):
 			BinaryStdOut._initialize()
 		BinaryStdOut.buffer_ <<= 1
@@ -35,9 +35,9 @@ class BinaryStdOut:
 			BinaryStdOut.buffer_ |=1
 		BinaryStdOut.n += 1
 		if(BinaryStdOut.n == 8):
-			BinaryStdOut._clearBuffer()
+			BinaryStdOut._clear_buffer()
 	@staticmethod
-	def _writeByte(x):
+	def _write_byte(x):
 		if(not BinaryStdOut.is_init):
 			BinaryStdOut._initialize()
 		assert x >= 0 and x < 256
@@ -48,9 +48,9 @@ class BinaryStdOut:
 		#otherwise write one bit at a time
 		for i in range(0,8):
 			bit = ((x >> (8 - i - 1)) & 1) == 1
-			BinaryStdOut._writeBit(bit)
+			BinaryStdOut._write_bit(bit)
 	@staticmethod
-	def _clearBuffer():
+	def _clear_buffer():
 		if(not BinaryStdOut.is_init):
 			BinaryStdOut._initialize()
 		if(BinaryStdOut.n == 0):
@@ -62,7 +62,7 @@ class BinaryStdOut:
 		BinaryStdOut.buffer_ = 0
 	@staticmethod
 	def flush():
-		BinaryStdOut._clearBuffer()
+		BinaryStdOut._clear_buffer()
 		BinaryStdOut.out.flush()
 	@staticmethod
 	def close():
@@ -71,17 +71,17 @@ class BinaryStdOut:
 		BinaryStdOut.is_init = False
 	@staticmethod
 	def write_bool(x):
-		BinaryStdOut._writeBit(x)
+		BinaryStdOut._write_bit(x)
 	@staticmethod
 	def write_byte(x):
-		BinaryStdOut._writeByte(x & 0xff)
-
+		BinaryStdOut._write_byte(x & 0xff)
+	@staticmethod
 	def write_int(x, r=32):
 		if(r == 32):
-			BinaryStdOut._writeByte(((x >> 24)& 0xff))
-			BinaryStdOut._writeByte(((x >> 16)& 0xff))
-			BinaryStdOut._writeByte(((x >> 8)& 0xff))
-			BinaryStdOut._writeByte(((x >> 0)& 0xff))
+			BinaryStdOut._write_byte(((x >> 24)& 0xff))
+			BinaryStdOut._write_byte(((x >> 16)& 0xff))
+			BinaryStdOut._write_byte(((x >> 8)& 0xff))
+			BinaryStdOut._write_byte(((x >> 0)& 0xff))
 			return
 		if(r < 1 or r > 16):
 			raise ValueError("Illegal value for r = {}".format(r))
@@ -89,13 +89,13 @@ class BinaryStdOut:
 			raise ValueError("Illegal {}-bit char = {}".format(r,x))
 		for i in range(0,r):
 			bit = ((x >> (r - i - 1)) & 1) == 1
-			BinaryStdOut._writeBit(bit)
-
+			BinaryStdOut._write_bit(bit)
+	@staticmethod
 	def write_char(x, r=8):
 		if(r==8):
 			if(ord(x)<0 or ord(x)>=256):
 				raise ValueError("Illegal 8-bit char = {}".format(x))
-			BinaryStdOut._writeByte(ord(x))
+			BinaryStdOut._write_byte(ord(x))
 			return
 		if(r < 1 or r > 16):
 			raise ValueError("Illegal value for r = {}".format(r))
@@ -103,7 +103,7 @@ class BinaryStdOut:
 			raise ValueError("Illegal {}-bit char = {}".format(r,x))
 		for i in range(0,r):
 			bit = ((x >> (r - i - 1)) & 1) == 1
-			BinaryStdOut._writeBit(bit)
+			BinaryStdOut._write_bit(bit)
 
 	def write_string(s, r=8):
 		for i in s:

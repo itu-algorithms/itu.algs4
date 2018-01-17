@@ -2,18 +2,9 @@
 # see README.md for details
 # Python 3
 
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'fundamentals'))
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, p)
-    sys.path.insert(0, exe)
-setpath()
-
-from queue import Queue
-import stdio
+import sys
+from fundamentals.queue import Queue
+from stdlib import stdio
 
 try:
     q = Queue()

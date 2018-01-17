@@ -1,18 +1,12 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, p)
-setpath()
-import stdio
+import sys 
+from stdlib import stdio
 
-#  Execution:    python FileIndex file1.txt file2.txt file3.txt ...
+#  Execution:    python file_index.py file1.txt file2.txt file3.txt ...
 #
-#  % python FileIndex ex*.txt
+#  % python file_index.py ex*.txt
 #  age
 #   ex3.txt
 #   ex4.txt 
@@ -24,9 +18,9 @@ import stdio
 #   ex3.txt
 #   ex4.txt 
 #
-#  % python FileIndex *.txt
+#  % python file_index.py *.txt
 #
-#  % python FileIndex *.py
+#  % python file_index.py *.py
 
 
 """

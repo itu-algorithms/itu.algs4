@@ -3,7 +3,7 @@
 # This is python3
 import sys
 import struct
-from binarystdout import BinaryStdOut
+from stdlib.binary_stdout import BinaryStdOut
 """
 Binary standard input. This class provides methods for reading
 in bits from standard input, either one bit at a time (as a boolean),
@@ -24,10 +24,10 @@ class BinaryStdIn:
 	def _initialize():
 		BinaryStdIn.buffer_ = 0
 		BinaryStdIn.n = 0
-		BinaryStdIn._fillBuffer()
+		BinaryStdIn._fill_buffer()
 		BinaryStdIn.is_init = True
 	@staticmethod
-	def _fillBuffer():
+	def _fill_buffer():
 		x = BinaryStdIn.ins.read(1)
 		if(x == b''):
 			BinaryStdIn.buffer_ = BinaryStdIn.EOF
@@ -56,7 +56,7 @@ class BinaryStdIn:
 		BinaryStdIn.n -= 1
 		bit = ((BinaryStdIn.buffer_ >> BinaryStdIn.n) & 1) == 1
 		if(BinaryStdIn.n == 0):
-			BinaryStdIn._fillBuffer()
+			BinaryStdIn._fill_buffer()
 		return bit
 	@staticmethod
 	def read_char():
@@ -64,14 +64,14 @@ class BinaryStdIn:
 			raise EOFError("Reading from empty input stream")
 		if(BinaryStdIn.n==8):
 			x = BinaryStdIn.buffer_
-			BinaryStdIn._fillBuffer()
+			BinaryStdIn._fill_buffer()
 			return chr(x & 0xff)
 		x = BinaryStdIn.buffer_
 		x <<= (8-BinaryStdIn.n)
 		oldN = BinaryStdIn.n
 		if(BinaryStdIn.is_empty()):
 			raise EOFError("Reading from empty input stream")
-		BinaryStdIn._fillBuffer()
+		BinaryStdIn._fill_buffer()
 		BinaryStdIn.n = oldN
 		x |= (BinaryStdIn.buffer_>> BinaryStdIn.n)
 		return chr(x & 0xff)
@@ -105,6 +105,6 @@ class BinaryStdIn:
 
 def main():
 	while(not BinaryStdIn.is_empty()):
-		out.write_char(BinaryStdIn.read_char())
+		BinaryStdOut.write_char(BinaryStdIn.read_char())
 if __name__ == '__main__':
 	main()

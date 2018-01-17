@@ -1,13 +1,7 @@
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, p)
-    sys.path.insert(0, exe)
-setpath()
+import sys
+from stdlib import stdio
+from errors.errors import NoSuchElementException
 
-import stdio
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -58,19 +52,23 @@ class Queue:
         """
         Removes and returns the item on this queue that was least recently added.
         :return: the item on this queue that was least recently added.
+        :raises NoSuchElementException: if this queue is empty
         """
-        if not self.is_empty():
-            item = self._first.item
-            self._first = self._first.next
-            self._n -= 1
-            if self.is_empty():
-                self._last = None
-            return item
+        if self.is_empty():
+            raise NoSuchElementException("Queue underflow")
+
+        item = self._first.item
+        self._first = self._first.next
+        self._n -= 1
+        if self.is_empty():
+            self._last = None
+        return item
 
     def is_empty(self):
         """
         Returns true if this queue is empty.
         :return: True if this queue is empty otherwise False
+        :rtype: bool
         """
         return self._first is None
 
@@ -78,6 +76,7 @@ class Queue:
         """
         Returns the number of items in this queue.
         :return: the number of items in this queue
+        :rtype: int
         """
         return self._n
 
@@ -85,7 +84,11 @@ class Queue:
         """
         Returns the item least recently added to this queue.
         :return: the item least recently added to this queue
+        :raises NoSuchElementException: if this queue is empty
         """
+        if self.is_empty():
+            raise NoSuchElementException("Queue underflow")
+
         return self._first.item
 
     def __iter__(self):
@@ -119,7 +122,7 @@ def main():
         sys.stdin = open(sys.argv[1])
         while not stdio.isEmpty():
             input_item = stdio.readString()
-            if input_item is not '-':
+            if input_item != '-':
                 queue.enqueue(input_item)
             elif not queue.is_empty():
                 print(queue.dequeue())

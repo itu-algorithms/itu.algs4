@@ -1,6 +1,7 @@
 import sys
 from stdlib import stdio
 from fundamentals.queue import Queue
+from errors.errors import NoSuchElementException, IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -54,7 +55,7 @@ class RedBlackBST:
         """
         Initializes an empty symbol table.
         """
-        self.root = None
+        self._root = None
 
     def put(self, key, val):
         """
@@ -64,16 +65,16 @@ class RedBlackBST:
         if the specified value is None.
         :param key: the key
         :param val: the value
-        :raises IllegalArgumentError: if key is None
+        :raises IllegalArgumentException: if key is None
         """
         if key is None:
-            raise IllegalArgumentError("first argument to put() is None")
+            raise IllegalArgumentException("first argument to put() is None")
         if val is None:
             self.delete(key)
             return
 
-        self.root = self._put(self.root, key, val)
-        self.root.color = self.BLACK
+        self._root = self._put(self._root, key, val)
+        self._root.color = self.BLACK
 
     def _put(self, h, key, val):
         """
@@ -108,11 +109,12 @@ class RedBlackBST:
         :param key: the key
         :return: the value associated with the given key if the key is in the symbol table
         and None if the key is not in the symbol table
-        :raises IllegalArgumentError: if key is None
+        :raises IllegalArgumentException: if key is None
         """
         if key is None:
-            raise IllegalArgumentError("argument to get() is None")
-        return self._get(self.root, key)
+            raise IllegalArgumentException("argument to get() is None")
+
+        return self._get(self._root, key)
 
     def _get(self, x, key):
         """
@@ -134,15 +136,15 @@ class RedBlackBST:
     def delete_min(self):
         """
         Removes the smallest key and associated value from the symbol table.
-        :raises NoSuchElementError: if the symbol table is empty
+        :raises NoSuchElementException: if the symbol table is empty
         """
         if self.is_empty():
-            raise NoSuchElementError("RedBlackBST underflow")
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete_min(self.root)
+            raise NoSuchElementException("RedBlackBST underflow")
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete_min(self._root)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete_min(self, h):
         """
@@ -159,15 +161,15 @@ class RedBlackBST:
     def delete_max(self):
         """
         Removes the largest key and associated value from the symbol table.
-        :raises NoSuchElementError: if the symbol table is empty
+        :raises NoSuchElementException: if the symbol table is empty
         """
         if self.is_empty():
-            raise NoSuchElementError("RedBlackBST underflow")
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete_max(self.root)
+            raise NoSuchElementException("RedBlackBST underflow")
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete_max(self._root)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete_max(self, h):
         """
@@ -188,17 +190,17 @@ class RedBlackBST:
         Removes the specified key and its associated value from this symbol table
         (if the key is in this symbol table).
         :param key: the key
-        :raises IllegalArgumentError: if key is None
+        :raises IllegalArgumentException: if key is None
         """
         if key is None:
-            raise IllegalArgumentError("argument to delete() is None")
+            raise IllegalArgumentException("argument to delete() is None")
         if not self.contains(key):
             return
-        if not self._is_red(self.root.left) and not self._is_red(self.root.right):
-            self.root.color = self.RED
-        self.root = self._delete(self.root, key)
+        if not self._is_red(self._root.left) and not self._is_red(self._root.right):
+            self._root.color = self.RED
+        self._root = self._delete(self._root, key)
         if not self.is_empty():
-            self.root.color = self.BLACK
+            self._root.color = self.BLACK
 
     def _delete(self, h, key):
         """
@@ -231,7 +233,7 @@ class RedBlackBST:
         :return: the number of key-value pairs in this symbol table
         :rtype: int
         """
-        return self._size(self.root)
+        return self._size(self._root)
 
     def _size(self, x):
         """
@@ -259,7 +261,7 @@ class RedBlackBST:
         :return: True if this symbol table is empty and False otherwise
         :rtype: bool
         """
-        return self.root is None
+        return self._root is None
 
     def _is_red(self, x):
         """
@@ -358,7 +360,7 @@ class RedBlackBST:
         :return: the height of the RedBlackBST (a 1-node tree has height 0)
         :rtype: int
         """
-        return self._height(self.root)
+        return self._height(self._root)
 
     def _height(self, x):
         """
@@ -373,11 +375,11 @@ class RedBlackBST:
         """
         Returns the smallest key in the symbol table.
         :return: the smallest key in the symbol table
-        :raises NoSuchElementError: if the symbol table is empty
+        :raises NoSuchElementException: if the symbol table is empty
         """
         if self.is_empty():
-            raise NoSuchElementError("calls min() with empty symbol table")
-        return self._min(self.root).key
+            raise NoSuchElementException("calls min() with empty symbol table")
+        return self._min(self._root).key
 
     def _min(self, x):
         """
@@ -393,11 +395,11 @@ class RedBlackBST:
         """
         Returns the largest key in the symbol table.
         :return: the largest key in the symbol table
-        :raises NoSuchElementError: if the symbol table is empty
+        :raises NoSuchElementException: if the symbol table is empty
         """
         if self.is_empty():
-            raise NoSuchElementError("calls max() with empty symbol table")
-        return self._max(self.root).key
+            raise NoSuchElementException("calls max() with empty symbol table")
+        return self._max(self._root).key
 
     def _max(self, x):
         """
@@ -423,14 +425,14 @@ class RedBlackBST:
         :param lo: minimum endpoint
         :param hi: maximum endpoint
         :return: all keys in the symbol table between lo (inclusive) and hi (inclusive)
-        :raises IllegalArgumentError: if either lo or hi is None
+        :raises IllegalArgumentException: if either lo or hi is None
         """
         if lo is None:
-            raise IllegalArgumentError("first argument to keys() is None")
+            raise IllegalArgumentException("first argument to keys() is None")
         if hi is None:
-            raise IllegalArgumentError("second argument to keys() is None")
+            raise IllegalArgumentException("second argument to keys() is None")
         queue = Queue()
-        self._keys(self.root, queue, lo, hi)
+        self._keys(self._root, queue, lo, hi)
         return queue
 
     def _keys(self, x, queue, lo, hi):
@@ -452,11 +454,11 @@ class RedBlackBST:
         Return the kth smallest key in the symbol table.
         :param k: the order statistic
         :return: the kth smallest key in the symbol table
-        :raises IllegalArgumentError: unless k is between 0 and n-1
+        :raises IllegalArgumentException: unless k is between 0 and n-1
         """
         if k < 0 or k >= self.size():
-            raise IllegalArgumentError("argument to select() is invalid: {}".format(k))
-        x = self._select(self.root, k)
+            raise IllegalArgumentException("argument to select() is invalid: {}".format(k))
+        x = self._select(self._root, k)
         return x.key
 
     def _select(self, x, k):
@@ -478,11 +480,11 @@ class RedBlackBST:
         :param key: the key
         :return: the number of keys in the symbol table strictly less than key
         :rtype: int
-        :raises IllegalArgumentError: if key is None
+        :raises IllegalArgumentException: if key is None
         """
         if key is None:
-            raise IllegalArgumentError("argument to rank() is None")
-        return self._rank(key, self.root)
+            raise IllegalArgumentException("argument to rank() is None")
+        return self._rank(key, self._root)
 
     def _rank(self, key, x):
         """
@@ -506,12 +508,12 @@ class RedBlackBST:
         :return: the number of keys in the symbol table between lo
         (inclusive) and hi (inclusive)
         :rtype: int
-        :raises IllegalArgumentError: if either lo or hi is None
+        :raises IllegalArgumentException: if either lo or hi is None
         """
         if lo is None:
-            return IllegalArgumentError("first argument to size() is None")
+            return IllegalArgumentException("first argument to size() is None")
         if hi is None:
-            return IllegalArgumentError("second argument to size() is None")
+            return IllegalArgumentException("second argument to size() is None")
         if lo > hi:
             return 0
         if self.contains(hi):
@@ -524,14 +526,14 @@ class RedBlackBST:
         Returns the largest key in the symbol table less than or equal to key.
         :param key: the key
         :return: the largest key in the symbol table less than er equal to key
-        :raises IllegalArgumentError: if key is None
-        :raises NoSuchElementError: if there is no such key
+        :raises IllegalArgumentException: if key is None
+        :raises NoSuchElementException: if there is no such key
         """
         if key is None:
-            raise IllegalArgumentError("argument to floor() is None")
+            raise IllegalArgumentException("argument to floor() is None")
         if self.is_empty():
-            raise NoSuchElementError("calls floor() with empty symbol table")
-        x = self._floor(self.root, key)
+            raise NoSuchElementException("calls floor() with empty symbol table")
+        x = self._floor(self._root, key)
         if x is None:
             return None
         return x.key
@@ -556,14 +558,14 @@ class RedBlackBST:
         Returns the smallest key in the symbol table greater than or equal to key.
         :param key: the key
         :return: the smallest key in the symbol table greater than or equal to key
-        :raises IllegalArgumentError: if key is None
-        :raises NoSuchElementError: if there is no such key
+        :raises IllegalArgumentException: if key is None
+        :raises NoSuchElementException: if there is no such key
         """
         if key is None:
-            raise IllegalArgumentError("argument to ceiling is None")
+            raise IllegalArgumentException("argument to ceiling is None")
         if self.is_empty():
-            raise NoSuchElementError("calls ceiling() with empty symbol table")
-        x = self._ceiling(self.root, key)
+            raise NoSuchElementException("calls ceiling() with empty symbol table")
+        x = self._ceiling(self._root, key)
         if x is None:
             return None
         return x.key
@@ -583,16 +585,6 @@ class RedBlackBST:
         if t is not None:
             return t
         return x
-
-
-# Included exceptions here for now
-class IllegalArgumentError(Exception):
-    pass
-
-
-# Included exceptions here for now
-class NoSuchElementError(Exception):
-    pass
 
 
 def main():

@@ -3,6 +3,7 @@ from stdlib.instream import InStream
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
 from graphs.directed_edge import DirectedEdge
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -28,10 +29,10 @@ class EdgeWeightedDigraph:
         """
         Initializes an empty edge-weighted digraph with V vertices and 0 edges.
         :param V: the number of vertices
-        :raises IllegalArgumentError: if V < 0
+        :raises IllegalArgumentException: if V < 0
         """
         if V < 0:
-            raise IllegalArgumentError("Number of vertices in a Digraph must be nonnegative")
+            raise IllegalArgumentException("Number of vertices in a Digraph must be nonnegative")
         self._V = V
         self._E = 0
         self._indegree = [0] * V
@@ -68,15 +69,15 @@ class EdgeWeightedDigraph:
         with each entry seperated by whitespace
         :param stream: the input stream
 
-        :raises IllegalArgumentError: if the endpoints of any edge are not in prescribed range
-        :raises IllegalArgumentError: if the number of vertices or edges is negative
+        :raises IllegalArgumentException: if the endpoints of any edge are not in prescribed range
+        :raises IllegalArgumentException: if the number of vertices or edges is negative
         :return: the edge-weighted digraph
         :rtype: EdgeWeightedDigraph
         """
         g = EdgeWeightedDigraph(stream.readInt())
         E = stream.readInt()
         if g._E < 0:
-            raise IllegalArgumentError("Number of edges must be nonnegative")
+            raise IllegalArgumentException("Number of edges must be nonnegative")
         for i in range(E):
             v = stream.readInt()
             w = stream.readInt()
@@ -104,17 +105,17 @@ class EdgeWeightedDigraph:
 
     def _validate_vertex(self, v):
         """
-        Raises an IllegalArgumentError unluess 0 <= v < V
+        Raises an IllegalArgumentException unluess 0 <= v < V
         :param v: the vertex to validate
         """
         if v < 0 or v >= self._V:
-            raise IllegalArgumentError("vertex {} is not between 0 and {}".format(v, self._V-1))
+            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, self._V-1))
 
     def add_edge(self, e):
         """
         Adds the directed edge e to this edge-weighted digraph.
         :param e: the edge
-        :raises IllegalArgumentError: unless endpoints of edge are between 0 and V-1
+        :raises IllegalArgumentException: unless endpoints of edge are between 0 and V-1
         """
         v = e.from_vertex()
         w = e.to_vertex()
@@ -130,7 +131,7 @@ class EdgeWeightedDigraph:
         :param v: the vertex
         :return: the directed edges incident from vertex v.
         :rtype: collections.iterable[DirectedEdge]
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._adj[v]
@@ -142,7 +143,7 @@ class EdgeWeightedDigraph:
         :param v: the vertex
         :return: the outdegree of vertex v
         :rtype: int
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._adj[v].size()
@@ -154,7 +155,7 @@ class EdgeWeightedDigraph:
         :param v: the vertex
         :return: the indegree of vertex v
         :rtype: int
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._indegree[v]
@@ -185,10 +186,6 @@ class EdgeWeightedDigraph:
                 s.append("{}  ".format(e))
             s.append("\n")
         return ''.join(s)
-
-
-class IllegalArgumentError(Exception):
-    pass
 
 
 def main():

@@ -83,6 +83,11 @@ class Bag:
             yield current._item
             current = current._next
 
+    def __repr__(self):
+        out = '{'
+        for elem in self:
+            out += '{}, '.format(elem)
+        return out + '}'
 
 
 # start of the script itself

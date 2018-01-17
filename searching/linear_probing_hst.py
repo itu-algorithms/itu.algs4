@@ -7,7 +7,7 @@ The LinearProbingHashST class represents a symbol table of dynamic
 key-value pairs.
 It supports the usual put, get, contains, delete, size, 
 and is-empty methods.
-It also provides a keylist method for iterating over all of the keys.
+It also provides a key_list method for iterating over all of the keys.
 A symbol table implements the associative array abstraction:
 when associating a value with a key that is already in the symbol table,
 the convention is to replace the old value with the new value.
@@ -166,7 +166,7 @@ class LinearProbingHashST:
 
 		assert self._check()
 
-	def keylist(self):
+	def key_list(self):
 		"""
 		Returns the keys in the symbol table as an iterable
 		:returns: A list containing all keys
@@ -197,7 +197,7 @@ def main():
 	for key in sys.argv[1:]:
 		st.put(key, i)
 		i += 1
-	for key in st.keylist():
+	for key in st.key_list():
 		print("{} {}".format(key, st.get(key)))
 if __name__ == "__main__":
     main()

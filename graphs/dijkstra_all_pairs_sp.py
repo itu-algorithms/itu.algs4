@@ -82,8 +82,6 @@ class DijkstraAllPairsSP:
 import sys
 import instream
 
-from graphs.digraph import Digraph
-
 if __name__ == '__main__':
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.

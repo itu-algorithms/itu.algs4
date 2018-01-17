@@ -1,3 +1,5 @@
+from errors.errors import NoSuchElementException, IllegalArgumentException
+
 # Created for BADS 2018
 # See README.md for details
 # Python 3
@@ -27,7 +29,7 @@ class IndexMinPQ:
         Initializes an empty indexed priority queue with indices between 0
         and max_n - 1.
         :param max_n: the keys on this priority queue are indices from 0 to max_n - 1
-        :raises IllegalArgumentError: if max_n < 0
+        :raises IllegalArgumentException: if max_n < 0
         """
         self.max_n = max_n
         self.n = 0
@@ -40,13 +42,13 @@ class IndexMinPQ:
         Associates key with index i
         :param i: an index
         :param key: the key to associate with index i
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises IllegalArgumentError: if there already is an item associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises IllegalArgumentException: if there already is an item associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not within range")
+            raise IllegalArgumentException("index is not within range")
         if self.contains(i):
-            raise IllegalArgumentError("index is already in the priority queue")
+            raise IllegalArgumentException("index is already in the priority queue")
         self.n += 1
         self.qp[i] = self.n
         self.pq[self.n] = i
@@ -59,10 +61,10 @@ class IndexMinPQ:
         :param i: an index
         :return: True if i is an index on this priority queue False otherwise
         :rtype: bool
-        :raises IllegalArgumentError: unless 0 <= i < max_n
+        :raises IllegalArgumentException: unless 0 <= i < max_n
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not within range")
+            raise IllegalArgumentException("index is not within range")
         return self.qp[i] != -1
 
     def change_key(self, i, key):
@@ -70,13 +72,13 @@ class IndexMinPQ:
         Change the key associated with index i to the specified value.
         :param i: the index of the key to change
         :param key: change the key associated with index i to this key
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises NoSuchElementError: if no key is associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises NoSuchElementException: if no key is associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not within range")
+            raise IllegalArgumentException("index is not within range")
         if not self.contains(i):
-            raise NoSuchElementError("index is not in the priority queue")
+            raise NoSuchElementException("index is not in the priority queue")
         self.keys[i] = key
         self._swim(self.qp[i])
         self._sink(self.qp[i])
@@ -86,16 +88,16 @@ class IndexMinPQ:
         Decrease the key associated with index i to the specified value.
         :param i: the index of the key to decrease
         :param key: decrease the key associated with index i to this key
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises IllegalArgumentError: if key >= key_of(i)
-        :raises NoSuchElementError: if no key is associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises IllegalArgumentException: if key >= key_of(i)
+        :raises NoSuchElementException: if no key is associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not within range")
+            raise IllegalArgumentException("index is not within range")
         if not self.contains(i):
-            raise IllegalArgumentError("index is not in the priority queue")
+            raise IllegalArgumentException("index is not in the priority queue")
         if self.keys[i] <= key:
-            raise IllegalArgumentError("calling decrease_key() with given argument would not strictly decrease the key")
+            raise IllegalArgumentException("calling decrease_key() with given argument would not strictly decrease the key")
         self.keys[i] = key
         self._swim(self.qp[i])
 
@@ -104,16 +106,16 @@ class IndexMinPQ:
         Increase the key associated with index i to the specified value.
         :param i: the index of the key to increase
         :param key: increase the key associated with index i to this key
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises IllegalArgumentError: if key <= key_of(i)
-        :raises NoSuchElementError: if no key is associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises IllegalArgumentException: if key <= key_of(i)
+        :raises NoSuchElementException: if no key is associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not within range")
+            raise IllegalArgumentException("index is not within range")
         if not self.contains(i):
-            raise NoSuchElementError("index is not in the priority queue")
+            raise NoSuchElementException("index is not in the priority queue")
         if self.keys[i] >= key:
-            raise IllegalArgumentError("calling increase_key() with given argument would not strictly increase the key")
+            raise IllegalArgumentException("calling increase_key() with given argument would not strictly increase the key")
         self.keys[i] = key
         self._sink(self.qp[i])
 
@@ -121,13 +123,13 @@ class IndexMinPQ:
         """
         Remove the key associated with index i
         :param i: the index of the key to remove
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises NoSuchElementError: if no key is associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises NoSuchElementException: if no key is associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is not in range")
+            raise IllegalArgumentException("index is not in range")
         if not self.contains(i):
-            raise NoSuchElementError("index is not in the priority queue")
+            raise NoSuchElementException("index is not in the priority queue")
         index = self.qp[i]
         self._exch(index, self.n)
         self.n -= 1
@@ -140,31 +142,31 @@ class IndexMinPQ:
         Returns an index associated with a minimum key.
         :return: an index associated with a minimum key
         :rtype: int
-        :raises NoSuchElementError: if this priority queue is empty
+        :raises NoSuchElementException: if this priority queue is empty
         """
         if self.n == 0:
-            raise NoSuchElementError("Priority queue underflow")
+            raise NoSuchElementException("Priority queue underflow")
         return self.pq[1]
 
     def min_key(self):
         """
         Returns a minimum key.
         :return: a minimum key
-        :raises NoSuchElementError: if this priority queue is empty
+        :raises NoSuchElementException: if this priority queue is empty
         """
         if self.n == 0:
-            raise NoSuchElementError("Priority queue underflow")
+            raise NoSuchElementException("Priority queue underflow")
         return self.keys[self.pq[1]]
 
     def del_min(self):
         """
         Removes a minimum key and returns its associated index.
         :return: an index associated with a minimum key
-        :raises NoSuchElementError: if this priority queue is empty
+        :raises NoSuchElementException: if this priority queue is empty
         :rtype: int
         """
         if self.n == 0:
-            raise NoSuchElementError("Priority queue underflow")
+            raise NoSuchElementException("Priority queue underflow")
         _min = self.pq[1]
         self._exch(1, self.n)
         self.n -= 1
@@ -195,13 +197,13 @@ class IndexMinPQ:
         Returns the key associated with index i.
         :param i: the index of the key to return
         :return: the key associated with index i
-        :raises IllegalArgumentError: unless 0 <= i < max_n
-        :raises NoSuchElementError: if no key is associated with index i
+        :raises IllegalArgumentException: unless 0 <= i < max_n
+        :raises NoSuchElementException: if no key is associated with index i
         """
         if i < 0 or i >= self.max_n:
-            raise IllegalArgumentError("index is out of range")
+            raise IllegalArgumentException("index is out of range")
         if not self.contains(i):
-            raise IllegalArgumentError("index is not on the priority queue")
+            raise IllegalArgumentException("index is not on the priority queue")
         return self.keys[i]
 
     def _exch(self, i, j):
@@ -258,21 +260,11 @@ class IndexMinPQ:
             yield copy.del_min()
 
 
-# Exceptions here for now
-class IllegalArgumentError(Exception):
-    pass
-
-
-class NoSuchElementError(Exception):
-    pass
-
-
 def main():
     """
     Inserts a bunch of strings to an indexed priority queue,
     deletes and prints them, inserts them again, and prints them
     using an iterator.
-    :return:
     """
     strings = ["it", "was", "the", "best", "of", "times", "it", "was", "the", "worst"]
     pq = IndexMinPQ(len(strings))

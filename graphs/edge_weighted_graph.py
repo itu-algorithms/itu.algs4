@@ -3,6 +3,7 @@ from stdlib.instream import InStream
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
 from graphs.edge import Edge
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -30,10 +31,10 @@ class EdgeWeightedGraph:
         """
         Initializes an empty edge-weighted graph with V vertices and 0 edges.
         :param V: the number of vertices
-        :raises ValueError: if V < 0
+        :raises IllegalArgumentException: if V < 0
         """
         if V < 0:
-            raise ValueError("Number of vertices must be nonnegative")
+            raise IllegalArgumentException("Number of vertices must be nonnegative")
         self._V = V
         self._E = 0
         self._adj = [None] * V
@@ -46,6 +47,7 @@ class EdgeWeightedGraph:
         Initializes a new edge-weighted graph that is a deep copy of G.
         :param G: the edge-weighted graph to copy
         :return: the copy of the graph edge-weighted graph G
+        :rtype: EdgeWeightedGraph
         """
         g = EdgeWeightedGraph(G.V())
         g._E = G.E()
@@ -66,15 +68,15 @@ class EdgeWeightedGraph:
         followed by E pairs of vertices and edge weights,
         with each entry separated by whitespace.
         :param stream: the input stream
-        :raises IllegalArgumentError: if the endpoints of any edge are not in prescribed range
-        :raises IllegalArgumentError: if the number of vertices or edges is negative
+        :raises IllegalArgumentException: if the endpoints of any edge are not in prescribed range
+        :raises IllegalArgumentException: if the number of vertices or edges is negative
         :return: the edge-weighted graph
         :rtype: EdgeWeightedGraph
         """
         g = EdgeWeightedGraph(stream.readInt())
         E = stream.readInt()
         if E < 0:
-            raise IllegalArgumentError("Number of edges must be nonnegative")
+            raise IllegalArgumentException("Number of edges must be nonnegative")
         for i in range(E):
             v = stream.readInt()
             w = stream.readInt()
@@ -103,6 +105,7 @@ class EdgeWeightedGraph:
         Returns the edges incident on vertex v.
         :param v: the vertex
         :return: the edges incident on vertex v
+        :rtype: collections.iterable[Edge]
         """
         self._validate_vertex(v)
         return self._adj[v]
@@ -111,6 +114,7 @@ class EdgeWeightedGraph:
         """
         Returns the number of vertices in this edge-weighted graph.
         :return: the number of vertices in this edge-weighted graph
+        :rtype: int
         """
         return self._V
 
@@ -118,6 +122,7 @@ class EdgeWeightedGraph:
         """
         Returns the number of edges in this edge-weighted graph.
         :return: the number of edges in this edge-weighted graph
+        :rtype: int
         """
         return self._E
 
@@ -126,7 +131,8 @@ class EdgeWeightedGraph:
         Returns the degree of vertex v.
         :param v: the vertex
         :return: the degree of vertex v
-        :raises ValueError: unless 0 <= v < V
+        :rtype: int
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         return self._adj[v].size()
@@ -150,11 +156,11 @@ class EdgeWeightedGraph:
 
     def _validate_vertex(self, v):
         """
-        Throws a ValueError unless 0 <= v < V.
+        Raises an IllegalArgumentException unless 0 <= v < V.
         :param v: the vertex to be validated
         """
         if v < 0 or v >= self._V:
-            raise ValueError("vertex {} is not between 0 and {}".format(v, self._V-1))
+            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, self._V-1))
 
     def __repr__(self):
         """
@@ -170,10 +176,6 @@ class EdgeWeightedGraph:
                 s.append("{}: ".format(e))
             s.append("\n")
         return ''.join(s)
-
-
-class IllegalArgumentError(Exception):
-    pass
 
 
 def main():

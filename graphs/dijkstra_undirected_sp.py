@@ -3,6 +3,7 @@ from stdlib.instream import InStream
 from graphs.edge_weighted_graph import EdgeWeightedGraph
 from fundamentals.stack import Stack
 from sorting.index_min_pq import IndexMinPQ
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -27,12 +28,12 @@ class DijkstraUndirectedSP:
         other vertex in the edge-weighted graph G.
         :param G: the edge-weighted graph
         :param s: the source vertex
-        :raises IllegalArgumentError: if an edge weight is negative
-        :raises IllegalArgumentError: unless 0 <= s < V
+        :raises IllegalArgumentException: if an edge weight is negative
+        :raises IllegalArgumentException: unless 0 <= s < V
         """
         for e in G.edges():
             if e.weight() < 0:
-                raise IllegalArgumentError("edge {} has negative weight".format(e))
+                raise IllegalArgumentException("edge {} has negative weight".format(e))
 
         self._dist_to = [float('inf')] * G.V()
         self._edge_to = [None] * G.V()
@@ -54,7 +55,7 @@ class DijkstraUndirectedSP:
         :return: the length of a shortest path between the source vertex s and
         the vertex v. float('inf') is not such path
         :rtype: float
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         return self._dist_to[v]
 
@@ -76,7 +77,7 @@ class DijkstraUndirectedSP:
         :return: a shortest path between the source vertex s and vertex v.
         None if no such path
         :rtype: collections.iterable[Edge]
-        :raises IllegalArgumentError: unless 0 <= v < V
+        :raises IllegalArgumentException: unless 0 <= v < V
         """
         self._validate_vertex(v)
         if not self.has_path_to(v):
@@ -93,12 +94,12 @@ class DijkstraUndirectedSP:
 
     def _validate_vertex(self, v):
         """
-        Throws an IllegalArgumentError unless 0 <= v < V
+        Raises an IllegalArgumentException unless 0 <= v < V
         :param v: the vertex to validate
         """
         V = len(self._dist_to)
         if v < 0 or v >= V:
-            raise IllegalArgumentError("vertex {} is not between 0 and {}".format(v, V-1))
+            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, V-1))
 
     def _relax(self, e, v):
         """
@@ -114,10 +115,6 @@ class DijkstraUndirectedSP:
                 self._pq.decrease_key(w, self._dist_to[w])
             else:
                 self._pq.insert(w, self._dist_to[w])
-
-
-class IllegalArgumentError(Exception):
-    pass
 
 
 def main():

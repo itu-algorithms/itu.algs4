@@ -1,28 +1,22 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
-def setpath():
-    exe = sys.argv[0]
-    p = os.path.split(exe)[0]
-    sys.path.insert(0, os.path.join(p, '..', 'stdlib'))
-    sys.path.insert(0, p)
-setpath()
-import stdio
+import sys
+from stdlib import stdio
 
-#  Execution:    python FrequencyCounter L < input.txt
+#  Execution:    python frequency_counter.py L < input.txt
 #
 #  Read in a list of words from standard input and print out
 #  the most frequently occurring word that has length greater than
 #  a given threshold.
 #
-#  % python FrequencyCounter 1 < tinyTale.txt
+#  % python frequency_counter.py 1 < tinyTale.txt
 #  it 10
 #
-#  % python FrequencyCounter 8 < tale.txt
+#  % python frequency_counter.py 8 < tale.txt
 #  business 122
 #
-#  % python FrequencyCounter 10 < leipzig1M.txt
+#  % python frequency_counter.py 10 < leipzig1M.txt
 #  government 24763
 
 

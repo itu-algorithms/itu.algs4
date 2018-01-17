@@ -1,4 +1,5 @@
 import math
+from errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -20,15 +21,15 @@ class DirectedEdge:
         :param v: the tail vertex
         :param w: the head vertex
         :param weight: the weight of the directed edge
-        :raises IllegalArgumentError: if either v or w is a negative integer
-        :raises IllegalArgumentError: if weight is NaN
+        :raises IllegalArgumentException: if either v or w is a negative integer
+        :raises IllegalArgumentException: if weight is NaN
         """
         if v < 0:
-            raise IllegalArgumentError("Vertex names must be nonnegative integers")
+            raise IllegalArgumentException("Vertex names must be nonnegative integers")
         if w < 0:
-            raise IllegalArgumentError("Vertex names must be nonnegative integers")
+            raise IllegalArgumentException("Vertex names must be nonnegative integers")
         if math.isnan(weight):
-            raise IllegalArgumentError("Weight is NaN")
+            raise IllegalArgumentException("Weight is NaN")
         self._v = v
         self._w = w
         self._weight = weight
@@ -66,14 +67,10 @@ class DirectedEdge:
         return "{}->{} {:5.2f}".format(self._v, self._w, self._weight)
 
 
-class IllegalArgumentError(Exception):
-    pass
-
-
 def main():
     """
     Creates a directed edge and prints it.
-    :return: 
+    :return:
     """
     e = DirectedEdge(12, 34, 5.67)
     print(e)

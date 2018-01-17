@@ -2,9 +2,9 @@
 # See README.md for details
 # This is python3 
 import sys
-from TST import TST
-from binarystdin import BinaryStdIn
-from binarystdout import BinaryStdOut
+from tst import TST
+from stdlib.binary_stdin import BinaryStdIn
+from stdlib.binary_stdout import BinaryStdOut
 """
 The LSW module provides static methods for compressing and
 expanding a binary input using LZW over the 8-bit extended
@@ -36,6 +36,7 @@ def compress():
 			code += 1
 		input_ = input_[t:]
 	BinaryStdOut.write_int(_R,_W)
+	BinaryStdOut.close()
 def expand():
 	st = ["" for i in range(0,_L)]
 	i = 0
