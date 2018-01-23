@@ -65,7 +65,7 @@ class TransitiveClosure:
     def _validate_vertex(self, v):
         V = len(self._tc)
         if v < 0 or v >= V:
-            raise IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1))
+            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v,V-1))
     
 
 def main(args):
