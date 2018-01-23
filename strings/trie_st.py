@@ -108,6 +108,9 @@ class TrieST(object):
     def size(self):
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     # Is this symbol table empty?
     # @return True if this symbol table is empty and False otherwise
     def is_empty(self):

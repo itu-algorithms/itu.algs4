@@ -53,6 +53,9 @@ class TST(object):
     def size(self):
         return self.n
 
+    def __len__(self):
+        return self.size()
+
     # Does this symbol table contain the given key?
     # @param key the key
     # @return {@code True} if this symbol table contains {@code key} and
