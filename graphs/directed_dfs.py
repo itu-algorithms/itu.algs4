@@ -3,7 +3,7 @@
 # This is python3 
 from graphs.digraph import Digraph
 from fundamentals.bag import Bag
-import instream
+from stdlib.instream import InStream
 import sys
 """
 The DirectedDFS class represents a data type for
@@ -71,7 +71,7 @@ def main():
 	"""
 	Unit tests the DirectedDFS data type.
 	"""
-	G = Digraph.from_stream(instream.InStream(None))
+	G = Digraph.from_stream(InStream(None))
 	sources = Bag()
 	for i in range(1,len(sys.argv)):
 		s = int(sys.argv[i])
