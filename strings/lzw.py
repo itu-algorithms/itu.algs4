@@ -2,7 +2,7 @@
 # See README.md for details
 # This is python3 
 import sys
-from tst import TST
+from strings.tst import TST
 from stdlib.binary_stdin import BinaryStdIn
 from stdlib.binary_stdout import BinaryStdOut
 """
