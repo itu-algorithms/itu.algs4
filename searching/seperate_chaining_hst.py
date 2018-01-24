@@ -1,7 +1,7 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from sequential_search_st import SequentialSearchST
+from searching.sequential_search_st import SequentialSearchST
 import sys
 """
 The SeparateChainingHashST class represents a symbol table of dynamic
