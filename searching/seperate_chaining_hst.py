@@ -125,6 +125,9 @@ class SeparateChainingHashST:
 			for key in self.st[i].keys():
 				keys.append(key)
 		return keys
+
+	def __len__(self):
+		return self.size()
 def main():
 	"""
 	Unit tests the SeparateChainingHashST data type.

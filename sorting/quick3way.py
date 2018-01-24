@@ -8,7 +8,7 @@ The Quick3Way module provides static methods for sorting an
 array using quicksort with 3-way partitioning.
 """
 def sort(a):
-	shuffle(a) #Eliminate depence on input.
+	shuffle(a) #Eliminate dependency on input.
 	_sort(a, 0, len(a)-1)
 def _sort(a, lo, hi):
 	if(hi <= lo):

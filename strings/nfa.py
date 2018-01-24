@@ -49,17 +49,17 @@ class NFA:
 				# 2-way or operator
 				if(regex[or_] == '|'):
 					lp = ops.pop()
-					graph.addEdge(lp, or_+1)
-					graph.addEdge(or_, i)
+					graph.add_edge(lp, or_+1)
+					graph.add_edge(or_, i)
 				elif(regex[or_] == '('):
 					lp = or_
 				else:
 					assert False
 			if(i < m-1 and regex[i+1] == '*'):
-				graph.addEdge(lp, i+1)
-				graph.addEdge(i+1, lp)
+				graph.add_edge(lp, i+1)
+				graph.add_edge(i+1, lp)
 			if(regex[i] == '(' or regex[i] == '*' or regex[i] == ')'):
-				graph.addEdge(i, i+1)
+				graph.add_edge(i, i+1)
 		if(ops.size() != 0):
 			raise ValueError("Invalid regular expression")
 		self.graph = graph
