@@ -57,7 +57,7 @@ class DirectedDFS:
 		Returns the number of vertices reachable from the source vertex
 		(or source vertices)
 		:returns: the number of vertices reachable from the source vertex
-				(or source vertices)
+		(or source vertices)
 		"""
 		return self.reachables
 

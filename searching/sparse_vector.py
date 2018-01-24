@@ -132,6 +132,9 @@ class SparseVector:
 		return ''.join( ("(%s,%s)" % (str(i), self.st.get(i))) for i in self.st.keys())
 		
 def main():
+	"""
+	Unit tests the SparseVector data type.
+	"""
 	a = SparseVector(10)
 	b = SparseVector(10)
 	a.put(3, 0.50)

@@ -7,6 +7,10 @@ The Quick3String module provides functions for sorting an
 array of strings using 3-way radix quicksort
 """
 def sort(a):
+	"""
+	Rearranges the array of strings in ascending order.
+	:param a: the array to be sorted.
+	"""
 	_sort(a, 0, len(a)-1, 0)
 def _sort(a, lo, hi, d):
 	if(hi <= lo):
@@ -39,6 +43,11 @@ def _show(a):
 	for item in a:
 		print(item)
 def is_sorted(a):
+	"""
+	Returns true if a is sorted.
+	:param a: the array to be checked.
+	:returns: True if a is sorted.
+	"""
 	for i in range(1,len(a)):
 		if _less(a[i], a[i-1]):
 			return False
@@ -50,6 +59,11 @@ def _exch(a, i, j):
 	a[i] = a[j]
 	a[j] = t
 def main():
+	"""
+	Reads in a sequence of fixed-length strings from standard input;
+	3-way radix quicksorts them;
+	and prints them to standard output in ascending order.
+	"""
 	a = sys.argv[1:]
 	sort(a)
 	assert is_sorted(a)

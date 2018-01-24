@@ -38,6 +38,11 @@ def compress():
 	BinaryStdOut.write_int(_R,_W)
 	BinaryStdOut.close()
 def expand():
+	"""
+	Reads a sequence of bit encoded using LZW compression with
+	12-bit codewords from standard input; expands them; and writes
+	the results to standard output.
+	"""
 	st = ["" for i in range(0,_L)]
 	i = 0
 	while(i < _R):
@@ -64,6 +69,10 @@ def expand():
 		val = s
 	BinaryStdOut.close()
 def main():
+	"""
+	Sample client that calss compress() if the command-line
+	argument is "-", and expand() if it is "+".
+	"""
 	if(sys.argv[1] == '-'):
 		compress()
 	elif(sys.argv[1] == '+'):

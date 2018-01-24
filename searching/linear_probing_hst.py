@@ -192,6 +192,9 @@ class LinearProbingHashST:
 		return True
 
 def main():
+	"""
+	Unit tests the LinearProbingHashST data type.
+	"""
 	st = LinearProbingHashST()
 	i = 1
 	for key in sys.argv[1:]:

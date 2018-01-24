@@ -8,6 +8,10 @@ The Quick3Way module provides static methods for sorting an
 array using quicksort with 3-way partitioning.
 """
 def sort(a):
+	"""
+	Rearranges the array in ascending order using the natural order.
+	:param a: the array to be sorted.
+	"""
 	shuffle(a) #Eliminate dependency on input.
 	_sort(a, 0, len(a)-1)
 def _sort(a, lo, hi):
@@ -45,11 +49,20 @@ def _show(a):
 		print(item,end=" ")
 	print()
 def is_sorted(a):
+	"""
+	Returns true if a is sorted.
+	:param a: the array to be checked.
+	:returns: True if a is sorted.
+	"""
 	for i in range(1,len(a)):
 		if _less(a[i], a[i-1]):
 			return False
 	return True
 def main():
+	"""
+	Reads in a sequence of strings from standard input; Shellsorts them;
+	and prints them to standard output in ascending order.
+	"""
 	a = sys.argv[1:]
 	sort(a)
 	_show(a)

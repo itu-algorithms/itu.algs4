@@ -119,6 +119,10 @@ def _read_trie():
 	else:
 		return _Node('\0', -1, _read_trie(), _read_trie())
 def main():
+	"""
+	Sample client that calss compress() if the command-line
+	argument is "-", and expand() if it is "+".
+	"""
 	if(sys.argv[1] == '-'):
 		compress()
 	elif(sys.argv[1] == '+'):
