@@ -1,11 +1,11 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
 """
 The Quick3String module provides functions for sorting an
 array of strings using 3-way radix quicksort
 """
+import sys
 def sort(a):
 	"""
 	Rearranges the array of strings in ascending order.

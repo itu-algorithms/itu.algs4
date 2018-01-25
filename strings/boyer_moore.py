@@ -2,13 +2,13 @@
 # See README.md for details
 # This is python3 
 import sys
-"""
-The BoyerMoore class finds the first occurence of a pattern string
-in a text string.
-This implementation uses the Boyer-Moore algorithm (with the bad-character
-rule, but not the strong good suffix rule).
-"""
 class BoyerMoore:
+	"""
+	The BoyerMoore class finds the first occurence of a pattern string
+	in a text string.
+	This implementation uses the Boyer-Moore algorithm (with the bad-character
+	rule, but not the strong good suffix rule).
+	"""
 	def __init__(self, pat):
 		"""
     	Preprocesses the pattern string.

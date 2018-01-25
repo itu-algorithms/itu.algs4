@@ -5,20 +5,20 @@ from graphs.digraph import Digraph
 from fundamentals.bag import Bag
 from stdlib.instream import InStream
 import sys
-"""
-The DirectedDFS class represents a data type for
-determining the vertices reachable from a given source vertex s
-(or a set of source vertices) in a digraph. For versions that find the paths,
-see DepthFirstDirectedPaths and BreadthFirstDirectedPaths.
-
-This implementation uses depth-first search.
-The constructor takes time proportional to V + E (in the worst case),
-where V is the number of vertices and E is the number of edges.
-
-For additional documentation, see Section 4.2 of Algorithms,
-4th Edition by Robert Sedgewick and Kevin Wayne.
-"""
 class DirectedDFS:
+	"""
+	The DirectedDFS class represents a data type for
+	determining the vertices reachable from a given source vertex s
+	(or a set of source vertices) in a digraph. For versions that find the paths,
+	see DepthFirstDirectedPaths and BreadthFirstDirectedPaths.
+
+	This implementation uses depth-first search.
+	The constructor takes time proportional to V + E (in the worst case),
+	where V is the number of vertices and E is the number of edges.
+
+	For additional documentation, see Section 4.2 of Algorithms,
+	4th Edition by Robert Sedgewick and Kevin Wayne.
+	"""
 	def __init__(self, G, *s):
 		"""
 		Computes the vertices in digraph G that are

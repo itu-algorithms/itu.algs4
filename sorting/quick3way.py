@@ -1,12 +1,12 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-import sys
-from random import shuffle
 """
 The Quick3Way module provides static methods for sorting an
 array using quicksort with 3-way partitioning.
 """
+import sys
+from random import shuffle
 def sort(a):
 	"""
 	Rearranges the array in ascending order using the natural order.

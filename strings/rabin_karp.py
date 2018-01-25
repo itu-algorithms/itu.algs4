@@ -53,6 +53,11 @@ def _is_prime(n):
              return _rabin_miller(n)
      return False
 def long_random_prime(k):
+    """
+    Generates a random prime.
+    :param k: the desired bit length of the prime
+    :returns: a random prime of bit length k
+    """
      #k is the desired bit length
      r=100*(math.log(k,2)+1) #number of attempts max
      r_ = r
@@ -64,12 +69,12 @@ def long_random_prime(k):
          if _is_prime(n) == True:
              return n
      return "Failure after "+ r_ + " tries."
-"""
-The RabinKarp class finds the first occurence of a pattern string
-in a text string.
-This implementation uses the Monte Carlo version of the Rabin-Karp algorithm.
-"""
 class RabinKarp:
+    """
+    The RabinKarp class finds the first occurence of a pattern string
+    in a text string.
+    This implementation uses the Monte Carlo version of the Rabin-Karp algorithm.
+    """
 	def __init__(self, pat):
 		"""
 		Preprocesses the pattern string.

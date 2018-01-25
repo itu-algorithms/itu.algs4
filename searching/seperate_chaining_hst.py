@@ -3,28 +3,28 @@
 # This is python3 
 from searching.sequential_search_st import SequentialSearchST
 import sys
-"""
-The SeparateChainingHashST class represents a symbol table of dynamic
-key-value pairs.
-It supports the usual put, get, contains, delete, size, 
-and is-empty methods.
-It also provides a keys method for iterating over all of the keys.
-A symbol table implements the associative array abstraction:
-when associating a value with a key that is already in the symbol table,
-the convention is to replace the old value with the new value.
-Unlike the Map-class in Java, this class uses the convention that
-values cannot be null/None. Setting the
-value associated with a key to None is equivalent to deleting the key
-from the symbol table.
-
-This implementation uses a separate chaining hash table. It requires that
-the key type overrides the __eq__ and __hash__ methods.
-The expected time per put, contains, or remove
-operation is constant, subject to the uniform hashing assumption.
-The size, and is-empty operations take constant time.
-Construction takes constant time.
-"""
 class SeparateChainingHashST:
+	"""
+	The SeparateChainingHashST class represents a symbol table of dynamic
+	key-value pairs.
+	It supports the usual put, get, contains, delete, size, 
+	and is-empty methods.
+	It also provides a keys method for iterating over all of the keys.
+	A symbol table implements the associative array abstraction:
+	when associating a value with a key that is already in the symbol table,
+	the convention is to replace the old value with the new value.
+	Unlike the Map-class in Java, this class uses the convention that
+	values cannot be null/None. Setting the
+	value associated with a key to None is equivalent to deleting the key
+	from the symbol table.
+
+	This implementation uses a separate chaining hash table. It requires that
+	the key type overrides the __eq__ and __hash__ methods.
+	The expected time per put, contains, or remove
+	operation is constant, subject to the uniform hashing assumption.
+	The size, and is-empty operations take constant time.
+	Construction takes constant time.
+	"""
 	def __init__(self, M = 997):
 		self.M = M #Hash table size
 		self.N = 0 #Number of pairs

@@ -1,10 +1,6 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
-from strings.tst import TST
-from stdlib.binary_stdin import BinaryStdIn
-from stdlib.binary_stdout import BinaryStdOut
 """
 The LSW module provides static methods for compressing and
 expanding a binary input using LZW over the 8-bit extended
@@ -13,6 +9,10 @@ ASCII alphabet with 12-bit codewords.
 For additional documentation see Section 5.5 of
 Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 """
+import sys
+from strings.tst import TST
+from stdlib.binary_stdin import BinaryStdIn
+from stdlib.binary_stdout import BinaryStdOut
 _R = 256
 _L = 4096
 _W = 12

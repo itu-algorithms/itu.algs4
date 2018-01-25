@@ -6,28 +6,28 @@ from graphs.directed_dfs import DirectedDFS
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
 import sys
-"""
-The NFA class provides a data type for creating a
-nondeterministic finite state automaton (NFA) from a regular
-expression and testing whether a given string is matched by that regular
-expression.
-It supports the following operations: concatenation, closure, binary or,
-and parentheses, metacharacters (either in the text or pattern),
-capturing capabilities, greedy or reluctant/lazy modifiers,
-and other features in industrial-strength implementations
-such as Java's Pattern and Matcher.
-
-This implementation builds the NFA using a digraph and a stack
-and simulates the NFA using digraph search (see the textbook for details).
-The constructor takes time proportional to m, where m is the
-number of characters in the regular expression.
-The recognizes() method takes time proportional to m*n, where n
-is the number of characters in the text.
-
-For additional documentation, see section 5.4 of Algorithms, 4th Edition
-by Robert Sedgewick and Kevin Wayne.
-"""
 class NFA:
+	"""
+	The NFA class provides a data type for creating a
+	nondeterministic finite state automaton (NFA) from a regular
+	expression and testing whether a given string is matched by that regular
+	expression.
+	It supports the following operations: concatenation, closure, binary or,
+	and parentheses, metacharacters (either in the text or pattern),
+	capturing capabilities, greedy or reluctant/lazy modifiers,
+	and other features in industrial-strength implementations
+	such as Java's Pattern and Matcher.
+
+	This implementation builds the NFA using a digraph and a stack
+	and simulates the NFA using digraph search (see the textbook for details).
+	The constructor takes time proportional to m, where m is the
+	number of characters in the regular expression.
+	The recognizes() method takes time proportional to m*n, where n
+	is the number of characters in the text.
+
+	For additional documentation, see section 5.4 of Algorithms, 4th Edition
+	by Robert Sedgewick and Kevin Wayne.
+	"""
 	def __init__(self, regex):
 		"""
 		Initializes the NFA from the specified regular expression.

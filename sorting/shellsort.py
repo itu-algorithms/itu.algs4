@@ -1,11 +1,11 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
 """
 The Shellsort module provides static methods for sorting an
 array using shellsort with Knuth's increment sequence (1, 4, 13, 40, ...).
- """
+"""
+import sys
 def sort(a):
 	"""
 	Rearranges the array in ascending order using the natural order.

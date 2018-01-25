@@ -1,7 +1,6 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
 """
 The Insertion module provides static methods for sorting an
 array using insertion sort.
@@ -13,6 +12,7 @@ of inversions. So, for example, it sorts a partially-sorted array
 in linear time.
 The sorting algorithm is stable and uses O(1) extra memory.
  """
+import sys
 def sort(a):
 	"""
 	Rearranges the array in ascending order, using the natural order.
