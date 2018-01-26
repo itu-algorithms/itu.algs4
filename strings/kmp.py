@@ -64,5 +64,6 @@ def main():
 	for i in range(0,offset):
 		print("",end=' ')
 	print(pat)
+	
 if __name__ == "__main__":
-    main()
+	main()

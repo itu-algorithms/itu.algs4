@@ -67,7 +67,7 @@ def sort(a):
     
 
 import sys
-import stdio
+from algs4.stdlib import stdio
 
 # Reads in a sequence of strings from standard input or a file 
 # supplied as argument to the program; mergesorts them; 

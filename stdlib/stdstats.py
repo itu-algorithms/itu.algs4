@@ -8,7 +8,7 @@ and graphical data display.
 #-----------------------------------------------------------------------
 
 import math
-import stddraw
+from algs4.stdlib import stddraw
 
 #-----------------------------------------------------------------------
 

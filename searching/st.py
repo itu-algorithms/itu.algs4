@@ -2,8 +2,8 @@
 # See README.md for details
 # Python 3
 import sys
-from stdlib import stdio
-from errors.errors import NoSuchElementException, IllegalArgumentException
+from algs4.stdlib import stdio
+from algs4.errors.errors import NoSuchElementException, IllegalArgumentException
 
 """
  The ST class represents an ordered symbol table of generic

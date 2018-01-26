@@ -1,8 +1,9 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from searching.sequential_search_st import SequentialSearchST
+from algs4.searching.sequential_search_st import SequentialSearchST
 import sys
+
 class SeparateChainingHashST:
 	"""
 	The SeparateChainingHashST class represents a symbol table of dynamic
@@ -139,5 +140,6 @@ def main():
 		i += 1
 	for key in st.keys():
 		print('{} {}'.format(key, st.get(key)))
+		
 if __name__ == "__main__":
-    main()
+	main()

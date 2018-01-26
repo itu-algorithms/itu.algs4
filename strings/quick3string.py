@@ -12,6 +12,7 @@ def sort(a):
 	:param a: the array to be sorted.
 	"""
 	_sort(a, 0, len(a)-1, 0)
+	
 def _sort(a, lo, hi, d):
 	if(hi <= lo):
 		return
@@ -34,14 +35,17 @@ def _sort(a, lo, hi, d):
 	if (v >= 0):
 		_sort(a, lt, gt, d+1)
 	_sort(a, gt+1, hi, d)
+	
 def _char_at(s, d):
 	if(d < len(s)):
 		return ord(s[d])
 	else:
 		return -1
+	
 def _show(a):
 	for item in a:
 		print(item)
+		
 def is_sorted(a):
 	"""
 	Returns true if a is sorted.
@@ -52,12 +56,15 @@ def is_sorted(a):
 		if _less(a[i], a[i-1]):
 			return False
 	return True
+
 def _less(v, w):
 	return v < w
+
 def _exch(a, i, j):
 	t = a[i]
 	a[i] = a[j]
 	a[j] = t
+	
 def main():
 	"""
 	Reads in a sequence of fixed-length strings from standard input;
@@ -68,5 +75,6 @@ def main():
 	sort(a)
 	assert is_sorted(a)
 	_show(a)
+	
 if __name__ == "__main__":
-    main()
+	main()

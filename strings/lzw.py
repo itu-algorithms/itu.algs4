@@ -10,9 +10,10 @@ For additional documentation see Section 5.5 of
 Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 """
 import sys
-from strings.tst import TST
-from stdlib.binary_stdin import BinaryStdIn
-from stdlib.binary_stdout import BinaryStdOut
+from algs4.strings.tst import TST
+from algs4.stdlib.binary_stdin import BinaryStdIn
+from algs4.stdlib.binary_stdout import BinaryStdOut
+
 _R = 256
 _L = 4096
 _W = 12
@@ -37,6 +38,7 @@ def compress():
 		input_ = input_[t:]
 	BinaryStdOut.write_int(_R,_W)
 	BinaryStdOut.close()
+	
 def expand():
 	"""
 	Reads a sequence of bit encoded using LZW compression with
@@ -68,6 +70,7 @@ def expand():
 			i+=1
 		val = s
 	BinaryStdOut.close()
+	
 def main():
 	"""
 	Sample client that calss compress() if the command-line
@@ -79,5 +82,6 @@ def main():
 		expand()
 	else:
 		raise ValueError("Illegal command line argument")
+	
 if __name__ == '__main__':
 	main()

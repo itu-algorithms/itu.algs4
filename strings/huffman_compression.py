@@ -10,9 +10,10 @@ For additional documentation, see Section 5.5 of Algorithms, 4th edtition
 by Robert Sedgewick and Kevin Wayne.
 """
 import sys
-from sorting.min_pq import MinPQ
-from stdlib.binary_stdin import BinaryStdIn
-from stdlib.binary_stdout import BinaryStdOut
+from algs4.sorting.min_pq import MinPQ
+from algs4.stdlib.binary_stdin import BinaryStdIn
+from algs4.stdlib.binary_stdout import BinaryStdOut
+
 _R = 256
 class _Node:
 	def __init__(self, ch, freq, left, right):
@@ -58,6 +59,7 @@ def compress():
 			else:
 				raise ValueError("Illegal state")
 	BinaryStdOut.close()
+	
 #Build the Huffman trie given frequencies
 def _build_trie(freq):
 	pq = MinPQ()
@@ -77,6 +79,7 @@ def _build_trie(freq):
 		parent = _Node('\0', left.freq + right.freq, left, right)
 		pq.insert(parent)
 	return pq.del_min()
+
 #Write bitstring-encoded trie to standard output
 def _write_trie(x):
 	if(x.is_leaf()):
@@ -86,6 +89,7 @@ def _write_trie(x):
 	BinaryStdOut.write_bool(False)
 	_write_trie(x.left)
 	_write_trie(x.right)
+	
 #Make a lookup table from symbols and their encodings
 def _build_code(st, x, s):
 	if(not x.is_leaf()):
@@ -93,6 +97,7 @@ def _build_code(st, x, s):
 		_build_code(st, x.right, s+'1')
 	else:
 		st[ord(x.ch)] = s
+		
 
 def expand():
 	"""
@@ -112,12 +117,14 @@ def expand():
 				x = x.left
 		BinaryStdOut.write_char(x.ch)
 	BinaryStdOut.close()
+	
 def _read_trie():
 	isLeaf = BinaryStdIn.read_bool()
 	if(isLeaf):
 		return _Node(BinaryStdIn.read_char(), -1, None, None)
 	else:
 		return _Node('\0', -1, _read_trie(), _read_trie())
+	
 def main():
 	"""
 	Sample client that calss compress() if the command-line
@@ -129,5 +136,6 @@ def main():
 		expand()
 	else:
 		raise ValueError("Illegal command line argument")
+	
 if __name__ == '__main__':
 	main()

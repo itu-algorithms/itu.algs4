@@ -275,7 +275,7 @@ class BST:
 # Need to find a better way of doing it
 import sys
 sys.path.append("..")
-from algo.stdlib import stdio
+from algs4.stdlib import stdio
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

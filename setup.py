@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pyalgs",
-    version="0.1",
+    name="algs4_python",
+    version="0.2",
     packages= [
         'algs4.fundamentals',
         'algs4.sorting',
@@ -21,8 +21,12 @@ setup(
         'algs4.strings': './strings',
         'algs4.stdlib': './stdlib',
         'algs4.errors': './errors'        
-    }
+    },
     
     description="A translation of the algorithms covered in the book Algorithms 4th edition, for use in an introductory algorithms course at The IT University of Copenhagen.",
+    
+    install_requires = [
+        'numpy',
+    ],
     
 )

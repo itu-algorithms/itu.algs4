@@ -1,11 +1,14 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from graphs.digraph import Digraph
-from graphs.directed_dfs import DirectedDFS
-from fundamentals.bag import Bag
-from fundamentals.stack import Stack
+
 import sys
+
+from algs4.graphs.digraph import Digraph
+from algs4.graphs.directed_dfs import DirectedDFS
+from algs4.fundamentals.bag import Bag
+from algs4.fundamentals.stack import Stack
+
 class NFA:
 	"""
 	The NFA class provides a data type for creating a

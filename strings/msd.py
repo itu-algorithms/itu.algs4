@@ -68,7 +68,7 @@ def sort(a, radix=256):
         
 
 import sys
-import stdio
+from algs4.stdlib import stdio
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

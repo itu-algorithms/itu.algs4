@@ -1,8 +1,9 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-from searching.seperate_chaining_hst import SeparateChainingHashST
+from algs4.searching.seperate_chaining_hst import SeparateChainingHashST
 from math import sqrt
+
 class SparseVector:
 	"""
 	The SparseVector class represents a d-dimensional mathematical vector.

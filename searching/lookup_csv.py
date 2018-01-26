@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 import sys
-from stdlib import stdio
+from algs4.stdlib import stdio
 
 #  Execution:    python lookup_csv.py file.csv keyField valField
 #  

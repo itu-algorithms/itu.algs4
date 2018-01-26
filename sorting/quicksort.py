@@ -14,8 +14,8 @@ by Robert Sedgewick and Kevin Wayne.
 """
 
 import sys
-sys.path.append("..")
-from algo.stdlib import stdrandom, stdio
+
+from algs4.stdlib import stdrandom, stdio
 
 
 def sort(array):

@@ -1,11 +1,10 @@
-import sys
-from stdlib import stdio
-from errors.errors import NoSuchElementException
-
 # Created for BADS 2018
 # see README.md for details
 # Python 3
 
+import sys
+from algs4.stdlib import stdio
+from algs4.errors.errors import NoSuchElementException
 
 class MaxPQ:
     """

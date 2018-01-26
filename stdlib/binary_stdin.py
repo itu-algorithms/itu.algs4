@@ -3,7 +3,7 @@
 # This is python3
 import sys
 import struct
-from stdlib.binary_stdout import BinaryStdOut
+from .binary_stdout import BinaryStdOut
 """
 Binary standard input. This class provides methods for reading
 in bits from standard input, either one bit at a time (as a boolean),

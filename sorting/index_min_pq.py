@@ -1,9 +1,8 @@
-from errors.errors import NoSuchElementException, IllegalArgumentException
-
 # Created for BADS 2018
 # See README.md for details
 # Python 3
 
+from algs4.errors.errors import NoSuchElementException, IllegalArgumentException
 
 class IndexMinPQ:
     """
