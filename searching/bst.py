@@ -54,6 +54,9 @@ class BST:
         Returns the number of key-value pairs in this symbol table
         """
         return self._size(self._root)
+        
+    def __len__(self):
+        return self.size()
 
     def _size(self, node):
         """

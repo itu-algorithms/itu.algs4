@@ -45,6 +45,9 @@ class Bag:
         """
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     def add(self, item):
         """
         Adds the item to this bag.

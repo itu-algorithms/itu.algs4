@@ -235,6 +235,9 @@ class RedBlackBST:
         """
         return self._size(self._root)
 
+    def __len__(self):
+        return self.size()
+
     def _size(self, x):
         """
         Number of nodes in subtree rooted at x. 0 if x is None

@@ -44,6 +44,9 @@ class LinearProbingHashST:
 		"""
 		return self.n
 
+	def __len__(self):
+        return self.size()
+
 	def is_empty(self):
 		"""
 		Returns True if this symbol table is empty.

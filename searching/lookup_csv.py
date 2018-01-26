@@ -37,7 +37,6 @@ valField = int(args[2])
 
 # symbol table
 st = {}
-        #TODO use ST?  ST<String, String> st = new ST<String, String>();
 
 # read in the data from csv file
 file = open(args[0], 'r')
@@ -46,12 +45,12 @@ while line:
     tokens = line.split(",")
     key = tokens[keyField]
     val = tokens[valField]
-    st[key] = val        # st.put(key, val) TODO in case ST
+    st[key] = val        
     line = file.readline()
 
 while not stdio.isEmpty():
     s = stdio.readString()
-    if s in st:   # st.contains(s)  TODO in case ST 
+    if s in st:   
         print(st.get(s))
     else: 
         print("Not found") 

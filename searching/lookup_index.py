@@ -51,9 +51,6 @@ separator = args[1]
 file = open(filename, 'r')
 st = {}
 ts = {}
-        # TODO use ST instead? 
-        # ST<String, Queue<String>> st = new ST<String, Queue<String>>();
-        # ST<String, Queue<String>> ts = new ST<String, Queue<String>>();
 
 line = file.readline()
 while line:
@@ -61,9 +58,9 @@ while line:
     key = fields[0]
     for i in range(1, len(fields)):
         val = fields[i]
-        if not key in st:       #not st.contains(key):
+        if not key in st:       
             st[key] = Queue()
-        if not val in ts:       #not ts.contains(val):
+        if not val in ts:       
             ts[val] = Queue()
         st.get(key).enqueue(val)
         ts.get(val).enqueue(key)

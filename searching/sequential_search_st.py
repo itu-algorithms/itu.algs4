@@ -47,6 +47,9 @@ class SequentialSearchST:
         """
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     def is_empty(self):
         """
         Returns true if this symbol table is empty.
