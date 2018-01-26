@@ -5,20 +5,19 @@
 from searching.binary_search_st import BinarySearchST
 from stdlib.instream import InStream
 from stdlib import stdio
-from graphs.graph import Graph
+from graphs.digraph import Digraph
 
-class SymbolGraph:
+class SymbolDigraph:
     """
-    The SymbolGraph class represents an undirected graph, where the
+    The SymbolDigraph class representsclass represents a digraph, where the
     vertex names are arbitrary strings.
     By providing mappings between vertex names and integers,
-    it serves as a wrapper around the
-    Graph data type, which assumes the vertex names are integers
-    between 0 and V - 1.
-    It also supports initializing a symbol graph from a file.
+    it serves as a wrapper around the Digraph data type, which assumes the 
+    vertex names are integers between 0 and V - 1.
+    It also supports initializing a symbol digraph from a file.
     
     This implementation uses an ST to map from strings to integers,
-    an array to map from integers to strings, and a Graph to store
+    an array to map from integers to strings, and a Digraph to store
     the underlying graph.
     The index_of and contains operations take time 
     proportional to log V, where V is the number of vertices.
@@ -27,7 +26,7 @@ class SymbolGraph:
 
     def __init__(self, filename, delimiter):
         """
-        Initializes a graph from a file using the specified delimiter.
+        Initializes a digraph from a file using the specified delimiter.
         Each line in the file contains
         the name of a vertex, followed by a list of the names
         of the vertices adjacent to that vertex, separated by the delimiter.
@@ -55,7 +54,7 @@ class SymbolGraph:
     
         # second pass builds the graph by connecting first vertex on each
         # line to all others
-        self._graph = Graph(self._st.size())    # the underlying graph
+        self._graph = Digraph(self._st.size())    # the underlying graph
         stream = InStream(filename)
         while stream.hasNextLine():
             a = stream.readLine().split(delimiter)
@@ -91,7 +90,7 @@ class SymbolGraph:
         self._validateVertex(v)
         return self._keys[v]
 
-    def graph(self):
+    def digraph(self):
         return self._graph
 
 
@@ -106,8 +105,8 @@ if __name__ == "__main__":
 
     filename  = sys.argv[1]    
     delimiter = sys.argv[2]
-    sg = SymbolGraph(filename, delimiter)
-    graph = sg.graph()
+    sg = SymbolDigraph(filename, delimiter)
+    graph = sg.digraph()
     while stdio.hasNextLine():
         source = stdio.readLine()
         if sg.contains(source):

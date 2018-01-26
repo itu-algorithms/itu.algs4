@@ -1,6 +1,6 @@
-if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 from fundamentals.stack import Stack
 
@@ -81,6 +81,7 @@ if __name__ == "__main__":
     from stdlib import stdio
     from graphs.graph import Graph
     from stdlib.instream import InStream
+    import sys
 
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)

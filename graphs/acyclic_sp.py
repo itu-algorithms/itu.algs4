@@ -1,5 +1,9 @@
-from ..fundamentals.stack import Stack 
-from .topological import Topological
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+
+from fundamentals.stack import Stack 
+from graphs.topological import Topological
 
 import math
 
@@ -97,3 +101,24 @@ class AcyclicSP:
         V = len(self._dist_to)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+
+if __name__ == "__main__":
+    import sys
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    from graphs.edge_weighted_digraph import EdgeWeightedDigraph
+
+    In = InStream(sys.argv[1])
+    s = int(sys.argv[2])
+    G = EdgeWeightedDigraph.from_stream(In)
+
+    # find shortest path from s to each other vertex in DAG
+    sp = AcyclicSP(G, s)
+    for v in range(G.V()):
+        if sp.has_path_to(v):
+            stdio.writef("%d to %d (%.2f)  ", s, v, sp.dist_to(v))
+            for e in sp.path_to(v):
+                stdio.writef("%s\t", e.__repr__())
+            stdio.writeln()
+        else:
+            stdio.writef("%d to %d no path\n", s, v)

@@ -1,3 +1,7 @@
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+
 class SequentialSearchST:
     """
     The  SequentialSearchST class represents an (unordered)
@@ -42,6 +46,9 @@ class SequentialSearchST:
         :returns: the number of key-value pairs in this symbol table
         """
         return self._n
+
+    def __len__(self):
+        return self.size()
 
     def is_empty(self):
         """
@@ -144,8 +151,6 @@ class SequentialSearchST:
 
 
 if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
     from stdlib import stdio
 
     st = SequentialSearchST()

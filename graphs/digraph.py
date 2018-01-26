@@ -8,10 +8,11 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
-from stdlib import instream
+from algs4.stdlib.instream import InStream
 
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
+from graphs.graph import Graph
 
 class Digraph:
     """
@@ -72,7 +73,7 @@ class Digraph:
             w = stream.readInt()        # read another vertex,
             g._validateVertex(v)
             g._validateVertex(w)
-            g.addEdge(v, w)             # and add edge connecting them.
+            g.add_edge(v, w)             # and add edge connecting them.
         return g
 
     @staticmethod
@@ -114,7 +115,7 @@ class Digraph:
         if v < 0 or v >= self._V:
             raise ValueError("vertex {} is not between 0 and {}".format(v, self._V))
 
-    def addEdge(self, v, w):
+    def add_edge(self, v, w):
         """
         Adds the undirected edge v-w to this graph.
 
@@ -154,9 +155,9 @@ class Digraph:
         :returns: the reverse of the digraph
         """
         rev = Digraph(self._V)
-        for v in range(selv._V):
-            for w in adj(v):
-                rev.addEdge(w, v)
+        for v in range(self._V):
+            for w in self.adj(v):
+                rev.add_edge(w, v)
         return rev
 
     def __repr__(self):
@@ -183,6 +184,6 @@ if __name__ == '__main__':
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
     
-    d = Digraph.from_stream(instream.InStream(stream))
+    d = Digraph.from_stream(InStream(stream))
     print(d)
     

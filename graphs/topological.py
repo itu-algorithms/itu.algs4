@@ -7,6 +7,7 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
+from graphs.digraph import Digraph
 from graphs.directed_cycle import DirectedCycle
 from graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
 from graphs.depth_first_order import DepthFirstOrder
@@ -21,7 +22,7 @@ class Topological:
     This implementation uses depth-first search. The constructor takes time 
     proportional to V + E (in the worst case), where V is the number of vertices 
     and E is the number of edges. Afterwards, the hasOrder and rank operations 
-    takes constant time; the order operation takes time proportional to V.
+    takes constant time the order operation takes time proportional to V.
 
     See DirectedCycle, DirectedCycleX, and EdgeWeightedDirectedCycle to compute 
     a directed cycle if the digraph is not a DAG. See TopologicalX for a 
@@ -73,10 +74,10 @@ class Topological:
     
     def rank(self, v):
         """
-        The the rank of vertex v in the topological order; -1 if the digraph is not a DAG
+        The the rank of vertex v in the topological order -1 if the digraph is not a DAG
         
         :param v: the vertex
-        :returns: the position of vertex v in a topological order of the digraph; -1 if the digraph is not a DAG
+        :returns: the position of vertex v in a topological order of the digraph -1 if the digraph is not a DAG
         """
         self._validate_vertex(v)
         if self.has_order():
@@ -84,26 +85,22 @@ class Topological:
         else:
             return -1
     
-    # throw an IllegalArgumentException unless {@code 0 <= v < V}
     def _validate_vertex(self, v):
+        # throw an IllegalArgumentException unless 0 <= v < V        
         V = len(self._rank)
         if v < 0 or v >= V:
             raise ValueError("vertex {} is not between 0 and {}", v, (V-1))
 
-import sys
-import instream
-
-from graphs.digraph import Digraph
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
-    # Create stream from file or the standard input,
-    # depending on whether a file name was passed.
-    stream = sys.argv[1] if len(sys.argv) > 1 else None
-    
-    d = EdgeWeightedDigraph.from_stream(instream.InStream(stream))
-    top = Topological(d)
-    if top.has_order():
-        print(list(top.order()))
-    else:
-        print("Graph is not a DAG")
+    import sys
+    from stdlib.instream import InStream
+    from stdlib import stdio
+    from graphs.symbol_digraph import SymbolDigraph
+
+    filename  = sys.argv[1]
+    delimiter = sys.argv[2]
+    sg = SymbolDigraph(filename, delimiter)
+    topological = Topological(sg.digraph())
+    for v in topological.order():
+        stdio.writeln(sg.name_of(v))

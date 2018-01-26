@@ -1,7 +1,7 @@
 #!/python ??
 # Created for BADS 2018
 # see README.md for details
-# this is python3 
+# This is python3 
 
 class Bag:
     """
@@ -45,6 +45,9 @@ class Bag:
         :returns: the number of items in this bag
         """
         return self._n
+
+    def __len__(self):
+        return self.size()
 
     def add(self, item):
         """

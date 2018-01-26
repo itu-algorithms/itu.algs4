@@ -80,6 +80,9 @@ class Queue:
         """
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     def peek(self):
         """
         Returns the item least recently added to this queue.

@@ -31,7 +31,6 @@ from stdlib import stdio
 
 # key = word, value = set of files containing that word
 st = {} 
-        # TODO use ST instead?
 args = sys.argv[1:]
 
 # create inverted index of all files
@@ -53,4 +52,3 @@ while not stdio.isEmpty():
         s = st.get(query)
         for file in s:
             print(" " + file.name)
-# TODO close files in the end?

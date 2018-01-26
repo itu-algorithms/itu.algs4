@@ -1,3 +1,7 @@
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
+
 class CC:
     """
     The CC class represents a data type for 
@@ -127,7 +131,6 @@ class CCBook:
 
 if __name__ == "__main__":
     import sys
-    sys.path.append("..")
     from fundamentals.queue import Queue
     from stdlib.instream import InStream    
     from stdlib import stdio    

@@ -1,6 +1,6 @@
-if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 from fundamentals.queue import Queue
 
@@ -61,6 +61,9 @@ class BinarySearchST:
         :returns: the number of key-value pairs in this symbol table
         """
         return self._n
+
+    def __len__(self):
+        return self.size()
     
     def is_empty(self):
         """

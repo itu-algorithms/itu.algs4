@@ -36,6 +36,9 @@ class SET:
     # Returns the number of keys in this set.
     def size(self):
         return len(self._set)
+        
+    def __len__(self):
+        return self.size()
 
     # Returns true if this set is empty.
     def is_empty(self):

@@ -1,3 +1,7 @@
+# Created for BADS 2018
+# See README.md for details
+# Python 3
+
 from algs4.fundamentals.stack import Stack
 from algs4.stdlib import stdio
 
@@ -29,3 +33,6 @@ def evaluate():
         else:   
             vals.push(float(s))
     stdio.writeln(vals.pop())
+
+if __name__ == "__main__":
+    evaluate()

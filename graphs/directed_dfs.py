@@ -3,22 +3,22 @@
 # This is python3 
 from graphs.digraph import Digraph
 from fundamentals.bag import Bag
-import instream
+from stdlib.instream import InStream
 import sys
-"""
-The DirectedDFS class represents a data type for
-determining the vertices reachable from a given source vertex s
-(or a set of source vertices) in a digraph. For versions that find the paths,
-see DepthFirstDirectedPaths and BreadthFirstDirectedPaths.
-
-This implementation uses depth-first search.
-The constructor takes time proportional to V + E (in the worst case),
-where V is the number of vertices and E is the number of edges.
-
-For additional documentation, see Section 4.2 of Algorithms,
-4th Edition by Robert Sedgewick and Kevin Wayne.
-"""
 class DirectedDFS:
+	"""
+	The DirectedDFS class represents a data type for
+	determining the vertices reachable from a given source vertex s
+	(or a set of source vertices) in a digraph. For versions that find the paths,
+	see DepthFirstDirectedPaths and BreadthFirstDirectedPaths.
+
+	This implementation uses depth-first search.
+	The constructor takes time proportional to V + E (in the worst case),
+	where V is the number of vertices and E is the number of edges.
+
+	For additional documentation, see Section 4.2 of Algorithms,
+	4th Edition by Robert Sedgewick and Kevin Wayne.
+	"""
 	def __init__(self, G, *s):
 		"""
 		Computes the vertices in digraph G that are
@@ -57,7 +57,7 @@ class DirectedDFS:
 		Returns the number of vertices reachable from the source vertex
 		(or source vertices)
 		:returns: the number of vertices reachable from the source vertex
-				(or source vertices)
+		(or source vertices)
 		"""
 		return self.reachables
 
@@ -71,7 +71,7 @@ def main():
 	"""
 	Unit tests the DirectedDFS data type.
 	"""
-	G = Digraph.from_stream(instream.InStream(None))
+	G = Digraph.from_stream(InStream(None))
 	sources = Bag()
 	for i in range(1,len(sys.argv)):
 		s = int(sys.argv[i])

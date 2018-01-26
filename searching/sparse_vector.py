@@ -1,19 +1,19 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-from seperate_chaining_hst import SeparateChainingHashST
+from searching.seperate_chaining_hst import SeparateChainingHashST
 from math import sqrt
-"""
-The SparseVector class represents a d-dimensional mathematical vector.
-Vectors are mutable: their values can be changed after they are created.
-It includes methods for addition, subtraction,
-dot product, scalar product, unit vector and Euclidean norm.
-
-The implementation is a symbol table of indices and values for which the vector
-coordinates are nonzero. This makes it efficient when most of the vector coordinates
-are zero.
-"""
 class SparseVector:
+	"""
+	The SparseVector class represents a d-dimensional mathematical vector.
+	Vectors are mutable: their values can be changed after they are created.
+	It includes methods for addition, subtraction,
+	dot product, scalar product, unit vector and Euclidean norm.
+
+	The implementation is a symbol table of indices and values for which the vector
+	coordinates are nonzero. This makes it efficient when most of the vector coordinates
+	are zero.
+	"""
 	def __init__(self, d):
 		"""
 		Initializes a d-dimensional zero vector.
@@ -132,6 +132,9 @@ class SparseVector:
 		return ''.join( ("(%s,%s)" % (str(i), self.st.get(i))) for i in self.st.keys())
 		
 def main():
+	"""
+	Unit tests the SparseVector data type.
+	"""
 	a = SparseVector(10)
 	b = SparseVector(10)
 	a.put(3, 0.50)

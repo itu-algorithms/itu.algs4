@@ -1,7 +1,8 @@
-import sys
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 import math
-if __name__ == "__main__":
-    sys.path.append("..")
+import sys
 
 from fundamentals.queue import Queue
 from fundamentals.uf import UF

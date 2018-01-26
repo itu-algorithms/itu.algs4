@@ -37,23 +37,22 @@ distinct = 0
 words = 0
 minlen = int(args[0])
 st = {}
-    # TODO use ST instead? ST<String, Integer> st = new ST<String, Integer>();
-
+    
 #compute frequency counts
 while not stdio.isEmpty():
     key = stdio.readString()
     if len(key) < minlen: 
         continue
     words+=1
-    if key in st:                   #TODO in case ST st.contains(key)
-       st[key] = st.get(key) + 1    #st.put(key, st.get(key) + 1)
+    if key in st:                   
+       st[key] = st.get(key) + 1    
     else:
-        st[key] = 1                 #st.put(key, 1)
+        st[key] = 1                 
         distinct+=1
 
 # find a key with the highest frequency count
 max = ""
-st[max] = 0                         #st.put(max, 0)
+st[max] = 0                         
 for word in st.keys():
     if st.get(word) > st.get(max):
         max = word

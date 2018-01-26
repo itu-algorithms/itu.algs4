@@ -82,6 +82,9 @@ class MinPQ:
         """
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     def _sink(self, k):
         """
         Moves item at index k down to a legal position on the heap.

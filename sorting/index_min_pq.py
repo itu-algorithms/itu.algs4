@@ -192,6 +192,9 @@ class IndexMinPQ:
         """
         return self.n
 
+    def __len__(self):
+        return self.size()
+
     def key_of(self, i):
         """
         Returns the key associated with index i.

@@ -1,7 +1,6 @@
-if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
-
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 from fundamentals.stack import Stack
 
@@ -103,6 +102,7 @@ class Cycle:
                 self._cycle.push(v)
 
 if __name__ == "__main__":
+    import sys
     from stdlib.instream import InStream
     from stdlib import stdio
     from graphs.graph import Graph    

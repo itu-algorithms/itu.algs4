@@ -49,6 +49,9 @@ class ST:
     def size(self):
         return len(self._st)
 
+    def __len__(self):
+        return self.size()
+
     # Returns true if this symbol table is empty.
     def is_empty(self):
         return self.size() == 0

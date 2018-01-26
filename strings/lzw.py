@@ -1,10 +1,6 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
-from tst import TST
-from stdlib.binary_stdin import BinaryStdIn
-from stdlib.binary_stdout import BinaryStdOut
 """
 The LSW module provides static methods for compressing and
 expanding a binary input using LZW over the 8-bit extended
@@ -13,6 +9,10 @@ ASCII alphabet with 12-bit codewords.
 For additional documentation see Section 5.5 of
 Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 """
+import sys
+from strings.tst import TST
+from stdlib.binary_stdin import BinaryStdIn
+from stdlib.binary_stdout import BinaryStdOut
 _R = 256
 _L = 4096
 _W = 12
@@ -38,6 +38,11 @@ def compress():
 	BinaryStdOut.write_int(_R,_W)
 	BinaryStdOut.close()
 def expand():
+	"""
+	Reads a sequence of bit encoded using LZW compression with
+	12-bit codewords from standard input; expands them; and writes
+	the results to standard output.
+	"""
 	st = ["" for i in range(0,_L)]
 	i = 0
 	while(i < _R):
@@ -64,6 +69,10 @@ def expand():
 		val = s
 	BinaryStdOut.close()
 def main():
+	"""
+	Sample client that calss compress() if the command-line
+	argument is "-", and expand() if it is "+".
+	"""
 	if(sys.argv[1] == '-'):
 		compress()
 	elif(sys.argv[1] == '+'):

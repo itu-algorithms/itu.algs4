@@ -45,6 +45,9 @@ class Stack:
         """
         return self._n
 
+    def __len__(self):
+        return self.size()
+
     def push(self, item):
         """
         Adds the item to this stack.
@@ -115,6 +118,9 @@ class FixedCapacityStack:
     def size(self):
         return self.n
 
+    def __len__(self):
+        return self.size()
+
     def push(self, item):
         self.a[self.n] = item
         self.n += 1
@@ -133,6 +139,9 @@ class ResizingArrayStack:
 
     def size(self):
         return self.n
+
+    def __len__(self):
+        return self.size()
 
     def resize(self, capacity):
         temp = [None] * capacity

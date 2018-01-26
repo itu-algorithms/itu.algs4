@@ -1,10 +1,6 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
-from sorting.min_pq import MinPQ
-from stdlib.binary_stdin import BinaryStdIn
-from stdlib.binary_stdout import BinaryStdOut
 """
 The Huffman compression module provides static methods for compressing
 and expanding a binary input using Huffman codes over the 8-bit extended
@@ -13,6 +9,10 @@ ASCII alphabet
 For additional documentation, see Section 5.5 of Algorithms, 4th edtition
 by Robert Sedgewick and Kevin Wayne.
 """
+import sys
+from sorting.min_pq import MinPQ
+from stdlib.binary_stdin import BinaryStdIn
+from stdlib.binary_stdout import BinaryStdOut
 _R = 256
 class _Node:
 	def __init__(self, ch, freq, left, right):
@@ -119,6 +119,10 @@ def _read_trie():
 	else:
 		return _Node('\0', -1, _read_trie(), _read_trie())
 def main():
+	"""
+	Sample client that calss compress() if the command-line
+	argument is "-", and expand() if it is "+".
+	"""
 	if(sys.argv[1] == '-'):
 		compress()
 	elif(sys.argv[1] == '+'):

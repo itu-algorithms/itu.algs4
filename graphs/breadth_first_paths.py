@@ -1,6 +1,6 @@
-if __name__ == "__main__":
-    import sys
-    sys.path.append("..")
+# Created for BADS 2018
+# see README.md for details
+# This is python3 
 
 import math
 
@@ -194,6 +194,7 @@ class BreadthFirstPathsBook:
         return path
 
 if __name__ == "__main__":
+    import sys
     from stdlib import stdio
     from graphs.graph import Graph
     from stdlib.instream import InStream
