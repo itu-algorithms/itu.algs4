@@ -18,11 +18,11 @@ For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robe
 """
 
 import sys
-from stdlib import instream
+from algs4.stdlib import instream
 
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from graphs.directed_edge import DirectedEdge
-from graphs.acyclic_lp import AcyclicLp
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from algs4.graphs.directed_edge import DirectedEdge
+from algs4.graphs.acyclic_lp import AcyclicLp
 
 # Try this with the jobsPC.txt data file
 if __name__ == '__main__':

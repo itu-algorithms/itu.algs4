@@ -1,9 +1,9 @@
 import sys
-from stdlib.instream import InStream
-from sorting.index_min_pq import IndexMinPQ
-from fundamentals.stack import Stack
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from errors.errors import IllegalArgumentException
+from algs4.stdlib.instream import InStream
+from algs4.sorting.index_min_pq import IndexMinPQ
+from algs4.fundamentals.stack import Stack
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from algs4.errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details

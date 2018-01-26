@@ -1,9 +1,9 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from graphs.digraph import Digraph
-from fundamentals.bag import Bag
-from stdlib.instream import InStream
+from algs4.graphs.digraph import Digraph
+from algs4.fundamentals.bag import Bag
+from algs4.stdlib.instream import InStream
 import sys
 class DirectedDFS:
 	"""

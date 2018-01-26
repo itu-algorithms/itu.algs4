@@ -2,8 +2,8 @@
 # see README.md for details
 # This is python3 
 
-from fundamentals.stack import Stack
-from graphs.graph import Graph
+from algs4.fundamentals.stack import Stack
+from algs4.graphs.graph import Graph
 
 class Bipartite:
     """
@@ -141,8 +141,8 @@ class Bipartite:
 
 
 if __name__ == "__main__":
-    from stdlib.instream import InStream
-    from stdlib import stdio
+    from algs4.stdlib.instream import InStream
+    from algs4.stdlib import stdio
     import sys
     
     In = InStream(sys.argv[1])

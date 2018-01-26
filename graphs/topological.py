@@ -7,10 +7,10 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
-from graphs.digraph import Digraph
-from graphs.directed_cycle import DirectedCycle
-from graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
-from graphs.depth_first_order import DepthFirstOrder
+from algs4.graphs.digraph import Digraph
+from algs4.graphs.directed_cycle import DirectedCycle
+from algs4.graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
+from algs4.graphs.depth_first_order import DepthFirstOrder
 
 class Topological:
     """
@@ -94,9 +94,9 @@ class Topological:
 
 if __name__ == '__main__':
     import sys
-    from stdlib.instream import InStream
-    from stdlib import stdio
-    from graphs.symbol_digraph import SymbolDigraph
+    from algs4..instream import InStream
+    from algs4.stdlib import stdio
+    from algs4.graphs.symbol_digraph import SymbolDigraph
 
     filename  = sys.argv[1]
     delimiter = sys.argv[2]

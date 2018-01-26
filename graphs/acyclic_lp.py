@@ -2,10 +2,10 @@
 # See README.md for details
 # Python 3
 
-from graphs.directed_edge import DirectedEdge
-from graphs.topological import Topological
+from algs4.graphs.directed_edge import DirectedEdge
+from algs4.graphs.topological import Topological
 
-from fundamentals.stack import Stack
+from algs4.fundamentals.stack import Stack
 
 """
 This module implements a class for solving the single-source Longest
@@ -105,8 +105,8 @@ class AcyclicLp:
 
 
 import sys
-import instream
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
+import algs4.stdlib.instream
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

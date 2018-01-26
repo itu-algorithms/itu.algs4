@@ -1,9 +1,9 @@
 import sys
-from stdlib.instream import InStream
-from fundamentals.bag import Bag
-from fundamentals.stack import Stack
-from graphs.directed_edge import DirectedEdge
-from errors.errors import IllegalArgumentException
+from algs4.stdlib.instream import InStream
+from algs4.fundamentals.bag import Bag
+from algs4.fundamentals.stack import Stack
+from algs4.graphs.directed_edge import DirectedEdge
+from algs4.errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details

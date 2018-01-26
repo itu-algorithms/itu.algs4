@@ -2,8 +2,8 @@
 # see README.md for details
 # This is python3 
 
-from fundamentals.bag import Bag
-from fundamentals.stack import Stack
+from algs4.fundamentals.bag import Bag
+from algs4.fundamentals.stack import Stack
 
 class Graph:
     """
@@ -157,8 +157,8 @@ class Graph:
         return ''.join(s)
 
 if __name__ == "__main__":
-    from stdlib.instream import InStream
-    from stdlib import stdio
+    from algs4.stdlib.instream import InStream
+    from algs4.stdlib import stdio
     import sys
 
     In = InStream(sys.argv[1])

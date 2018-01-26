@@ -2,10 +2,10 @@
 # see README.md for details
 # This is python3 
 
-from searching.binary_search_st import BinarySearchST
-from stdlib.instream import InStream
-from stdlib import stdio
-from graphs.graph import Graph
+from algs4.searching.binary_search_st import BinarySearchST
+from algs4.stdlib.instream import InStream
+from algs4.stdlib import stdio
+from algs4.graphs.graph import Graph
 
 class SymbolGraph:
     """

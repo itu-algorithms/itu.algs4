@@ -4,9 +4,9 @@
 
 import math
 
-from fundamentals.uf import UF
-from fundamentals.queue import Queue
-from sorting.min_pq import MinPQ
+from algs4.fundamentals.uf import UF
+from algs4.fundamentals.queue import Queue
+from algs4.sorting.min_pq import MinPQ
 
 class LazyPrimMST:
     """
@@ -138,9 +138,9 @@ class LazyPrimMST:
 
 if __name__ == "__main__":
     import sys
-    from stdlib.instream import InStream
-    from stdlib import stdio
-    from graphs.edge_weighted_graph import EdgeWeightedGraph
+    from algs4.stdlib.instream import InStream
+    from algs4.stdlib import stdio
+    from algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
     
     In = InStream(sys.argv[1])
     G = EdgeWeightedGraph.from_stream(In)

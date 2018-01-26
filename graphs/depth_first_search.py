@@ -63,9 +63,9 @@ class DepthFirstSearch:
 
     
 if __name__ == "__main__":
-    from graphs.graph import Graph
-    from stdlib.instream import InStream
-    from stdlib import stdio
+    from algs4.graphs.graph import Graph
+    from algs4.stdlib.instream import InStream
+    from algs4.stdlib import stdio
     import sys
 
     In = InStream(sys.argv[1])

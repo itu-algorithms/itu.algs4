@@ -11,7 +11,7 @@ For more
 information, see chapter 4.2 of the book.
 """
 
-from fundamentals.stack import Stack
+from algs4.fundamentals.stack import Stack
 
 class EdgeWeightedDirectedCycle:
     """
@@ -86,9 +86,9 @@ class EdgeWeightedDirectedCycle:
         return self._cycle
 
 import sys
-import instream
+import algs4.stdlib.instream
 
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

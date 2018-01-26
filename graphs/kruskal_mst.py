@@ -1,10 +1,10 @@
 import sys
-from stdlib import stdio
-from fundamentals.queue import Queue
-from sorting.min_pq import MinPQ
-from fundamentals.uf import WeightedQuickUnionUF
-from graphs.edge import Edge
-from graphs.edge_weighted_graph import EdgeWeightedGraph
+from algs4.stdlib import stdio
+from algs4.fundamentals.queue import Queue
+from algs4.sorting.min_pq import MinPQ
+from algs4.fundamentals.uf import WeightedQuickUnionUF
+from algs4.graphs.edge import Edge
+from algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
 
 # Created for BADS 2018
 # See README.md for details

@@ -10,9 +10,9 @@ information, see chapter 4.2 of the book.
 
 from algs4.stdlib.instream import InStream
 
-from fundamentals.bag import Bag
-from fundamentals.stack import Stack
-from graphs.graph import Graph
+from algs4.fundamentals.bag import Bag
+from algs4.fundamentals.stack import Stack
+from algs4.graphs.graph import Graph
 
 class Digraph:
     """

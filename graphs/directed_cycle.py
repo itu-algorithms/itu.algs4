@@ -11,7 +11,7 @@ For more
 information, see chapter 4.2 of the book.
 """
 
-from fundamentals.stack import Stack
+from algs4.fundamentals.stack import Stack
 
 class DirectedCycle:
     """
@@ -85,9 +85,9 @@ class DirectedCycle:
         return self._cycle
 
 import sys
-from stdlib.instream import InStream
+from algs4.stdlib.instream import InStream
 
-from graphs.digraph import Digraph
+from algs4.graphs.digraph import Digraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

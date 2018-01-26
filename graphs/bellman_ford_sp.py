@@ -2,14 +2,14 @@
 # See README.md for details
 # Python 3
 import sys
-from graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from graphs.directed_edge import DirectedEdge
-from graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
-from fundamentals.queue import Queue
-from fundamentals.stack import Stack
-from errors.errors import IllegalArgumentException, UnsupportedOperationException
-from stdlib import stdio
-from stdlib.instream import InStream
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from algs4.graphs.directed_edge import DirectedEdge
+from algs4.graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
+from algs4.fundamentals.queue import Queue
+from algs4.fundamentals.stack import Stack
+from algs4.errors.errors import IllegalArgumentException, UnsupportedOperationException
+from algs4.stdlib import stdio
+from algs4.stdlib.instream import InStream
 
 try:
     q = Queue()
