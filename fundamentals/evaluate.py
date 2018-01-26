@@ -35,4 +35,10 @@ def evaluate():
     stdio.writeln(vals.pop())
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        try:
+            sys.stdin = open(sys.argv[1])
+        except IOError:
+            print("File not found, using standard input instead")
+            
     evaluate()

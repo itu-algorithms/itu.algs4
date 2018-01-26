@@ -97,8 +97,13 @@ class Bag:
 # start of the script itself
 if __name__ == '__main__':
     import sys
-    sys.path.append("..")
     from algs4.stdlib import stdio
+    
+    if len(sys.argv) > 1:
+        try:
+            sys.stdin = open(sys.argv[1])
+        except IOError:
+            print("File not found, using standard input instead")    
 
     bag = Bag()
     while not stdio.isEmpty():

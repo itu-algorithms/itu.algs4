@@ -172,8 +172,13 @@ class ResizingArrayStack:
 
 if __name__ == '__main__':
     import sys
-    sys.path.append("..")
     from algs4.stdlib import stdio
+    
+    if len(sys.argv) > 1:
+        try:
+            sys.stdin = open(sys.argv[1])
+        except IOError:
+            print("File not found, using standard input instead")    
 
     stack = Stack()
     while not stdio.isEmpty():
