@@ -47,6 +47,7 @@ class AcyclicLp:
         # relax vertices in topological order
         topological = Topological(graph)
         if not topological.has_order():
+            print(graph)
             raise ValueError('Digraph is not acyclic.')
         
         for v in topological.order():

@@ -7,8 +7,9 @@ import stdio
 import math
 from graphs.edge_weighted_digraph import EdgeWeightedDigraph
 from graphs.directed_edge import DirectedEdge
+from graphs.bellman_ford_sp import BellmanFordSP
 
-def arbitrage(file=None):
+if __name__ == '__main__':
     """
     The Arbitrage function provides a client that finds an arbitrage opportunity 
     in a currency exchange table by constructing a complete-digraph representation 
@@ -20,9 +21,11 @@ def arbitrage(file=None):
 
     For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
-    
-    if file:
-        sys.stdin = open(file)
+    if len(sys.argv) > 1:
+        try: 
+            sys.stdin = open(sys.argv[1])
+        except IOError:
+            print("File not found, using standard input instead")
     
     # V currencies
     V = stdio.readInt()

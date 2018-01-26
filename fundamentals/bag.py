@@ -95,7 +95,7 @@ class Bag:
 if __name__ == '__main__':
     import sys
     sys.path.append("..")
-    from stdlib import stdio
+    from algs4.stdlib import stdio
 
     bag = Bag()
     while not stdio.isEmpty():

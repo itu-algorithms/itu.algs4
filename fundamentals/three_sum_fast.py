@@ -1,4 +1,4 @@
-from . import binary_search
+import algs4.fundamentals.binary_search
 
 class ThreeSumFast:
     @staticmethod

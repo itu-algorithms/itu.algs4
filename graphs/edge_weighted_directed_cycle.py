@@ -101,7 +101,7 @@ class EdgeWeightedDirectedCycle:
             # verify cycle
             first = None
             last = None
-            for e in self._cycle():
+            for e in self.cycle():
                 if first is None: 
                     first = e
                 if last is not None:

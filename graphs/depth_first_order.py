@@ -62,7 +62,7 @@ class DepthFirstOrder:
         
         :param v: None, or the vertex to return the preorder number of
         :return: if v is None, the vertices in preorder, otherwise the preorder
-        number of v
+                number of v
         """
         if v is None:
             return self._preorder

@@ -403,7 +403,7 @@ class QuickFindUF:
         return self._count
 
 import sys
-import stdio
+import algs4.stdio
 
 # Reads in a an integer n and a sequence of pairs of integers
 # (between 0 and n-1) from standard input or a file

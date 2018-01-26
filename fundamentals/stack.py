@@ -164,7 +164,7 @@ class ResizingArrayStack:
 if __name__ == '__main__':
     import sys
     sys.path.append("..")
-    from stdlib import stdio
+    from algs4.stdlib import stdio
 
     stack = Stack()
     while not stdio.isEmpty():

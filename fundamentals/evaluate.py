@@ -1,5 +1,5 @@
-from .stack import Stack
-from ..stdlib import stdio
+from algs4.fundamentals.stack import Stack
+from algs4.stdlib import stdio
 
 import math
 

@@ -8,7 +8,7 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
-import instream
+from stdlib import instream
 
 from fundamentals.bag import Bag
 from fundamentals.stack import Stack
