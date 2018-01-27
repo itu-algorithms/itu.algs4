@@ -120,16 +120,14 @@ def main():
     When reading a '-' it removes the least recently added item and prints it.
     Prints the amount of items left on the queue.
     """
-    if len(sys.argv) > 1:
-        queue = Queue()
-        sys.stdin = open(sys.argv[1])
-        while not stdio.isEmpty():
-            input_item = stdio.readString()
-            if input_item != '-':
-                queue.enqueue(input_item)
-            elif not queue.is_empty():
-                print(queue.dequeue())
-        print('({} left on queue)'.format(queue.size()))
+    queue = Queue()
+    while not stdio.isEmpty():
+        input_item = stdio.readString()
+        if input_item != '-':
+            queue.enqueue(input_item)
+        elif not queue.is_empty():
+            print(queue.dequeue())
+    print('({} left on queue)'.format(queue.size()))
 
 
 if __name__ == '__main__':

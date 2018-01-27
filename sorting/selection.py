@@ -46,13 +46,11 @@ def _show(a):
 
 def main():
     """
-    Reads strings from an input file, sorts them, and prints the result.
+    Reads strings from stdin, sorts them, and prints the result to stdout.
     """
-    if len(sys.argv) > 1:
-        sys.stdin = open(sys.argv[1])
-        a = stdio.readAllStrings()
-        sort(a)
-        _show(a)
+    a = stdio.readAllStrings()
+    sort(a)
+    _show(a)
 
 
 if __name__ == '__main__':
