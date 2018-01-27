@@ -13,7 +13,7 @@ import sys
 import pygame
 import pygame.gfxdraw
 import pygame.font
-import algs4.color
+from algs4.stdlib import color
 import string
 
 if (sys.hexversion < 0x03000000):
@@ -29,26 +29,26 @@ else:
 
 # Define colors so clients need not import the color module.
 
-from color import WHITE
-from color import BLACK
-from color import RED
-from color import GREEN
-from color import BLUE
-from color import CYAN
-from color import MAGENTA
-from color import YELLOW
-from color import DARK_RED
-from color import DARK_GREEN
-from color import DARK_BLUE
-from color import GRAY
-from color import DARK_GRAY
-from color import LIGHT_GRAY
-from color import ORANGE
-from color import VIOLET
-from color import PINK
-from color import BOOK_BLUE
-from color import BOOK_LIGHT_BLUE
-from color import BOOK_RED
+from algs4.stdlib.color import BLACK
+from algs4.stdlib.color import WHITE
+from algs4.stdlib.color import RED
+from algs4.stdlib.color import GREEN
+from algs4.stdlib.color import BLUE
+from algs4.stdlib.color import CYAN
+from algs4.stdlib.color import MAGENTA
+from algs4.stdlib.color import YELLOW
+from algs4.stdlib.color import DARK_RED
+from algs4.stdlib.color import DARK_GREEN
+from algs4.stdlib.color import DARK_BLUE
+from algs4.stdlib.color import GRAY
+from algs4.stdlib.color import DARK_GRAY
+from algs4.stdlib.color import LIGHT_GRAY
+from algs4.stdlib.color import ORANGE
+from algs4.stdlib.color import VIOLET
+from algs4.stdlib.color import PINK
+from algs4.stdlib.color import BOOK_BLUE
+from algs4.stdlib.color import BOOK_LIGHT_BLUE
+from algs4.stdlib.color import BOOK_RED
 
 #-----------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ _DEFAULT_YMIN = 0.0
 _DEFAULT_YMAX = 1.0
 _DEFAULT_CANVAS_SIZE = 512
 _DEFAULT_PEN_RADIUS = .005  # Maybe change this to 0.0 in the future.
-_DEFAULT_PEN_COLOR = color.BLACK
+_DEFAULT_PEN_COLOR = algs4.stdlib.color.BLACK
 
 _DEFAULT_FONT_FAMILY = 'Helvetica'
 _DEFAULT_FONT_SIZE = 12

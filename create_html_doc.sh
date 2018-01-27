@@ -5,14 +5,14 @@ DIR=algs4
 DEST=DOC
 mkdir DOC
 
-FILES=`cd $DIR; find .`
+FILES=`cd $DIR; find . -type d -or -name \*.py`
 
 cd $DEST
 
 for f in $FILES
 do
     p=${f#./}
-    pydoc3 -w algs4.`echo ${p%.py} | tr / .`
+    pydoc3 -w algs4.`echo ${p%.py} | tr / .` 2>&1 | grep -v '^wrote'
 done
 
 cd ../..
