@@ -12,8 +12,23 @@ cd $DEST
 for f in $FILES
 do
     p=${f#./}
-#    echo $p
-    pydoc3 -w algs4.`echo ${p%.py} | tr / .` 2>&1 | grep -v '^wrote'
+    b=${p%.py}
+    if [ ! $b == ${b%datafiles} ]
+    then
+        continue
+    fi
+    if [ ! $b == ${b#test} ]
+    then
+        continue
+    fi
+    arg=algs4.`echo ${b} | tr / .`
+    res=`pydoc3 -w $arg | grep -v '^wrote'`
+    if [ ! -z "$res" ]
+    then
+        echo $arg $res
+    fi
+    
+    #    pydoc3 -w algs4.`echo ${b} | tr / .` > /dev/null
 done
 
 cd ../..
