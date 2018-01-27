@@ -30,25 +30,26 @@ from algs4.stdlib import stdio
 """
 
 # key = word, value = set of files containing that word
-st = {} 
-args = sys.argv[1:]
+if __name__ == '__main__':
+    st = {} 
+    args = sys.argv[1:]
 
-# create inverted index of all files
-print("Indexing files")
-for filename in args:
-    print("  " + filename)
-    file = open(filename, 'r')
-    for line in file.readlines():
-        for word in line.split():
-            if not word in st:
-                st[word] = set()
-            s = st.get(word)
-            s.add(file)
+    # create inverted index of all files
+    print("Indexing files")
+    for filename in args:
+        print("  " + filename)
+        file = open(filename, 'r')
+        for line in file.readlines():
+            for word in line.split():
+                if not word in st:
+                    st[word] = set()
+                s = st.get(word)
+                s.add(file)
 
-# read queries from standard input, one per line
-while not stdio.isEmpty():
-    query = stdio.readString()
-    if query in st:
-        s = st.get(query)
-        for file in s:
-            print(" " + file.name)
+    # read queries from standard input, one per line
+    while not stdio.isEmpty():
+        query = stdio.readString()
+        if query in st:
+            s = st.get(query)
+            for file in s:
+                print(" " + file.name)

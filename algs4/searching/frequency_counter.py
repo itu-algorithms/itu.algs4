@@ -32,32 +32,34 @@ from algs4.stdlib import stdio
   It also prints out the number of words whose length exceeds
   the threshold and the number of distinct such words.
 """
-args = sys.argv[1:]
-distinct = 0
-words = 0
-minlen = int(args[0])
-st = {}
-    
-#compute frequency counts
-while not stdio.isEmpty():
-    key = stdio.readString()
-    if len(key) < minlen: 
-        continue
-    words+=1
-    if key in st:                   
-       st[key] = st.get(key) + 1    
-    else:
-        st[key] = 1                 
-        distinct+=1
 
-# find a key with the highest frequency count
-max = ""
-st[max] = 0                         
-for word in st.keys():
-    if st.get(word) > st.get(max):
-        max = word
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    distinct = 0
+    words = 0
+    minlen = int(args[0])
+    st = {}
+
+    #compute frequency counts
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        if len(key) < minlen: 
+            continue
+        words+=1
+        if key in st:                   
+           st[key] = st.get(key) + 1    
+        else:
+            st[key] = 1                 
+            distinct+=1
+
+    # find a key with the highest frequency count
+    max = ""
+    st[max] = 0                         
+    for word in st.keys():
+        if st.get(word) > st.get(max):
+            max = word
 
 
-print(max + " " + str(st.get(max)))
-print("distinct = " + str(distinct))
-print("words    = " + str(words))
+    print(max + " " + str(st.get(max)))
+    print("distinct = " + str(distinct))
+    print("words    = " + str(words))
