@@ -13,7 +13,7 @@ import sys
 import pygame
 import pygame.gfxdraw
 import pygame.font
-import color
+import algs4.color
 import string
 
 if (sys.hexversion < 0x03000000):

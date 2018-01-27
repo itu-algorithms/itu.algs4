@@ -9,8 +9,8 @@ Translation of the Java code in "Algorithms 4th edition" by Sedgwick and Wayne t
 In order for the package to work, you must have `python3` and `setup-tools`/`pip` already installed - see [python homepage](https://python.org) for instructions. Also,  the `numpy` package is needed - see [numpy homepage](http://numpy.org) for instructions.
 
 1. Download and unzip the repository.
-2. Open a command prompt or terminal and navigate to the downloaded folder.
-3. Use the command `pip install .` to install the package (this will also work for updating the package, when a newer version is available).
+2. Open a command prompt or terminal and navigate to the downloaded folder. There should be the file `setup.py`.
+3. Use the command `pip3 install .` to install the package (this will also work for updating the package, when a newer version is available).  If your python installation is system wide, use `sudo pip3 install .`
 
 *Note:* If you're using `virtualenv` or `anaconda` make sure to activate/select the desired environment before installing.
 
