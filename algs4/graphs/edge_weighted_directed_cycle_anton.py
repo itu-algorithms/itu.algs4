@@ -86,7 +86,7 @@ class EdgeWeightedDirectedCycle:
         return self._cycle
 
 import sys
-import algs4.stdlib.instream
+from algs4.stdlib import instream
 
 from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 

@@ -33,10 +33,10 @@
  *
 """
 import sys
-from graphs.digraph import Digraph
-from graphs.directed_dfs import DirectedDFS
-from errors.errors import IllegalArgumentException
-from stdlib.instream import InStream
+from algs4.graphs.digraph import Digraph
+from algs4.graphs.directed_dfs import DirectedDFS
+from algs4.errors.errors import IllegalArgumentException
+from algs4.stdlib.instream import InStream
 
 class TransitiveClosure:
     """

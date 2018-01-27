@@ -94,7 +94,7 @@ class Topological:
 
 if __name__ == '__main__':
     import sys
-    from algs4..instream import InStream
+    from algs4.stdio.instream import InStream
     from algs4.stdlib import stdio
     from algs4.graphs.symbol_digraph import SymbolDigraph
 

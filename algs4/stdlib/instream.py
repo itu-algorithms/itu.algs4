@@ -46,7 +46,7 @@ class InStream:
         self._readingWebPage = False
 
         if fileOrUrl is None:
-            import stdio # To change the mode of sys.stdin
+            from algs4.stdlib import stdio # To change the mode of sys.stdin
             self._stream = sys.stdin
             return
 
@@ -306,7 +306,7 @@ def _main():
     argument should be the file or URL to read.
     """
 
-    import stdio
+    from algs4.stdlib import stdio
 
     testId = sys.argv[1]
     if len(sys.argv) > 2:

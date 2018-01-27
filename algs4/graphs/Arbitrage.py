@@ -3,8 +3,8 @@
 # Python 3
 
 import sys
-import stdio
 import math
+from algs4.stdlib import stdio
 from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 from algs4.graphs.directed_edge import DirectedEdge
 from algs4.graphs.bellman_ford_sp import BellmanFordSP

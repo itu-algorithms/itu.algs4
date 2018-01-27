@@ -105,7 +105,7 @@ class AcyclicLp:
 
 
 import sys
-import algs4.stdlib.instream
+from algs4.stdlib import instream
 from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
