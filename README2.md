@@ -6,7 +6,7 @@ Translation of the Java code in "Algorithms 4th edition" by Sedgwick and Wayne t
 
 ## Installation instructions
 
-In order for the package to work, you must have `python3` and `setup-tools`/`pip` already installed - see [python homepage](https://python.org) for instructions.
+In order for the package to work, you must have `python3` and `setup-tools`/`pip` already installed - see [python homepage](https://python.org) for instructions. Also,  the `numpy` package is needed - see [numpy homepage](http://numpy.org) for instructions.
 
 1. Download and unzip the repository.
 2. Open a command prompt or terminal and navigate to the downloaded folder.
