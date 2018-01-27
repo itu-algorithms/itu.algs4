@@ -147,17 +147,18 @@ class MinPQ:
 
 
 def main():
-    if len(sys.argv) > 1:
-        pq = MinPQ()
-        sys.stdin = open(sys.argv[1])
-        while not stdio.isEmpty():
-            item = stdio.readString()
-            if item != '-':
-                pq.insert(item)
-            elif not pq.is_empty():
-                print(pq.del_min())
-        print("({} left on pq)".format(pq.size()))
-        sys.stdin.close()
+    """
+    Reads strings from stdin and adds them to a minimum priority queue.
+    When reading a '-' it removes the minimum element and prints it to stdout.
+    """
+    pq = MinPQ()
+    while not stdio.isEmpty():
+        item = stdio.readString()
+        if item != '-':
+            pq.insert(item)
+        elif not pq.is_empty():
+            print(pq.del_min())
+    print("({} left on pq)".format(pq.size()))
 
 
 if __name__ == '__main__':
