@@ -116,7 +116,7 @@ class Queue:
 
 def main():
     """
-    Reads strings from an input file and adds them to a queue.
+    Reads strings from an stdin and adds them to a queue.
     When reading a '-' it removes the least recently added item and prints it.
     Prints the amount of items left on the queue.
     """
