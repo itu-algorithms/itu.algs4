@@ -6,7 +6,7 @@ import sys, os
 from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 from algs4.graphs.directed_edge import DirectedEdge
 from algs4.fundamentals.stack import Stack
-import stdrandom
+import algs4.stdlib.stdrandom
 
 # Execution:    python edge_weighted_directed_cycle V E F
 # Finds a directed cycle in an edge-weighted digraph.
