@@ -80,7 +80,7 @@ class DijkstraAllPairsSP:
             raise ValueError('vertex {} is not between 0 and {}'.format(v, (V-1)))
 
 import sys
-import algs4.stdlib.instream
+from algs4.stdlib import instream
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

@@ -9,8 +9,9 @@ The picture module defines the Picture class.
 import pygame
 import sys
 import color
-import stdarray
 import os
+from algs4.stdlib import stdarray
+
 
 #-----------------------------------------------------------------------
 

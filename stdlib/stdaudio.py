@@ -157,7 +157,7 @@ def _createTextAudioFile():
         3, .900,
         ]
 
-    import outstream
+    from algs4.stdlib import outstream
     outStream = outstream.OutStream('looney.txt')
     for note in notes:
         outStream.writeln(note)
@@ -168,8 +168,7 @@ def _main():
     """
     import os
     import math
-    import stdio
-    import instream
+    from algs4.stdlib import stdio, instream
 
     _createTextAudioFile()
 
