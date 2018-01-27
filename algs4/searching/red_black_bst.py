@@ -1,7 +1,7 @@
 import sys
-from stdlib import stdio
-from fundamentals.queue import Queue
-from errors.errors import NoSuchElementException, IllegalArgumentException
+from algs4.stdlib import stdio
+from algs4.fundamentals.queue import Queue
+from algs4.errors.errors import NoSuchElementException, IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details

@@ -45,7 +45,7 @@ class LinearProbingHashST:
 		return self.n
 
 	def __len__(self):
-        return self.size()
+                return self.size()
 
 	def is_empty(self):
 		"""

@@ -12,6 +12,7 @@ cd $DEST
 for f in $FILES
 do
     p=${f#./}
+#    echo $p
     pydoc3 -w algs4.`echo ${p%.py} | tr / .` 2>&1 | grep -v '^wrote'
 done
 

@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 
-import graphs.directed_edge
+import algs4.graphs.directed_edge
 
 """
 The cpm module is an example of using graphs to solve the parallel precedence-constrained 
