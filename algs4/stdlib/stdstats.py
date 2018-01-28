@@ -1,3 +1,5 @@
+# code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
+
 """
 stdstats.py
 
