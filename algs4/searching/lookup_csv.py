@@ -4,6 +4,16 @@
 import sys
 from algs4.stdlib import stdio
 
+# data files:
+# https://algs4.cs.princeton.edu/35applications/amino.csv
+#  Data files:   https://algs4.cs.princeton.edu/35applications/DJIA.csv
+#                https://algs4.cs.princeton.edu/35applications/UPC.csv
+#                https://algs4.cs.princeton.edu/35applications/amino.csv
+#                https://algs4.cs.princeton.edu/35applications/elements.csv
+#                https://algs4.cs.princeton.edu/35applications/ip.csv
+#                https://algs4.cs.princeton.edu/35applications/morse.csv
+ 
+
 #  Execution:    python lookup_csv.py file.csv keyField valField
 #  
 #  Reads in a set of key-value pairs from a two-column CSV file
@@ -31,27 +41,28 @@ keys found on standard input. Both keys and values are strings.
 The fields to serve as the key and value are taken as command-line arguments.
 """
 
-args = sys.argv[1:]
-keyField = int(args[1])
-valField = int(args[2])
+if __name__ == '__main__':
+  args = sys.argv[1:]
+  keyField = int(args[1])
+  valField = int(args[2])
 
-# symbol table
-st = {}
+  # symbol table
+  st = {}
 
-# read in the data from csv file
-file = open(args[0], 'r')
-line = file.readline()
-while line:
-    tokens = line.split(",")
-    key = tokens[keyField]
-    val = tokens[valField]
-    st[key] = val        
-    line = file.readline()
+  # read in the data from csv file
+  file = open(args[0], 'r')
+  line = file.readline()
+  while line:
+      tokens = line.split(",")
+      key = tokens[keyField]
+      val = tokens[valField]
+      st[key] = val        
+      line = file.readline()
 
-while not stdio.isEmpty():
-    s = stdio.readString()
-    if s in st:   
-        print(st.get(s))
-    else: 
-        print("Not found") 
-file.close()
+  while not stdio.isEmpty():
+      s = stdio.readString()
+      if s in st:   
+          print(st.get(s))
+      else: 
+          print("Not found") 
+  file.close()

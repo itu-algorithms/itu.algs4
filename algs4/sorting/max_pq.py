@@ -147,22 +147,18 @@ class MaxPQ:
 
 def main():
     """
-    Reads strings from an input file and adds them to a priority queue.
-    When reading a '-' it removes a maximum item on the priority queue and prints it.
+    Reads strings from stdin and adds them to a priority queue.
+    When reading a '-' it removes a maximum item on the priority queue and prints it to stdout.
     Prints the amount of items left on the priority queue
-    :return:
     """
-    if len(sys.argv) > 1:
-        pq = MaxPQ()
-        sys.stdin = open(sys.argv[1])
-        while not stdio.isEmpty():
-            item = stdio.readString()
-            if item != '-':
-                pq.insert(item)
-            elif not pq.is_empty():
-                print(pq.del_max())
-        print("({} left on pq)".format(pq.size()))
-        sys.stdin.close()
+    pq = MaxPQ()
+    while not stdio.isEmpty():
+        item = stdio.readString()
+        if item != '-':
+            pq.insert(item)
+        elif not pq.is_empty():
+            print(pq.del_max())
+    print("({} left on pq)".format(pq.size()))
 
 
 if __name__ == '__main__':

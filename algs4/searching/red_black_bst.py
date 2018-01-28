@@ -1,7 +1,7 @@
 import sys
-from stdlib import stdio
-from fundamentals.queue import Queue
-from errors.errors import NoSuchElementException, IllegalArgumentException
+from algs4.stdlib import stdio
+from algs4.fundamentals.queue import Queue
+from algs4.errors.errors import NoSuchElementException, IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details
@@ -592,19 +592,18 @@ class RedBlackBST:
 
 def main():
     """
-    Reads strings from input file, adds them to a red-black BST with values 0..n, and prints all key value pairs.
+    Reads strings from stdin, adds them to a red-black BST with values 0..n,
+    prints all key value pairs to stdout.
     """
-    if len(sys.argv) > 1:
-        sys.stdin = open(sys.argv[1])
-        st = RedBlackBST()
-        i = 0
-        while not stdio.isEmpty():
-            key = stdio.readString()
-            st.put(key, i)
-            i += 1
-        for s in st.keys():
-            print("{} {}".format(s, st.get(s)))
-        print()
+    st = RedBlackBST()
+    i = 0
+    while not stdio.isEmpty():
+        key = stdio.readString()
+        st.put(key, i)
+        i += 1
+    for s in st.keys():
+        print("{} {}".format(s, st.get(s)))
+    print()
 
 
 if __name__ == '__main__':

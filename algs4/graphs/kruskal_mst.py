@@ -1,5 +1,6 @@
 import sys
 from algs4.stdlib import stdio
+from algs4.stdlib.instream import InStream
 from algs4.fundamentals.queue import Queue
 from algs4.sorting.min_pq import MinPQ
 from algs4.fundamentals.uf import WeightedQuickUnionUF
@@ -70,18 +71,10 @@ def main():
     """
     Creates an edge-weighted graph from an input file, runs Kruskal's algorithm on it,
     and prints the edges of the MST and the sum of the edge weights.
-    :return:
     """
     if len(sys.argv) > 1:
-        sys.stdin = open(sys.argv[1])
-        G = EdgeWeightedGraph(stdio.readInt())
-        E = stdio.readInt()
-        for i in range(E):
-            v = stdio.readInt()
-            w = stdio.readInt()
-            weight = stdio.readFloat()
-            e = Edge(v, w, weight)
-            G.add_edge(e)
+        stream = InStream(sys.argv[1])
+        G = EdgeWeightedGraph.from_stream(stream)
         mst = KruskalMST(G)
         for e in mst.edges():
             print(e)

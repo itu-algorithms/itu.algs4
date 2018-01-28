@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="algs4_python",
-    version="0.2",
+    version="0.2.0.18",
     packages= [
         'algs4.fundamentals',
         'algs4.sorting',
@@ -26,7 +26,7 @@ setup(
     description="A translation of the algorithms covered in the book Algorithms 4th edition, for use in an introductory algorithms course at The IT University of Copenhagen.",
     
     install_requires = [
-        'numpy',
+       # 'numpy',
         'pygame',
     ],
     

@@ -74,14 +74,12 @@ def _show(pq):
 
 def main():
     """
-    Reads in a sequence of string from input file,
+    Reads in a sequence of strings from stdin
     heapsorts them, and prints the result in ascending order.
     """
-    if len(sys.argv) > 1:
-        sys.stdin = open(sys.argv[1])
-        a = stdio.readAllStrings()
-        sort(a)
-        _show(a)
+    a = stdio.readAllStrings()
+    sort(a)
+    _show(a)
 
 
 if __name__ == '__main__':

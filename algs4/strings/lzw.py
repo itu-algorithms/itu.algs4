@@ -73,8 +73,10 @@ def expand():
 	
 def main():
 	"""
-	Sample client that calss compress() if the command-line
+	Sample client that calls compress() if the command-line
 	argument is "-", and expand() if it is "+".
+
+        Example: echo huhu | python3 algs4/strings/lzw.py - | python3 algs4/strings/lzw.py +
 	"""
 	if(sys.argv[1] == '-'):
 		compress()
