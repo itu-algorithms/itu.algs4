@@ -6,15 +6,15 @@ Translation of the Java code in "Algorithms 4th edition" by Sedgwick and Wayne t
 
 ## Installation instructions
 
-In order for the package to work, you must have `python3` and `setup-tools`/`pip` already installed - see [python homepage](https://python.org) for instructions. Also,  the `numpy` package is needed - see [numpy homepage](http://numpy.org) for instructions.
+In order for the package to work, you must have `python3` and `setup-tools`/`pip` already installed - see [python homepage](https://python.org) for instructions. Also, some optional visual and auditory features requre the `numpy` and `pygame` packages to work - see [numpy homepage](http://numpy.org) and [pygame homepage](https://pygame.org) for instructions.
 
 1. Download and unzip the repository.
 2. Open a command prompt or terminal and navigate to the downloaded folder. There should be the file `setup.py`.
 3. Use the command `pip3 install .` to install the package (this will also work for updating the package, when a newer version is available).  If your python installation is system wide, use `sudo pip3 install .`
 
+Optionally you can install `numpy` and `pygame` using `pip3 install numpy pygame` or `sudo pip3 install numpy pygame`. Please refer to the home pages of the respective packages if you encounter any problems during installation. 
+
 *Note:* If you're using `virtualenv` or `anaconda` make sure to activate/select the desired environment before installing.
-
-
 
 ## Usage
 

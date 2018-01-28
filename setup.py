@@ -27,7 +27,11 @@ setup(
     
     install_requires = [
        # 'numpy',
-        'pygame',
+        #'pygame',
     ],
     
+    extras_require={
+        'audio' : ['numpy'],
+        'visual': ['pygame']
+    }
 )
