@@ -78,7 +78,7 @@ class UF:
         :param p: the integer representing one site
         :return: the component identifier for the component containing site p
         """
-        self._validate(p);
+        self._validate(p)
         while p != self._parent[p]:
             self._parent[p] = self._parent[self._parent[p]] # path compression by halving
             p = self._parent[p]
@@ -150,7 +150,7 @@ class QuickUnionUF:
         :param p: the integer representing one site
         :return: the component identifier for the component containing site p
         """
-        self._validate(p);
+        self._validate(p)
         while p != self._parent[p]:
             self._parent[p] = self._parent[self._parent[p]] # path compression by halving
             p = self._parent[p]

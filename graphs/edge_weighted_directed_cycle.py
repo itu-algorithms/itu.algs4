@@ -53,8 +53,8 @@ class EdgeWeightedDirectedCycle:
 
     # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, G, v):
-        self._onStack[v] = True;
-        self._marked[v] = True;
+        self._onStack[v] = True
+        self._marked[v] = True
         for e in G.adj(v):
             w = e.to_vertex()
 

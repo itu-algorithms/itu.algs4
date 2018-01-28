@@ -86,7 +86,7 @@ class DepthFirstOrder:
         self._marked[v] = True
         self._pre[v] = self._pre_counter
         self._pre_counter += 1
-        self._preorder.enqueue(v);
+        self._preorder.enqueue(v)
         for w in digraph.adj(v):
             if not self._marked[w]:
                 self._dfs(digraph, w)
@@ -99,7 +99,7 @@ class DepthFirstOrder:
         self._marked[v] = True
         self._pre[v] = self._pre_counter
         self._pre_counter += 1
-        self._preorder.enqueue(v);
+        self._preorder.enqueue(v)
         for edge in graph.adj(v):
             w = edge.to_vertex()
             if not self._marked[w]:
@@ -118,17 +118,17 @@ class DepthFirstOrder:
     def _check(self):
         # check that post(v) is consistent with post()
         r = 0
-        for v in post():
-            if post(v) != r:
+        for v in self.post():
+            if self.post(v) != r:
                 print("post(v) and post() inconsistent")
                 return False
             r += 1
 
         # check that pre(v) is consistent with pre()
         r = 0
-        for v in pre():
-            if pre(v) != r:
-                print("pre(v) and pre() inconsistent");
+        for v in self.pre():
+            if self.pre(v) != r:
+                print("pre(v) and pre() inconsistent")
                 return False
             r += 1
 
