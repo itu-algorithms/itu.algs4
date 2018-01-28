@@ -18,8 +18,8 @@ class Bag:
     class Node:
         # helper linked list class
         def __init__(self):
-            self._next = None
-            self._item = None
+            self.next = None
+            self.item = None
 
     def __init__(self):
         """
@@ -56,24 +56,9 @@ class Bag:
         """
         oldfirst = self._first
         self._first = self.Node()
-        self._first._item = item
-        self._first._next = oldfirst
+        self._first.item = item
+        self._first.next = oldfirst
         self._n += 1
-
-        # DECISION: we do the other thing
-    # class ListIterator:        
-    #     def __init__(self, first):
-    #         self._current = first
-    
-    #     def __next__(self):
-    #         if self._current is None: 
-    #             raise StopIteration
-    #         item = self._current.item
-    #         self._current = self._current.next
-    #         return item
-
-    # def xx__iter__(self):
-    #     return self.ListIterator(self._first)
 
     def __iter__(self):
         """
@@ -83,8 +68,8 @@ class Bag:
         """
         current = self._first
         while not current is None:
-            yield current._item
-            current = current._next
+            yield current.item
+            current = current.next
 
     def __repr__(self):
         out = '{'

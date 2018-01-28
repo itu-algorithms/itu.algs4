@@ -44,8 +44,8 @@ class TrieST(object):
     class Node(object):
         R = 256
         def __init__(self):
-            self._val = None
-            self._next = [None] * self.R  # array of nodes of length R 
+            self.val = None
+            self.next = [None] * self.R  # array of nodes of length R 
 
     def __init__(self):
         self._root = self.Node()    # root of trie
@@ -60,7 +60,7 @@ class TrieST(object):
     
     def get(self, key):
         x = self._get(self._root, key, 0)
-        return None if x is None else x._val
+        return None if x is None else x.val
 
     # Does this symbol table contain the given key?
     # @param key: the key
@@ -77,7 +77,7 @@ class TrieST(object):
         if d == len(key):
             return x
         c = key[d]
-        return self._get(x._next[ord(c)], key, d+1) 
+        return self._get(x.next[ord(c)], key, d+1) 
 
     # Inserts the key-value pair into the symbol table, overwriting the old value
     # with the new value if the key is already in the symbol table.
@@ -96,12 +96,12 @@ class TrieST(object):
         if x is None:
             x = self.Node()
         if d == len(key):
-            if x._val is None:
+            if x.val is None:
                 self._n +=1
-            x._val = val
+            x.val = val
             return x
         c = key[d]
-        x._next[ord(c)] = self._put(x._next[ord(c)], key, val, d+1)
+        x.next[ord(c)] = self._put(x.next[ord(c)], key, val, d+1)
         return x
     
     # @return the number of key-value pairs in this symbol table
@@ -139,10 +139,10 @@ class TrieST(object):
     def _collect(self, x, prefix, results):
         if x is None:
             return
-        if x._val is not None:
+        if x.val is not None:
             results.enqueue(prefix)
         for c in range(0, self.R):
-            self._collect(x._next[c], prefix + chr(c), results)
+            self._collect(x.next[c], prefix + chr(c), results)
 
     # Returns all of the keys in the symbol table that match {@code pattern},
     # where . symbol is treated as a wildcard character.
@@ -159,16 +159,16 @@ class TrieST(object):
         if x is None:
             return None
         d = len(prefix)
-        if d == len(pattern) and x._val is not None:
+        if d == len(pattern) and x.val is not None:
             results.enqueue(prefix) 
         if d >= len(pattern):
             return
         c = pattern[d]
         if c == '.':
             for c in range(0, self.R): 
-                self._collect_match(x._next[c], prefix + chr(c), pattern, results) 
+                self._collect_match(x.next[c], prefix + chr(c), pattern, results) 
         else:
-            self._collect_match(x._next[ord(c)], prefix + c, pattern, results)
+            self._collect_match(x.next[ord(c)], prefix + c, pattern, results)
 
     
     # Returns the string in the symbol table that is the longest prefix of {@code query},
@@ -193,12 +193,12 @@ class TrieST(object):
     def _longest_prefix_of(self, x, query, d, length):
         if x is None:
             return length
-        if x._val is not None:
+        if x.val is not None:
             length = d
         if d == len(query):
             return length
         c = query[d]
-        return self._longest_prefix_of(x._next[ord(c)], query, d+1, length) 
+        return self._longest_prefix_of(x.next[ord(c)], query, d+1, length) 
   
     # Removes the key from the set if the key is present.
     # @param key the key
@@ -212,18 +212,18 @@ class TrieST(object):
         if x is None:
             return None
         if d == len(key):
-            if x._val is not None:
+            if x.val is not None:
                 self._n += -1
-            x._val = None
+            x.val = None
         else:
             c = key[d]
-            x._next[ord(c)] = self._delete(x._next[ord(c)], key, d+1) 
+            x.next[ord(c)] = self._delete(x.next[ord(c)], key, d+1) 
         
         # remove subtrie rooted at x if it is completely empty
-        if x._val is not None:
+        if x.val is not None:
             return x
         for c in range(0, self.R):
-            if x._next[c] is not None:
+            if x.next[c] is not None:
                 return x
         return None
 

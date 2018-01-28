@@ -19,8 +19,8 @@ class Stack:
     class Node:
         # helper linked list class
         def __init__(self):
-            self._item = None
-            self._next = None
+            self.item = None
+            self.next = None
             
     def __init__(self):
         """     
@@ -56,8 +56,8 @@ class Stack:
         """
         oldfirst = self._first
         self._first = Stack.Node()
-        self._first._item = item
-        self._first._next = oldfirst        
+        self._first.item = item
+        self._first.next = oldfirst        
         self._n += 1
     
     def pop(self):
@@ -68,8 +68,8 @@ class Stack:
         :raises ValueError: if this stack is empty
         """
         if self.is_empty(): raise ValueError("Stack underflow")
-        item = self._first._item
-        self._first = self._first._next
+        item = self._first.item
+        self._first = self._first.next
         self._n -= 1
         return item
 
@@ -82,7 +82,7 @@ class Stack:
         :raises ValueError: if this stack is empty
         """
         if self.is_empty(): raise ValueError("Stack underflow")
-        return self._first._item    
+        return self._first.item    
 
     def __repr__(self):
         """
@@ -104,8 +104,8 @@ class Stack:
         """
         current = self._first
         while current is not None:
-            yield current._item
-            current = current._next
+            yield current.item
+            current = current.next
 
 class FixedCapacityStack:            
     def __init__(self, capacity):
