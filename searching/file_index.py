@@ -24,7 +24,7 @@ from stdlib import stdio
 
 
 """
- *  The {@code FileIndex} class provides a client for indexing a set of files,
+ *  The FileIndex class provides a client for indexing a set of files,
  *  specified as command-line arguments. It takes queries from standard input
  *  and prints each file that contains the given query.
 """

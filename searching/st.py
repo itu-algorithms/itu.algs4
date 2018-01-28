@@ -57,7 +57,7 @@ class ST:
         return self.size() == 0
 
     # Returns all keys in this symbol table.
-    # To iterate over all of the keys in the symbol table named {@code st},
+    # To iterate over all of the keys in the symbol table named st,
     # use the foreach notation: for key in st.keys() .
     def keys(self):
         return self._st.keys()
@@ -78,7 +78,7 @@ class ST:
             raise NoSuchElementException("called max() with empty symbol table")
         return max(self._st)
 
-    # Returns the smallest key in this symbol table greater than or equal to {@code key}.
+    # Returns the smallest key in this symbol table greater than or equal to key.
     def ceiling(self, key):
         if key is None:
             raise IllegalArgumentException("called ceiling() with None key")
@@ -91,7 +91,7 @@ class ST:
             raise NoSuchElementException("all keys are less than " + str(key))
         return ceiling
 
-    # Returns the largest key in this symbol table less than or equal to {@code key}.
+    # Returns the largest key in this symbol table less than or equal to key.
     def floor(self, key):
         if key is None:
             raise IllegalArgumentException("called floor() with None key")

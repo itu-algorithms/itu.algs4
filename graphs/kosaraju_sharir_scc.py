@@ -34,7 +34,7 @@ from fundamentals.queue import Queue
 class KosarajuSharirSCC:
 
     """
-     * Computes the strong components of the digraph {@code G}.
+     * Computes the strong components of the digraph G.
      * @param G the digraph
      """
     def __init__(self, G):
@@ -71,13 +71,13 @@ class KosarajuSharirSCC:
         return self._count
 
     """
-     * Are vertices {@code v} and {@code w} in the same strong component?
+     * Are vertices v and w in the same strong component?
      * @param  v one vertex
      * @param  w the other vertex
-     * @return {@code true} if vertices {@code v} and {@code w} are in the same
-     *         strong component, and {@code false} otherwise
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     * @throws IllegalArgumentException unless {@code 0 <= w < V}
+     * @return true if vertices v and w are in the same
+     *         strong component, and false otherwise
+     * @throws IllegalArgumentException unless 0 <= v < V
+     * @throws IllegalArgumentException unless 0 <= w < V
      """
     def strongly_connected(self, v, w):
         self._validate_vertex(v)
@@ -86,10 +86,10 @@ class KosarajuSharirSCC:
     
 
     """
-     * Returns the component id of the strong component containing vertex {@code v}.
+     * Returns the component id of the strong component containing vertex v.
      * @param  v the vertex
-     * @return the component id of the strong component containing vertex {@code v}
-     * @throws IllegalArgumentException unless {@code 0 <= s < V}
+     * @return the component id of the strong component containing vertex v
+     * @throws IllegalArgumentException unless 0 <= s < V
      """
     def id(self, v):
         self._validate_vertex(v)
@@ -105,7 +105,7 @@ class KosarajuSharirSCC:
         return True
     
 
-    # throw an IllegalArgumentException unless {@code 0 <= v < V}
+    # throw an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):
         V = len(self._marked)
         if v < 0 or v >= V:

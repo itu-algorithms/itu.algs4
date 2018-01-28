@@ -144,10 +144,10 @@ class TrieST(object):
         for c in range(0, self.R):
             self._collect(x.next[c], prefix + chr(c), results)
 
-    # Returns all of the keys in the symbol table that match {@code pattern},
+    # Returns all of the keys in the symbol table that match pattern,
     # where . symbol is treated as a wildcard character.
     # @param pattern the pattern
-    # @return all of the keys in the symbol table that match {@code pattern},
+    # @return all of the keys in the symbol table that match pattern,
     #     as an iterable, where . is treated as a wildcard character.
     
     def keys_that_match(self, pattern):
@@ -171,12 +171,12 @@ class TrieST(object):
             self._collect_match(x.next[ord(c)], prefix + c, pattern, results)
 
     
-    # Returns the string in the symbol table that is the longest prefix of {@code query},
-    # or {@code None}, if no such string.
+    # Returns the string in the symbol table that is the longest prefix of query,
+    # or None, if no such string.
     # @param query the query string
-    # @return the string in the symbol table that is the longest prefix of {@code query},
-    #  or {@code None} if no such string
-    # @raises TypeError if {@code query} is {@code None}
+    # @return the string in the symbol table that is the longest prefix of query,
+    #  or None if no such string
+    # @raises TypeError if query is None
     
     def longest_prefix_of(self, query):
         length = self._longest_prefix_of(self._root, query, 0, -1)
@@ -202,7 +202,7 @@ class TrieST(object):
   
     # Removes the key from the set if the key is present.
     # @param key the key
-    # @raises TypeError if {@code key} is {@code None}
+    # @raises TypeError if key is None
     
     def delete(self, key):
         self._root = self._delete(self._root, key, 0)

@@ -56,7 +56,7 @@ class DijkstraAllPairsSP:
         
         :returns: True if there is a path from the source to the target, and False otherwise
         """
-        return dist(source, target) < float('inf')
+        return self.dist(source, target) < float('inf')
     
     def dist(self, source, target):
         """
@@ -73,7 +73,7 @@ class DijkstraAllPairsSP:
         
         return self._all[source].dist_to(target)
     
-    # throw a ValueError unless {@code 0 <= v < V}
+    # throw a ValueError unless 0 <= v < V
     def _validateVertex(self, v):
         V = len(self._all)
         if v < 0 or v >= V:
