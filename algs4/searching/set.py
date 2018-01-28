@@ -44,8 +44,8 @@ class SET:
     def is_empty(self):
         return self.size() == 0
     # Returns all of the keys in this set, as an iterator.
-    # To iterate over all of the keys in a set named {@code set}, use the
-    # foreach notation: {@code for key in set}.
+    # To iterate over all of the keys in a set named set, use the
+    # foreach notation: for key in set.
     def __iter__(self):
         for k in self._set:
             yield k
@@ -62,7 +62,7 @@ class SET:
             raise NoSuchElementException("called min() with empty set")
         return min(self._set)
 
-    # Returns the smallest key in this set greater than or equal to {@code key}.
+    # Returns the smallest key in this set greater than or equal to key.
     def ceiling(self, key):
         if key is None:
             raise IllegalArgumentException("called ceiling() with None key")
@@ -74,7 +74,7 @@ class SET:
             raise NoSuchElementException("all keys are less than " + str(key))
         return ceiling
 
-    # Returns the largest key in this set less than or equal to {@code key}.
+    # Returns the largest key in this set less than or equal to key.
     def floor(self, key):
         if key is None:
             raise IllegalArgumentException("called floor() with None key")

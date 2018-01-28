@@ -17,7 +17,7 @@ except AttributeError:
  # trie (TST).
  
 """
-  The {@code TST} class represents an symbol table of key-value
+  The TST class represents an symbol table of key-value
   pairs, with string keys and generic values.
   It supports the usual put, get, contains,
   delete, size, and is-empty methods.
@@ -29,8 +29,8 @@ except AttributeError:
   when associating a value with a key that is already in the symbol table,
   the convention is to replace the old value with the new value.
   This class uses the convention that
-  values cannot be {@code None} setting the
-  value associated with a key to {@code None} is equivalent to deleting the key
+  values cannot be None setting the
+  value associated with a key to None is equivalent to deleting the key
   from the symbol table.
   This implementation uses a ternary search trie.
 """
@@ -58,9 +58,9 @@ class TST(object):
 
     # Does this symbol table contain the given key?
     # @param key the key
-    # @return {@code True} if this symbol table contains {@code key} and
-    #     {@code False} otherwise
-    # @raises ValueError if {@code key} is {@code None}
+    # @return True if this symbol table contains key and
+    #     False otherwise
+    # @raises ValueError if key is None
     def contains(self, key):
         if key is None:
             raise ValueError("argument of contains is None") # TODO maybe get a specific exception, like IllegalArgumentException in Java
@@ -69,8 +69,8 @@ class TST(object):
     # Returns the value associated with the given key.
     # @param key the key
     # @return the value associated with the given key if the key is in the symbol table
-    #     and {@code null} if the key is not in the symbol table
-    # @raises ValueError if {@code key} is {@code None}
+    #     and null if the key is not in the symbol table
+    # @raises ValueError if key is None
     def get(self, key):
         if key is None:
             raise ValueError("calls get() with null argument" ) # TODO IllegalArgumentException?
@@ -99,10 +99,10 @@ class TST(object):
 
     # Inserts the key-value pair into the symbol table, overwriting the old value
     # with the new value if the key is already in the symbol table.
-    # If the value is {@code None}, this effectively deletes the key from the symbol table.
+    # If the value is None, this effectively deletes the key from the symbol table.
     # @param key the key
     # @param val the value
-    # @raises ValueError if {@code key} is {@code None}
+    # @raises ValueError if key is None
     
     def put(self, key, val):
         if key is None:
@@ -127,12 +127,12 @@ class TST(object):
 
         return x
 
-    # Returns the string in the symbol table that is the longest prefix of {@code query},
-    # or {@code None}, if no such string.
+    # Returns the string in the symbol table that is the longest prefix of query,
+    # or None, if no such string.
     # @param query the query string
-    # @return the string in the symbol table that is the longest prefix of {@code query},
-    #     or {@code None} if no such string
-    # @raises ValueError if {@code query} is {@code None}
+    # @return the string in the symbol table that is the longest prefix of query,
+    #     or None if no such string
+    # @raises ValueError if query is None
     
     def longest_prefix_of(self, query):
         if query is None:
@@ -155,21 +155,21 @@ class TST(object):
                 x = x.mid
         return query[0:length]
 
-    # Returns all keys in the symbol table as an {@code Iterable}.
-    # To iterate over all of the keys in the symbol table named {@code st},
-    # use the foreach notation: {@code for key in st.keys()}.
-    # @return all keys in the symbol table as an {@code Iterable}
+    # Returns all keys in the symbol table as an Iterable.
+    # To iterate over all of the keys in the symbol table named st,
+    # use the foreach notation: for key in st.keys().
+    # @return all keys in the symbol table as an Iterable
     
     def keys(self):
         queue = Queue()
         self._collect(self.root, "", queue)
         return queue
         
-    # Returns all of the keys in the set that start with {@code prefix}.
+    # Returns all of the keys in the set that start with prefix.
     # @param prefix the prefix
-    # @return all of the keys in the set that start with {@code prefix},
+    # @return all of the keys in the set that start with prefix,
     #     as an iterable
-    # @raises ValueError if {@code prefix} is {@code None}
+    # @raises ValueError if prefix is None
     
     def keys_with_prefix(self, prefix):
         if prefix is None:
@@ -193,10 +193,10 @@ class TST(object):
         self._collect(x.mid, prefix + str(x.c), queue)
         self._collect(x.right, prefix, queue)
     
-    # Returns all of the keys in the symbol table that match {@code pattern},
+    # Returns all of the keys in the symbol table that match pattern,
     # where . symbol is treated as a wildcard character.
     # @param pattern the pattern
-    # @return all of the keys in the symbol table that match {@code pattern},
+    # @return all of the keys in the symbol table that match pattern,
     #     as an iterable, where . is treated as a wildcard character.
     
     def keys_that_match(self, pattern):
@@ -218,7 +218,7 @@ class TST(object):
         if c == '.' or c > x.c:
             self._collect_match(x.right, prefix, i, pattern, queue)
 
-# * Unit tests the {@code TST} data type.
+# * Unit tests the TST data type.
 def test():
     st = TST()
     st.put("abc", 0)

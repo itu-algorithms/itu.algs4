@@ -40,7 +40,7 @@ from algs4.stdlib.instream import InStream
 
 class TransitiveClosure:
     """
-     * Computes the transitive closure of the digraph {@code G}.
+     * Computes the transitive closure of the digraph G.
      * @param G the digraph
      """
     def __init__(self, G): 
@@ -48,20 +48,20 @@ class TransitiveClosure:
         for v in range(G.V()):
             self._tc[v] = DirectedDFS(G, v)
     """
-     * Is there a directed path from vertex {@code v} to vertex {@code w} in the digraph?
+     * Is there a directed path from vertex v to vertex w in the digraph?
      * @param  v the source vertex
      * @param  w the target vertex
-     * @return {@code true} if there is a directed path from {@code v} to {@code w},
-     *         {@code false} otherwise
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     * @throws IllegalArgumentException unless {@code 0 <= w < V}
+     * @return true if there is a directed path from v to w,
+     *         false otherwise
+     * @throws IllegalArgumentException unless 0 <= v < V
+     * @throws IllegalArgumentException unless 0 <= w < V
      """
     def reachable(self, v, w):
         self._validate_vertex(v)
         self._validate_vertex(w)
         return self._tc[v].is_marked(w)
 
-    # throw an IllegalArgumentException unless {@code 0 <= v < V}
+    # throw an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):
         V = len(self._tc)
         if v < 0 or v >= V:

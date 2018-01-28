@@ -29,9 +29,9 @@ class SequentialSearchST:
     class Node:
         # a helper linked list data type
         def __init__(self, key, val, next):
-            self._key = key
-            self._val = val
-            self._next = next
+            self.key = key
+            self.val = val
+            self.next = next
 
     def __init__(self):
         """Initializes an empty symbol table."""
@@ -83,9 +83,9 @@ class SequentialSearchST:
         if key is None: raise ValueError("argument to get() is None")
         x = self._first
         while x is not None:
-            if key == x._key:
-                return x._val
-            x = x._next
+            if key == x.key:
+                return x.val
+            x = x.next
         return None
     
     def put(self, key, val):
@@ -106,10 +106,10 @@ class SequentialSearchST:
 
         x = self._first
         while x is not None:
-            if key == x._key:
-                x._val = val
+            if key == x.key:
+                x.val = val
                 return
-            x = x._next
+            x = x.next
 
         self._first = self.Node(key, val, self._first)
         self._n += 1
@@ -129,11 +129,11 @@ class SequentialSearchST:
         # delete key in linked list beginning at Node x
         # warning: function call stack too large if table is large
         if x is None: return None
-        if key == x._key:
+        if key == x.key:
             self._n -= 1
-            return x._next
+            return x.next
 
-        x._next = self._delete(x._next, key)
+        x.next = self._delete(x.next, key)
         return x
 
     def keys(self):
@@ -146,8 +146,8 @@ class SequentialSearchST:
         """
         x = self._first
         while x is not None:
-            yield x._key
-            x = x._next
+            yield x.key
+            x = x.next
 
 
 if __name__ == "__main__":

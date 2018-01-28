@@ -97,7 +97,7 @@ class AcyclicLp:
             self._dist_to[w] = self._dist_to[v] + edge.weight()
             self._edge_to[w] = edge
         
-    # throw an IllegalArgumentException unless {@code 0 <= v < V}    
+    # throw an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):
         V = len(self._dist_to)
         if not (0 <= v < V):

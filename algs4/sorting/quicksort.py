@@ -57,7 +57,7 @@ def _partition(array, lo, hi):
 
         # check if pointers cross
         if i >= j:
-            break;
+            break
 
         _exch(array, i, j)
 

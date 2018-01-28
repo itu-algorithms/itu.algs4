@@ -13,22 +13,22 @@ import algs4.stdlib.stdrandom
 # Runs in O(E + V) time.
 
 """
-    The {@code EdgeWeightedDirectedCycle} class represents a data type for 
+    The EdgeWeightedDirectedCycle class represents a data type for 
     determining whether an edge-weighted digraph has a directed cycle.
-    The <em>hasCycle</em> operation determines whether the edge-weighted
-    digraph has a directed cycle and, if so, the <em>cycle</em> operation
+    The hasCycle operation determines whether the edge-weighted
+    digraph has a directed cycle and, if so, the cycle operation
     returns one.
     This implementation uses depth-first search.
-    The constructor takes time proportional to <em>V</em> + <em>E</em>
+    The constructor takes time proportional to V + E
     (in the worst case),
-    where <em>V</em> is the number of vertices and <em>E</em> is the number of edges.
-    Afterwards, the <em>hasCycle</em> operation takes constant time;
-    the <em>cycle</em> operation takes time proportional
+    where V is the number of vertices and E is the number of edges.
+    Afterwards, the hasCycle operation takes constant time;
+    the cycle operation takes time proportional
     to the length of the cycle.
 """
 class EdgeWeightedDirectedCycle:
     """
-     Determines whether the edge-weighted digraph {@code G} has a directed cycle and,
+     Determines whether the edge-weighted digraph G has a directed cycle and,
      if so, finds such a cycle.
      :param G the edge-weighted digraph
     """
@@ -47,8 +47,8 @@ class EdgeWeightedDirectedCycle:
 
     # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, G, v):
-        self._onStack[v] = True;
-        self._marked[v] = True;
+        self._onStack[v] = True
+        self._marked[v] = True
         for e in G.adj(v):
             w = e.to_vertex()
 
@@ -75,15 +75,15 @@ class EdgeWeightedDirectedCycle:
 
 
     # Does the edge-weighted digraph have a directed cycle?
-    # @return {@code True} if the edge-weighted digraph has a directed cycle,
-    # {@code False} otherwise
+    # @return True if the edge-weighted digraph has a directed cycle,
+    # False otherwise
     def has_cycle(self):
         return self._cycle is not None
 
     # Returns a directed cycle if the edge-weighted digraph has a directed cycle,
-    # and {@code None} otherwise.
+    # and None otherwise.
     # @return a directed cycle (as an iterable) if the edge-weighted digraph
-    #    has a directed cycle, and {@code None} otherwise
+    #    has a directed cycle, and None otherwise
     def cycle(self):
         return self._cycle
 

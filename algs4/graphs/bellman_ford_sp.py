@@ -27,28 +27,28 @@ except AttributeError:
 #  reachable from s.
 
 """
- The {@code BellmanFordSP} class represents a data type for solving the
+ The BellmanFordSP class represents a data type for solving the
  single-source shortest paths problem in edge-weighted digraphs with
  no negative cycles. 
  The edge weights can be positive, negative, or zero.
- This class finds either a shortest path from the source vertex <em>s</em>
+ This class finds either a shortest path from the source vertex s
  to every other vertex or a negative cycle reachable from the source vertex.
  This implementation uses the Bellman-Ford-Moore algorithm.
- The constructor takes time proportional to <em>V</em> (<em>V</em> + <em>E</em>)
- in the worst case, where <em>V</em> is the number of vertices and <em>E</em>
+ The constructor takes time proportional to V (V + E)
+ in the worst case, where V is the number of vertices and E
  is the number of edges.
- Each call to {@code distTo(int)} and {@code hasPathTo(int)},
- {@code hasNegativeCycle} takes constant time;
- each call to {@code pathTo(int)} and {@code negativeCycle()}
+ Each call to distTo(int) and hasPathTo(int),
+ hasNegativeCycle takes constant time;
+ each call to pathTo(int) and negativeCycle()
  takes time proportional to length of the path returned.
 """
 
 class BellmanFordSP:
-    # Computes a shortest paths tree from {@code s} to every other vertex in
-    # the edge-weighted digraph {@code G}.
+    # Computes a shortest paths tree from s to every other vertex in
+    # the edge-weighted digraph G.
     # @param G the acyclic digraph
     # @param s the source vertex
-    # @throws IllegalArgumentException unless {@code 0 <= s < V}
+    # @throws IllegalArgumentException unless 0 <= s < V
     def __init__(self, G, s):
         self._distTo = [sys.float_info.max] * G.V()  #distTo[v] = distance  of shortest s->v path
         self._edgeTo = [None] * G.V()                #edgeTo[v] = last edge on shortest s->v path
@@ -83,16 +83,16 @@ class BellmanFordSP:
                     return  #found a negative cycle
             self._cost += 1
         
-    # Is there a negative cycle reachable from the source vertex {@code s}?
-    # @return {@code true} if there is a negative cycle reachable from the
-    #    source vertex {@code s}, and {@code false} otherwise
+    # Is there a negative cycle reachable from the source vertex s?
+    # @return true if there is a negative cycle reachable from the
+    #    source vertex s, and false otherwise
     def has_negative_cycle(self):
         return self._cycle is not None
 
-    # Returns a negative cycle reachable from the source vertex {@code s}, or {@code None}
+    # Returns a negative cycle reachable from the source vertex s, or None
     # if there is no such cycle.
-    # @return a negative cycle reachable from the soruce vertex {@code s} 
-    #    as an iterable of edges, and {@code None} if there is no such cycle
+    # @return a negative cycle reachable from the soruce vertex s 
+    #    as an iterable of edges, and None if there is no such cycle
     def negative_cycle(self):
         return self._cycle
 
@@ -107,35 +107,35 @@ class BellmanFordSP:
         finder = EdgeWeightedDirectedCycle(spt)
         self._cycle = finder.cycle()
 
-    # Returns the length of a shortest path from the source vertex {@code s} to vertex {@code v}.
+    # Returns the length of a shortest path from the source vertex s to vertex v.
     # @param  v the destination vertex
-    # @return the length of a shortest path from the source vertex {@code s} to vertex {@code v};
-    #         {@code sys.float_info.max} if no such path
+    # @return the length of a shortest path from the source vertex s to vertex v;
+    #         sys.float_info.max if no such path
     # @throws UnsupportedOperationException if there is a negative cost cycle reachable
-    #         from the source vertex {@code s}
-    # @throws IllegalArgumentException unless {@code 0 <= v < V}
+    #         from the source vertex s
+    # @throws IllegalArgumentException unless 0 <= v < V
     def dist_to(self, v):
-        self._validate_vertex(v);
+        self._validate_vertex(v)
         if self.has_negative_cycle():
             raise UnsupportedOperationException("Negative cost cycle exists")
         return self._distTo[v]
     
-    # Is there a path from the source {@code s} to vertex {@code v}?
+    # Is there a path from the source s to vertex v?
     # @param  v the destination vertex
-    # @return {@code true} if there is a path from the source vertex
-    #         {@code s} to vertex {@code v}, and {@code false} otherwise
-    # @throws IllegalArgumentException unless {@code 0 <= v < V}
+    # @return true if there is a path from the source vertex
+    #         s to vertex v, and false otherwise
+    # @throws IllegalArgumentException unless 0 <= v < V
     def has_path_to(self, v):
         self._validate_vertex(v)
         return self._distTo[v] < sys.float_info.max
 
-    # Returns a shortest path from the source {@code s} to vertex {@code v}.
+    # Returns a shortest path from the source s to vertex v.
     # @param  v the destination vertex
-    # @return a shortest path from the source {@code s} to vertex {@code v}
-    #         as an iterable of edges, and {@code None} if no such path
+    # @return a shortest path from the source s to vertex v
+    #         as an iterable of edges, and None if no such path
     # @throws UnsupportedOperationException if there is a negative cost cycle reachable
-    #         from the source vertex {@code s}
-    # @throws IllegalArgumentException unless {@code 0 <= v < V}
+    #         from the source vertex s
+    # @throws IllegalArgumentException unless 0 <= v < V
     def path_to(self, v):
         self._validate_vertex(v)
         if self.has_negative_cycle():
@@ -170,7 +170,7 @@ class BellmanFordSP:
             #check that distTo[v] and edgeTo[v] are consistent
             if self._distTo[s] != 0.0 or self._edgeTo[s] is not None:
                 print("distanceTo[s] and edgeTo[s] inconsistent")
-                return False;
+                return False
             
             for v in range(G.V()):
                 if v == s: continue
@@ -184,7 +184,7 @@ class BellmanFordSP:
                     w = e.to_vertex()
                     if self._distTo[v] + e.weight() < self._distTo[w]:
                         print("edge {} not relaxed".format(e))
-                        return False;
+                        return False
 
             #check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
             for w in range(G.V()):
@@ -200,7 +200,7 @@ class BellmanFordSP:
         print()
         return True
 
-    #raise an IllegalArgumentException unless {@code 0 <= v < V}
+    #raise an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):
         V = len(self._distTo)
         if v < 0 or v >= V:
@@ -223,10 +223,10 @@ def main(args):
             if sp.has_path_to(v):
                 print("{} to {} ({})  ".format( s, v, sp.dist_to(v)))
                 for e in sp.path_to(v):
-                    print("{}   ".format(e), end='')
+                    print("{}\t".format(e), end='')
                 print()
             else:
-                print("{} to {}           no path".format(s, v))
+                print("{} to {} no path".format(s, v))
 
 if __name__ == '__main__':
     main(sys.argv[1:])

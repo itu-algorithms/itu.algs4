@@ -27,7 +27,7 @@ class CC:
 
     def __init__(self, G):
         """
-        Computes the connected components of the undirected graph {@code G}.
+        Computes the connected components of the undirected graph G.
 
         :param G: the undirected graph
         """
@@ -82,14 +82,14 @@ class CC:
 
     def connected(self, v, w):
         """
-        Returns true if vertices {@code v} and {@code w} are in the same connected component.
+        Returns true if vertices v and w are in the same connected component.
      
         :param v: one vertex
         :param w: the other vertex
         :returns: True if vertices v and w are in the same connected component; 
                     False otherwise
-        :raises ValueError: unless {@code 0 <= v < V}
-        :raises ValueError: unless {@code 0 <= w < V}
+        :raises ValueError: unless 0 <= v < V
+        :raises ValueError: unless 0 <= w < V
         """
         self._validate_vertex(v)
         self._validate_vertex(w)
