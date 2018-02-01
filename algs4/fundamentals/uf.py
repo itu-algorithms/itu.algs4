@@ -341,7 +341,7 @@ if __name__ == '__main__':
             print("File not found, using standard input instead")
     n = stdio.readInt()
     uf = UF(n)
-    while stdio.hasNextLine():
+    while not stdio.isEmpty():
         p = stdio.readInt()
         q = stdio.readInt()
         if uf.connected(p, q):
