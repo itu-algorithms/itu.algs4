@@ -295,8 +295,8 @@ class QuickFindUF:
         if p_id == q_id:
             return
 
-        for i in range(len(id)):
-            if self._id[i] == p_id():
+        for i in range(len(self._id)):
+            if self._id[i] == p_id:
                 self._id[i] = q_id
         self._count -= 1
 
