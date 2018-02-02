@@ -25,6 +25,13 @@ def seed(i=None):
 
 #-----------------------------------------------------------------------
 
+def uniform(hi):
+    """
+    Return an integer chosen uniformly from the range [0, hi).
+    """
+    return random.randrange(0, hi)
+    
+#-----------------------------------------------------------------------
 def uniformInt(lo, hi):
     """
     Return an integer chosen uniformly from the range [lo, hi).
