@@ -31,7 +31,15 @@ if (sys.hexversion < 0x03000000):
     sys.stdin = os.fdopen(sys.stdin.fileno(), 'rU', 0)
 else:    
     sys.stdin = open(sys.stdin.fileno(), 'r', newline=None)
-            
+
+#=======================================================================
+# print to stderr
+# from https://stackoverflow.com/questions/5574702/how-to-print-to-stderr-in-python#14981125
+#=======================================================================
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+    
 #=======================================================================
 # Writing functions
 #=======================================================================
