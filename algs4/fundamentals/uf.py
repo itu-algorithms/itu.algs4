@@ -152,7 +152,6 @@ class QuickUnionUF:
         """
         self._validate(p)
         while p != self._parent[p]:
-            self._parent[p] = self._parent[self._parent[p]] # path compression by halving
             p = self._parent[p]
         return p
 
@@ -220,7 +219,7 @@ class WeightedQuickUnionUF:
             small, large = root_q, root_p
             
         self._parent[small] = large
-        self._size[large] += small
+        self._size[large] += self._size[small]
       
         self._count -= 1
 
