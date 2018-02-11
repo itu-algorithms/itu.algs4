@@ -9,7 +9,7 @@ class IndexMinPQ:
     The IndexMinPQ class represents an indexed priority queue of generic keys.
     It supports the usual insert and delete-the-minimum
     operations, along with delete and change-the-key
-    methods. In order to ley the client refer to the keys on the priority queue,
+    methods. In order to let the client refer to the keys on the priority queue,
     an integer between 0 and maxN - 1
     is associated with each key-the client uses this integer to specify
     which key to delete or change.
