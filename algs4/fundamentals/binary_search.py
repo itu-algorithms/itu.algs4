@@ -17,7 +17,7 @@ def index_of(a, key):
     Returns the index of the specified key in the specified array.
     :param a: the array of items, must be sorted in ascending order
     :param key: the search key
-    :return: index of key in array if present None otherwise
+    :return: index of key in array if present -1 otherwise
     """
     lo = 0
     hi = len(a) - 1
@@ -29,7 +29,7 @@ def index_of(a, key):
             hi = mid - 1
         else:
             return mid
-    return None
+    return -1
 
 
 def main():
@@ -44,7 +44,7 @@ def main():
         sys.stdin = open(sys.argv[2])
         while not stdio.isEmpty():
             key = stdio.readString()
-            if index_of(arr, key) is None:
+            if index_of(arr, key) == -1:
                 print(key)
 
 
