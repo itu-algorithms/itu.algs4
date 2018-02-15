@@ -9,3 +9,10 @@ def java_string_hash(key):
     for c in key:
         h = (31 * h + ord(c)) & 0xFFFFFFFF
     return ((h + 0x80000000) & 0xFFFFFFFF) - 0x80000000
+
+def trailing_zeros(i):
+    zeros = 0
+    while i & 1 == 0 and zeros < 32:
+        zeros += 1
+        i = i >> 1
+    return zeros
