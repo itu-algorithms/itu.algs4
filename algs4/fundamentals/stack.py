@@ -147,7 +147,7 @@ class ResizingArrayStack:
         temp = [None] * capacity
         for i in range(self.n):
             temp[i] = self.a[i]
-        a = temp
+        self.a = temp
 
     def push(self, item):
         if self.n == len(self.a): 
@@ -159,8 +159,8 @@ class ResizingArrayStack:
         self.n -= 1
         item = self.a[self.n]
         self.a[self.n] = None
-        if self.n > 0 and self.n == len(self.a)/4:
-            self.resize(len(self.a)/2)
+        if self.n > 0 and self.n <= len(self.a)//4:
+            self.resize(len(self.a)//2)
         return item
 
     def __iter__(self):
