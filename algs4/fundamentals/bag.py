@@ -3,6 +3,7 @@
 # see README.md for details
 # This is python3 
 
+#     See ResizingArrayBag for a version that uses a resizing array.
 class Bag:
     """
     The Bag class represents a bag (or multiset) of 
@@ -12,7 +13,7 @@ class Bag:
     This implementation uses a singly linked list with a static nested class Node.
     See LinkedBag for the version from the
     textbook that uses a non-static nested class.
-    See ResizingArrayBag for a version that uses a resizing array.
+
     The add, is_empty, and size operations
     take constant time. Iteration takes time proportional to the number of items.
     """

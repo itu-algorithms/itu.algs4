@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="algs4_python",
-    version="0.2.1.6",
+    version="0.2.1.7",
     packages= [
         'algs4.fundamentals',
         'algs4.sorting',
