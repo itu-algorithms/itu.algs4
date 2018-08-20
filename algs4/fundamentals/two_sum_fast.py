@@ -4,7 +4,7 @@ class TwoSumFast:
     @staticmethod
     def count(a):
         # Count pairs that sum to 0
-        sorted(a)
+        a = sorted(a)
         n = len(a)
         count = 0
         for i in range(n):
