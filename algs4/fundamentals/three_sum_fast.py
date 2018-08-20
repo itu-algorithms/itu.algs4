@@ -9,6 +9,6 @@ class ThreeSumFast:
         count = 0
         for i in range(n):
             for j in range(i+1, n):
-                if binary_search.index_of(a, -a[i]-a[j]) > i:            
+                if binary_search.index_of(a, -a[i]-a[j]) > j:            
                     count += 1
         return count
