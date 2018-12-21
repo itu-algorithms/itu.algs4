@@ -45,7 +45,7 @@ class UF:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n))
+            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
     def union(self, p, q):
         """
@@ -124,7 +124,7 @@ class QuickUnionUF:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n))
+            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
     def union(self, p, q):
         """
@@ -197,7 +197,7 @@ class WeightedQuickUnionUF:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n))
+            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
     def union(self, p, q):
         """
@@ -274,7 +274,7 @@ class QuickFindUF:
         # validate that p is a valid index
         n = len(self._id)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n))
+            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
     def union(self, p, q):
         """
