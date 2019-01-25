@@ -2,7 +2,39 @@
 
 Translation of the Java code in "Algorithms 4th edition" by Sedgwick and Wayne to python3.
 
+In this guide we will go through a step by step guide of how to install python 3 and the algs4 package.
 
+# Installing Python on a Windows machine
+The goal is to go from this:
+```
+ 'python' is not recognized as an internal or external command,
+  operable program or batch file.
+```
+To this:
+```
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from algs4.fundamentals.uf import UF
+>>> 
+```
+If you have already installed python 3 simply skip to the next section.
+
+To download python 3, follow the link https://www.python.org/downloads/windows/ and pick the most appropriate installer for your system, download and run it. (I choose Windows x86-64 executable installer since I run a 64 bit operating system.)
+
+In the installer make sure to toggle the "Add Python to Path" checkbox on, before pressing "Install Now".
+
+After the installation is complete you can close the installer, and test that it works correctly.
+
+Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
+
+In the "Command Prompt" try typing "python" to run python, if everything works you should see something like this
+```
+C:\Users\haag>python
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+If nothing shows up you might not have toggled the "Add Python to Path" checkbox before installing, try reinstalling or alternatively google "how to add python to path windows" to do it manually.
 
 ## Installation instructions
 
@@ -17,6 +49,41 @@ Optionally you can install `numpy` and `pygame` using `pip3 install numpy pygame
 *Note:* If you're using `virtualenv` or `anaconda` make sure to activate/select the desired environment before installing.
 
 If you changed the repository, you need to reinstall. For that purpose, you need to increase the version number in `setup.py`.
+
+# Installing the algs4 package on a Windows machine
+
+To install the algs4 package go to https://github.itu.dk/algorithms/AlgorithmsInPython (you might have to login to your ITU github - use the same username and password as you use for learnit).
+
+There should be instructions for how to install the package on the github, but for completeness sake I will repeat them here.
+
+Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
+
+Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
+
+You'll want to navigate the "Command Prompt" to the folder.
+
+Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
+
+If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\AlgorithmsInPython-master".
+```
+C:\Users\haag>cd Desktop\AlgorithmsInPython-master
+```
+When in the correct folder simply type "pip install ." to install the package. 
+```
+C:\Users\haag\Desktop\AlgorithmsInPython-master>pip install .
+```
+After this the package should be installed correctly and you can delete the folder from your Desktop.
+
+To test that the package is installed correctly open the "Command Prompt", and type "python". 
+In the interactive shell try typing "from algs4.fundamentals.uf import UF".
+```
+C:\Users\haag>python
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from algs4.fundamentals.uf import UF
+>>> 
+```
+If something went wrong try to make sure you followed all the instructions correctly, otherwise feel free to post your problems on piazza.
 
 ## Usage
 
@@ -44,7 +111,6 @@ FILE
 ```
 
 
-
 ### Importing
 
 Besides the hierarchical structure, all class- and file-names from the book have been written in lower-case style with underscores instead of the Pascal case style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use Pascal case though (following Python convention).
@@ -65,3 +131,4 @@ from algs4.fundamentals.uf import QuickUnionUF
 ### Documentation
 
 You can use the built-in `help` function on any public class or function to get a description of what it does. This documentation should also work with your IDE of choice.
+
