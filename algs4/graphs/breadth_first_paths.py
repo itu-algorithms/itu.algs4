@@ -13,7 +13,7 @@ class BreadthFirstPaths:
     The BreadthFirstPaths class represents a data type for finding
     shortest paths (number of edges) from a source vertex s
     (or a set of source vertices)
-    to every other vertex in an undirected graph.
+    to every other vertex in a directed or undirected graph.
     
     This implementation uses breadth-first search.
     The constructor takes time proportional to V + E,
@@ -126,10 +126,12 @@ class BreadthFirstPaths:
         # provided v is reachable from s
         for v in range(G.V()):
             for w in G.adj(v):
-                if self.has_path_to(v) != self.has_path_to(w):
+                #if self.has_path_to(v) != self.has_path_to(w):
+                # modified for directed graphs
+                if self.has_path_to(v) and not self.has_path_to(w):
                     stdio.writef("edge %i-%i\n", v, w)
-                    stdio.writef("has_path_to(%i) = %i\n", v, self.has_path_to(v))
-                    stdio.writef("has_path_to(%i) = %i\n", w, self.has_path_to(w))
+                    stdio.writef("has_path_to(%i) = %s\n", v, self.has_path_to(v))
+                    stdio.writef("has_path_to(%i) = %s\n", w, self.has_path_to(w))
                     return False
                 if self.has_path_to(v) and (self._dist_to[w] > self._dist_to[v] + 1):
                     stdio.writef("edge %i-%i\n", v, w)
@@ -212,4 +214,5 @@ if __name__ == "__main__":
                 else:      stdio.writef("-%i", x)            
             stdio.writeln()
         else:
-            stdio.writef("%d to %d (-):  not connected\n", s, v)             
+            stdio.writef("%d to %d (-):  not connected\n", s, v)
+
