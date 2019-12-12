@@ -1,10 +1,9 @@
 # Algs4 for Python
 
-Translation of the Java code in "Algorithms 4th edition" by Sedgwick and Wayne to python3.
+This repository contains the Python3 version of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne.
 
-In this guide we will go through a step by step guide of how to install python 3 and the algs4 package.
-
-# Installing Python on a Windows machine
+## Installing Python on a Windows machine
+This guide describes step by step how to install Python3 and the algs4 package.
 The goal is to go from this:
 ```
  'python' is not recognized as an internal or external command,
@@ -36,9 +35,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 If nothing shows up you might not have toggled the "Add Python to Path" checkbox before installing, try reinstalling or alternatively google "how to add python to path windows" to do it manually.
 
-## Installation instructions
+## Installing this algs4 package
 
-In order for the package to work, you must have `python3` and `setup-tools`/`pip3` (or `pip`, change the command below) already installed - see [python homepage](https://python.org) for instructions. Also, some optional visual and auditory features requre the `numpy` and `pygame` packages to work - see [numpy homepage](http://numpy.org) and [pygame homepage](https://pygame.org) for instructions.
+In order for the package to work, you must have `python3` and `setup-tools`/`pip3` (or `pip`, change the command below) already installed - see [python homepage](https://python.org) for instructions. Also, some optional visual and auditory features require the `numpy` and `pygame` packages to work - see [numpy homepage](http://numpy.org) and [pygame homepage](https://pygame.org) for instructions.
+If you are in this situation, the following command, combined with your ITU credentials, should work:
+```bash
+pip install svn+https://github.itu.dk/algorithms/AlgorithmsInPython
+```
+
+Otherwise, you can manually install it as follows:
 
 1. Download and unzip (or clone) the repository.
 2. Open a command prompt or terminal and navigate to the downloaded folder. There should be the file `setup.py`.
@@ -50,7 +55,7 @@ Optionally you can install `numpy` and `pygame` using `pip3 install numpy pygame
 
 If you changed the repository, you need to reinstall. For that purpose, you need to increase the version number in `setup.py`.
 
-# Installing the algs4 package on a Windows machine
+## Installing this algs4 package on a Windows machine
 
 To install the algs4 package go to https://github.itu.dk/algorithms/AlgorithmsInPython (you might have to login to your ITU github - use the same username and password as you use for learnit).
 
@@ -87,7 +92,7 @@ If something went wrong try to make sure you followed all the instructions corre
 
 ## Usage
 
-The package is divided into five sub-packages representing the first five chapters of "Algorithms 4th edition", as well as the `stdlib` package from [this book](https://introcs.cs.princeton.edu/python/code/) (with slight modification), and a package containing a number of exception classes. 
+The package is divided into five sub-packages representing the first five chapters of "Algorithms 4th, Edition", as well as the `stdlib` package from [this book](https://introcs.cs.princeton.edu/python/code/) (with slight modification), and a package containing a number of exception classes. 
 
 Use the `help` function on any package or sub-packages to get a list of its contents. For example `help(algs4)` yields the following:
 
@@ -111,7 +116,7 @@ FILE
 ```
 
 
-### Importing
+## Importing
 
 Besides the hierarchical structure, all class- and file-names from the book have been written in lower-case style with underscores instead of the Pascal case style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use Pascal case though (following Python convention).
 
@@ -126,9 +131,6 @@ from algs4.fundamentals.uf import UF
 from algs4.fundamentals.uf import QuickUnionUF
 ```
 
-
-
-### Documentation
+## Documentation
 
 You can use the built-in `help` function on any public class or function to get a description of what it does. This documentation should also work with your IDE of choice.
-
