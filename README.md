@@ -38,9 +38,9 @@ If nothing shows up you might not have toggled the "Add Python to Path" checkbox
 ## Installing this algs4 package
 
 In order for the package to work, you must have `python3` and `setup-tools`/`pip3` (or `pip`, change the command below) already installed - see [python homepage](https://python.org) for instructions. Also, some optional visual and auditory features require the `numpy` and `pygame` packages to work - see [numpy homepage](http://numpy.org) and [pygame homepage](https://pygame.org) for instructions.
-If you are in this situation, the following command, combined with your ITU credentials, should work:
+If you are in this situation and also have git installed, the following command, combined with your ITU credentials, should be sufficient:
 ```bash
-pip install svn+https://github.itu.dk/algorithms/AlgorithmsInPython
+pip install git+https://github.itu.dk/algorithms/AlgorithmsInPython
 ```
 
 Otherwise, you can manually install it as follows:
