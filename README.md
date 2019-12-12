@@ -2,8 +2,9 @@
 
 This repository contains the Python3 version of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne.
 
-## Installing Python on a Windows machine
+## Installation guide
 This guide describes step by step how to install Python3 and the algs4 package.
+
 The goal is to go from this:
 ```
  'python' is not recognized as an internal or external command,
@@ -16,17 +17,18 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> from algs4.fundamentals.uf import UF
 >>> 
 ```
-If you have already installed python 3 simply skip to the next section.
 
-To download python 3, follow the link https://www.python.org/downloads/windows/ and pick the most appropriate installer for your system, download and run it. (I choose Windows x86-64 executable installer since I run a 64 bit operating system.)
+### Install Python3
 
-In the installer make sure to toggle the "Add Python to Path" checkbox on, before pressing "Install Now".
+If you have already installed [Python 3](https://www.python.org) simply skip to the next section.
 
-After the installation is complete you can close the installer, and test that it works correctly.
+- To download Python 3, follow the link https://www.python.org/downloads/windows/ and pick the most appropriate installer for your system, download and run it. (I choose Windows x86-64 executable installer since I run a 64 bit operating system.)
+- In the installer make sure to toggle the "Add Python to Path" checkbox on, before pressing "Install Now".
 
-Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
+After the installation is complete you can close the installer, and test that it works correctly:
 
-In the "Command Prompt" try typing "python" to run python, if everything works you should see something like this
+- Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
+- In the "Command Prompt" try typing "python" to run python, if everything works you should see something like this:
 ```
 C:\Users\haag>python
 Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
@@ -35,7 +37,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 If nothing shows up you might not have toggled the "Add Python to Path" checkbox before installing, try reinstalling or alternatively google "how to add python to path windows" to do it manually.
 
-## Installing this algs4 package
+### Install the algs4 package
 
 In order for the package to work, you must have `python3` and `setup-tools`/`pip3` (or `pip`, change the command below) already installed - see [python homepage](https://python.org) for instructions. Also, some optional visual and auditory features require the `numpy` and `pygame` packages to work - see [numpy homepage](http://numpy.org) and [pygame homepage](https://pygame.org) for instructions.
 If you are in this situation and also have git installed, the following command, combined with your ITU credentials, should be sufficient:
@@ -55,29 +57,22 @@ Optionally you can install `numpy` and `pygame` using `pip3 install numpy pygame
 
 If you changed the repository, you need to reinstall. For that purpose, you need to increase the version number in `setup.py`.
 
-## Installing this algs4 package on a Windows machine
+### Installing this algs4 package on a Windows machine
 
-To install the algs4 package go to https://github.itu.dk/algorithms/AlgorithmsInPython (you might have to login to your ITU github - use the same username and password as you use for learnit).
+To install the algs4 package:
 
-There should be instructions for how to install the package on the github, but for completeness sake I will repeat them here.
-
-Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
-
-Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
-
-You'll want to navigate the "Command Prompt" to the folder.
-
-Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
-
-If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\AlgorithmsInPython-master".
+- Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
+- Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
+- Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
+- If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\AlgorithmsInPython-master".
 ```
 C:\Users\haag>cd Desktop\AlgorithmsInPython-master
 ```
-When in the correct folder simply type "pip install ." to install the package. 
+- When in the correct folder simply type "pip install ." to install the package. 
 ```
 C:\Users\haag\Desktop\AlgorithmsInPython-master>pip install .
 ```
-After this the package should be installed correctly and you can delete the folder from your Desktop.
+- After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
 To test that the package is installed correctly open the "Command Prompt", and type "python". 
 In the interactive shell try typing "from algs4.fundamentals.uf import UF".
