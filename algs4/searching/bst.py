@@ -2,6 +2,7 @@
 # see README.md for details
 # Python 3
 
+from ..errors.errors import NoSuchElementException
 
 """
 The BST class represents an ordered symbol table of generic
@@ -20,28 +21,39 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 # Missing methods:
 # ceiling, select, rank, size (or rather, range_size)
 
-class BST:
-    def __init__(self):
+from typing import TypeVar, Generic, Optional, Sequence, List
+from abc import abstractmethod
+
+Val = TypeVar('Val')
+Key = TypeVar('Key', bound = 'Comparable')
+
+class Comparable:
+    @abstractmethod
+    def __lt__(self, other: Key) -> bool:
+        pass
+
+class Node(Generic[Key, Val]):
+    def __init__(self, key: Key, value: Optional[Val], size: int):
+        self.left:  Optional[Node[Key,Val]] = None      # root of left subtree
+        self.right: Optional[Node[Key,Val]] = None      # root of right subtree
+        self.key: Key = key         # sorted by key
+        self.value: Optional[Val] = value     # associated data
+        self.size: int = size       # number of nodes in subtree
+
+class BST(Generic[Key, Val]):
+    def __init__(self) -> None:
         """
         Initialises empty symbol table
         """
-        self._root = None           # root of BST
+        self._root: Optional[Node[Key, Val]] = None           # root of BST
 
-    class Node:
-        def __init__(self, key, value, size):
-            self.left = None       # root of left subtree
-            self.right = None      # root of right subtree
-            self.key = key         # sorted by key
-            self.value = value     # associated data
-            self.size = size       # number of nodes in subtree
-
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         Returns true if this symbol table is empty
         """
         return self.size() == 0
 
-    def contains(self, key):
+    def contains(self, key: Key) -> bool:
         """
         Does this symbol table contain the given key?
         :param key: the key to search for
@@ -49,26 +61,27 @@ class BST:
         """
         return self.get(key) != None
 
-    def size(self):
+    def size(self) -> int:
         """
         Returns the number of key-value pairs in this symbol table
         """
         return self._size(self._root)
         
-    def __len__(self):
+    def __len__(self) -> int:
         return self.size()
 
-    def _size(self, node):
+    def _size(self, node: Optional[Node[Key, Val]]) -> int:
         """
         Returns the number of key-value pairs in BST rooted at node
 
         :param node: The node which act as root
         """
-        if node == None:
+        if node is None:
             return 0
-        return node.size
+        else:
+            return node.size
 
-    def get(self, key):
+    def get(self, key: Key) -> Optional[Val]:
         """
         Returns the value associated with the given key
 
@@ -78,17 +91,18 @@ class BST:
         """
         return self._get(self._root, key)
 
-    def _get(self, node, key):
-        if node == None:
+    def _get(self, node: Optional[Node[Key, Val]], key: Key) -> Optional[Val]:
+        if node is None:
             return None
-        if key < (node.key):
-            return self._get(node.left, key)
-        elif key > (node.key):
-            return self._get(node.right, key)
         else:
-            return node.value
+            if key < node.key:
+                return self._get(node.left, key)
+            elif key > node.key:
+                return self._get(node.right, key)
+            else:
+                return node.value
 
-    def put(self, key, value):
+    def put(self, key: Key, value: Optional[Val]) -> None:
         """
         Inserts the specified key-value pair into the symbol table,
         overwriting the old value with the new value if the symbol table
@@ -98,121 +112,151 @@ class BST:
 
         :param key, value: the key-value pair to be inserted
         """
-        if value == None:
+        if value is None:
             self.delete(key)
             return
         self._root = self._put(self._root, key, value)
 
-    def _put(self, node, key, value):
-        if node == None:
-            return self.Node(key, value, 1)
-        if key < (node.key):
-            node.left = self._put(node.left, key, value)
-        elif key > (node.key):
-            node.right = self._put(node.right, key, value)
+    def _put(self, node: Optional[Node[Key,Val]], key: Key, value: Optional[Val]) -> Node[Key, Val]:
+        if node is None:
+            newnode: Node[Key, Val] = Node(key, value, 1)
+            return newnode
         else:
-            node.value = value
-        node.size = 1 + self._size(node.left) + self._size(node.right)
-        return node
+            if key < (node.key):
+                node.left = self._put(node.left, key, value)
+            elif key > (node.key):
+                node.right = self._put(node.right, key, value)
+            else:
+                node.value = value
+            node.size = 1 + self._size(node.left) + self._size(node.right)
+            return node
 
-    def delete_min(self):
+    def delete_min(self) -> None:
         """
-        Removes the smalles key and associated value from the symbol table
+        Removes the smallest key and associated value from the symbol table
+        TODO exception?
         """
-        self._root = self._delete_min(self._root)
+        if self.is_empty():
+            raise NoSuchElementException("calls min() with empty symbol table")
+        else:
+            assert self._root is not None
+            self._root = self._delete_min(self._root)
 
-    def _delete_min(self, node):
-        if node.left == None:
+    def _delete_min(self, node: Node[Key, Val]) -> Optional[Node[Key, Val]]:
+        if node.left is None:
             return node.right
-        node.left = self._delete_min(node.left)
-        node.size = self._size(node.left) + self._size(node.right) + 1
-        return node
+        else:
+            node.left = self._delete_min(node.left)
+            node.size = self._size(node.left) + self._size(node.right) + 1
+            return node
 
-    def delete_max(self):
+    def delete_max(self) -> None:
         """
         Removes the largest key and associated value from the symbol table
         """
-        self._root = delete_max(self._root)
+        if self.is_empty():
+            raise NoSuchElementException("calls max() with empty symbol table")
+        else:
+            assert self._root is not None
+            self._root = self._delete_max(self._root)
 
-    def _delete_max(self, node):
-        if node.right == None:
+    def _delete_max(self, node: Node[Key, Val]) -> Optional[Node[Key, Val]]:
+        if node.right is None:
             return node.left
-        node.right = self._delete_max(node.right)
+        else:
+            node.right = self._delete_max(node.right)
         node.size = self._size(node.left) + self._size(node.right) + 1
         return node
 
 
-    def delete(self, key):
+    def delete(self, key: Key) -> None:
         """
         Removes the specified key and its associated value from this symbol table
         (if the key is in this symbol table)
         """
         self._root = self._delete(self._root, key)
 
-    def _delete(self, node, key):
-        if node == None:
+    def _delete(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key,Val]]:
+        if node is None:
             return None
-        if key.__lt__(node.key):
-            node.left = self._delete(node.left, key)
-        elif key.__gt__(nodet.key):
-            node.right = self._delete(node.right, key)
         else:
-            if node.right == None:
-                return node.left
-            if node.left == None:
-                return node.right
-            temp_node = node
-            node = self._min(temp_node.right)
-            node.right = self._delete_min(temp_node.right)
-            node.left = temp_node.left
+            if key.__lt__(node.key):
+                node.left = self._delete(node.left, key)
+            elif node.key < key:
+                node.right = self._delete(node.right, key)
+            else:
+                if node.right is None:
+                    return node.left
+                elif node.left is None:
+                    return node.right
+                else:
+                    temp_node = node
+                    assert temp_node.right is not None
+                    node = self._min(temp_node.right)
+                    node.right = self._delete_min(temp_node.right)
+                    node.left = temp_node.left
 
-        node.size = self._size(node.left) + self._size(node.right) + 1
-        return node
+            node.size = self._size(node.left) + self._size(node.right) + 1
+            return node
 
-    def min(self):
+    def min(self) -> Key:
         """
         Returns the smallest key in the BST
         """
-        return self._min(self._root).key
+        if self.is_empty():
+            raise NoSuchElementException("calls min() with empty symbol table")
+        else:
+            assert self._root is not None
+            return self._min(self._root).key
 
-    def _min(self, node):
-        if node.left == None:
+    def _min(self, node: Node[Key, Val]) -> Node[Key, Val]:
+        if node.left is None:
             return node
-        return self._min(node.left)
+        else:
+            return self._min(node.left)
 
-    def max(self):
+    def max(self) -> Key:
         """
         Returns the larget key in the symbol table
         """
-        return self._max(self._root).key
+        if self.is_empty():
+            raise NoSuchElementException("calls max() with empty symbol table")
+        else:
+            assert self._root is not None
+            return self._max(self._root).key
 
-    def _max(self, node):
-        if node.right == None:
+    def _max(self, node: Node[Key, Val]) -> Node[Key, Val]:
+        if node.right is None:
             return node
-        return self._max(node.right)
+        else:
+            return self._max(node.right)
 
-    def floor(self, key):
+    def floor(self, key: Key) -> Optional[Key]:
         """
         Returns the largest key in the symbol table less than or equal to key
         """
-        node = self._floor(self._root, key)
-        if node == None:
-            return None
-        return none.key
+        if self.is_empty():
+            raise NoSuchElementException("calls floor() with empty symbol table")
 
-    def _floor(self, node, key):
-        if node == None:
+        node = self._floor(self._root, key)
+        if node is None:
             return None
-        if key == node.key:
+        else:
+            return node.key
+
+    def _floor(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key, Val]]:
+        if node is None:
+            return None
+        elif key == node.key:
             return node
-        if key < node.key:
+        elif key < node.key:
             return self._floor(node.left, key)
         temp_node = self._floor(node.right, key)
-        if not temp_node == None:
+        if temp_node is not None:
             return temp_node
         return node
 
-    def keys(self):
+    def keys(self) -> Sequence[Key]:
         """
         Returns all keys in the symbol table as a list.
         """
@@ -220,7 +264,7 @@ class BST:
             return []
         return self.range_keys(self.min(), self.max())
 
-    def range_keys(self, lo, hi):
+    def range_keys(self, lo: Key, hi: Key) -> Sequence[Key]:
         """
         Returns all keys in the symbol table in the given range as a list
 
@@ -228,81 +272,47 @@ class BST:
         :param hi: maximum endpoint
         :return: all keys in symbol table between lo (inclusive) and hi (inclusive)
         """
-        queue = []
+        queue: List[Key] = []
         self._range_keys(self._root, queue, lo, hi)
         return queue
 
-    def _range_keys(self, node, queue, lo, hi):
-        if node == None:
+    def _range_keys(self, node: Optional[Node[Key, Val]], queue: List[Key], lo: Key, hi: Key) -> None:
+        if node is None:
             return
-        if lo < node.key:
+        elif lo < node.key:
             self._range_keys(node.left, queue, lo, hi)
-        if lo <= node.key and hi >= node.key:
+        if not lo > node.key and not hi < node.key:
             queue.append(node.key)
         if hi > node.key:
             self._range_keys(node.right, queue, lo, hi)
 
-
-
-    def height(self):
+    def height(self) -> int:
         """
         Returns the height of the BST (for debugging)
         """
         return self._height(self._root)
 
-    def _height(self, node):
-        if node == None:
+    def _height(self, node: Optional[Node[Key, Val]]) -> int:
+        if node is None:
             return -1
-        return 1 + max(self._height(node.left), self._height(node.right))
+        else:
+            return 1 + max(self._height(node.left), self._height(node.right))
 
-    def level_order(self):
+    def level_order(self) -> Sequence[Key]:
         """
         Returns the keys in the BST in level order (for debugging)
         """
-        queue, keys = [], []
-        queue.append(self._root)
+        queue: List[Optional[Node[Key, Val]]] = []
+        keys: List[Key] =  []
+        queue.append(self._root) 
         while len(queue) > 0:
             node = queue.pop(0)
-            if node == None:
+            if node is None:
                 continue
-            keys.append(node.key)
-            queue.append(node.left)
-            queue.append(node.right)
+            else:
+                keys.append(node.key)
+                queue.append(node.left)
+                queue.append(node.right)
         return keys
-
-
-# This is ugly but necessary to use stdlib
-# Need to find a better way of doing it
-import sys
-sys.path.append("..")
-from algs4.stdlib import stdio
-
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        try:
-            sys.stdin = open(sys.argv[1])
-        except IOError:
-            print("File not found, using standard input instead")
-
-    data = stdio.readAllStrings()
-    st = BST()
-    i = 0
-    for key in data:
-        st.put(key, i)
-        i += 1
-
-    print("LEVELORDER:")
-    for key in st.level_order():
-        print(str(key) + " " + str(st.get(key)))
-
-    print()
-
-    print("KEYS:")
-    for key in st.keys():
-        print(str(key) + " " + str(st.get(key)))
-
-
-
-
 
 

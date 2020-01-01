@@ -1,6 +1,26 @@
 # AlgorithmsInPython
 Translation of the Java code in "Algorithms" by Sedgwick and Wayne to python3
 
+# Test
+
+In the root directory, run
+
+```
+python3 -m unittest test/test_bst.py
+```
+
+# Types
+
+The binary search tree now type checks using mypy, try
+
+```
+ mypy --strict -m algs4.searching.bst
+```
+
+# Examples
+
+Client code should be migrated to ```examples/```. 
+
 
 # Useful Resources
 ## the book
