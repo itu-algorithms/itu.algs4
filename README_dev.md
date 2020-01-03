@@ -7,14 +7,16 @@ In the root directory, run
 
 ```
 python3 -m unittest test/test_bst.py
+python3 -m unittest test/test_red_black_bst.py
 ```
 
 # Types
 
-The binary search tree now type checks using mypy, try
+The binary search trees now type check using mypy, try
 
 ```
- mypy --strict -m algs4.searching.bst
+mypy --strict -m algs4.searching.bst
+mypy --strict -m algs4.searching.red_black_bst
 ```
 
 # Examples
