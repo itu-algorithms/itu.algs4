@@ -3,6 +3,7 @@
 # Python 3
 
 from ..errors.errors import NoSuchElementException
+from ..fundamentals.queue import Queue
 
 """
 The BST class represents an ordered symbol table of generic
@@ -256,33 +257,33 @@ class BST(Generic[Key, Val]):
             return temp_node
         return node
 
-    def keys(self) -> Sequence[Key]:
+    def keys(self) -> Queue[Key]:
         """
         Returns all keys in the symbol table as a list.
         """
         if self.is_empty():
-            return []
+            return Queue()
         return self.range_keys(self.min(), self.max())
 
-    def range_keys(self, lo: Key, hi: Key) -> Sequence[Key]:
+    def range_keys(self, lo: Key, hi: Key) -> Queue[Key]:
         """
-        Returns all keys in the symbol table in the given range as a list
+        returns all keys in the symbol table in the given range as a list
 
         :param lo: minimum endpoint
         :param hi: maximum endpoint
         :return: all keys in symbol table between lo (inclusive) and hi (inclusive)
         """
-        queue: List[Key] = []
+        queue: Queue[Key] = Queue()
         self._range_keys(self._root, queue, lo, hi)
         return queue
 
-    def _range_keys(self, node: Optional[Node[Key, Val]], queue: List[Key], lo: Key, hi: Key) -> None:
+    def _range_keys(self, node: Optional[Node[Key, Val]], queue: Queue[Key], lo: Key, hi: Key) -> None:
         if node is None:
             return
         elif lo < node.key:
             self._range_keys(node.left, queue, lo, hi)
         if not lo > node.key and not hi < node.key:
-            queue.append(node.key)
+            queue.enqueue(node.key)
         if hi > node.key:
             self._range_keys(node.right, queue, lo, hi)
 
@@ -298,21 +299,21 @@ class BST(Generic[Key, Val]):
         else:
             return 1 + max(self._height(node.left), self._height(node.right))
 
-    def level_order(self) -> Sequence[Key]:
+    def level_order(self) -> Queue[Key]:
         """
         Returns the keys in the BST in level order (for debugging)
         """
-        queue: List[Optional[Node[Key, Val]]] = []
-        keys: List[Key] =  []
-        queue.append(self._root) 
+        queue: Queue[Optional[Node[Key, Val]]] = Queue()
+        keys: Queue[Key] =  Queue()
+        queue.enqueue(self._root) 
         while len(queue) > 0:
-            node = queue.pop(0)
+            node = queue.dequeue()
             if node is None:
                 continue
             else:
-                keys.append(node.key)
-                queue.append(node.left)
-                queue.append(node.right)
+                keys.enqueue(node.key)
+                queue.enqueue(node.left)
+                queue.enqueue(node.right)
         return keys
 
 

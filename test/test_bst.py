@@ -55,7 +55,10 @@ class LargerBSTMethods(unittest.TestCase):
         self.assertEqual(2, st.get(2))
 
     def test_keys(self):
-        self.assertEqual(self.bst.keys(), self.L)
+        i = 0
+        for x in self.bst.keys():
+            self.assertEqual(x, self.L[i])
+            i += 1 
 
     def test_min(self):
         self.assertEqual(self.bst.min(), min(self.L))
@@ -72,7 +75,11 @@ class LargerBSTMethods(unittest.TestCase):
         self.assertEqual(self.bst.max(), max(self.L[:-1]))
 
     def test_range(self):
-        self.assertEqual(self.bst.range_keys(5,13), [6,7,10,13])
+        R = [6,7,10,13]
+        i = 0
+        for x in self.bst.range_keys(5,13):
+            self.assertEqual(x, R[i])
+            i += 1
 
 import random
 
@@ -81,7 +88,7 @@ class HugeBSTMethods(unittest.TestCase):
     def setUp(self):
         random.seed(0)
 
-        self.L = random.sample(range(10**6), 10**5)
+        self.L = random.sample(range(10**6), 10**4)
         self.S = sorted(self.L)
         self.bst = BST()
         for x in self.L:
@@ -97,7 +104,10 @@ class HugeBSTMethods(unittest.TestCase):
             self.assertEqual(st.get(x), x-1)
 
     def test_keys(self):
-        self.assertEqual(self.bst.keys(), self.S)
+        i = 0
+        for x in self.bst.keys():
+            self.assertEqual(x, self.S[i])
+            i += 1
 
     def test_min(self):
         self.assertEqual(self.bst.min(), min(self.L))
