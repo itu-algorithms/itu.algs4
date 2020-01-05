@@ -2,6 +2,7 @@
 
 The textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne describes all algorithms as Java programs. They provide the [source code](https://algs4.cs.princeton.edu/code/) online as a jar library [algs4.jar](https://algs4.cs.princeton.edu/code/algs4.jar).
 This repository contains the Python3 translation of that Java code.
+In addition, it contains, with slight modifications, the `stdlib` package from the book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/code/) by Sedgewick, Wayne, and Dondero.
 
 ## Installation
 
@@ -56,14 +57,14 @@ If no error message occured, the library has been installed correctly.
 
 ## Usage
 
-The package `algs4` has a hierarchical structure. It has five sub-packages, representing the first five chapters of "Algorithms 4th, Edition", as well as the `stdlib` package from [this book](https://introcs.cs.princeton.edu/python/code/) (with slight modification), and a package containing a number of exception classes.
+The package `algs4` has a hierarchical structure. It has seven sub-packages, corresponding to: the first five chapters of "Algorithms 4th, Edition", the `stdlib` package of "Introduction to Programming in Python", and a package `error` containing a number of exception classes.
 
 All filenames and package names have been written in lower-case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
 
 ### Example
 
 ```python
-# Importing the Digraph class 
+# Import the digraph class 
 from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 # Some files contain multiple classes, for example:
@@ -73,7 +74,7 @@ from algs4.fundamentals.uf import QuickUnionUF
 
 ## Documentation
 
-You can use python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also work with your IDE of choice.
+You can use python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also show up in your IDE of choice.
 For example `help(algs4)` yields the following:
 
 ```
