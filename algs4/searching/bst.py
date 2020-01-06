@@ -232,16 +232,17 @@ class BST(Generic[Key, Val]):
         else:
             return self._max(node.right)
 
-    def floor(self, key: Key) -> Optional[Key]:
+    def floor(self, key: Key) -> Key:
         """
         Returns the largest key in the symbol table less than or equal to key
+        Raises NoSuchElementException if no such key exists.
         """
         if self.is_empty():
             raise NoSuchElementException("calls floor() with empty symbol table")
 
         node = self._floor(self._root, key)
         if node is None:
-            return None
+            raise NoSuchElementException("calls floor() with key < min")
         else:
             return node.key
 

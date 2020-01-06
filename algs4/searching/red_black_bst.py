@@ -554,7 +554,7 @@ class RedBlackBST(Generic[Key, Val]):
         else:
             return self.rank(hi) - self.rank(lo)
 
-    def floor(self, key: Key) -> Optional[Key]:
+    def floor(self, key: Key) -> Key:
         """
         Returns the largest key in the symbol table less than or equal to key.
         :param key: the key
@@ -568,7 +568,7 @@ class RedBlackBST(Generic[Key, Val]):
             raise NoSuchElementException("calls floor() with empty symbol table")
         x = self._floor(self._root, key)
         if x is None:
-            return None
+            raise NoSuchElementException("calls floor() with key < min")
         return x.key
 
     def _floor(self, x: Optional[Node[Key, Val]], key: Key) -> Optional[Node[Key, Val]]:
@@ -586,7 +586,7 @@ class RedBlackBST(Generic[Key, Val]):
             return t
         return x
 
-    def ceiling(self, key: Key) -> Optional[Key]:
+    def ceiling(self, key: Key) -> Key:
         """
         Returns the smallest key in the symbol table greater than or equal to key.
         :param key: the key
@@ -600,7 +600,7 @@ class RedBlackBST(Generic[Key, Val]):
             raise NoSuchElementException("calls ceiling() with empty symbol table")
         x = self._ceiling(self._root, key) 
         if x is None:
-            return None
+            raise NoSuchElementException("calls ceiling() with key > max")
         return x.key 
 
     def _ceiling(self, x: Optional[Node[Key, Val]], key: Key) -> Optional[Node[Key, Val]]:

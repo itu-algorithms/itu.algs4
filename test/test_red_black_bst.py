@@ -35,6 +35,18 @@ class TestRedBlackBSTMethods(unittest.TestCase):
             self.assertEqual(i, self.st.select(i//2))
             self.assertEqual(i//2, self.st.rank(i))
 
+    def test_floor_and_ceiling(self):
+        self.st.put(0, 0)
+        self.st.put(2, 2)
+        self.assertEqual(0, self.st.floor(0))
+        self.assertEqual(0, self.st.floor(1))
+        self.assertEqual(2, self.st.floor(2))
+        self.assertEqual(2, self.st.floor(3))
+        self.assertEqual(0, self.st.ceiling(-1))
+        self.assertEqual(0, self.st.ceiling(0))
+        self.assertEqual(2, self.st.ceiling(1))
+        self.assertEqual(2, self.st.ceiling(2))
+
 
     def test_exceptions(self):
         with self.assertRaises(NoSuchElementException):
@@ -43,6 +55,13 @@ class TestRedBlackBSTMethods(unittest.TestCase):
             self.st.max()
         with self.assertRaises(NoSuchElementException):
             self.st.floor(0)
+        with self.assertRaises(NoSuchElementException):
+            self.st.ceiling(0)
+        self.st.put(0, 0)
+        with self.assertRaises(NoSuchElementException):
+            self.st.floor(-1)
+        with self.assertRaises(NoSuchElementException):
+            self.st.ceiling(1)
 
 class LargerRedBlackBSTMethods(unittest.TestCase):
     L = [1,3,6,7,10,13,16]

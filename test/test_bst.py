@@ -8,7 +8,7 @@ class TestBSTMethods(unittest.TestCase):
 
     def test_empty(self):
         self.assertTrue(self.bst.is_empty())
-        self.bst.put('spam', 0)
+        self.bst.put(0, 0)
         self.assertFalse(self.bst.is_empty())
 
     def test_size(self):
@@ -26,6 +26,19 @@ class TestBSTMethods(unittest.TestCase):
 
         self.assertEqual(0, self.bst.size())
 
+    def test_floor_and_ceiling(self):
+        self.bst.put(0, 0)
+        self.bst.put(2, 2)
+        self.assertEqual(0, self.bst.floor(0))
+        self.assertEqual(0, self.bst.floor(1))
+        self.assertEqual(2, self.bst.floor(2))
+        self.assertEqual(2, self.bst.floor(3))
+        #self.assertEqual(0, self.bst.ceiling(-1))
+        #self.assertEqual(0, self.bst.ceiling(0))
+        #self.assertEqual(2, self.bst.ceiling(1))
+        #self.assertEqual(2, self.bst.ceiling(2))
+
+
     def test_exceptions(self):
         with self.assertRaises(NoSuchElementException):
             self.bst.min()
@@ -33,6 +46,9 @@ class TestBSTMethods(unittest.TestCase):
             self.bst.max()
         with self.assertRaises(NoSuchElementException):
             self.bst.floor(0)
+        self.bst.put(0, 0)
+        with self.assertRaises(NoSuchElementException):
+            self.bst.floor(-1)
 
 class LargerBSTMethods(unittest.TestCase):
     L = [1,3,6,7,10,13,16]
