@@ -258,6 +258,32 @@ class BST(Generic[Key, Val]):
             return temp_node
         return node
 
+    def ceiling(self, key: Key) -> Key:
+        """
+        Returns the smallest key in the symbol table greater than or equal to key
+        Raises NoSuchElementException if no such key exists.
+        """
+        if self.is_empty():
+            raise NoSuchElementException("calls ceiling() with empty symbol table")
+
+        node = self._ceiling(self._root, key)
+        if node is None:
+            raise NoSuchElementException("calls ceiling() with key > max")
+        else:
+            return node.key
+
+    def _ceiling(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key, Val]]:
+        if node is None:
+            return None
+        elif key == node.key:
+            return node
+        elif key > node.key:
+            return self._ceiling(node.right, key)
+        temp_node = self._ceiling(node.left, key)
+        if temp_node is not None:
+            return temp_node
+        return node
+
     def keys(self) -> Queue[Key]:
         """
         Returns all keys in the symbol table as a list.

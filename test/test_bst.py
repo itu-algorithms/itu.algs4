@@ -33,10 +33,10 @@ class TestBSTMethods(unittest.TestCase):
         self.assertEqual(0, self.bst.floor(1))
         self.assertEqual(2, self.bst.floor(2))
         self.assertEqual(2, self.bst.floor(3))
-        #self.assertEqual(0, self.bst.ceiling(-1))
-        #self.assertEqual(0, self.bst.ceiling(0))
-        #self.assertEqual(2, self.bst.ceiling(1))
-        #self.assertEqual(2, self.bst.ceiling(2))
+        self.assertEqual(0, self.bst.ceiling(-1))
+        self.assertEqual(0, self.bst.ceiling(0))
+        self.assertEqual(2, self.bst.ceiling(1))
+        self.assertEqual(2, self.bst.ceiling(2))
 
 
     def test_exceptions(self):
