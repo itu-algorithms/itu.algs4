@@ -1,5 +1,7 @@
 # Algs4 for Python
 
+[![Build Status](https://github.itu.dk/algorithms/AlgorithmsInPython/workflows/check/badge.svg)](https://github.itu.dk/algorithms/AlgorithmsInPython/actions)
+
 Algs4 for Python is intended for instructors and students, who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne, but who prefer to use Python rather than Java.
 Sedgewick and Wayne provided their [source code](https://algs4.cs.princeton.edu/code/) in Java as a jar library [algs4.jar](https://algs4.cs.princeton.edu/code/algs4.jar).
 Algs4 for Python is the Python3 port of `algs4.jar`.
