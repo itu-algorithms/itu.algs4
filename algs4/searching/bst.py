@@ -2,7 +2,7 @@
 # see README.md for details
 # Python 3
 
-from ..errors.errors import NoSuchElementException
+from ..errors.errors import NoSuchElementException, IllegalArgumentException
 from ..fundamentals.queue import Queue
 
 """
@@ -18,9 +18,6 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 :original java code: https://algs4.cs.princeton.edu/32bst/BST.java.html
 
 """
-
-# Missing methods:
-# ceiling, select, rank, size (or rather, range_size)
 
 from typing import TypeVar, Generic, Optional, Sequence, List
 from abc import abstractmethod
@@ -313,6 +310,81 @@ class BST(Generic[Key, Val]):
             queue.enqueue(node.key)
         if hi > node.key:
             self._range_keys(node.right, queue, lo, hi)
+            
+    def select(self, k: int) -> Key:
+        """
+        Return the kth smallest key in the symbol table.
+        :param k: the order statistic
+        :return: the kth smallest key in the symbol table
+        :raises IllegalArgumentException: unless k is between 0 and n-1
+        """
+        if k < 0 or k >= self.size():
+            raise IllegalArgumentException("argument to select() is invalid: {}".format(k))
+        assert self._root is not None
+        x = self._select(self._root, k)
+        return x.key
+
+    def _select(self, x: Node[Key, Val], k: int) -> Node[Key, Val]:
+        """
+        Returns the node with key of rank k in the subtree rooted at x
+        :rtype: Node
+        """
+        t = self._size(x.left)
+        if t > k:
+            assert x.left is not None
+            return self._select(x.left, k)
+        elif t < k:
+            assert x.right is not None
+            return self._select(x.right, k-t-1)
+        else:
+            return x
+
+    def rank(self, key: Key) -> int:
+        """
+        Returns the number of keys in the symbol table strictly less than key.
+        :param key: the key
+        :return: the number of keys in the symbol table strictly less than key
+        :rtype: int
+        :raises IllegalArgumentException: if key is None
+        """
+        if key is None:
+            raise IllegalArgumentException("argument to rank() is None")
+        return self._rank(key, self._root)
+
+    def _rank(self, key: Key, x: Optional[Node[Key, Val]]) -> int:
+        """
+        Returns the number of keys less than key in the subtree rooted at x.
+        :rtype: int
+        """
+        if x is None:
+            return 0
+        if key < x.key:
+            return self._rank(key, x.left)
+        if key > x.key:
+            return 1 + self._size(x.left) + self._rank(key, x.right)
+        else:
+            return self._size(x.left)
+
+    def size_range(self, lo: Key, hi: Key) -> int:
+        """
+        Returns the number of keys in the symbol table in the given range.
+        :param lo: minimum endpoint
+        :param hi: maximum endpoint
+        :return: the number of keys in the symbol table between lo
+        (inclusive) and hi (inclusive)
+        :rtype: int
+        :raises IllegalArgumentException: if either lo or hi is None
+        """
+        if lo is None:
+            return IllegalArgumentException("first argument to size() is None")
+        if hi is None:
+            return IllegalArgumentException("second argument to size() is None")
+        if lo > hi:
+            return 0
+        if self.contains(hi):
+            return self.rank(hi) - self.rank(lo) + 1
+        else:
+            return self.rank(hi) - self.rank(lo)
 
     def height(self) -> int:
         """

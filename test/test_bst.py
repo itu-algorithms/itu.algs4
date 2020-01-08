@@ -38,6 +38,13 @@ class TestBSTMethods(unittest.TestCase):
         self.assertEqual(2, self.bst.ceiling(1))
         self.assertEqual(2, self.bst.ceiling(2))
 
+    def test_rank_select(self):
+        for i in range(0,2**8 + 2,2):
+            self.bst.put(i,i)
+            self.assertEqual(0, self.bst.min())
+            self.assertEqual(i, self.bst.max())
+            self.assertEqual(i, self.bst.select(i//2))
+            self.assertEqual(i//2, self.bst.rank(i))   
 
     def test_exceptions(self):
         with self.assertRaises(NoSuchElementException):
