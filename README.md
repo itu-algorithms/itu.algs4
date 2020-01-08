@@ -112,3 +112,26 @@ FILE
 
 - [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
 - [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
+
+## History
+
+Algs4 for Python was first created in 2018 by teaching assistants and instructors at [ITU Copenhagen](https://algorithms.itu.dk), where the introductory course on Algorithms and Data Structures is taught bilingually in Java and Python3.
+
+## Contributors
+
+- Andreas Holck Høeg-Petersen
+- Anton Mølbjerg Eskildsen
+- Frederik Haagensen
+- Holger Dell
+- Martino Secchi
+- Morten Keller Grøftehauge
+- Morten Tychsen Clausen
+- Nina Mesing Stausholm Nielsen
+- Otto Stadel Clausen
+- Riko Jacob
+- Thore Husfeldt
+- Viktor Shamal Andersen
+
+## License
+
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
