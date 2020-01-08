@@ -1,7 +1,8 @@
 # Algs4 for Python
 
-The textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne describes all algorithms as Java programs. They provide the [source code](https://algs4.cs.princeton.edu/code/) online as a jar library [algs4.jar](https://algs4.cs.princeton.edu/code/algs4.jar).
-This repository contains the Python3 translation of that Java code.
+Algs4 for Python is intended for instructors and students, who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne, but who prefer to use Python rather than Java.
+Sedgewick and Wayne provided their [source code](https://algs4.cs.princeton.edu/code/) in Java as a jar library [algs4.jar](https://algs4.cs.princeton.edu/code/algs4.jar).
+Algs4 for Python is the Python3 port of `algs4.jar`.
 In addition, it contains, with slight modifications, the `stdlib` package from the book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/code/) by Sedgewick, Wayne, and Dondero.
 
 ## Installation
@@ -106,3 +107,8 @@ PACKAGE CONTENTS
 FILE
     (built-in)
 ```
+
+## Other ports
+
+- [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
+- [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
