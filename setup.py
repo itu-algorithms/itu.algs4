@@ -10,7 +10,7 @@ setup(
     # author_email='',
     # url='',
     license='GPLv3',
-    packages=find_packages(exclude=['examples','test']),
+    packages=find_packages(exclude=['examples','tests']),
     extras_require={
         'audio' : ['numpy'],
         'visual': ['pygame'],
