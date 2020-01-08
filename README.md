@@ -137,5 +137,6 @@ This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) fi
 
 ## Links to other Algs4 ports
 
+- [pyalgs](https://github.com/chen0040/pyalgs) is another Python port of `algs4.jar`.
 - [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
 - [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
