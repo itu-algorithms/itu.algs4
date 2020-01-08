@@ -1,37 +1,19 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
-    name="algs4_python",
-    version="0.2.1.7",
-    packages= [
-        'algs4.fundamentals',
-        'algs4.sorting',
-        'algs4.searching',
-        'algs4.graphs',
-        'algs4.strings',
-        'algs4.stdlib',
-        'algs4.errors'
-        ],
-    
-    #package_dir = {
-    #    'algs4.fundamentals': './fundamentals',
-    #    'algs4.sorting': './sorting',
-    #    'algs4.searching': './searching',
-    #    'algs4.graphs': './graphs',
-    #    'algs4.strings': './strings',
-    #    'algs4.stdlib': './stdlib',
-    #    'algs4.errors': './errors'        
-    #},
-    
-    description="A translation of the algorithms covered in the book Algorithms 4th edition, for use in an introductory algorithms course at The IT University of Copenhagen.",
-    
-    install_requires = [
-        # 'numpy',
-        #'pygame',
-    ],
-    
+    name='algs4-itu',
+    version='0.2.1.7',
+    description='Python implementation of the algs4 library from the textbook "Algorithms, 4th Edition" by Sedgewick and Wayne',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    # author='',
+    # author_email='',
+    # url='',
+    license='GPLv3',
+    packages=find_packages(exclude=['examples','test']),
     extras_require={
         'audio' : ['numpy'],
-        'visual': ['pygame']
-    }
+        'visual': ['pygame'],
+        'dev': ['flake8', 'isort', 'pytest', 'pytest-cov', 'coveralls'],
+    },
 )
