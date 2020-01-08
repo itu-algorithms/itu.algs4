@@ -1,4 +1,6 @@
 import sys
+
+from algs4.searching.bst import BST
 from algs4.stdlib import stdio
 
 if __name__ == "__main__":
