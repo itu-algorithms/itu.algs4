@@ -108,10 +108,9 @@ FILE
     (built-in)
 ```
 
-## Other ports
+## Development
 
-- [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
-- [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
+Algs4 for Python has known bugs and has not been tested systematically. We are open to pull requests, in particular, we appreciate the contribution of high-quality test cases, bug-fixes, and coding style improvements.
 
 ## History
 
@@ -135,3 +134,8 @@ Algs4 for Python was first created in 2018 by teaching assistants and instructor
 ## License
 
 This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
+
+## Links to other Algs4 ports
+
+- [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
+- [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
