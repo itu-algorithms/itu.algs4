@@ -38,22 +38,23 @@ To install the `algs4` package:
 ```
 C:\Users\haag>cd Desktop\AlgorithmsInPython-master
 ```
-- When in the correct folder simply type "pip install ." to install the package. 
+- When in the correct folder, type `pip install .` to install the package. 
 ```
 C:\Users\haag\Desktop\AlgorithmsInPython-master>pip install .
 ```
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
 ## Test the installation
-To test that the package is installed correctly, run python in interactive mode and enter `from algs4.fundamentals.uf import UF`.
+To test that the package is installed correctly, run python in interactive mode and enter `import algs4`.
 ```
-C:\Users\haag>python
-Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+➜  ~ python 
+Python 3.7.6 | packaged by conda-forge | (default, Jan  7 2020, 22:33:48) 
+[GCC 7.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> from algs4.fundamentals.uf import UF
+>>> import algs4
 >>> 
 ```
-If no error message occured, the library has been installed correctly.
+If no error message appears, the library has been installed correctly.
 
 ## Usage
 
@@ -63,11 +64,21 @@ All filenames and package names have been written in lower-case style with under
 
 ### Example
 
+A simple program, stored as a file `hello_world.py`, looks like this:
 ```python
-# Import the digraph class 
-from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+import algs4.stdlib.stdio
 
-# Some files contain multiple classes, for example:
+algs4.stdlib.stdio.write("Hello World!\n")
+```
+It can be run with the command `python hello_world.py`.
+
+You can import classes, such as the class EdgeWeightedDigraph, with
+```python
+from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+```
+
+Some files contain multiple classes, for example:
+```python
 from algs4.fundamentals.uf import UF
 from algs4.fundamentals.uf import QuickUnionUF
 ```
