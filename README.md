@@ -57,7 +57,7 @@ If no error message occured, the library has been installed correctly.
 
 ## Usage
 
-The package `algs4` has a hierarchical structure. It has seven sub-packages, corresponding to: the first five chapters of "Algorithms 4th, Edition", the `stdlib` package of "Introduction to Programming in Python", and a package `error` containing a number of exception classes.
+The package `algs4` has a hierarchical structure. It has seven sub-packages, corresponding to: the first five chapters of "Algorithms, 4th Edition", the `stdlib` package of "Introduction to Programming in Python", and a package `error` containing a number of exception classes.
 
 All filenames and package names have been written in lower-case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
 
