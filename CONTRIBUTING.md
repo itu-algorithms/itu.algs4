@@ -9,6 +9,20 @@ python3 -m unittest tests/test_bst.py
 python3 -m unittest tests/test_red_black_bst.py
 ```
 
+To run all the tests:
+```bash
+pytest tests/
+```
+
+To run all the tests and display code coverage statistics, install the algs4 package in development mode:
+```bash
+pip install --upgrade -e '.[dev]'
+```
+and then run pytest as follows:
+```bash
+pytest --cov-report term-missing --cov algs4 tests/
+```
+
 ## Types
 
 The binary search trees now type check using mypy, try
