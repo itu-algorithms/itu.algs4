@@ -5,6 +5,9 @@
 from ..errors.errors import NoSuchElementException, IllegalArgumentException
 from ..fundamentals.queue import Queue
 
+import sys
+sys.setrecursionlimit(10**5)
+
 """
 The BST class represents an ordered symbol table of generic
 key-value pairs.
