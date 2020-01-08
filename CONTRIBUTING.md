@@ -51,7 +51,7 @@ If appropriate we use `isinstance()` and its variants, for example to distinguis
 
 - there is one file per version of an algorithm / data structure (like in algs4), the name, and importantly the docstring, reflects which version it is
 
-- java main becomes __main__ stuff; follow what is there; adjust the initial comment
+- java main becomes `__main__` stuff; follow what is there; adjust the initial comment
 
 - don't replicate imports unless 
 
@@ -59,7 +59,7 @@ If appropriate we use `isinstance()` and its variants, for example to distinguis
   - like in the book
   - private variables become _variable_name
 
-- if java has toString(), then we have __repr__()
+- if java has `toString()`, then we have `__repr__()`
 
 - keep the comments from the java code 
 
