@@ -3,8 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name='algs4',
     version='0.2.1.7',
-    description='Python implementation of the algs4 library '
-    'from the textbook "Algorithms, 4th Edition" by Sedgewick and Wayne',
+    description='Python 3 port of the Java code in "Algorithms, 4th Edition" by Sedgewick and Wayne',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     # author='',
