@@ -13,8 +13,11 @@ in linear time.
 The sorting algorithm is stable and uses O(1) extra memory.
  """
 import sys
+from typing import List, TypeVar
 
-def sort(a):
+T = TypeVar('T')
+
+def sort(a: List[T]):
 	"""
 	Rearranges the array in ascending order, using the natural order.
 	:param a: the array to be sorted.
@@ -28,21 +31,21 @@ def sort(a):
 				break
 			_exch(a,j,j-1)
 			
-def _less(v, w):
+def _less(v: T, w: T):
 	return v < w
 
-def _exch(a, i, j):
+def _exch(a: List[T], i: int, j: int):
 	t = a[i]
 	a[i] = a[j]
 	a[j] = t
 	
-def _show(a):
+def _show(a: List[T]):
 	#Prints the array on a single line
 	for item in a:
 		print(item, end=' ')
 	print()
 	
-def is_sorted(a):
+def is_sorted(a: List[T]):
 	"""
 	Returns true if a is sorted.
 	:param a: the array to be checked.

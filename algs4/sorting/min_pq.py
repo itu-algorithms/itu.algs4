@@ -5,9 +5,12 @@ from algs4.errors.errors import NoSuchElementException
 # Created for BADS 2018
 # See README.md for details
 # This is python3
+from typing import TypeVar, List, Generic, Optional
 
 
-class MinPQ:
+Key = TypeVar('Key')
+
+class MinPQ(Generic[Key]):
     """
     The MinPQ class represents a priority queue of generic keys.
     It supports the usual insert and delete-the-minimum
@@ -18,15 +21,15 @@ class MinPQ:
     The min, size and is-empty operations take constant time.
     Construction takes time proportional to the specified capacity.
     """
-    def __init__(self, _max=1):
+    def __init__(self, _max: int = 1) -> None:
         """
         Initializes an empty priority queue with the given initial capacity
         :param _max: the initial capacity, default value is 1
         """
-        self._pq = [None] * (_max + 1)
+        self._pq: List[Optional[Key]] = [None] * (_max + 1)
         self._n = 0
 
-    def insert(self, x):
+    def insert(self, x: Key) -> None:
         """
         Adds a new key to this priority queue.
         :param x: the new key to add to this priority queue
@@ -37,7 +40,7 @@ class MinPQ:
         self._pq[self._n] = x
         self._swim(self._n)
 
-    def min(self):
+    def min(self) -> Key:
         """
         Returns a smallest key on this priority queue.
         :return: a smallest key on the priority queue
@@ -46,9 +49,10 @@ class MinPQ:
         if self.is_empty():
             raise NoSuchElementException("Priority queue underflow")
 
+        assert self._pq[1] is not None
         return self._pq[1]
 
-    def del_min(self):
+    def del_min(self) -> Key:
         """
         Removes and returns a smallest key on this priority queue.
         :return: a smallest key on this priority queue
@@ -58,6 +62,7 @@ class MinPQ:
             raise NoSuchElementException("Priority queue underflow")
 
         _min = self._pq[1]
+        assert _min is not None
         self._exch(1, self._n)
         self._n -= 1
         self._sink(1)
@@ -66,7 +71,7 @@ class MinPQ:
             self._resize(len(self._pq) // 2)
         return _min
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         Returns True if this priority queue is empty.
         :return: True if this priority queue is empty otherwise False
@@ -74,7 +79,7 @@ class MinPQ:
         """
         return self._n == 0
 
-    def size(self):
+    def size(self) -> int:
         """
         Returns the number of keys on this priority queue.
         :return: the number of keys on this priority queue
@@ -82,10 +87,10 @@ class MinPQ:
         """
         return self._n
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.size()
 
-    def _sink(self, k):
+    def _sink(self, k) -> None:
         """
         Moves item at index k down to a legal position on the heap.
         :param k: Index of the item to be moved
@@ -99,7 +104,7 @@ class MinPQ:
             self._exch(k, j)
             k = j
 
-    def _swim(self, k):
+    def _swim(self, k) -> None:
         """
         Moves item at index k up to a legal position on the heap.
         :param k: Index of the item to be moved
@@ -108,7 +113,7 @@ class MinPQ:
             self._exch(k, k//2)
             k = k//2
 
-    def _greater(self, i, j):
+    def _greater(self, i: int, j: int):
         """
         Check if item at index i is greater than item at index j on the heap.
         :param i: index of the first item
@@ -117,17 +122,17 @@ class MinPQ:
         """
         return self._pq[i] > self._pq[j]
 
-    def _resize(self, capacity):
+    def _resize(self, capacity: int):
         """
         Copies the contents of the heap to a new array of size capacity.
         :param capacity: The capacity of the new array
         """
-        temp = [None] * capacity
+        temp: List[Optional[Key]] = [None] * capacity
         for i in range(1, self._n + 1):
             temp[i] = self._pq[i]
         self._pq = temp
 
-    def _exch(self, i, j):
+    def _exch(self, i: int, j: int):
         """
         Exchanges the position of items at index i and j on the heap.
         :param i: index of the first item

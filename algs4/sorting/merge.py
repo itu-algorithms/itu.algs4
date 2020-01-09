@@ -2,6 +2,8 @@
 # See README.md for details
 # Python 3
 
+from typing import Optional, List
+
 """
 This module provides functions for sorting an array using mergesort.
 
@@ -10,7 +12,7 @@ by Robert Sedgewick and Kevin Wayne.
 """
 #  Sorts a sequence of strings from standard input using mergesort
 
-def _is_sorted(a, lo=0, hi=None):
+def _is_sorted(a: List, lo: int = 0, hi: Optional[int] = None):
     # If hi is not specified, use whole array
     if hi is None:
         hi = len(a)
@@ -22,7 +24,7 @@ def _is_sorted(a, lo=0, hi=None):
     return True
 
 # stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
-def _merge(a, aux, lo, mid, hi):
+def _merge(a: List, aux: List, lo: int, mid: int, hi: int):
     # precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
     assert _is_sorted(a, lo, mid)
     assert _is_sorted(a, mid+1, hi)
@@ -51,7 +53,7 @@ def _merge(a, aux, lo, mid, hi):
     assert _is_sorted(a, lo, hi)
 
     # mergesort a[lo..hi] using auxiliary array aux[lo..hi]
-def _sort(a, aux, lo, hi):
+def _sort(a: List, aux: List, lo: int, hi: int):
     if (hi <= lo):
         return
     mid = lo + (hi-lo)//2
@@ -59,7 +61,7 @@ def _sort(a, aux, lo, hi):
     _sort(a, aux, mid+1, hi)
     _merge(a, aux, lo, mid, hi)
 
-def sort(a):
+def sort(a: List):
     """
     Rearranges the array in ascending order, using the natural order.
     
@@ -85,6 +87,7 @@ if __name__ == '__main__':
     
     a = stdio.readAllStrings()
     sort(a)
+    assert _is_sorted(a)
     for elem in a:
         print(elem)
     

@@ -15,6 +15,7 @@ The UF module implements several versions of the union-find data structure (also
         * Transitive: If p is connected to q and q is connected to r, then
                            p is connected to r.
 """
+from typing import *
 
 class UF:
     """
@@ -30,7 +31,7 @@ class UF:
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
 
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         """
         Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
@@ -41,13 +42,13 @@ class UF:
         self._parent = list(range(n))
         self._rank = [0]*n
 
-    def _validate(self, p):
+    def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
             raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
-    def union(self, p, q):
+    def union(self, p: int, q: int) -> None:
         """
         Merges the component containing site p with the
         component containing site q.
@@ -71,7 +72,7 @@ class UF:
 
         self._count -= 1
 
-    def find(self, p):
+    def find(self, p: int) -> int:
         """
         Returns the component identifier for the component containing site p.
 
@@ -84,7 +85,7 @@ class UF:
             p = self._parent[p]
         return p
 
-    def connected(self, p, q):
+    def connected(self, p: int, q: int) -> bool:
         """
         Returns true if the two sites are in the same component.
 
@@ -94,7 +95,7 @@ class UF:
         """
         return self.find(p) == self.find(q)
 
-    def count(self):
+    def count(self) -> int:
         return self._count
 
 class QuickUnionUF:
@@ -110,7 +111,7 @@ class QuickUnionUF:
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
 
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         """
         Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
@@ -120,13 +121,13 @@ class QuickUnionUF:
         self._count = n
         self._parent = list(range(n))
 
-    def _validate(self, p):
+    def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
             raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
-    def union(self, p, q):
+    def union(self, p: int, q: int) -> None:
         """
         Merges the component containing site p with the
         component containing site q.
@@ -143,7 +144,7 @@ class QuickUnionUF:
 
         self._count -= 1
 
-    def find(self, p):
+    def find(self, p: int) -> int:
         """
         Returns the component identifier for the component containing site p.
 
@@ -155,7 +156,7 @@ class QuickUnionUF:
             p = self._parent[p]
         return p
 
-    def connected(self, p, q):
+    def connected(self, p: int, q: int) -> bool:
         """
         Returns true if the two sites are in the same component.
 
@@ -165,7 +166,7 @@ class QuickUnionUF:
         """
         return self.find(p) == self.find(q)
 
-    def count(self):
+    def count(self) -> int:
         return self._count
     
 class WeightedQuickUnionUF:
@@ -182,7 +183,7 @@ class WeightedQuickUnionUF:
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
 
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         """
         Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
@@ -193,13 +194,13 @@ class WeightedQuickUnionUF:
         self._parent = list(range(n))
         self._size = [1]*n
 
-    def _validate(self, p):
+    def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
             raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
-    def union(self, p, q):
+    def union(self, p: int, q: int) -> None:
         """
         Merges the component containing site p with the
         component containing site q.
@@ -223,7 +224,7 @@ class WeightedQuickUnionUF:
       
         self._count -= 1
 
-    def find(self, p):
+    def find(self, p: int) -> int:
         """
         Returns the component identifier for the component containing site p.
 
@@ -235,7 +236,7 @@ class WeightedQuickUnionUF:
             p = self._parent[p]
         return p
 
-    def connected(self, p, q):
+    def connected(self, p: int, q: int) -> bool:
         """
         Returns true if the two sites are in the same component.
 
@@ -245,7 +246,7 @@ class WeightedQuickUnionUF:
         """
         return self.find(p) == self.find(q)
 
-    def count(self):
+    def count(self) -> int:
         return self._count
 
 class QuickFindUF:
@@ -260,7 +261,7 @@ class QuickFindUF:
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
     """
 
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         """
         Initializes an empty union-find data structure with n sites,
         0 through n-1. Each site is initially in its own component.
@@ -270,13 +271,13 @@ class QuickFindUF:
         self._count = n
         self._id = list(range(n))
 
-    def _validate(self, p):
+    def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._id)
         if p < 0 or p >= n:
             raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
 
-    def union(self, p, q):
+    def union(self, p: int, q: int) -> None:
         """
         Merges the component containing site p with the
         component containing site q.
@@ -299,7 +300,7 @@ class QuickFindUF:
                 self._id[i] = q_id
         self._count -= 1
 
-    def find(self, p):
+    def find(self, p: int) -> int:
         """
         Returns the component identifier for the component containing site p.
 
@@ -309,7 +310,7 @@ class QuickFindUF:
         self._validate(p)
         return self._id[p]
 
-    def connected(self, p, q):
+    def connected(self, p: int, q: int) -> bool:
         """
         Returns true if the two sites are in the same component.
 

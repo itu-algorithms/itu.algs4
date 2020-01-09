@@ -4,7 +4,13 @@
 # This is python3 
 
 #     See ResizingArrayBag for a version that uses a resizing array.
-class Bag:
+
+from typing import Sequence, TypeVar, Generic, List, Iterator, Optional
+
+T = TypeVar('T')
+S = TypeVar('S')
+
+class Bag(Generic[T]):
     """
     The Bag class represents a bag (or multiset) of 
     generic items. It supports insertion and iterating over the 
@@ -17,20 +23,20 @@ class Bag:
     The add, is_empty, and size operations
     take constant time. Iteration takes time proportional to the number of items.
     """
-    class Node:
+    class Node(Generic[S]):
         # helper linked list class
         def __init__(self):
-            self.next = None
-            self.item = None
+            self.next: Optional[Node] = None
+            self.item: Optional[S] = None
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes an empty bag.
         """
-        self._first = None # beginning of bag
+        self._first: Optional[Bag.Node[T]] = None # beginning of bag
         self._n = 0        # number of elements in bag 
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         Returns true if this bag is empty.
 
@@ -39,7 +45,7 @@ class Bag:
         """
         return self._first is None
 
-    def size(self):
+    def size(self) -> int:
         """
         Returns the number of items in this bag.
 
@@ -47,33 +53,34 @@ class Bag:
         """
         return self._n
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.size()
 
-    def add(self, item):
+    def add(self, item: T) -> None:
         """
         Adds the item to this bag.
         
         :param item: the item to add to this bag
         """
         oldfirst = self._first
-        self._first = self.Node()
+        self._first = Bag.Node()
         self._first.item = item
         self._first.next = oldfirst
         self._n += 1
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[T]:
         """
         Returns an iterator that iterates over the items in this bag in arbitrary order.
 
         :returns: an iterator that iterates over the items in this bag in arbitrary order
         """
         current = self._first
-        while not current is None:
+        while current is not None:
+            assert current.item is not None
             yield current.item
             current = current.next
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         out = '{'
         for elem in self:
             out += '{}, '.format(elem)
@@ -91,7 +98,7 @@ if __name__ == '__main__':
         except IOError:
             print("File not found, using standard input instead")    
 
-    bag = Bag()
+    bag: Bag[str] = Bag()
     while not stdio.isEmpty():
         item = stdio.readString()
         bag.add(item)

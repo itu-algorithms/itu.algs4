@@ -1,6 +1,10 @@
 import sys
 from algs4.stdlib import stdio
 
+from typing import List, Generic, TypeVar
+
+T = TypeVar('T')
+
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -12,7 +16,7 @@ The index_of operation takes logarithmic time in the worst case.
 """
 
 
-def index_of(a, key):
+def index_of(a: List[T], key: T):
     """
     Returns the index of the specified key in the specified array.
     :param a: the array of items, must be sorted in ascending order
