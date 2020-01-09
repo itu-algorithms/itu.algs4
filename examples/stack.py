@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 from algs4.fundamentals.stack import Stack

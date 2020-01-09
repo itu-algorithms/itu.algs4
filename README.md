@@ -1,15 +1,17 @@
-# Algs4 for Python
+# `algs4-py`
+
+`algs4-py` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
 
 [![Build Status](https://github.itu.dk/algorithms/AlgorithmsInPython/workflows/check/badge.svg)](https://github.itu.dk/algorithms/AlgorithmsInPython/actions)
 
-Algs4 for Python is intended for instructors and students who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne, but who prefer to use Python rather than Java.
-Sedgewick and Wayne provided their [source code](https://algs4.cs.princeton.edu/code/) in Java as a jar library [algs4.jar](https://algs4.cs.princeton.edu/code/algs4.jar).
-Algs4 for Python is the Python3 port of `algs4.jar`.
-In addition, it contains, with slight modifications, the `stdlib` package from the book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/code/) by Sedgewick, Wayne, and Dondero.
+## Target audience
+
+`algs4-py` is intended for instructors and students who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne.
+It was first created in 2018 by teaching assistants and instructors at [ITU Copenhagen](https://algorithms.itu.dk), where the introductory course on Algorithms and Data Structures is taught bilingually in Java and Python 3.
 
 ## Installation
 
-This library requires a functioning Python3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
+This library requires a functioning Python 3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
 Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages.
 
 ### With pip and git
@@ -32,7 +34,7 @@ To install this library without git:
 
 ### Step-by-step guide for Windows
 
-To install the `algs4` package:
+To install the python package `algs4`:
 
 - Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
 - Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
@@ -61,9 +63,9 @@ If no error message appears, the library has been installed correctly.
 
 ## Usage
 
-The package `algs4` has a hierarchical structure. It has seven sub-packages, corresponding to: the first five chapters of "Algorithms, 4th Edition", the `stdlib` package of "Introduction to Programming in Python", and a package `error` containing a number of exception classes.
+The python package `algs4` and has a hierarchical structure. It has seven sub-packages, corresponding to: the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/), the `stdlib` package of [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/), and a package `error` containing some exception classes.
 
-All filenames and package names have been written in lower-case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
+All filenames and package names have been written in lower_case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
 
 ### Example
 
@@ -85,6 +87,8 @@ Some files contain multiple classes, for example:
 from algs4.fundamentals.uf import UF
 from algs4.fundamentals.uf import QuickUnionUF
 ```
+
+Look into the [examples](examples) directory for further examples.
 
 ## Documentation
 
@@ -112,11 +116,7 @@ FILE
 
 ## Development
 
-Algs4 for Python has known bugs and has not been tested systematically. We are open to pull requests, in particular, we appreciate the contribution of high-quality test cases, bug-fixes, and coding style improvements.
-
-## History
-
-Algs4 for Python was first created in 2018 by teaching assistants and instructors at [ITU Copenhagen](https://algorithms.itu.dk), where the introductory course on Algorithms and Data Structures is taught bilingually in Java and Python3.
+`algs4-py` has known bugs and has not been tested systematically. We are open to pull requests, in particular, we appreciate the contribution of high-quality test cases, bug-fixes, and coding style improvements. For more information, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## Contributors
 
@@ -137,8 +137,11 @@ Algs4 for Python was first created in 2018 by teaching assistants and instructor
 
 This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
 
-## Links to other Algs4 ports
+## Links to other projects
 
-- [pyalgs](https://github.com/chen0040/pyalgs) is another Python port of `algs4.jar`.
-- [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4.jar`.
-- [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4.jar`.
+- [algs4](https://github.com/kevin-wayne/algs4/) is the original Java implementation by Sedgewick and Wayne.
+- The textbook [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/) by Sedgewick, Wayne, and Dondero has a somewhat different approach from [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/), and is therefore not suitable for a bilingual course. Nevertheless, our code in [algs4/stdlib/](algs4/stdlib/) is largely based on the [source code](https://introcs.cs.princeton.edu/python/code/) associated with that book.
+- [pyalgs](https://github.com/chen0040/pyalgs) is a Python port of `algs4` that uses a more idiomatic Python coding style. In contrast, our port tries to stay as close to the original as possible, so that it can be used with less friction in a bilingual course.
+- [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4`.
+- [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4`.
+

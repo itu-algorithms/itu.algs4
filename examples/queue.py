@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from algs4.fundamentals.queue import Queue
 from algs4.stdlib import stdio
 

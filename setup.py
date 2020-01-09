@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='algs4-itu',
+    name='algs4',
     version='0.2.1.7',
     description='Python implementation of the algs4 library '
     'from the textbook "Algorithms, 4th Edition" by Sedgewick and Wayne',
