@@ -71,9 +71,9 @@ The python package `algs4` has a hierarchical structure with seven sub-packages:
 - [algs4.graphs](algs4/graphs)
 - [algs4.strings](algs4/strings)
 - [algs4.stdlib](algs4/stdlib)
-- [algs4.error](algs4/error)
+- [algs4.errors](algs4/errors)
 
-The first five packages correspond to the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/). The `stdlib` package is based on the one from the related book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/). The package `error` contains some exception classes.
+The first five packages correspond to the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/). The `stdlib` package is based on the one from the related book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/). The package `errors` contains some exception classes.
 
 All filenames and package names have been written in lower_case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
 
