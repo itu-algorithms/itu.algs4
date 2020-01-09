@@ -1,6 +1,7 @@
 import sys
-from algs4.stdlib import stdio
+
 from algs4.fundamentals.stack import Stack
+from algs4.stdlib import stdio
 
 if len(sys.argv) > 1:
     try:
@@ -17,4 +18,3 @@ while not stdio.isEmpty():
         stdio.write(stack.pop() + " ")
 
 stdio.writef("(%i left on stack)\n", stack.size())
-
