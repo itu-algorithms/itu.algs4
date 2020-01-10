@@ -41,18 +41,18 @@ To install the python package `algs4`:
 - Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
 - If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\AlgorithmsInPython-master".
 ```
-C:\Users\haag>cd Desktop\AlgorithmsInPython-master
+C:\Users\user>cd Desktop\AlgorithmsInPython-master
 ```
 - When in the correct folder, type `pip install .` to install the package. 
 ```
-C:\Users\haag\Desktop\AlgorithmsInPython-master>pip install .
+C:\Users\user\Desktop\AlgorithmsInPython-master>pip install .
 ```
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
 ## Test the installation
 To test that the package is installed correctly, run python in interactive mode and enter `import algs4`.
-```
-➜  ~ python 
+```console
+user@host:~$ python 
 Python 3.7.6 | packaged by conda-forge | (default, Jan  7 2020, 22:33:48) 
 [GCC 7.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
