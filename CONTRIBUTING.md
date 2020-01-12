@@ -1,40 +1,36 @@
 # Development
 
-## Test
+## Testing
 
-In the root directory, run
-
-```
-python3 -m unittest tests/test_bst.py
-python3 -m unittest tests/test_red_black_bst.py
-```
-
-To run all the tests:
-```bash
-pytest tests/
-```
-
-To run all the tests and display code coverage statistics, install the algs4 package in development mode:
+Before you can run tests, you should install this package in "editable" mode,
+and install its development dependencies:
 ```bash
 pip install --upgrade -e '.[dev]'
 ```
-and then run pytest as follows:
+Run all tests as follows:
 ```bash
-pytest --cov-report term-missing --cov algs4 tests/
+pytest
+```
+To additionally display code coverage statistics, use this:
+```bash
+pytest --cov-report term-missing --cov itu.algs4
+```
+To run individual tests, you can also do this:
+```
+python3 -m unittest tests/test_bst.py
+pytest tests/test_stack.py
 ```
 
 ## Types
 
-The binary search trees now type check using mypy, try
-
+The binary search trees now type check using mypy, try:
 ```
-mypy --strict -m algs4.searching.bst
-mypy --strict -m algs4.searching.red_black_bst
+mypy --strict itu/algs4/searching/bst.py itu/algs4/searching/red_black_bst.py itu/algs4/fundamentals/queue.py
 ```
 
 ## Examples
 
-Client code should be migrated to `examples/`. 
+Client code should be migrated to `[examples/](examples)`. 
 
 ## Useful Resources
 

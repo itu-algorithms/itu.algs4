@@ -15,7 +15,7 @@ setup(
         extras_require={
             'audio': ['numpy'],
             'visual': ['pygame'],
-            'dev': ['flake8', 'isort', 'pytest', 'pytest-cov', 'coveralls'],
+            'dev': ['flake8', 'isort', 'pytest', 'pytest-cov', 'coveralls', 'mypy'],
             },
         zip_safe=False,
         platforms='any',
