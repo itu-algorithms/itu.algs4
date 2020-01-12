@@ -28,7 +28,7 @@ pip install git+https://github.itu.dk/algorithms/AlgorithmsInPython
 
 When requested, you will need to enter your ITU credentials.
 
-### With pip and zip
+### Alternative: With pip and zip
 
 To install this library without git:
 
@@ -36,7 +36,7 @@ To install this library without git:
 2. Open a command prompt or terminal and navigate to the downloaded folder. There should be the file `setup.py`.
 3. Use the command `pip3 install .` to install the package (this will also work for updating the package, when a newer version is available).  If your python installation is system-wide, use `sudo pip3 install .`
 
-### Step-by-step guide for Windows
+### Alternative: Step-by-step guide for Windows
 
 To install the python package `itu.algs4`:
 
