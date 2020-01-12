@@ -1,4 +1,4 @@
-# Algs4 library for Python3
+# Algs4 library for Python 3
 
 `itu.algs4` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
 
@@ -23,7 +23,7 @@ pip uninstall algs4 algs4_python
 
 ### With pip and git
 
-If git is available, the following command will install the library in your python environment:
+If git is available, the following command will install the library in your Python environment:
 
 ```bash
 pip install git+https://github.itu.dk/algorithms/AlgorithmsInPython
@@ -37,11 +37,11 @@ To install this library without git:
 
 1. Download and unzip the repository.
 2. Open a command prompt or terminal and navigate to the downloaded folder. There should be the file `setup.py`.
-3. Use the command `pip3 install .` to install the package (this will also work for updating the package, when a newer version is available).  If your python installation is system-wide, use `sudo pip3 install .`
+3. Use the command `pip3 install .` to install the package (this will also work for updating the package, when a newer version is available).  If your Python installation is system-wide, use `sudo pip3 install .`
 
 ### Alternative: Step-by-step guide for Windows
 
-To install the python package `itu.algs4`:
+To install the Python package `itu.algs4`:
 
 - Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
 - Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
@@ -57,7 +57,7 @@ C:\Users\user\Desktop\AlgorithmsInPython-master>pip install .
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
 ## Test the installation
-To test that the package is installed correctly, run python in interactive mode and enter `import itu.algs4`.
+To test that the package is installed correctly, run Python in interactive mode and enter `import itu.algs4`.
 ```console
 user@host:~$ python 
 Python 3.7.6 | packaged by conda-forge | (default, Jan  7 2020, 22:33:48) 
@@ -70,7 +70,7 @@ If no error message appears, the library has been installed correctly.
 
 ## Package structure
 
-The python package `itu.algs4` has a hierarchical structure with seven sub-packages:
+The Python package `itu.algs4` has a hierarchical structure with seven sub-packages:
 
 - [itu.algs4.fundamentals](itu/algs4/fundamentals)
 - [itu.algs4.sorting](itu/algs4/sorting)
@@ -80,7 +80,7 @@ The python package `itu.algs4` has a hierarchical structure with seven sub-packa
 - [itu.algs4.stdlib](itu/algs4/stdlib)
 - [itu.algs4.errors](itu/algs4/errors)
 
-While deep nesting of packages is normally [discouraged](https://www.python.org/dev/peps/pep-0423/#avoid-deep-nesting) in python, an important design goal of `itu.algs4` was to mirror the structure of the original Java code.
+While deep nesting of packages is normally [discouraged](https://www.python.org/dev/peps/pep-0423/#avoid-deep-nesting) in Python, an important design goal of `itu.algs4` was to mirror the structure of the original Java code.
 The first five packages correspond to the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/). The `stdlib` package is based on the one from the related book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/). The package `errors` contains some exception classes.
 
 All filenames and package names have been written in lower_case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
@@ -125,7 +125,7 @@ This code uses the convenient function `stdio.readAllInts()` to read the
 integers (separated by whitespaces) from the standard input and put them in the
 array `L`. It then sorts the elements of the array. Finally, it outputs the
 sorted list -- the code to do so is somewhat less elegant to get the whitespace
-exactly right. (Of course, advanced python users know more concise ways to
+exactly right. (Of course, advanced Python users know more concise ways to
 produce the same output: `print(" ".join(map(str, L)))`)
 
 ### Import classes
@@ -137,7 +137,7 @@ from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 ## Documentation
 
-You can use python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also show up in your IDE of choice.
+You can use Python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also show up in your IDE of choice.
 For example `help(itu.algs4)` yields the following:
 
 ```
