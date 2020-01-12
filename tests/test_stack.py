@@ -2,8 +2,7 @@ import random
 
 import pytest
 
-from itu.algs4.fundamentals.stack import (FixedCapacityStack,
-                                          ResizingArrayStack, Stack)
+from itu.algs4.fundamentals.stack import FixedCapacityStack, ResizingArrayStack, Stack
 
 
 @pytest.mark.parametrize(

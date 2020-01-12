@@ -84,26 +84,53 @@ All filenames and package names have been written in lower_case style with under
 
 ## Examples
 
+The directory [examples/](examples) contains examples, some of which are
+described here.
+
+### Hello World
 A simple program, stored as a file [hello_world.py](examples/hello_world.py), looks like this:
 ```python
-import itu.algs4.stdlib.stdio
+from itu.algs4.stdlib import stdio
 
-itu.algs4.stdlib.stdio.write("Hello World!\n")
+stdio.write("Hello World!\n")
 ```
 It can be run with the command `python hello_world.py`.
 
+### Sort numbers
+A slightly more interesting example is
+[sort-numbers.py](examples/sort-numbers.py):
+```python
+from itu.algs4.sorting import merge
+from itu.algs4.stdlib import stdio
+
+"""
+Reads a list of integers from standard input.
+Then prints it in sorted order.
+"""
+L = stdio.readAllInts()
+
+merge.sort(L)
+
+if len(L) > 0:
+    stdio.write(L[0])
+for i in range(1, len(L)):
+    stdio.write(" ")
+    stdio.write(L[i])
+stdio.writeln()
+```
+This code uses the convenient function `stdio.readAllInts()` to read the
+integers (separated by whitespaces) from the standard input and put them in the
+array `L`. It then sorts the elements of the array. Finally, it outputs the
+sorted list -- the code to do so is somewhat less elegant to get the whitespace
+exactly right. (Of course, advanced python users know more concise ways to
+produce the same output: `print(" ".join(map(str, L)))`)
+
+### Import classes
 You can import classes, such as the class EdgeWeightedDigraph, with
 ```python
 from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 ```
 
-Some files contain multiple classes, for example:
-```python
-from itu.algs4.fundamentals.uf import UF
-from itu.algs4.fundamentals.uf import QuickUnionUF
-```
-
-The directory [examples/](examples) contains further examples.
 
 ## Documentation
 

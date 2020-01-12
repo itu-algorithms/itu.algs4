@@ -1,4 +1,4 @@
 #!/usr/bin/env python3
-import itu.algs4.stdlib.stdio
+from itu.algs4.stdlib import stdio
 
-algs4.stdlib.stdio.write("Hello World!\n")
+stdio.write("Hello World!\n")
