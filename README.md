@@ -16,7 +16,10 @@ Some optional visual and auditory features depend on the [numpy](http://numpy.or
 
 ### Remove previous versions
 
-If you have a previous version of this library installed, we recommend you remove it with `pip uninstall algs4 algs4_python`
+If you have a previous version of this library installed, we recommend you remove it with
+```bash
+pip uninstall algs4 algs4_python
+```
 
 ### With pip and git
 
