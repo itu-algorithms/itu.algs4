@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="itu.algs4",
-    version="0.2.1.7",
+    version="0.2.2",
     description='Python 3 port of the Java code in "Algorithms, 4th Edition" by Sedgewick and Wayne',
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -10,7 +10,7 @@ setup(
     # author_email='',
     url="https://github.com/itu-algorithms/itu.algs4/",
     license="GNU General Public License v3 (GPLv3)",
-    packages=["itu.algs4"],
+    packages=find_packages(exclude=["examples", "tests"]),
     include_package_data=True,
     extras_require={
         "audio": ["numpy"],
@@ -25,9 +25,6 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Topic :: Utilities",
         "Intended Audience :: Developers",
         "Intended Audience :: Education",

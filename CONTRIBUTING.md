@@ -32,6 +32,14 @@ mypy --strict itu/algs4/searching/bst.py itu/algs4/searching/red_black_bst.py it
 
 Client code should be migrated to [examples/](examples).
 
+## Uploading to PyPi
+
+Create package and upload it:
+```bash
+python3 setup.py sdist bdist_wheel
+python3 -m twine upload dist/*
+```
+
 ## Useful Resources
 
 - the book https://algs4.cs.princeton.edu/home/
