@@ -30,7 +30,7 @@ mypy --strict itu/algs4/searching/bst.py itu/algs4/searching/red_black_bst.py it
 
 ## Examples
 
-Client code should be migrated to `[examples/](examples)`. 
+Client code should be migrated to [examples/](examples).
 
 ## Useful Resources
 
