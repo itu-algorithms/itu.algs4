@@ -23,7 +23,7 @@ jobs:
         pip install --upgrade -e .[dev]
     - name: Test
       run: |
-        pytest --cov-report term-missing --cov algs4
+        pytest --cov-report term-missing --cov itu.algs4
     - name: Lint
       run: |
         flake8
