@@ -10,7 +10,7 @@ and graphical data display.
 #-----------------------------------------------------------------------
 
 import math
-from algs4.stdlib import stddraw
+from itu.algs4.stdlib import stddraw
 
 #-----------------------------------------------------------------------
 

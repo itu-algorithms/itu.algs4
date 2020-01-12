@@ -151,7 +151,7 @@ class SequentialSearchST:
 
 
 if __name__ == "__main__":
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
 
     st = SequentialSearchST()
     i = 0

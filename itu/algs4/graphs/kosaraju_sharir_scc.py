@@ -24,12 +24,12 @@
  *
 """
 import sys
-from algs4.graphs.digraph import Digraph
-from algs4.graphs.transitive_closure import TransitiveClosure
-from algs4.graphs.depth_first_order import DepthFirstOrder
-from algs4.stdlib.instream import InStream
-from algs4.errors.errors import IllegalArgumentException
-from algs4.fundamentals.queue import Queue
+from itu.algs4.graphs.digraph import Digraph
+from itu.algs4.graphs.transitive_closure import TransitiveClosure
+from itu.algs4.graphs.depth_first_order import DepthFirstOrder
+from itu.algs4.stdlib.instream import InStream
+from itu.algs4.errors.errors import IllegalArgumentException
+from itu.algs4.fundamentals.queue import Queue
 
 class KosarajuSharirSCC:
 

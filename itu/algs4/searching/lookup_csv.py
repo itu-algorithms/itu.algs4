@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 import sys
-from algs4.stdlib import stdio
+from itu.algs4.stdlib import stdio
 
 # data files:
 # https://algs4.cs.princeton.edu/35applications/amino.csv

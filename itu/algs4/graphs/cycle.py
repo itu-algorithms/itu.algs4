@@ -2,7 +2,7 @@
 # see README.md for details
 # This is python3 
 
-from algs4.fundamentals.stack import Stack
+from itu.algs4.fundamentals.stack import Stack
 
 class Cycle:
     """
@@ -103,9 +103,9 @@ class Cycle:
 
 if __name__ == "__main__":
     import sys
-    from algs4.stdlib.instream import InStream
-    from algs4.stdlib import stdio
-    from algs4.graphs.graph import Graph    
+    from itu.algs4.stdlib.instream import InStream
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.graphs.graph import Graph    
 
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)

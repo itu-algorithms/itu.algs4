@@ -90,7 +90,7 @@ class Bag(Generic[T]):
 # start of the script itself
 if __name__ == '__main__':
     import sys
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
     
     if len(sys.argv) > 1:
         try:

@@ -102,7 +102,7 @@ def _main():
     """
     For testing:
     """
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
     c1 = Color(128, 128, 128)
     stdio.writeln(c1)
     stdio.writeln(c1.getRed())

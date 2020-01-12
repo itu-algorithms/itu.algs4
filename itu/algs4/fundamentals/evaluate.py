@@ -2,8 +2,8 @@
 # See README.md for details
 # Python 3
 
-from algs4.fundamentals.stack import Stack
-from algs4.stdlib import stdio
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.stdlib import stdio
 
 import math
 import sys

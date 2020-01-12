@@ -1,4 +1,4 @@
-from algs4.fundamentals import binary_search
+from itu.algs4.fundamentals import binary_search
 
 class TwoSumFast:
     @staticmethod

@@ -1,8 +1,8 @@
 import random
 import unittest
 
-from algs4.errors.errors import NoSuchElementException
-from algs4.searching.red_black_bst import RedBlackBST
+from itu.algs4.errors.errors import NoSuchElementException
+from itu.algs4.searching.red_black_bst import RedBlackBST
 
 
 class TestRedBlackBSTMethods(unittest.TestCase):

@@ -1,7 +1,7 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-from algs4.searching.seperate_chaining_hst import SeparateChainingHashST
+from itu.algs4.searching.seperate_chaining_hst import SeparateChainingHashST
 from math import sqrt
 
 class SparseVector:

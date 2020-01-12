@@ -1,6 +1,6 @@
-from algs4.fundamentals.stack import Stack
-from algs4.fundamentals.queue import Queue
-from algs4.graphs.digraph import Digraph
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.graphs.digraph import Digraph
 
 class DepthFirstOrder:
     """

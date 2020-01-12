@@ -15,7 +15,7 @@ import sys
 import pygame
 import pygame.gfxdraw
 import pygame.font
-from algs4.stdlib import color
+from itu.algs4.stdlib import color
 import string
 
 if (sys.hexversion < 0x03000000):
@@ -31,26 +31,26 @@ else:
 
 # Define colors so clients need not import the color module.
 
-from algs4.stdlib.color import BLACK
-from algs4.stdlib.color import WHITE
-from algs4.stdlib.color import RED
-from algs4.stdlib.color import GREEN
-from algs4.stdlib.color import BLUE
-from algs4.stdlib.color import CYAN
-from algs4.stdlib.color import MAGENTA
-from algs4.stdlib.color import YELLOW
-from algs4.stdlib.color import DARK_RED
-from algs4.stdlib.color import DARK_GREEN
-from algs4.stdlib.color import DARK_BLUE
-from algs4.stdlib.color import GRAY
-from algs4.stdlib.color import DARK_GRAY
-from algs4.stdlib.color import LIGHT_GRAY
-from algs4.stdlib.color import ORANGE
-from algs4.stdlib.color import VIOLET
-from algs4.stdlib.color import PINK
-from algs4.stdlib.color import BOOK_BLUE
-from algs4.stdlib.color import BOOK_LIGHT_BLUE
-from algs4.stdlib.color import BOOK_RED
+from itu.algs4.stdlib.color import BLACK
+from itu.algs4.stdlib.color import WHITE
+from itu.algs4.stdlib.color import RED
+from itu.algs4.stdlib.color import GREEN
+from itu.algs4.stdlib.color import BLUE
+from itu.algs4.stdlib.color import CYAN
+from itu.algs4.stdlib.color import MAGENTA
+from itu.algs4.stdlib.color import YELLOW
+from itu.algs4.stdlib.color import DARK_RED
+from itu.algs4.stdlib.color import DARK_GREEN
+from itu.algs4.stdlib.color import DARK_BLUE
+from itu.algs4.stdlib.color import GRAY
+from itu.algs4.stdlib.color import DARK_GRAY
+from itu.algs4.stdlib.color import LIGHT_GRAY
+from itu.algs4.stdlib.color import ORANGE
+from itu.algs4.stdlib.color import VIOLET
+from itu.algs4.stdlib.color import PINK
+from itu.algs4.stdlib.color import BOOK_BLUE
+from itu.algs4.stdlib.color import BOOK_LIGHT_BLUE
+from itu.algs4.stdlib.color import BOOK_RED
 
 #-----------------------------------------------------------------------
 
@@ -897,7 +897,7 @@ def _regressionTest():
 
     # Test handling of mouse and keyboard events.
     setPenColor(BLACK)
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
     stdio.writeln('Left click with the mouse or type a key')
     while True:
         if mousePressed():

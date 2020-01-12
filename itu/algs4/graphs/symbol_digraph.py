@@ -2,10 +2,10 @@
 # see README.md for details
 # This is python3 
 
-from algs4.searching.binary_search_st import BinarySearchST
-from algs4.stdlib.instream import InStream
-from algs4.stdlib import stdio
-from algs4.graphs.digraph import Digraph
+from itu.algs4.searching.binary_search_st import BinarySearchST
+from itu.algs4.stdlib.instream import InStream
+from itu.algs4.stdlib import stdio
+from itu.algs4.graphs.digraph import Digraph
 
 class SymbolDigraph:
     """

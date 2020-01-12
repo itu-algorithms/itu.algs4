@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 
-from algs4.errors.errors import NoSuchElementException, IllegalArgumentException
+from itu.algs4.errors.errors import NoSuchElementException, IllegalArgumentException
 
 class IndexMinPQ:
     """

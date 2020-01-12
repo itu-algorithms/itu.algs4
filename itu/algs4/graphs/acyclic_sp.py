@@ -2,8 +2,8 @@
 # see README.md for details
 # This is python3 
 
-from algs4.fundamentals.stack import Stack 
-from algs4.graphs.topological import Topological
+from itu.algs4.fundamentals.stack import Stack 
+from itu.algs4.graphs.topological import Topological
 
 import math
 
@@ -104,9 +104,9 @@ class AcyclicSP:
 
 if __name__ == "__main__":
     import sys
-    from algs4.stdlib.instream import InStream
-    from algs4.stdlib import stdio
-    from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+    from itu.algs4.stdlib.instream import InStream
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
     In = InStream(sys.argv[1])
     s = int(sys.argv[2])

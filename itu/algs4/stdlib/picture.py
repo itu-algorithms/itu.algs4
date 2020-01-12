@@ -12,7 +12,7 @@ import pygame
 import sys
 import color
 import os
-from algs4.stdlib import stdarray
+from itu.algs4.stdlib import stdarray
 
 
 #-----------------------------------------------------------------------

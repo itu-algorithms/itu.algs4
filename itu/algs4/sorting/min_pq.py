@@ -1,6 +1,6 @@
 import sys
-from algs4.stdlib import stdio
-from algs4.errors.errors import NoSuchElementException
+from itu.algs4.stdlib import stdio
+from itu.algs4.errors.errors import NoSuchElementException
 
 # Created for BADS 2018
 # See README.md for details

@@ -2,7 +2,7 @@
 # see README.md for details
 # This is python3 
 
-from algs4.fundamentals.queue import Queue
+from itu.algs4.fundamentals.queue import Queue
 
 class BinarySearchST:
     """
@@ -359,7 +359,7 @@ class BinarySearchST:
         return True
         
 if __name__ == "__main__":
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
 
     st = BinarySearchST()
     i = 0

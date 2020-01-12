@@ -2,20 +2,20 @@
 # See README.md for details
 # Python 3
 import sys
-from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from algs4.graphs.directed_edge import DirectedEdge
-from algs4.graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
-from algs4.fundamentals.queue import Queue
-from algs4.fundamentals.stack import Stack
-from algs4.errors.errors import IllegalArgumentException, UnsupportedOperationException
-from algs4.stdlib import stdio
-from algs4.stdlib.instream import InStream
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.graphs.directed_edge import DirectedEdge
+from itu.algs4.graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
+from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.errors.errors import IllegalArgumentException, UnsupportedOperationException
+from itu.algs4.stdlib import stdio
+from itu.algs4.stdlib.instream import InStream
 
 try:
     q = Queue()
     q.enqueue(1)
 except AttributeError:
-    print('ERROR - Could not import algs4 queue')
+    print('ERROR - Could not import itu.algs4 queue')
     sys.exit(1)
 
 #  Execution:    python BellmanFordSP.py filename.txt s

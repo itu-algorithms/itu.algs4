@@ -1,5 +1,5 @@
 import sys
-from algs4.stdlib import stdio
+from itu.algs4.stdlib import stdio
 
 from typing import List, Generic, TypeVar
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from algs4.fundamentals.queue import Queue
-from algs4.stdlib import stdio
+from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.stdlib import stdio
 
 """
 Reads strings from an stdin and adds them to a queue.

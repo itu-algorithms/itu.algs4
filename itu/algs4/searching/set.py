@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 import sys
-from algs4.errors.errors import NoSuchElementException, IllegalArgumentException, UnsupportedOperationException
+from itu.algs4.errors.errors import NoSuchElementException, IllegalArgumentException, UnsupportedOperationException
 
 """
 Set implementation using Python's set() type.

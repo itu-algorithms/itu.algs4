@@ -4,10 +4,10 @@
 
 import sys
 
-from algs4.graphs.digraph import Digraph
-from algs4.graphs.directed_dfs import DirectedDFS
-from algs4.fundamentals.bag import Bag
-from algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.digraph import Digraph
+from itu.algs4.graphs.directed_dfs import DirectedDFS
+from itu.algs4.fundamentals.bag import Bag
+from itu.algs4.fundamentals.stack import Stack
 
 class NFA:
 	"""

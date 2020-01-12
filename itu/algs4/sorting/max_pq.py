@@ -3,8 +3,8 @@
 # Python 3
 
 import sys
-from algs4.stdlib import stdio
-from algs4.errors.errors import NoSuchElementException
+from itu.algs4.stdlib import stdio
+from itu.algs4.errors.errors import NoSuchElementException
 
 from typing import Generic, List, Optional, TypeVar, Iterator
 Key = TypeVar('Key')

@@ -143,7 +143,7 @@ def _main():
     For testing.
     """
     import sys
-    from algs4.stdlib import stdio
+    from itu.algs4.stdlib import stdio
     seed(1)
     n = int(sys.argv[1])
     for i in range(n):

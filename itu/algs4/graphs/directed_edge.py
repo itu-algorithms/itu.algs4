@@ -1,5 +1,5 @@
 import math
-from algs4.errors.errors import IllegalArgumentException
+from itu.algs4.errors.errors import IllegalArgumentException
 
 # Created for BADS 2018
 # See README.md for details

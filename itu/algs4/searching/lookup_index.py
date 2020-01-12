@@ -2,15 +2,15 @@
 # See README.md for details
 # Python 3
 import sys
-from algs4.stdlib import stdio
-from algs4.fundamentals.queue import Queue
+from itu.algs4.stdlib import stdio
+from itu.algs4.fundamentals.queue import Queue
 
 # is this really useful??
 try:
     q = Queue()
     q.enqueue(1)
 except AttributeError:
-    print('ERROR - Could not import algs4 queue')
+    print('ERROR - Could not import itu.algs4 queue')
     sys.exit(1)
 
 # Execution:    python lookup_index.py movies.txt "/"

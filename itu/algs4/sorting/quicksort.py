@@ -15,7 +15,7 @@ by Robert Sedgewick and Kevin Wayne.
 
 import sys
 
-from algs4.stdlib import stdrandom, stdio
+from itu.algs4.stdlib import stdrandom, stdio
 
 
 def sort(array):

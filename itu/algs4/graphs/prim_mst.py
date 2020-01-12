@@ -4,9 +4,9 @@
 import math
 import sys
 
-from algs4.fundamentals.queue import Queue
-from algs4.fundamentals.uf import UF
-from algs4.sorting.index_min_pq import IndexMinPQ
+from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.fundamentals.uf import UF
+from itu.algs4.sorting.index_min_pq import IndexMinPQ
 
 class PrimMST:
     """
@@ -147,9 +147,9 @@ class PrimMST:
         return True
 
 if __name__ == "__main__":
-    from algs4.stdlib.instream import InStream
-    from algs4.stdlib import stdio
-    from algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
+    from itu.algs4.stdlib.instream import InStream
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
 
     In = InStream(sys.argv[1])
     G = EdgeWeightedGraph.from_stream(In)

@@ -10,9 +10,9 @@ For additional documentation, see Section 5.5 of Algorithms, 4th edtition
 by Robert Sedgewick and Kevin Wayne.
 """
 import sys
-from algs4.sorting.min_pq import MinPQ
-from algs4.stdlib.binary_stdin import BinaryStdIn
-from algs4.stdlib.binary_stdout import BinaryStdOut
+from itu.algs4.sorting.min_pq import MinPQ
+from itu.algs4.stdlib.binary_stdin import BinaryStdIn
+from itu.algs4.stdlib.binary_stdout import BinaryStdOut
 
 _R = 256
 class _Node:

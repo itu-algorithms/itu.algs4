@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
-from algs4.searching.bst import BST
-from algs4.stdlib import stdio
+from itu.algs4.searching.bst import BST
+from itu.algs4.stdlib import stdio
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

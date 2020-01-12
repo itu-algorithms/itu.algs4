@@ -8,11 +8,11 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
-from algs4.stdlib.instream import InStream
+from itu.algs4.stdlib.instream import InStream
 
-from algs4.fundamentals.bag import Bag
-from algs4.fundamentals.stack import Stack
-from algs4.graphs.graph import Graph
+from itu.algs4.fundamentals.bag import Bag
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.graph import Graph
 
 class Digraph:
     """

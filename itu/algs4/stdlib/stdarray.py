@@ -7,7 +7,7 @@ The stdarray module defines functions related to creating, reading,
 and writing one- and two-dimensional arrays.
 """
 
-from algs4.stdlib import stdio
+from itu.algs4.stdlib import stdio
 
 #=======================================================================
 # Array creation functions

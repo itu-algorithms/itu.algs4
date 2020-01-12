@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
-from algs4.fundamentals.stack import Stack
-from algs4.stdlib import stdio
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.stdlib import stdio
 
 if len(sys.argv) > 1:
     try:

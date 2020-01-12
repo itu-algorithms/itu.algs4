@@ -1,7 +1,7 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from algs4.searching.sequential_search_st import SequentialSearchST
+from itu.algs4.searching.sequential_search_st import SequentialSearchST
 import sys
 
 class SeparateChainingHashST:

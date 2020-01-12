@@ -3,13 +3,13 @@
 # Python 3
 
 import sys
-from algs4.fundamentals.queue import Queue
-from algs4.stdlib import stdio
+from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.stdlib import stdio
 try:
     q = Queue()
     q.enqueue(1)
 except AttributeError:
-    print('ERROR - Could not import algs4 queue')
+    print('ERROR - Could not import itu.algs4 queue')
     sys.exit(1)
 
 

@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 
-import algs4.graphs.directed_edge
+import itu.algs4.graphs.directed_edge
 
 """
 The cpm module is an example of using graphs to solve the parallel precedence-constrained 
@@ -18,11 +18,11 @@ For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robe
 """
 
 import sys
-from algs4.stdlib import instream
+from itu.algs4.stdlib import instream
 
-from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from algs4.graphs.directed_edge import DirectedEdge
-from algs4.graphs.acyclic_lp import AcyclicLp
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.graphs.directed_edge import DirectedEdge
+from itu.algs4.graphs.acyclic_lp import AcyclicLp
 
 # Try this with the jobsPC.txt data file
 if __name__ == '__main__':
