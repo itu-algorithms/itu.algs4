@@ -4,6 +4,7 @@
 
 from itu.algs4.fundamentals.stack import Stack
 
+
 class DepthFirstPaths:
     """
     The  DepthFirstPaths class represents a data type for finding

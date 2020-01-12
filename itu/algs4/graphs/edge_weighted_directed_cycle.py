@@ -1,12 +1,13 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys, os
+import os
+import sys
 
-from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from itu.algs4.graphs.directed_edge import DirectedEdge
-from itu.algs4.fundamentals.stack import Stack
 import itu.algs4.stdlib.stdrandom
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.directed_edge import DirectedEdge
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 # Execution:    python edge_weighted_directed_cycle V E F
 # Finds a directed cycle in an edge-weighted digraph.

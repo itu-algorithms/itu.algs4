@@ -4,6 +4,7 @@
 
 from itu.algs4.fundamentals.stack import Stack
 
+
 class Cycle:
     """
     The Cycle class represents a data type for 

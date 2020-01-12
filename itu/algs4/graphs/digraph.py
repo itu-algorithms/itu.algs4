@@ -8,11 +8,13 @@ Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. For more
 information, see chapter 4.2 of the book.
 """
 
-from itu.algs4.stdlib.instream import InStream
+import sys
 
 from itu.algs4.fundamentals.bag import Bag
 from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.graphs.graph import Graph
+from itu.algs4.stdlib.instream import InStream
+
 
 class Digraph:
     """
@@ -177,7 +179,6 @@ class Digraph:
         return ''.join(s)
     
     
-import sys
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,
@@ -186,4 +187,3 @@ if __name__ == '__main__':
     
     d = Digraph.from_stream(InStream(stream))
     print(d)
-    

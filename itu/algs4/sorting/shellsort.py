@@ -6,6 +6,8 @@ The Shellsort module provides static methods for sorting an
 array using shellsort with Knuth's increment sequence (1, 4, 13, 40, ...).
 """
 import sys
+
+
 def sort(a):
     """
     Rearranges the array in ascending order using the natural order.
@@ -57,4 +59,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

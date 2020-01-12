@@ -2,7 +2,10 @@
 # See README.md for details
 # Python 3
 
-from typing import Optional, List
+import sys
+from typing import List, Optional
+
+from itu.algs4.stdlib import stdio
 
 """
 This module provides functions for sorting an array using mergesort.
@@ -72,8 +75,6 @@ def sort(a: List):
     assert _is_sorted(a)
     
 
-import sys
-from itu.algs4.stdlib import stdio
 
 # Reads in a sequence of strings from standard input or a file 
 # supplied as argument to the program; mergesorts them; 
@@ -90,5 +91,3 @@ if __name__ == '__main__':
     assert _is_sorted(a)
     for elem in a:
         print(elem)
-    
-

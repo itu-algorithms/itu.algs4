@@ -1,4 +1,5 @@
 import sys
+
 from itu.algs4.stdlib import stdio
 
 # Created for BADS 2018

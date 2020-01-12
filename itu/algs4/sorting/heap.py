@@ -3,7 +3,9 @@
 # Python 3
 
 import sys
+
 from itu.algs4.stdlib import stdio
+
 
 """
 The heap module provides a function for heapsorting an array.

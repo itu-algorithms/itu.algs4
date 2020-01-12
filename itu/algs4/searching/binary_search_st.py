@@ -4,6 +4,7 @@
 
 from itu.algs4.fundamentals.queue import Queue
 
+
 class BinarySearchST:
     """
     The BST class represents an ordered symbol table of generic

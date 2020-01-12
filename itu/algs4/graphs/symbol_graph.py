@@ -2,10 +2,11 @@
 # see README.md for details
 # This is python3 
 
-from itu.algs4.searching.binary_search_st import BinarySearchST
-from itu.algs4.stdlib.instream import InStream
-from itu.algs4.stdlib import stdio
 from itu.algs4.graphs.graph import Graph
+from itu.algs4.searching.binary_search_st import BinarySearchST
+from itu.algs4.stdlib import stdio
+from itu.algs4.stdlib.instream import InStream
+
 
 class SymbolGraph:
     """

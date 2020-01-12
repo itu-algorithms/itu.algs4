@@ -8,8 +8,12 @@ This module implements a data type for solving the all-pairs shortest
 paths problem in edge-weighted digraphs where the edge weights are nonnegative.
 """
 
-from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+import sys
+
 from itu.algs4.graphs.dijkstra_sp import DijkstraSP
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.stdlib import instream
+
 
 class DijkstraAllPairsSP:
     """
@@ -79,8 +83,6 @@ class DijkstraAllPairsSP:
         if v < 0 or v >= V:
             raise ValueError('vertex {} is not between 0 and {}'.format(v, (V-1)))
 
-import sys
-from itu.algs4.stdlib import instream
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

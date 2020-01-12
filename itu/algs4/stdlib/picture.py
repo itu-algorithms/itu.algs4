@@ -8,12 +8,12 @@ The picture module defines the Picture class.
 
 #-----------------------------------------------------------------------
 
-import pygame
-import sys
-import color
 import os
-from itu.algs4.stdlib import stdarray
+import sys
 
+import color
+import pygame
+from itu.algs4.stdlib import stdarray
 
 #-----------------------------------------------------------------------
 

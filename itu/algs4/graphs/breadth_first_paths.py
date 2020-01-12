@@ -4,9 +4,10 @@
 
 import math
 
-from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.stdlib import stdio
+
 
 class BreadthFirstPaths:
     """
@@ -215,4 +216,3 @@ if __name__ == "__main__":
             stdio.writeln()
         else:
             stdio.writef("%d to %d (-):  not connected\n", s, v)
-

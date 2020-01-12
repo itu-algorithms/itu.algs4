@@ -1,9 +1,12 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-import sys
 import struct
+import sys
+
 from itu.algs4.stdlib.binary_stdout import BinaryStdOut
+
+
 """
 Binary standard input. This class provides methods for reading
 in bits from standard input, either one bit at a time (as a boolean),

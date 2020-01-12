@@ -2,7 +2,7 @@
 # See README.md for details
 # Python 3
 
-from typing import Sequence, TypeVar, Generic, List, Iterator, Optional
+from typing import Generic, Iterator, List, Optional, Sequence, TypeVar
 
 T = TypeVar('T')
 
@@ -187,5 +187,3 @@ class ResizingArrayStack(Generic[T]):
             assert item is not None
             yield item
             i -= 1
-
-

@@ -1,10 +1,13 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-from itu.algs4.graphs.digraph import Digraph
-from itu.algs4.fundamentals.bag import Bag
-from itu.algs4.stdlib.instream import InStream
 import sys
+
+from itu.algs4.fundamentals.bag import Bag
+from itu.algs4.graphs.digraph import Digraph
+from itu.algs4.stdlib.instream import InStream
+
+
 class DirectedDFS:
 	"""
 	The DirectedDFS class represents a data type for

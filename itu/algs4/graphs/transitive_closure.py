@@ -33,10 +33,12 @@
  *
 """
 import sys
+
+from itu.algs4.errors.errors import IllegalArgumentException
 from itu.algs4.graphs.digraph import Digraph
 from itu.algs4.graphs.directed_dfs import DirectedDFS
-from itu.algs4.errors.errors import IllegalArgumentException
 from itu.algs4.stdlib.instream import InStream
+
 
 class TransitiveClosure:
     """
@@ -94,5 +96,3 @@ def main(args):
 
 if __name__ == '__main__':
     main(sys.argv[1:])
-
-

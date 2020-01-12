@@ -3,8 +3,10 @@
 # Python 3
 
 import sys
+
 from itu.algs4.fundamentals.queue import Queue
 from itu.algs4.stdlib import stdio
+
 try:
     q = Queue()
     q.enqueue(1)

@@ -5,6 +5,7 @@
 from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.graphs.graph import Graph
 
+
 class Bipartite:
     """
     The Bipartite class represents a data type for 
@@ -159,4 +160,3 @@ if __name__ == "__main__":
         for x in b.odd_cycle():
             stdio.writef("%i ", x)
         stdio.writeln()
-    

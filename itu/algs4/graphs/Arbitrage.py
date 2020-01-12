@@ -2,12 +2,13 @@
 # See README.md for details
 # Python 3
 
-import sys
 import math
-from itu.algs4.stdlib import stdio
-from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
-from itu.algs4.graphs.directed_edge import DirectedEdge
+import sys
+
 from itu.algs4.graphs.bellman_ford_sp import BellmanFordSP
+from itu.algs4.graphs.directed_edge import DirectedEdge
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.stdlib import stdio
 
 if __name__ == '__main__':
     """

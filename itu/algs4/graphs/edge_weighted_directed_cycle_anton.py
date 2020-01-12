@@ -11,7 +11,12 @@ For more
 information, see chapter 4.2 of the book.
 """
 
+import sys
+
 from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.stdlib import instream
+
 
 class EdgeWeightedDirectedCycle:
     """
@@ -85,10 +90,7 @@ class EdgeWeightedDirectedCycle:
         """
         return self._cycle
 
-import sys
-from itu.algs4.stdlib import instream
 
-from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

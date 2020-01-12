@@ -1,9 +1,11 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-import sys
 import math
 import random
+import sys
+
+
 #The following part is borrowed from https://langui.sh/2009/03/07/generating-very-large-primes/
 #in an effort to implement the missing long_random_prime() function
 def _rabin_miller(n):

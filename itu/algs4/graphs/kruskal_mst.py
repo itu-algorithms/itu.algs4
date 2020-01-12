@@ -1,11 +1,12 @@
 import sys
-from itu.algs4.stdlib import stdio
-from itu.algs4.stdlib.instream import InStream
+
 from itu.algs4.fundamentals.queue import Queue
-from itu.algs4.sorting.min_pq import MinPQ
 from itu.algs4.fundamentals.uf import WeightedQuickUnionUF
 from itu.algs4.graphs.edge import Edge
 from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
+from itu.algs4.sorting.min_pq import MinPQ
+from itu.algs4.stdlib import stdio
+from itu.algs4.stdlib.instream import InStream
 
 # Created for BADS 2018
 # See README.md for details

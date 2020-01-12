@@ -2,10 +2,11 @@
 # see README.md for details
 # This is python3 
 
-from itu.algs4.fundamentals.stack import Stack 
+import math
+
+from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.graphs.topological import Topological
 
-import math
 
 class AcyclicSP:
     """

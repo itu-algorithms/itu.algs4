@@ -5,7 +5,7 @@
 
 #     See ResizingArrayBag for a version that uses a resizing array.
 
-from typing import Sequence, TypeVar, Generic, List, Iterator, Optional
+from typing import Generic, Iterator, List, Optional, Sequence, TypeVar
 
 T = TypeVar('T')
 S = TypeVar('S')
@@ -107,4 +107,3 @@ if __name__ == '__main__':
     
     for s in bag:
         stdio.writeln(s)
-    

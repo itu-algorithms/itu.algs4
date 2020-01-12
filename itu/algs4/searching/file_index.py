@@ -1,7 +1,8 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys 
+import sys
+
 from itu.algs4.stdlib import stdio
 
 #  Execution:    python file_index.py file1.txt file2.txt file3.txt ...

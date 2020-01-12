@@ -1,12 +1,11 @@
 import sys
-from itu.algs4.stdlib import stdio
-from itu.algs4.errors.errors import NoSuchElementException
-
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-from typing import TypeVar, List, Generic, Optional
+from typing import Generic, List, Optional, TypeVar
 
+from itu.algs4.errors.errors import NoSuchElementException
+from itu.algs4.stdlib import stdio
 
 Key = TypeVar('Key')
 

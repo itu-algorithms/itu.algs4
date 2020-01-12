@@ -2,8 +2,9 @@
 # See README.md for details
 # Python 3
 import sys
-from itu.algs4.stdlib import stdio
+
 from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.stdlib import stdio
 
 # is this really useful??
 try:
@@ -80,5 +81,3 @@ if __name__ == '__main__':
                 print("  " + keys)
 
     file.close()
-
-   

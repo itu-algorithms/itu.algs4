@@ -1,5 +1,6 @@
 from itu.algs4.fundamentals import binary_search
 
+
 class TwoSumFast:
     @staticmethod
     def count(a):

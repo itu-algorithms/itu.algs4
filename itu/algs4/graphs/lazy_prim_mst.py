@@ -4,9 +4,10 @@
 
 import math
 
-from itu.algs4.fundamentals.uf import UF
 from itu.algs4.fundamentals.queue import Queue
+from itu.algs4.fundamentals.uf import UF
 from itu.algs4.sorting.min_pq import MinPQ
+
 
 class LazyPrimMST:
     """

@@ -2,6 +2,7 @@ from itu.algs4.graphs.breadth_first_paths import BreadthFirstPaths
 from itu.algs4.graphs.symbol_graph import SymbolGraph
 from itu.algs4.stdlib import stdio
 
+
 class DegreesOfSeparation:
     """
     The DegreesOfSeparation class provides a client for finding
@@ -67,5 +68,3 @@ class DegreesOfSeparation:
 if __name__ == "__main__":
     import sys
     DegreesOfSeparation.main(sys.argv)
-    
-    

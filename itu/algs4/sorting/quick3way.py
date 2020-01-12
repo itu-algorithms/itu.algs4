@@ -8,6 +8,7 @@ array using quicksort with 3-way partitioning.
 import sys
 from random import shuffle
 
+
 def sort(a):
     """
     Rearranges the array in ascending order using the natural order.
@@ -77,4 +78,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

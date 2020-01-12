@@ -5,6 +5,7 @@
 from itu.algs4.fundamentals.bag import Bag
 from itu.algs4.fundamentals.stack import Stack
 
+
 class Graph:
     """
     The Graph class represents an undirected graph of vertices

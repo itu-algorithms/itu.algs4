@@ -2,10 +2,14 @@
 # See README.md for details
 # Python 3
 
-from itu.algs4.graphs.directed_edge import DirectedEdge
-from itu.algs4.graphs.topological import Topological
+import sys
 
 from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.directed_edge import DirectedEdge
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.graphs.topological import Topological
+from itu.algs4.stdlib import instream
+
 
 """
 This module implements a class for solving the single-source Longest
@@ -104,9 +108,6 @@ class AcyclicLp:
             raise ValueError('vertex {} is not between 0 and {}'.format(v, V-1))
 
 
-import sys
-from itu.algs4.stdlib import instream
-from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 if __name__ == '__main__':
     # Create stream from file or the standard input,

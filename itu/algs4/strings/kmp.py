@@ -2,6 +2,8 @@
 # See README.md for details
 # This is python3 
 import sys
+
+
 """
 The KMP (Knuth-Morris-Pratt) class finds the first occurrence 
 of a pattern string in a text string.

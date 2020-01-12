@@ -1,7 +1,7 @@
 import sys
-from itu.algs4.stdlib import stdio
+from typing import Generic, List, TypeVar
 
-from typing import List, Generic, TypeVar
+from itu.algs4.stdlib import stdio
 
 T = TypeVar('T')
 

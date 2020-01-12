@@ -2,10 +2,13 @@
 # see README.md for details
 # Python 3
 
-from ..errors.errors import NoSuchElementException, IllegalArgumentException
+import sys
+from abc import abstractmethod
+from typing import Generic, List, Optional, Sequence, TypeVar
+
+from ..errors.errors import IllegalArgumentException, NoSuchElementException
 from ..fundamentals.queue import Queue
 
-import sys
 sys.setrecursionlimit(10**5)
 
 """
@@ -22,8 +25,6 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 
 """
 
-from typing import TypeVar, Generic, Optional, Sequence, List
-from abc import abstractmethod
 
 Val = TypeVar('Val')
 Key = TypeVar('Key', bound = 'Comparable')
@@ -417,5 +418,3 @@ class BST(Generic[Key, Val]):
                 queue.enqueue(node.left)
                 queue.enqueue(node.right)
         return keys
-
-

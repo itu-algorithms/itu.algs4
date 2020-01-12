@@ -15,7 +15,7 @@ by Robert Sedgewick and Kevin Wayne.
 
 import sys
 
-from itu.algs4.stdlib import stdrandom, stdio
+from itu.algs4.stdlib import stdio, stdrandom
 
 
 def sort(array):
@@ -130,12 +130,3 @@ if __name__ == "__main__":
     for i in range(0, len(array)):
         ith = str(select(array, i))
         stdio.writeln(ith)
-
-
-
-
-
-
-
-
-

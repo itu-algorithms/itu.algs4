@@ -2,6 +2,8 @@
 # See README.md for details
 # This is python3 
 import sys
+
+
 class LinearProbingHashST:
 	"""
 	The LinearProbingHashST class represents a symbol table of dynamic

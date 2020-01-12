@@ -19,8 +19,8 @@ functions:
 Usually it's better to use one set exclusively.
 """
     
-import sys
 import re
+import sys
 
 #-----------------------------------------------------------------------
 

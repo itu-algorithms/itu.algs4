@@ -1,8 +1,10 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3
-import sys
 import struct
+import sys
+
+
 """
 Binary standard output. This class provides methods for converting
 some primitive type variables (boolean, byte, char, and int)

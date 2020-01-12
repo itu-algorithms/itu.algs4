@@ -3,10 +3,11 @@
 # Python 3
 
 import sys
-from itu.algs4.stdlib import stdio
-from itu.algs4.errors.errors import NoSuchElementException
+from typing import Generic, Iterator, List, Optional, TypeVar
 
-from typing import Generic, List, Optional, TypeVar, Iterator
+from itu.algs4.errors.errors import NoSuchElementException
+from itu.algs4.stdlib import stdio
+
 Key = TypeVar('Key')
 
 class MaxPQ(Generic[Key]):

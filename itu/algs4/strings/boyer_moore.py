@@ -3,6 +3,7 @@
 # This is python3 
 import sys
 
+
 class BoyerMoore:
     """
     The BoyerMoore class finds the first occurence of a pattern string

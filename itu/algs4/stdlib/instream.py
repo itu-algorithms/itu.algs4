@@ -8,12 +8,13 @@ The instream module defines the InStream class.
 
 #-----------------------------------------------------------------------
 
+import re
 import sys
+
 if sys.hexversion < 0x03000000:
     import urllib
 else:
     import urllib.request as urllib
-import re
 
 #-----------------------------------------------------------------------
 

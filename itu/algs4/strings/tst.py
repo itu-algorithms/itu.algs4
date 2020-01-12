@@ -3,6 +3,7 @@
 # Python 3
 
 import sys
+
 from itu.algs4.fundamentals.queue import Queue
 from itu.algs4.stdlib import stdio
 
@@ -276,5 +277,3 @@ if __name__ == '__main__':
         print("keysThatMatch(\".he.l.\"):")
         for s in st.keys_that_match(".he.l."):
             print(s)
-    
-

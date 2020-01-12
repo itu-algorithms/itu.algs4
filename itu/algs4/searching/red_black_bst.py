@@ -1,4 +1,7 @@
-from ..errors.errors import NoSuchElementException, IllegalArgumentException
+from abc import abstractmethod
+from typing import Generic, Optional, TypeVar
+
+from ..errors.errors import IllegalArgumentException, NoSuchElementException
 from ..fundamentals.queue import Queue
 
 # Created for BADS 2018
@@ -7,8 +10,6 @@ from ..fundamentals.queue import Queue
 
 # Typing ---
 
-from typing import TypeVar, Generic, Optional
-from abc import abstractmethod
 
 Key = TypeVar('Key', bound = "Comparable")
 Val = TypeVar('Val')

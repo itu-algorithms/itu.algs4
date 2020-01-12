@@ -9,14 +9,20 @@ in the window.  As a convenience, the module also imports the
 commonly used Color objects defined in the color module.
 """
 
-import time
 import os
-import sys
-import pygame
-import pygame.gfxdraw
-import pygame.font
-from itu.algs4.stdlib import color
 import string
+import sys
+import time
+
+import pygame
+import pygame.font
+import pygame.gfxdraw
+from itu.algs4.stdlib import color
+from itu.algs4.stdlib.color import (BLACK, BLUE, BOOK_BLUE, BOOK_LIGHT_BLUE,
+                                    BOOK_RED, CYAN, DARK_BLUE, DARK_GRAY,
+                                    DARK_GREEN, DARK_RED, GRAY, GREEN,
+                                    LIGHT_GRAY, MAGENTA, ORANGE, PINK, RED,
+                                    VIOLET, WHITE, YELLOW)
 
 if (sys.hexversion < 0x03000000):
     import Tkinter
@@ -31,26 +37,6 @@ else:
 
 # Define colors so clients need not import the color module.
 
-from itu.algs4.stdlib.color import BLACK
-from itu.algs4.stdlib.color import WHITE
-from itu.algs4.stdlib.color import RED
-from itu.algs4.stdlib.color import GREEN
-from itu.algs4.stdlib.color import BLUE
-from itu.algs4.stdlib.color import CYAN
-from itu.algs4.stdlib.color import MAGENTA
-from itu.algs4.stdlib.color import YELLOW
-from itu.algs4.stdlib.color import DARK_RED
-from itu.algs4.stdlib.color import DARK_GREEN
-from itu.algs4.stdlib.color import DARK_BLUE
-from itu.algs4.stdlib.color import GRAY
-from itu.algs4.stdlib.color import DARK_GRAY
-from itu.algs4.stdlib.color import LIGHT_GRAY
-from itu.algs4.stdlib.color import ORANGE
-from itu.algs4.stdlib.color import VIOLET
-from itu.algs4.stdlib.color import PINK
-from itu.algs4.stdlib.color import BOOK_BLUE
-from itu.algs4.stdlib.color import BOOK_LIGHT_BLUE
-from itu.algs4.stdlib.color import BOOK_RED
 
 #-----------------------------------------------------------------------
 

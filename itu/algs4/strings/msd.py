@@ -68,6 +68,7 @@ def sort(a, radix=256):
         
 
 import sys
+
 from itu.algs4.stdlib import stdio
 
 if __name__ == '__main__':

@@ -15,7 +15,11 @@ The UF module implements several versions of the union-find data structure (also
         * Transitive: If p is connected to q and q is connected to r, then
                            p is connected to r.
 """
+import sys
 from typing import *
+
+from itu.algs4.stdlib import stdio
+
 
 class UF:
     """
@@ -325,8 +329,6 @@ class QuickFindUF:
     def count(self):
         return self._count
 
-import sys
-from itu.algs4.stdlib import stdio
 
 # Reads in a an integer n and a sequence of pairs of integers
 # (between 0 and n-1) from standard input or a file
@@ -349,4 +351,3 @@ if __name__ == '__main__':
         uf.union(p, q)
         print('{} {}'.format(p, q))
     print('number of components: {}'.format(uf.count()))
-

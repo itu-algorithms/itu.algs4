@@ -2,6 +2,7 @@
 # See README.md for details
 # Python 3
 import sys
+
 from itu.algs4.stdlib import stdio
 
 # data files:

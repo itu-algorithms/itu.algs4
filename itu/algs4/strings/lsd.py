@@ -45,6 +45,7 @@ def sort(a, w, radix=256):
             a[i] = aux[i]
 
 import sys
+
 from itu.algs4.stdlib import stdio
 
 if __name__ == '__main__':

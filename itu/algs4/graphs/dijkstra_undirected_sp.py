@@ -1,9 +1,10 @@
 import sys
-from itu.algs4.stdlib.instream import InStream
-from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
-from itu.algs4.fundamentals.stack import Stack
-from itu.algs4.sorting.index_min_pq import IndexMinPQ
+
 from itu.algs4.errors.errors import IllegalArgumentException
+from itu.algs4.fundamentals.stack import Stack
+from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
+from itu.algs4.sorting.index_min_pq import IndexMinPQ
+from itu.algs4.stdlib.instream import InStream
 
 # Created for BADS 2018
 # See README.md for details

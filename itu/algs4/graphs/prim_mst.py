@@ -8,6 +8,7 @@ from itu.algs4.fundamentals.queue import Queue
 from itu.algs4.fundamentals.uf import UF
 from itu.algs4.sorting.index_min_pq import IndexMinPQ
 
+
 class PrimMST:
     """
     The PrimMST class represents a data type for computing a

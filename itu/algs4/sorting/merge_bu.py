@@ -67,6 +67,7 @@ def sort(a):
     
 
 import sys
+
 from itu.algs4.stdlib import stdio
 
 # Reads in a sequence of strings from standard input or a file 
@@ -83,5 +84,3 @@ if __name__ == '__main__':
     sort(a)
     for elem in a:
         print(elem)
-    
-

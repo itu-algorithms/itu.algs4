@@ -1,10 +1,11 @@
+from typing import Generic, Iterator, Optional, TypeVar
+
 from ..errors.errors import NoSuchElementException
 
 # Created for BADS 2018
 # See README.md for details
 # This is python3
 
-from typing import Generic, Optional, TypeVar, Iterator
 
 T = TypeVar('T')
 

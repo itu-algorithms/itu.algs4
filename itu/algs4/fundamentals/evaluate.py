@@ -2,11 +2,12 @@
 # See README.md for details
 # Python 3
 
+import math
+import sys
+
 from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.stdlib import stdio
 
-import math
-import sys
 
 def evaluate():
     ops = Stack()
