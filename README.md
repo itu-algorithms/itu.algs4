@@ -14,14 +14,27 @@ It was first created in 2018 by teaching assistants and instructors at [ITU Cope
 This library requires a functioning Python 3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
 Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages.
 
-### Remove previous versions
+### With pip
 
-If you have a previous version of this library installed, we recommend you remove it with
+If you have previously installed this package under its old name, we recommend you remove it with
 ```bash
 pip uninstall algs4 algs4_python
 ```
+Then you can install `itu.algs4` simply with
+```bash
+pip install itu.algs4
+```
+If you have already installed `itu.algs4` and want to upgrade to a new version, run:
+```bash
+pip install itu.algs4 --upgrade
+```
+To test that you have installed the library correctly, run this command:
+```bash
+python -c 'from itu.algs4.stdlib import stdio; stdio.write("Hello World!")'
+```
+It should greet you. If an error message appears instead, the library is not installed correctly.
 
-### With pip and git
+### Alternative: With pip and git
 
 If git is available, the following command will install the library in your Python environment:
 
@@ -53,18 +66,6 @@ C:\Users\user>cd Desktop\itu.algs4-master
 C:\Users\user\Desktop\itu.algs4-master>pip install .
 ```
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
-
-## Test the installation
-To test that the package is installed correctly, run Python in interactive mode and enter `import itu.algs4`.
-```console
-user@host:~$ python 
-Python 3.7.6 | packaged by conda-forge | (default, Jan  7 2020, 22:33:48) 
-[GCC 7.3.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import itu.algs4
->>> 
-```
-If no error message appears, the library has been installed correctly.
 
 ## Package structure
 
