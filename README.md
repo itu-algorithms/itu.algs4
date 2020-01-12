@@ -1,18 +1,22 @@
-# `algs4-py`
+# Algs4 library for Python3
 
-`algs4-py` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
+`itu.algs4` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
 
 [![Build Status](https://github.itu.dk/algorithms/AlgorithmsInPython/workflows/check/badge.svg)](https://github.itu.dk/algorithms/AlgorithmsInPython/actions)
 
 ## Target audience
 
-`algs4-py` is intended for instructors and students who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne.
+`itu.algs4` is intended for instructors and students who wish to follow the textbook [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/) by Sedgewick and Wayne.
 It was first created in 2018 by teaching assistants and instructors at [ITU Copenhagen](https://algorithms.itu.dk), where the introductory course on Algorithms and Data Structures is taught bilingually in Java and Python 3.
 
 ## Installation
 
 This library requires a functioning Python 3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
 Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages.
+
+### Remove previous versions
+
+If you have a previous version of this library installed, we recommend you remove it with `pip uninstall algs4 algs4_python`
 
 ### With pip and git
 
@@ -34,7 +38,7 @@ To install this library without git:
 
 ### Step-by-step guide for Windows
 
-To install the python package `algs4`:
+To install the python package `itu.algs4`:
 
 - Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
 - Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
@@ -50,66 +54,67 @@ C:\Users\user\Desktop\AlgorithmsInPython-master>pip install .
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
 ## Test the installation
-To test that the package is installed correctly, run python in interactive mode and enter `import algs4`.
+To test that the package is installed correctly, run python in interactive mode and enter `import itu.algs4`.
 ```console
 user@host:~$ python 
 Python 3.7.6 | packaged by conda-forge | (default, Jan  7 2020, 22:33:48) 
 [GCC 7.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> import algs4
+>>> import itu.algs4
 >>> 
 ```
 If no error message appears, the library has been installed correctly.
 
-## Usage
+## Package structure
 
-The python package `algs4` has a hierarchical structure with seven sub-packages:
+The python package `itu.algs4` has a hierarchical structure with seven sub-packages:
 
-- [algs4.fundamentals](algs4/fundamentals)
-- [algs4.sorting](algs4/sorting)
-- [algs4.searching](algs4/searching)
-- [algs4.graphs](algs4/graphs)
-- [algs4.strings](algs4/strings)
-- [algs4.stdlib](algs4/stdlib)
-- [algs4.errors](algs4/errors)
+- [itu.algs4.fundamentals](itu/algs4/fundamentals)
+- [itu.algs4.sorting](itu/algs4/sorting)
+- [itu.algs4.searching](itu/algs4/searching)
+- [itu.algs4.graphs](itu/algs4/graphs)
+- [itu.algs4.strings](itu/algs4/strings)
+- [itu.algs4.stdlib](itu/algs4/stdlib)
+- [itu.algs4.errors](itu/algs4/errors)
 
+While deep nesting of packages is normally [discouraged](https://www.python.org/dev/peps/pep-0423/#avoid-deep-nesting) in python, an important design goal of `itu.algs4` was to mirror the structure of the original Java code.
 The first five packages correspond to the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/). The `stdlib` package is based on the one from the related book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/). The package `errors` contains some exception classes.
 
 All filenames and package names have been written in lower_case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
 
-### Example
+## Examples
 
-A simple program, stored as a file `hello_world.py`, looks like this:
+A simple program, stored as a file [hello_world.py](examples/hello_world.py), looks like this:
 ```python
-import algs4.stdlib.stdio
+import itu.algs4.stdlib.stdio
 
-algs4.stdlib.stdio.write("Hello World!\n")
+itu.algs4.stdlib.stdio.write("Hello World!\n")
 ```
 It can be run with the command `python hello_world.py`.
 
 You can import classes, such as the class EdgeWeightedDigraph, with
 ```python
-from algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 ```
 
 Some files contain multiple classes, for example:
 ```python
-from algs4.fundamentals.uf import UF
-from algs4.fundamentals.uf import QuickUnionUF
+from itu.algs4.fundamentals.uf import UF
+from itu.algs4.fundamentals.uf import QuickUnionUF
 ```
 
-Look into the [examples](examples) directory for further examples.
+The directory [examples/](examples) contains further examples.
 
 ## Documentation
 
 You can use python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also show up in your IDE of choice.
-For example `help(algs4)` yields the following:
+For example `help(itu.algs4)` yields the following:
 
 ```
-Help on package algs4:
+Help on package itu.algs4 in itu:
 
 NAME
-    algs4
+    itu.algs4
 
 PACKAGE CONTENTS
     errors (package)
@@ -126,7 +131,7 @@ FILE
 
 ## Development
 
-`algs4-py` has known bugs and has not been tested systematically. We are open to pull requests, in particular, we appreciate the contribution of high-quality test cases, bug-fixes, and coding style improvements. For more information, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+`itu.algs4` has known bugs and has not been tested systematically. We are open to pull requests, and in particular, we appreciate the contribution of high-quality test cases, bug-fixes, and coding style improvements. For more information, see the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## Contributors
 
@@ -150,7 +155,7 @@ This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) fi
 ## Links to other projects
 
 - [algs4](https://github.com/kevin-wayne/algs4/) is the original Java implementation by Sedgewick and Wayne.
-- The textbook [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/) by Sedgewick, Wayne, and Dondero has a somewhat different approach from [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/), and is therefore not suitable for a bilingual course. Nevertheless, our code in [algs4/stdlib/](algs4/stdlib/) is largely based on the [source code](https://introcs.cs.princeton.edu/python/code/) associated with that book.
+- The textbook [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/) by Sedgewick, Wayne, and Dondero has a somewhat different approach from [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/), and is therefore not suitable for a bilingual course. Nevertheless, our code in [itu/algs4/stdlib/](itu/algs4/stdlib/) is largely based on the [source code](https://introcs.cs.princeton.edu/python/code/) associated with that book.
 - [pyalgs](https://github.com/chen0040/pyalgs) is a Python port of `algs4` that uses a more idiomatic Python coding style. In contrast, our port tries to stay as close to the original as possible, so that it can be used with less friction in a bilingual course.
 - [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4`.
 - [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4`.
