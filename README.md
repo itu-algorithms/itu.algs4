@@ -2,7 +2,7 @@
 
 `itu.algs4` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
 
-[![Build Status](https://github.itu.dk/algorithms/AlgorithmsInPython/workflows/check/badge.svg)](https://github.itu.dk/algorithms/AlgorithmsInPython/actions)
+[![Build Status](https://github.com/itu-algorithms/itu.algs4/workflows/check/badge.svg)](https://github.com/itu-algorithms/itu.algs4/actions)
 
 ## Target audience
 
@@ -26,10 +26,8 @@ pip uninstall algs4 algs4_python
 If git is available, the following command will install the library in your Python environment:
 
 ```bash
-pip install git+https://github.itu.dk/algorithms/AlgorithmsInPython
+pip install git+https://github.com/itu-algorithms/itu.algs4
 ```
-
-When requested, you will need to enter your ITU credentials.
 
 ### Alternative: With pip and zip
 
@@ -46,13 +44,13 @@ To install the Python package `itu.algs4`:
 - Download the repository by pressing the green "Clone or download" button, and pressing "Download ZIP".
 - Extract the content of the zip to your Desktop (you can delete the folder after installing the package).
 - Open the "Command Prompt" by pressing "Windows + R", type "cmd" in the window that appears, and press "OK".
-- If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\AlgorithmsInPython-master".
+- If you saved the folder on the Desktop you should be able to navigate to the folder by typing "cd Desktop\itu.algs4-master".
 ```
-C:\Users\user>cd Desktop\AlgorithmsInPython-master
+C:\Users\user>cd Desktop\itu.algs4-master
 ```
 - When in the correct folder, type `pip install .` to install the package. 
 ```
-C:\Users\user\Desktop\AlgorithmsInPython-master>pip install .
+C:\Users\user\Desktop\itu.algs4-master>pip install .
 ```
 - After this, the package should be installed correctly and you can delete the folder from your Desktop.
 
