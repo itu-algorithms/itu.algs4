@@ -1,6 +1,8 @@
 from abc import abstractmethod
 from typing import Generic, Optional, TypeVar
 
+from typing_extensions import Protocol
+
 from ..errors.errors import IllegalArgumentException, NoSuchElementException
 from ..fundamentals.queue import Queue
 
@@ -14,7 +16,7 @@ from ..fundamentals.queue import Queue
 Key = TypeVar('Key', bound = "Comparable")
 Val = TypeVar('Val')
 
-class Comparable():
+class Comparable(Protocol):
     @abstractmethod
     def __lt__(self: Key, other: Key) -> bool:
         pass
