@@ -28,4 +28,6 @@ jobs:
       run: |
         flake8 examples tests
         isort -rc -c --diff examples tests
-
+    - name: Typecheck
+      run: |
+        mypy

@@ -2,8 +2,8 @@
 
 ## Testing
 
-Before you can run tests, you should install this package in "editable" mode,
-and install its development dependencies:
+Before you can run tests, you should clone the repository, and install the
+package in "editable" mode, including its development dependencies:
 ```bash
 pip install --upgrade -e '.[dev]'
 ```
@@ -21,12 +21,26 @@ python3 -m unittest tests/test_bst.py
 pytest tests/test_stack.py
 ```
 
+## Linter
+
+Run `flake8` to lint all code. We currently only enforce linting on [examples/](examples) and [tests/](tests).
+Moreover, run
+```
+isort -rc -c --diff 
+```
+to fix and sort import statements. Remove ``--diff`` to apply the changes automatically.
+
 ## Types
 
-The binary search trees now type check using mypy, try:
+Weak type checking is currently enforced only on [examples/](examples) and [tests/](tests). To run the type checker, try:
+```
+mypy
+```
+Ideally, we want every module to strictly type check. For example, the binary search trees strictly type check:
 ```
 mypy --strict itu/algs4/searching/bst.py itu/algs4/searching/red_black_bst.py itu/algs4/fundamentals/queue.py
 ```
+
 
 ## Examples
 

@@ -7,7 +7,7 @@ Reads strings from an stdin and adds them to a queue.
 When reading a '-' it removes the least recently added item and prints it.
 Prints the amount of items left on the queue.
 """
-queue = Queue()
+queue: Queue[str] = Queue()
 while not stdio.isEmpty():
     input_item = stdio.readString()
     if input_item != "-":
