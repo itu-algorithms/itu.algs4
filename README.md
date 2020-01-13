@@ -186,7 +186,7 @@ This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) fi
 
 - [algs4](https://github.com/kevin-wayne/algs4/) is the original Java implementation by Sedgewick and Wayne.
 - The textbook [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/) by Sedgewick, Wayne, and Dondero has a somewhat different approach from [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/), and is therefore not suitable for a bilingual course. Nevertheless, our code in [itu/algs4/stdlib/](itu/algs4/stdlib/) is largely based on the [source code](https://introcs.cs.princeton.edu/python/code/) associated with that book.
-- [pyalgs](https://github.com/chen0040/pyalgs) is a Python port of `algs4` that uses a more idiomatic Python coding style. In contrast, our port tries to stay as close to the original as possible, so that it can be used with less friction in a bilingual course.
+- [pyalgs](https://github.com/chen0040/pyalgs) is a Python port of `algs4` that uses a more idiomatic Python coding style. In contrast, our port tries to stay as close to the original Java library and the course book’s Java implementations as possible, so that it can be used with less friction in a bilingual course.
 - [Scala-Algorithms](https://github.com/garyaiki/Scala-Algorithms) is a Scala port of `algs4`.
 - [Algs4Net](https://github.com/nguyenqthai/Algs4Net) is a .NET port of `algs4`.
 
