@@ -12,7 +12,8 @@ It was first created in 2018 by teaching assistants and instructors at [ITU Cope
 ## Installation
 
 This library requires a functioning Python 3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
-Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages.
+
+Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages. These features are not used in the ITU course, and you shouldn’t spend extra time on installing those packages unless you already have them or want to play around with the those parts on your own. 
 
 ### With pip
 
