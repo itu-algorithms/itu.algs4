@@ -6,6 +6,8 @@ import sys
 from abc import abstractmethod
 from typing import Generic, List, Optional, Sequence, TypeVar
 
+from typing_extensions import Protocol
+
 from ..errors.errors import IllegalArgumentException, NoSuchElementException
 from ..fundamentals.queue import Queue
 
@@ -29,9 +31,9 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 Val = TypeVar('Val')
 Key = TypeVar('Key', bound = 'Comparable')
 
-class Comparable:
+class Comparable(Protocol):
     @abstractmethod
-    def __lt__(self, other: Key) -> bool:
+    def __lt__(self: Key, other: Key) -> bool:
         pass
 
 class Node(Generic[Key, Val]):
