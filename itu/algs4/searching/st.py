@@ -3,8 +3,7 @@
 # Python 3
 import sys
 
-from itu.algs4.errors.errors import (IllegalArgumentException,
-                                     NoSuchElementException)
+from itu.algs4.errors.errors import IllegalArgumentException, NoSuchElementException
 from itu.algs4.stdlib import stdio
 
 

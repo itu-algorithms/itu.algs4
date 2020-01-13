@@ -18,11 +18,28 @@ import pygame
 import pygame.font
 import pygame.gfxdraw
 from itu.algs4.stdlib import color
-from itu.algs4.stdlib.color import (BLACK, BLUE, BOOK_BLUE, BOOK_LIGHT_BLUE,
-                                    BOOK_RED, CYAN, DARK_BLUE, DARK_GRAY,
-                                    DARK_GREEN, DARK_RED, GRAY, GREEN,
-                                    LIGHT_GRAY, MAGENTA, ORANGE, PINK, RED,
-                                    VIOLET, WHITE, YELLOW)
+from itu.algs4.stdlib.color import (
+    BLACK,
+    BLUE,
+    BOOK_BLUE,
+    BOOK_LIGHT_BLUE,
+    BOOK_RED,
+    CYAN,
+    DARK_BLUE,
+    DARK_GRAY,
+    DARK_GREEN,
+    DARK_RED,
+    GRAY,
+    GREEN,
+    LIGHT_GRAY,
+    MAGENTA,
+    ORANGE,
+    PINK,
+    RED,
+    VIOLET,
+    WHITE,
+    YELLOW,
+)
 
 if (sys.hexversion < 0x03000000):
     import Tkinter

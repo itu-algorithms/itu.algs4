@@ -26,7 +26,7 @@ pytest tests/test_stack.py
 Run `flake8` to lint all code. We currently only enforce linting on [examples/](examples) and [tests/](tests).
 Moreover, run
 ```
-isort -rc
+isort
 ```
 to sort import statements.
 

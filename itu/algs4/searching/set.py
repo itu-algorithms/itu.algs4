@@ -3,9 +3,11 @@
 # Python 3
 import sys
 
-from itu.algs4.errors.errors import (IllegalArgumentException,
-                                     NoSuchElementException,
-                                     UnsupportedOperationException)
+from itu.algs4.errors.errors import (
+    IllegalArgumentException,
+    NoSuchElementException,
+    UnsupportedOperationException,
+)
 
 
 """

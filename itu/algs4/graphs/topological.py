@@ -10,8 +10,7 @@ information, see chapter 4.2 of the book.
 from itu.algs4.graphs.depth_first_order import DepthFirstOrder
 from itu.algs4.graphs.digraph import Digraph
 from itu.algs4.graphs.directed_cycle import DirectedCycle
-from itu.algs4.graphs.edge_weighted_directed_cycle import \
-    EdgeWeightedDirectedCycle
+from itu.algs4.graphs.edge_weighted_directed_cycle import EdgeWeightedDirectedCycle
 
 
 class Topological:
