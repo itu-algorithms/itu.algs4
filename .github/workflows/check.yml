@@ -26,6 +26,6 @@ jobs:
         pytest --cov-report term-missing --cov itu.algs4
     - name: Lint
       run: |
-        flake8
-        isort -rc -c --diff
+        flake8 examples tests
+        isort -rc -c --diff examples tests
 
