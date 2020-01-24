@@ -13,7 +13,7 @@ pytest
 ```
 To additionally display code coverage statistics, use this:
 ```bash
-pytest --cov-report term-missing --cov itu.algs4
+pytest --cov
 ```
 To run individual tests, you can also do this:
 ```
