@@ -183,7 +183,7 @@ class BinarySearchST:
         while j < self._n-1:
             self._keys[j] = self._keys[j+1]
             self._vals[j] = self._vals[j+1]
-            j = 1
+            j += 1
 
         self._n -= 1
         n = self._n
