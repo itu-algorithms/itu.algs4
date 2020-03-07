@@ -165,3 +165,31 @@ class HugeRedBlackBSTMethods(unittest.TestCase):
             self.assertEqual(self.S[i], self.st.max())
             self.st.delete_max()
             i -= 1
+
+    def test_flights(self):
+        self.st = RedBlackBST()
+        schedule = [
+            ["09:00:00", "Chicago"],
+            ["09:00:03", "Phoenix"],
+            ["09:00:13", "Houston"],
+            ["09:00:59", "Chicago"],
+            ["09:01:10", "Houston"],
+            ["09:03:13", "Chicago"],
+            ["09:10:11", "Seattle"],
+            ["09:10:25", "Seattle"],
+            ["09:14:25", "Phoenix"],
+            ["09:19:32", "Chicago"],
+            ["09:19:46", "Chicago"],
+            ["09:21:05", "Chicago"],
+            ["09:22:43", "Seattle"],
+            ["09:22:54", "Seattle"],
+            ["09:25:52", "Chicago"],
+            ["09:35:21", "Chicago"],
+            ["09:36:14", "Seattle"],
+            ["09:37:44", "Phoenix"],
+        ]
+        for time, city in schedule:
+            self.st.put(time, city)
+        for time, city in schedule:
+            self.assertEqual(city, self.st.get(time))
+        self.assertEqual(len(self.st.keys()), len(schedule))
