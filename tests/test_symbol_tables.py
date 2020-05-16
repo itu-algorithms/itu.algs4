@@ -10,7 +10,6 @@ from itu.algs4.searching.seperate_chaining_hst import SeparateChainingHashST
 from itu.algs4.searching.sequential_search_st import SequentialSearchST
 from itu.algs4.searching.st import ST
 
-
 ST_IMPLEMENTATIONS = [
     BinarySearchST,
     BST,
