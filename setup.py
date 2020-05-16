@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="itu.algs4",
-    version="0.2.4",
+    version="0.2.5",
     description='Python 3 port of the Java code in "Algorithms, 4th Edition" by Sedgewick and Wayne',
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
