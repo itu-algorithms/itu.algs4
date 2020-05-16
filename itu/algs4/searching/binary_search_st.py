@@ -191,7 +191,7 @@ class BinarySearchST:
         self._vals[n] = None
 
         # resize if 1/4 full
-        if n > 0 and n == len(self._keys)/4: self._resize(len(self._keys)/2)
+        if n > 0 and n == len(self._keys)//4: self._resize(len(self._keys)//2)
 
         assert self._check()
     

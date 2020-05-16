@@ -102,7 +102,7 @@ class LinearProbingHashST:
 			self.delete(key)
 			return
 		# Double table size if 50% full
-		if (self.n >= self.m/2):
+		if (self.n >= self.m//2):
 			self._resize(2*self.m)
 
 		i = self._hash(key)
@@ -167,7 +167,7 @@ class LinearProbingHashST:
 
 		# Halves table size if it's less than 12.5% full
 		if(self.n > 0 and self.n <= self.m/8):
-			self._resize(self.m/2)
+			self._resize(self.m//2)
 
 		assert self._check()
 
