@@ -481,7 +481,7 @@ class RedBlackBST(Generic[Key, Val]):
             return
         if lo < x.key:
             self._keys(x.left, queue, lo, hi)
-        if not x.key < lo  and x.key <  hi:
+        if not x.key < lo  and x.key <=  hi:
             queue.enqueue(x.key)
         if hi > x.key:
             self._keys(x.right, queue, lo, hi)
