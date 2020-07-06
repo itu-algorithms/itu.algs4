@@ -3,6 +3,7 @@
 `itu.algs4` is a Python 3 port of the Java code in [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/).
 
 [![Build Status](https://github.com/itu-algorithms/itu.algs4/workflows/check/badge.svg)](https://github.com/itu-algorithms/itu.algs4/actions)
+[![Documentation Status](https://readthedocs.org/projects/itualgs4/badge/?version=latest)](https://itualgs4.readthedocs.io/en/latest/?badge=latest)
 
 ## Target audience
 
@@ -136,6 +137,8 @@ from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 
 
 ## Documentation
+
+The documentation can be found [here](https://itualgs4.readthedocs.io/en/latest/).
 
 You can use Python's built-in `help` function on any package, sub-package, public class, or function to get a description of what it contains or does. This documentation should also show up in your IDE of choice.
 For example `help(itu.algs4)` yields the following:
