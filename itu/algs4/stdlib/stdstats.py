@@ -1,10 +1,10 @@
 # code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
 
-"""
-stdstats.py
+"""stdstats.py.
 
 The stdstats module defines functions related to statistical analysis
 and graphical data display.
+
 """
 
 #-----------------------------------------------------------------------
@@ -42,17 +42,13 @@ from itu.algs4.stdlib import stddraw
 #-----------------------------------------------------------------------
 
 def mean(a):
-    """
-    Return the average of the elements of array a.
-    """
+    """Return the average of the elements of array a."""
     return sum(a) / float(len(a))
 
 #-----------------------------------------------------------------------
 
 def var(a):
-    """
-    Return the sample variance of the elements of array a.
-    """
+    """Return the sample variance of the elements of array a."""
     mu = mean(a)
     total = 0.0
     for x in a:
@@ -62,17 +58,13 @@ def var(a):
 #-----------------------------------------------------------------------
 
 def stddev(a):
-    """
-    Return the standard deviation of the elements of array a.
-    """
+    """Return the standard deviation of the elements of array a."""
     return math.sqrt(var(a))
 
 #-----------------------------------------------------------------------
 
 def median(a):
-    """
-    Return the median of the elements of array a.
-    """
+    """Return the median of the elements of array a."""
     b = list(a)  # Make a copy of a.
     b.sort()
     length = len(b)
@@ -84,9 +76,7 @@ def median(a):
 #-----------------------------------------------------------------------
 
 def plotPoints(a):
-    """
-    Plot the elements of array a as points.
-    """
+    """Plot the elements of array a as points."""
     n = len(a)
     stddraw.setXscale(-1, n)
     stddraw.setPenRadius(1.0 / (3.0 * n))
@@ -96,9 +86,7 @@ def plotPoints(a):
 #-----------------------------------------------------------------------
 
 def plotLines(a):
-    """
-    Plot the elements of array a as line end-points.
-    """
+    """Plot the elements of array a as line end-points."""
     n = len(a)
     stddraw.setXscale(-1, n)
     stddraw.setPenRadius(0.0)
@@ -108,9 +96,7 @@ def plotLines(a):
 #-----------------------------------------------------------------------
 
 def plotBars(a):
-    """
-    Plot the elements of array a as bars.
-    """
+    """Plot the elements of array a as bars."""
     n = len(a)
     stddraw.setXscale(-1, n)
     for i in range(n):
@@ -119,9 +105,7 @@ def plotBars(a):
 #-----------------------------------------------------------------------
 
 def _main():
-    """
-    For testing:
-    """
+    """For testing:"""
     import stdarray
     import stdio
 

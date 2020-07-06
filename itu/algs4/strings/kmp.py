@@ -15,10 +15,11 @@ is the alphabet size.
 """
 class KMP:
 	def __init__(self, pat):
+		"""Preprocesses the pattern string.
+
+		:param pat: the pattern string
+
 		"""
-    	Preprocesses the pattern string.
-    	:param pat: the pattern string
-    	"""
 		self.pat = pat
 		M = len(pat)
 		R = 256
@@ -32,12 +33,13 @@ class KMP:
 			self.dfa[ord(pat[j])][j] = j+1 #Set match case
 			X = self.dfa[ord(pat[j])][X] #Update restart state
 	def search(self, txt):
-		"""
-		Returns the index of the first occurrrence of the pattern string
-     	in the text string.
-     	:param txt: the text string
-     	:return: the index of the first occurrence of the pattern string 
-     	in the text string; N if no such match
+		"""Returns the index of the first occurrrence of the pattern string in the
+		text string.
+
+		:param txt: the text string
+		:return: the index of the first occurrence of the pattern string
+		in the text string; N if no such match
+
 		"""
 		N = len(txt)
 		M = len(self.pat)
@@ -51,11 +53,13 @@ class KMP:
 		else: #not found (hit end of text)
 			return N
 def main():
-	"""
-	Takes a pattern string and an input string as command-line arguments;
-    searches for the pattern string in the text string; and prints
-    the first occurrence of the pattern string in the text string.
-    Will print the pattern after the end of the string if no match is found.
+	"""Takes a pattern string and an input string as command-line arguments;
+	searches for the pattern string in the text string; and prints the first
+	occurrence of the pattern string in the text string.
+
+	Will print the pattern after the end of the string if no match is
+	found.
+
 	"""
 	pat = sys.argv[1]
 	txt = sys.argv[2]

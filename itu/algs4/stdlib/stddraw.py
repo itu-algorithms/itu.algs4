@@ -1,12 +1,12 @@
 # code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
 
-"""
-stddraw.py
+"""stddraw.py.
 
 The stddraw module defines functions that allow the user to create a
-drawing.  A drawing appears on the canvas.  The canvas appears
-in the window.  As a convenience, the module also imports the
-commonly used Color objects defined in the color module.
+drawing.  A drawing appears on the canvas.  The canvas appears in the
+window.  As a convenience, the module also imports the commonly used
+Color objects defined in the color module.
+
 """
 
 import os
@@ -108,9 +108,11 @@ _mousePos = None
 #-----------------------------------------------------------------------
 
 def _pygameColor(c):
-    """
-    Convert c, an object of type color.Color, to an equivalent object
-    of type pygame.Color.  Return the result.
+    """Convert c, an object of type color.Color, to an equivalent object of
+    type pygame.Color.
+
+    Return the result.
+
     """
     r = c.getRed()
     g = c.getGreen()
@@ -150,10 +152,11 @@ def _userY(y):
 #-----------------------------------------------------------------------
 
 def setCanvasSize(w=_DEFAULT_CANVAS_SIZE, h=_DEFAULT_CANVAS_SIZE):
-    """
-    Set the size of the canvas to w pixels wide and h pixels high.
-    Calling this function is optional. If you call it, you must do
-    so before calling any drawing function.
+    """Set the size of the canvas to w pixels wide and h pixels high.
+
+    Calling this function is optional. If you call it, you must do so
+    before calling any drawing function.
+
     """
     global _background
     global _surface
@@ -176,10 +179,8 @@ def setCanvasSize(w=_DEFAULT_CANVAS_SIZE, h=_DEFAULT_CANVAS_SIZE):
     _windowCreated = True
 
 def setXscale(min=_DEFAULT_XMIN, max=_DEFAULT_XMAX):
-    """
-    Set the x-scale of the canvas such that the minimum x value
-    is min and the maximum x value is max.
-    """
+    """Set the x-scale of the canvas such that the minimum x value is min and
+    the maximum x value is max."""
     global _xmin
     global _xmax
     min = float(min)
@@ -191,10 +192,8 @@ def setXscale(min=_DEFAULT_XMIN, max=_DEFAULT_XMAX):
     _xmax = max + _BORDER * size
 
 def setYscale(min=_DEFAULT_YMIN, max=_DEFAULT_YMAX):
-    """
-    Set the y-scale of the canvas such that the minimum y value
-    is min and the maximum y value is max.
-    """
+    """Set the y-scale of the canvas such that the minimum y value is min and
+    the maximum y value is max."""
     global _ymin
     global _ymax
     min = float(min)
@@ -206,11 +205,12 @@ def setYscale(min=_DEFAULT_YMIN, max=_DEFAULT_YMAX):
     _ymax = max + _BORDER * size
 
 def setPenRadius(r=_DEFAULT_PEN_RADIUS):
-    """
-    Set the pen radius to r, thus affecting the subsequent drawing
-    of points and lines. If r is 0.0, then points will be drawn with
-    the minimum possible radius and lines with the minimum possible
-    width.
+    """Set the pen radius to r, thus affecting the subsequent drawing of points
+    and lines.
+
+    If r is 0.0, then points will be drawn with the minimum possible
+    radius and lines with the minimum possible width.
+
     """
     global _penRadius
     r = float(r)
@@ -219,24 +219,21 @@ def setPenRadius(r=_DEFAULT_PEN_RADIUS):
     _penRadius = r * float(_DEFAULT_CANVAS_SIZE)
 
 def setPenColor(c=_DEFAULT_PEN_COLOR):
-    """
-    Set the pen color to c, where c is an object of class color.Color.
+    """Set the pen color to c, where c is an object of class color.Color.
+
     c defaults to stddraw.BLACK.
+
     """
     global _penColor
     _penColor = c
 
 def setFontFamily(f=_DEFAULT_FONT_FAMILY):
-    """
-    Set the font family to f (e.g. 'Helvetica' or 'Courier').
-    """
+    """Set the font family to f (e.g. 'Helvetica' or 'Courier')."""
     global _fontFamily
     _fontFamily = f
 
 def setFontSize(s=_DEFAULT_FONT_SIZE):
-    """
-    Set the font size to s (e.g. 12 or 16).
-    """
+    """Set the font size to s (e.g. 12 or 16)."""
     global _fontSize
     _fontSize = s
 
@@ -253,9 +250,7 @@ def _makeSureWindowCreated():
 # Functions to draw shapes, text, and images on the background canvas.
 
 def _pixel(x, y):
-    """
-    Draw on the background canvas a pixel at (x, y).
-    """
+    """Draw on the background canvas a pixel at (x, y)."""
     _makeSureWindowCreated()
     xs = _scaleX(x)
     xy = _scaleY(y)
@@ -266,9 +261,7 @@ def _pixel(x, y):
         _pygameColor(_penColor))
 
 def point(x, y):
-    """
-    Draw on the background canvas a point at (x, y).
-    """
+    """Draw on the background canvas a point at (x, y)."""
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -289,9 +282,10 @@ def point(x, y):
             0)
 
 def _thickLine(x0, y0, x1, y1, r):
-    """
-    Draw on the background canvas a line from (x0, y0) to (x1, y1).
+    """Draw on the background canvas a line from (x0, y0) to (x1, y1).
+
     Draw the line with a pen whose radius is r.
+
     """
     xs0 = _scaleX(x0)
     ys0 = _scaleY(y0)
@@ -306,9 +300,7 @@ def _thickLine(x0, y0, x1, y1, r):
     _thickLine(xMid, yMid, x1, y1, r)
 
 def line(x0, y0, x1, y1):
-    """
-    Draw on the background canvas a line from (x0, y0) to (x1, y1).
-    """
+    """Draw on the background canvas a line from (x0, y0) to (x1, y1)."""
 
     THICK_LINE_CUTOFF = 3 # pixels
 
@@ -336,10 +328,8 @@ def line(x0, y0, x1, y1):
         _thickLine(x0, y0, x1, y1, _penRadius/_DEFAULT_CANVAS_SIZE)
 
 def circle(x, y, r):
-    """
-    Draw on the background canvas a circle of radius r centered on
-    (x, y).
-    """
+    """Draw on the background canvas a circle of radius r centered on (x,
+    y)."""
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -359,10 +349,8 @@ def circle(x, y, r):
             int(round(_penRadius)))
 
 def filledCircle(x, y, r):
-    """
-    Draw on the background canvas a filled circle of radius r
-    centered on (x, y).
-    """
+    """Draw on the background canvas a filled circle of radius r centered on
+    (x, y)."""
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -382,10 +370,8 @@ def filledCircle(x, y, r):
             0)
 
 def rectangle(x, y, w, h):
-    """
-    Draw on the background canvas a rectangle of width w and height h
-    whose lower left point is (x, y).
-    """
+    """Draw on the background canvas a rectangle of width w and height h whose
+    lower left point is (x, y)."""
     global _surface
     _makeSureWindowCreated()
     x = float(x)
@@ -407,10 +393,8 @@ def rectangle(x, y, w, h):
             int(round(_penRadius)))
 
 def filledRectangle(x, y, w, h):
-    """
-    Draw on the background canvas a filled rectangle of width w and
-    height h whose lower left point is (x, y).
-    """
+    """Draw on the background canvas a filled rectangle of width w and height h
+    whose lower left point is (x, y)."""
     global _surface
     _makeSureWindowCreated()
     x = float(x)
@@ -432,26 +416,20 @@ def filledRectangle(x, y, w, h):
             0)
 
 def square(x, y, r):
-    """
-    Draw on the background canvas a square whose sides are of length
-    2r, centered on (x, y).
-    """
+    """Draw on the background canvas a square whose sides are of length 2r,
+    centered on (x, y)."""
     _makeSureWindowCreated()
     rectangle(x-r, y-r, 2.0*r, 2.0*r)
 
 def filledSquare(x, y, r):
-    """
-    Draw on the background canvas a filled square whose sides are of
-    length 2r, centered on (x, y).
-    """
+    """Draw on the background canvas a filled square whose sides are of length
+    2r, centered on (x, y)."""
     _makeSureWindowCreated()
     filledRectangle(x-r, y-r, 2.0*r, 2.0*r)
 
 def polygon(x, y):
-    """
-    Draw on the background canvas a polygon with coordinates
-    (x[i], y[i]).
-    """
+    """Draw on the background canvas a polygon with coordinates (x[i],
+    y[i])."""
     global _surface
     _makeSureWindowCreated()
     # Scale X and Y values.
@@ -472,10 +450,8 @@ def polygon(x, y):
         int(round(_penRadius)))
 
 def filledPolygon(x, y):
-    """
-    Draw on the background canvas a filled polygon with coordinates
-    (x[i], y[i]).
-    """
+    """Draw on the background canvas a filled polygon with coordinates (x[i],
+    y[i])."""
     global _surface
     _makeSureWindowCreated()
     # Scale X and Y values.
@@ -492,9 +468,7 @@ def filledPolygon(x, y):
     pygame.draw.polygon(_surface, _pygameColor(_penColor), points, 0)
 
 def text(x, y, s):
-    """
-    Draw string s on the background canvas centered at (x, y).
-    """
+    """Draw string s on the background canvas centered at (x, y)."""
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -506,10 +480,11 @@ def text(x, y, s):
     _surface.blit(text, textpos)
 
 def picture(pic, x=None, y=None):
-    """
-    Draw pic on the background canvas centered at (x, y).  pic is an
-    object of class picture.Picture. x and y default to the midpoint
-    of the background canvas.
+    """Draw pic on the background canvas centered at (x, y).
+
+    pic is an object of class picture.Picture. x and y default to the
+    midpoint of the background canvas.
+
     """
     global _surface
     _makeSureWindowCreated()
@@ -528,17 +503,17 @@ def picture(pic, x=None, y=None):
     _surface.blit(picSurface, [xs-ws/2.0, ys-hs/2.0, ws, hs])
 
 def clear(c=WHITE):
-    """
-    Clear the background canvas to color c, where c is an
-    object of class color.Color. c defaults to stddraw.WHITE.
+    """Clear the background canvas to color c, where c is an object of class
+    color.Color.
+
+    c defaults to stddraw.WHITE.
+
     """
     _makeSureWindowCreated()
     _surface.fill(_pygameColor(c))
 
 def save(f):
-    """
-    Save the window canvas to file f.
-    """
+    """Save the window canvas to file f."""
     _makeSureWindowCreated()
 
     #if sys.hexversion >= 0x03000000:
@@ -556,17 +531,17 @@ def save(f):
 #-----------------------------------------------------------------------
 
 def _show():
-    """
-    Copy the background canvas to the window canvas.
-    """
+    """Copy the background canvas to the window canvas."""
     _background.blit(_surface, (0, 0))
     pygame.display.flip()
     _checkForEvents()
 
 def _showAndWaitForever():
-    """
-    Copy the background canvas to the window canvas. Then wait
-    forever, that is, until the user closes the stddraw window.
+    """Copy the background canvas to the window canvas.
+
+    Then wait forever, that is, until the user closes the stddraw
+    window.
+
     """
     _makeSureWindowCreated()
     _show()
@@ -576,9 +551,11 @@ def _showAndWaitForever():
         _checkForEvents()
 
 def show(msec=float('inf')):
-    """
-    Copy the background canvas to the window canvas, and
-    then wait for msec milliseconds. msec defaults to infinity.
+    """Copy the background canvas to the window canvas, and then wait for msec
+    milliseconds.
+
+    msec defaults to infinity.
+
     """
     if msec == float('inf'):
         _showAndWaitForever()
@@ -603,13 +580,14 @@ def show(msec=float('inf')):
 #-----------------------------------------------------------------------
 
 def _saveToFile():
-    """
-    Display a dialog box that asks the user for a file name.  Save the
-    drawing to the specified file.  Display a confirmation dialog box
-    if successful, and an error dialog box otherwise.  The dialog boxes
-    are displayed using Tkinter, which (on some computers) is
-    incompatible with Pygame. So the dialog boxes must be displayed
+    """Display a dialog box that asks the user for a file name.
+
+    Save the drawing to the specified file.  Display a confirmation
+    dialog box if successful, and an error dialog box otherwise.  The
+    dialog boxes are displayed using Tkinter, which (on some computers)
+    is incompatible with Pygame. So the dialog boxes must be displayed
     from child processes.
+
     """
     import subprocess
     _makeSureWindowCreated()
@@ -643,9 +621,11 @@ def _saveToFile():
             [sys.executable, stddrawPath, 'reportFileSaveError', str(e)])
 
 def _checkForEvents():
-    """
-    Check if any new event has occured (such as a key typed or button
-    pressed).  If a key has been typed, then put that key in a queue.
+    """Check if any new event has occured (such as a key typed or button
+    pressed).
+
+    If a key has been typed, then put that key in a queue.
+
     """
     global _surface
     global _keysTyped
@@ -688,18 +668,17 @@ def _checkForEvents():
 # Functions for retrieving keys
 
 def hasNextKeyTyped():
-    """
-    Return True if the queue of keys the user typed is not empty.
+    """Return True if the queue of keys the user typed is not empty.
+
     Otherwise return False.
+
     """
     global _keysTyped
     return _keysTyped != []
 
 def nextKeyTyped():
-    """
-    Remove the first key from the queue of keys that the the user typed,
-    and return that key.
-    """
+    """Remove the first key from the queue of keys that the the user typed, and
+    return that key."""
     global _keysTyped
     return _keysTyped.pop()
 
@@ -710,10 +689,8 @@ def nextKeyTyped():
 # Functions for dealing with mouse clicks 
 
 def mousePressed():
-    """
-    Return True if the mouse has been left-clicked since the 
-    last time mousePressed was called, and False otherwise.
-    """
+    """Return True if the mouse has been left-clicked since the last time
+    mousePressed was called, and False otherwise."""
     global _mousePressed
     if _mousePressed:
         _mousePressed = False
@@ -721,11 +698,12 @@ def mousePressed():
     return False
 
 def mouseX():
-    """
-    Return the x coordinate in user space of the location at
-    which the mouse was most recently left-clicked. If a left-click
-    hasn't happened yet, raise an exception, since mouseX() shouldn't
-    be called until mousePressed() returns True.
+    """Return the x coordinate in user space of the location at which the mouse
+    was most recently left-clicked.
+
+    If a left-click hasn't happened yet, raise an exception, since
+    mouseX() shouldn't be called until mousePressed() returns True.
+
     """
     global _mousePos
     if _mousePos:
@@ -734,11 +712,12 @@ def mouseX():
         "Can't determine mouse position if a click hasn't happened")
 
 def mouseY():
-    """
-    Return the y coordinate in user space of the location at
-    which the mouse was most recently left-clicked. If a left-click
-    hasn't happened yet, raise an exception, since mouseY() shouldn't
-    be called until mousePressed() returns True.
+    """Return the y coordinate in user space of the location at which the mouse
+    was most recently left-clicked.
+
+    If a left-click hasn't happened yet, raise an exception, since
+    mouseY() shouldn't be called until mousePressed() returns True.
+
     """
     global _mousePos
     if _mousePos:
@@ -764,9 +743,7 @@ pygame.font.init()
 # Functions for displaying Tkinter dialog boxes in child processes.
 
 def _getFileName():
-    """
-    Display a dialog box that asks the user for a file name.
-    """
+    """Display a dialog box that asks the user for a file name."""
     root = Tkinter.Tk()
     root.withdraw()
     reply = tkFileDialog.asksaveasfilename(initialdir='.')
@@ -775,9 +752,7 @@ def _getFileName():
     sys.exit()
 
 def _confirmFileSave():
-    """
-    Display a dialog box that confirms a file save operation.
-    """
+    """Display a dialog box that confirms a file save operation."""
     root = Tkinter.Tk()
     root.withdraw()
     tkMessageBox.showinfo(title='File Save Confirmation',
@@ -785,9 +760,10 @@ def _confirmFileSave():
     sys.exit()
 
 def _reportFileSaveError(msg):
-    """
-    Display a dialog box that reports a msg.  msg is a string which
-    describes an error in a file save operation.
+    """Display a dialog box that reports a msg.
+
+    msg is a string which describes an error in a file save operation.
+
     """
     root = Tkinter.Tk()
     root.withdraw()
@@ -797,9 +773,7 @@ def _reportFileSaveError(msg):
 #-----------------------------------------------------------------------
 
 def _regressionTest():
-    """
-    Perform regression testing.
-    """
+    """Perform regression testing."""
 
     clear()
 
@@ -915,10 +889,8 @@ def _regressionTest():
 #-----------------------------------------------------------------------
 
 def _main():
-    """
-    Dispatch to a function that does regression testing, or to a
-    dialog-box-handling function.
-    """
+    """Dispatch to a function that does regression testing, or to a dialog-box-
+    handling function."""
     import sys
     if len(sys.argv) == 1:
         _regressionTest()

@@ -65,10 +65,10 @@ def _sort(a: List, aux: List, lo: int, hi: int):
     _merge(a, aux, lo, mid, hi)
 
 def sort(a: List):
-    """
-    Rearranges the array in ascending order, using the natural order.
-    
+    """Rearranges the array in ascending order, using the natural order.
+
     :param a: the array to be sorted
+
     """
     aux = [None]*len(a)
     _sort(a, aux, 0, len(a)-1)

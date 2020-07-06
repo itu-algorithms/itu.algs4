@@ -2,20 +2,20 @@
 # See README.md for details
 # Python 3
 
-"""
-This module provides functions for sorting arrays of strings using lsd sort.
+"""This module provides functions for sorting arrays of strings using lsd sort.
 
-For additional documentation, see Section 5.1 of Algorithms, 4th Edition 
+For additional documentation, see Section 5.1 of Algorithms, 4th Edition
 by Robert Sedgewick and Kevin Wayne.
+
 """
 
 def sort(a, w, radix=256):
-    """
-     Rearranges the array of w-character strings in ascending order.
-     
-     :param a: the array to be sorted
-     :param w: the number of characters per string
-     :param radix: an optional number specifying the size of the alphabet to sort
+    """Rearranges the array of w-character strings in ascending order.
+
+    :param a: the array to be sorted
+    :param w: the number of characters per string
+    :param radix: an optional number specifying the size of the alphabet to sort
+
     """
     
     n = len(a)

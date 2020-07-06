@@ -4,24 +4,24 @@ from itu.algs4.graphs.digraph import Digraph
 
 
 class DepthFirstOrder:
-    """
-    The DepthFirstOrder class represents a data type for determining depth-first 
-    search ordering of the vertices in a digraph or edge-weighted digraph, including 
-    preorder, postorder, and reverse postorder.
-    
-    This implementation uses depth-first search. The constructor takes time proportional 
-    to V + E (in the worst case), where V is the number of vertices and E is the number 
-    of edges. Afterwards, the preorder, postorder, and reverse postorder operation takes 
+    """The DepthFirstOrder class represents a data type for determining depth-
+    first search ordering of the vertices in a digraph or edge-weighted
+    digraph, including preorder, postorder, and reverse postorder.
+
+    This implementation uses depth-first search. The constructor takes time proportional
+    to V + E (in the worst case), where V is the number of vertices and E is the number
+    of edges. Afterwards, the preorder, postorder, and reverse postorder operation takes
     take time proportional to V.
 
     For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
+
     """
     
     def __init__(self, digraph):
-        """
-        Determines a depth-first order for the digraph.
-        
+        """Determines a depth-first order for the digraph.
+
         :param digraph: the digraph to check
+
         """
         self._pre  = [0]*digraph.V()
         self._post = [0]*digraph.V()
@@ -42,13 +42,13 @@ class DepthFirstOrder:
                 dfs(digraph, v)
     
     def post(self, v=None):
-        """
-        Either returns the postorder number of vertex v or, if v is None, 
+        """Either returns the postorder number of vertex v or, if v is None,
         returns the vertices in postorder.
-        
+
         :param v: None, or the vertex to return the postorder number of
         :return: if v is None, the vertices in postorder, otherwise the postorder
         number of v
+
         """
         if v is None:
             return self._postorder
@@ -57,13 +57,13 @@ class DepthFirstOrder:
             return self._post[v]
     
     def pre(self, v=None):
-        """
-        Either returns the preorder number of vertex v or, if v is None, 
+        """Either returns the preorder number of vertex v or, if v is None,
         returns the vertices in preorder.
-        
+
         :param v: None, or the vertex to return the preorder number of
         :return: if v is None, the vertices in preorder, otherwise the preorder
                 number of v
+
         """
         if v is None:
             return self._preorder
@@ -72,10 +72,10 @@ class DepthFirstOrder:
             return self._pre[v]    
         
     def reverse_post(self):
-        """
-        Returns the vertices in reverse postorder.
-        
+        """Returns the vertices in reverse postorder.
+
         :return: the vertices in reverse postorder, as an iterable of vertices
+
         """
         reverse = Stack()
         for v in self._postorder:

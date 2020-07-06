@@ -3,15 +3,13 @@
 # This is python3 
 
 class CC:
-    """
-    The CC class represents a data type for 
-    determining the connected components in an undirected graph.
-    The id operation determines in which connected component
-    a given vertex lies the connected operation
-    determines whether two vertices are in the same connected component
-    the count operation determines the number of connected
-    components and the size operation determines the number
-    of vertices in the connect component containing a given vertex.
+    """The CC class represents a data type for determining the connected
+    components in an undirected graph. The id operation determines in which
+    connected component a given vertex lies the connected operation determines
+    whether two vertices are in the same connected component the count
+    operation determines the number of connected components and the size
+    operation determines the number of vertices in the connect component
+    containing a given vertex.
 
     The component identifier of a connected component is one of the
     vertices in the connected component: two vertices have the same component
@@ -23,13 +21,14 @@ class CC:
     where V is the number of vertices and E is the number of edges.
     Afterwards, the id, count, connected,
     and size operations take constant time.
+
     """
 
     def __init__(self, G):
-        """
-        Computes the connected components of the undirected graph G.
+        """Computes the connected components of the undirected graph G.
 
         :param G: the undirected graph
+
         """
         self._marked = [False] * G.V()  # marked[v] = has vertex v been marked?
         self._id = [None] * G.V()       # id[v] = id of connected component containing v
@@ -51,45 +50,48 @@ class CC:
                 self._dfs(G, w)
     
     def id(self, v):
-        """
-        Returns the component id of the connected component containing vertex v.
-     
+        """Returns the component id of the connected component containing
+        vertex v.
+
         :param v: the vertex
         :returns: the component id of the connected component containing vertex v
         :raises ValueError: unless 0 <= v < V
+
         """    
         self._validate_vertex(v)
         return self._id[v]
 
     def size(self, v):
-        """
-        Returns the number of vertices in the connected component containing vertex v.
-     
+        """Returns the number of vertices in the connected component containing
+        vertex v.
+
         :param v: the vertex
         :returns: the number of vertices in the connected component containing vertex v
         :raises ValueError: unless 0 <= v < V
+
         """
         self._validate_vertex(v)
         return self._size[self._id[v]]
 
     def count(self):
-        """
-        Returns the number of connected components in the graph G.
+        """Returns the number of connected components in the graph G.
 
         :returns: the number of connected components in the graph G
+
         """
         return self._count
 
     def connected(self, v, w):
-        """
-        Returns true if vertices v and w are in the same connected component.
-     
+        """Returns true if vertices v and w are in the same connected
+        component.
+
         :param v: one vertex
         :param w: the other vertex
-        :returns: True if vertices v and w are in the same connected component; 
+        :returns: True if vertices v and w are in the same connected component;
                     False otherwise
         :raises ValueError: unless 0 <= v < V
         :raises ValueError: unless 0 <= w < V
+
         """
         self._validate_vertex(v)
         self._validate_vertex(w)

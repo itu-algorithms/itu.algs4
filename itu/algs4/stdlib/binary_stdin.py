@@ -40,9 +40,7 @@ class BinaryStdIn:
 		BinaryStdIn.n = 8
 	@staticmethod
 	def close():
-		"""
-		Close this input stream and release any associated system resources
-		"""
+		"""Close this input stream and release any associated system resources."""
 		if(not BinaryStdIn.is_init):
 			_initialize
 		BinaryStdIn.ins.close()

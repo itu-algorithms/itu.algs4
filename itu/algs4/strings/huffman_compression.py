@@ -1,13 +1,13 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-"""
-The Huffman compression module provides static methods for compressing
-and expanding a binary input using Huffman codes over the 8-bit extended
-ASCII alphabet
+"""The Huffman compression module provides static methods for compressing and
+expanding a binary input using Huffman codes over the 8-bit extended ASCII
+alphabet.
 
-For additional documentation, see Section 5.5 of Algorithms, 4th edtition
-by Robert Sedgewick and Kevin Wayne.
+For additional documentation, see Section 5.5 of Algorithms, 4th
+edtition by Robert Sedgewick and Kevin Wayne.
+
 """
 import sys
 
@@ -30,11 +30,9 @@ class _Node:
 	def __gt__(self, that):
 		return self.freq > that.freq
 def compress():
-	"""
-	Reads a sequence of 8-bit bytes from standard input; compresses them
-	using Huffman codes with an 8-bit alphabet; and writes the results
-	to standard input.
-	"""
+	"""Reads a sequence of 8-bit bytes from standard input; compresses them using
+	Huffman codes with an 8-bit alphabet; and writes the results to standard
+	input."""
 	s = BinaryStdIn.read_string()
 	#Tabulate frequency counts
 	freq = [0 for i in range(0,_R)]
@@ -101,10 +99,8 @@ def _build_code(st, x, s):
 		
 
 def expand():
-	"""
-	Reads a sequence of bits that represents a Huffman-compressed message from
-	standard input; expands them; and writes the results to standard output.
-	"""
+	"""Reads a sequence of bits that represents a Huffman-compressed message from
+	standard input; expands them; and writes the results to standard output."""
 	BinaryStdIn.is_empty()
 	root = _read_trie()
 	length = BinaryStdIn.read_int()
@@ -127,10 +123,8 @@ def _read_trie():
 		return _Node('\0', -1, _read_trie(), _read_trie())
 	
 def main():
-	"""
-	Sample client that calss compress() if the command-line
-	argument is "-", and expand() if it is "+".
-	"""
+	"""Sample client that calss compress() if the command-line argument is "-",
+	and expand() if it is "+"."""
 	if(sys.argv[1] == '-'):
 		compress()
 	elif(sys.argv[1] == '+'):

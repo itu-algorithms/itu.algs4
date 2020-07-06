@@ -4,7 +4,11 @@
 # Python 3
 
 def java_string_hash(key):
-    """ If key is a string, compute its java .hash() code. Taken from http://garage.pimentech.net/libcommonPython_src_python_libcommon_javastringhashcode/ """
+    """If key is a string, compute its java .hash() code.
+
+    Taken from http://garage.pimentech.net/libcommonPython_src_python_libcommon_javastringhashcode/
+
+    """
     h = 0
     for c in key:
         h = (31 * h + ord(c)) & 0xFFFFFFFF

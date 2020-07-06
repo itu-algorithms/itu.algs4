@@ -10,30 +10,28 @@ from itu.algs4.stdlib import stdio
 
 
 class BreadthFirstPaths:
-    """
-    The BreadthFirstPaths class represents a data type for finding
-    shortest paths (number of edges) from a source vertex s
-    (or a set of source vertices)
-    to every other vertex in a directed or undirected graph.
-    
-    This implementation uses breadth-first search.
-    The constructor takes time proportional to V + E,
-    where V is the number of vertices and E is the number of edges.
-    Each call to distTo(int) and hasPathTo(int) takes constant time
-    each call to pathTo(int) takes time proportional to the length
-    of the path.
-    It uses extra space (not including the graph) proportional to V.
+    """The BreadthFirstPaths class represents a data type for finding shortest
+    paths (number of edges) from a source vertex s (or a set of source
+    vertices) to every other vertex in a directed or undirected graph.
+
+    This implementation uses breadth-first search. The constructor takes
+    time proportional to V + E, where V is the number of vertices and E
+    is the number of edges. Each call to distTo(int) and hasPathTo(int)
+    takes constant time each call to pathTo(int) takes time proportional
+    to the length of the path. It uses extra space (not including the
+    graph) proportional to V.
+
     """
 
 
     def __init__(self, G, s):
-        """
-        Computes the shortest path between the source vertex s
-        and every other vertex in the graph G.
+        """Computes the shortest path between the source vertex s and every
+        other vertex in the graph G.
 
         :param G: the graph
         :param s: the source vertex
         :raises ValueError: unless 0 <= s < V
+
         """
         self._marked = [False] * G.V()      # Is a shortest path to this vertex known?
         self._dist_to = [math.inf] * G.V()
@@ -77,35 +75,36 @@ class BreadthFirstPaths:
     #     pass
 
     def has_path_to(self, v):
-        """
-        Is there a path between the source vertex s (or sources) and vertex v?
+        """Is there a path between the source vertex s (or sources) and vertex
+        v?
 
         :param v: the vertex
         :returns: true if there is a path, and False otherwise
         :raises ValueError: unless 0 <= v < V
+
         """
         return self._marked[v]
 
     def dist_to(self, v):
-        """
-        Returns the number of edges in a shortest path between the source vertex s
-        (or sources) and vertex v?
+        """Returns the number of edges in a shortest path between the source
+        vertex s (or sources) and vertex v?
 
         :param v: the vertex
         :returns: the number of edges in a shortest path
         :raises ValueError: unless 0 <= v < V
+
         """
         self._validateVertex(v)
         return self._dist_to[v]
 
     def path_to(self, v):
-        """
-        Returns a shortest path between the source vertex s (or sources)
-        and v, or null if no such path.
+        """Returns a shortest path between the source vertex s (or sources) and
+        v, or null if no such path.
 
         :param v: the vertex
         :returns: the sequence of vertices on a shortest path, as an Iterable
         :raises ValueError: unless 0 <= v < V
+
         """
         if not self.has_path_to(v): return None
         path = Stack()

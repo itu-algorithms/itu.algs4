@@ -20,11 +20,11 @@ otherwise unexpected behavior will result.
 """
 class BinaryOut:
 	def __init__(self, os=sys.stdout):
-		"""
-		Initializes a binary output stream from a
-		specified output stream. Defaults to stdin.
+		"""Initializes a binary output stream from a specified output stream.
+		Defaults to stdin.
 
 		:param os: the output streamt to write to.
+
 		"""
 		self.out = os.buffer
 		self.buffer = 0 #8-bit buffer of bits to write out

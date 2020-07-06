@@ -28,10 +28,11 @@ from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
     to the length of the cycle.
 """
 class EdgeWeightedDirectedCycle:
-    """
-     Determines whether the edge-weighted digraph G has a directed cycle and,
-     if so, finds such a cycle.
-     :param G the edge-weighted digraph
+    """Determines whether the edge-weighted digraph G has a directed cycle and,
+    if so, finds such a cycle.
+
+    :param G the edge-weighted digraph
+
     """
     def __init__(self, G):
         self._marked = [False] * G.V()       # marked[v] = has vertex v been marked?

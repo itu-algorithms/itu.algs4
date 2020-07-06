@@ -55,10 +55,11 @@ def _is_prime(n):
             return _rabin_miller(n)
     return False
 def long_random_prime(k):
-    """
-    Generates a random prime.
+    """Generates a random prime.
+
     :param k: the desired bit length of the prime
     :returns: a random prime of bit length k
+
     """
     #k is the desired bit length
     r=100*(math.log(k,2)+1) #number of attempts max
@@ -72,15 +73,18 @@ def long_random_prime(k):
             return n
     return "Failure after "+ r_ + " tries."
 class RabinKarp:
-    """
-    The RabinKarp class finds the first occurence of a pattern string
-    in a text string.
-    This implementation uses the Monte Carlo version of the Rabin-Karp algorithm.
+    """The RabinKarp class finds the first occurence of a pattern string in a
+    text string.
+
+    This implementation uses the Monte Carlo version of the Rabin-Karp
+    algorithm.
+
     """
     def __init__(self, pat):
-        """
-        Preprocesses the pattern string.
+        """Preprocesses the pattern string.
+
         :param pat: the pattern string
+
         """
         self.M = len(pat)
         self.R = 256
@@ -90,12 +94,13 @@ class RabinKarp:
             self.RM = (self.R * self.RM) % self.Q
         self.patHash = self._hash(pat, self.M)	#pattern hash value
     def search(self, txt):
-        """
-        Returns the index of the first occurrrence of the pattern string
-        in the text string.
+        """Returns the index of the first occurrrence of the pattern string in
+        the text string.
+
         :param txt: the text string
-        :return: the index of the first occurrence of the pattern string 
+        :return: the index of the first occurrence of the pattern string
         in the text string; N if no such match
+
         """
         N = len(txt)
         M = self.M
@@ -124,11 +129,13 @@ class RabinKarp:
         	h = self.R * h + ord(key[j]) % self.Q
         return h
 def main():
-	"""
-	Takes a pattern string and an input string as command-line arguments;
-    searches for the pattern string in the text string; and prints
-    the first occurrence of the pattern string in the text string.
-    Will print the pattern after the end of the string if no match is found.
+	"""Takes a pattern string and an input string as command-line arguments;
+	searches for the pattern string in the text string; and prints the first
+	occurrence of the pattern string in the text string.
+
+	Will print the pattern after the end of the string if no match is
+	found.
+
 	"""
 	pat = sys.argv[1]
 	txt = sys.argv[2]

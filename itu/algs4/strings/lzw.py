@@ -1,13 +1,13 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-"""
-The LSW module provides static methods for compressing and
-expanding a binary input using LZW over the 8-bit extended
-ASCII alphabet with 12-bit codewords.
+"""The LSW module provides static methods for compressing and expanding a
+binary input using LZW over the 8-bit extended ASCII alphabet with 12-bit
+codewords.
 
-For additional documentation see Section 5.5 of
-Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
+For additional documentation see Section 5.5 of Algorithms, 4th Edition
+by Robert Sedgewick and Kevin Wayne.
+
 """
 import sys
 
@@ -19,11 +19,9 @@ _R = 256
 _L = 4096
 _W = 12
 def compress():
-	"""
-	Reads a sequence of 8-bit bytes from standard input; compresses
-	them using LZW compression with 12-bit codewords; and writes the results
-	to standard output.
-	"""
+	"""Reads a sequence of 8-bit bytes from standard input; compresses them using
+	LZW compression with 12-bit codewords; and writes the results to standard
+	output."""
 	input_ = BinaryStdIn.read_string()
 	st = TST()
 	for i in range(0,_R):
@@ -41,11 +39,9 @@ def compress():
 	BinaryStdOut.close()
 	
 def expand():
-	"""
-	Reads a sequence of bit encoded using LZW compression with
-	12-bit codewords from standard input; expands them; and writes
-	the results to standard output.
-	"""
+	"""Reads a sequence of bit encoded using LZW compression with 12-bit codewords
+	from standard input; expands them; and writes the results to standard
+	output."""
 	st = ["" for i in range(0,_L)]
 	i = 0
 	while(i < _R):
@@ -73,11 +69,11 @@ def expand():
 	BinaryStdOut.close()
 	
 def main():
-	"""
-	Sample client that calls compress() if the command-line
-	argument is "-", and expand() if it is "+".
+	"""Sample client that calls compress() if the command-line argument is "-",
+	and expand() if it is "+".
 
-        Example: echo huhu | python3 algs4/strings/lzw.py - | python3 algs4/strings/lzw.py +
+	Example: echo huhu | python3 algs4/strings/lzw.py - | python3 algs4/strings/lzw.py +
+
 	"""
 	if(sys.argv[1] == '-'):
 		compress()

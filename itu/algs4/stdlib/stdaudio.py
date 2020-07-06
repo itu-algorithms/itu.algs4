@@ -1,9 +1,9 @@
 # code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
 
-"""
-stdaudio.py
+"""stdaudio.py.
 
 The stdaudio module defines functions related to audio.
+
 """
 
 #-----------------------------------------------------------------------
@@ -26,9 +26,10 @@ _myBuffer = []
 _MY_BUFFER_MAX_LENGTH = 4096 # Determined experimentally.
 
 def wait():
-    """
-    Wait for the sound queue to become empty.  Informally, wait for the
-    currently playing sound to finish.
+    """Wait for the sound queue to become empty.
+
+    Informally, wait for the currently playing sound to finish.
+
     """
 
     # Can have at most one sound in the queue.  So must wait for the
@@ -41,9 +42,7 @@ def wait():
         clock.tick(_CHECK_RATE)
 
 def playSample(s):
-    """
-    Play sound sample s.
-    """
+    """Play sound sample s."""
     global _myBuffer
     global _channel
     _myBuffer.append(s)
@@ -58,23 +57,21 @@ def playSample(s):
         _myBuffer = []
 
 def playSamples(a):
-    """
-    Play all sound samples in array a.
-    """
+    """Play all sound samples in array a."""
     for sample in a:
         playSample(sample)
 
 def playArray(a):
-    """
-    This function is deprecated. It has the same behavior as
-    stdaudio.playSamples(). Please call stdaudio.playSamples() instead.
+    """This function is deprecated.
+
+    It has the same behavior as stdaudio.playSamples(). Please call
+    stdaudio.playSamples() instead.
+
     """
     playSamples(a)
 
 def playFile(f):
-    """
-    Play all sound samples in the file whose name is f.wav.
-    """
+    """Play all sound samples in the file whose name is f.wav."""
     a = read(f)
     playSamples(a)
     #sound = pygame.mixer.Sound(fileName)
@@ -83,9 +80,7 @@ def playFile(f):
     #sound.play()
 
 def save(f, a):
-    """
-    Save all samples in array a to the WAVE file whose name is f.wav.
-    """
+    """Save all samples in array a to the WAVE file whose name is f.wav."""
 
     # Saving to a WAV file isn't handled by PyGame, so use the
     # standard "wave" module instead.
@@ -106,9 +101,10 @@ def save(f, a):
     file.close()
 
 def read(f):
-    """
-    Read all samples from the WAVE file whose names is f.wav.
+    """Read all samples from the WAVE file whose names is f.wav.
+
     Store the samples in an array, and return the array.
+
     """
     fileName = f + '.wav'
     sound = pygame.mixer.Sound(fileName)
@@ -130,8 +126,10 @@ except pygame.error:
 #-----------------------------------------------------------------------
 
 def _createTextAudioFile():
-    """
-    For testing. Create a text audio file.
+    """For testing.
+
+    Create a text audio file.
+
     """
     notes = [
         7, .270,
@@ -167,9 +165,7 @@ def _createTextAudioFile():
         outStream.writeln(note)
 
 def _main():
-    """
-    For testing.
-    """
+    """For testing."""
     import os
     import math
     from itu.algs4.stdlib import stdio, instream
