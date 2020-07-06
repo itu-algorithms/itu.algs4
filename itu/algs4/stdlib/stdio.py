@@ -1,7 +1,6 @@
 # code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
 
-"""
-stdio.py
+"""stdio.py.
 
 The stdio module supports reading from standard input and writing to
 sys.stdout.
@@ -17,6 +16,7 @@ functions:
    readAllStrings(), readAllLines()
 
 Usually it's better to use one set exclusively.
+
 """
     
 import re
@@ -45,9 +45,7 @@ def eprint(*args, **kwargs):
 #=======================================================================
 
 def writeln(x=''):
-    """
-    Write x and an end-of-line mark to standard output.
-    """
+    """Write x and an end-of-line mark to standard output."""
     if sys.hexversion < 0x03000000:
         x = unicode(x)
         x = x.encode('utf-8')
@@ -60,9 +58,7 @@ def writeln(x=''):
 #-----------------------------------------------------------------------
 
 def write(x=''):
-    """
-    Write x to standard output.
-    """
+    """Write x to standard output."""
     if (sys.hexversion < 0x03000000):
         x = unicode(x)
         x = x.encode('utf-8')
@@ -74,9 +70,10 @@ def write(x=''):
 #-----------------------------------------------------------------------
 
 def writef(fmt, *args):
-    """
-    Write each element of args to standard output.  Use the format
-    specified by string fmt.
+    """Write each element of args to standard output.
+
+    Use the format specified by string fmt.
+
     """
     x = fmt % args
     if sys.hexversion < 0x03000000:
@@ -94,12 +91,13 @@ _buffer = ''
 #-----------------------------------------------------------------------
 
 def _readRegExp(regExp):
-    """
-    Discard leading white space characters from standard input. Then read
-    from standard input and return a string matching regular expression
-    regExp.  Raise an EOFError if no non-whitespace characters remain
-    in standard input.  Raise a ValueError if the next characters to
-    be read from standard input do not match 'regExp'.
+    """Discard leading white space characters from standard input.
+
+    Then read from standard input and return a string matching regular
+    expression regExp.  Raise an EOFError if no non-whitespace
+    characters remain in standard input.  Raise a ValueError if the next
+    characters to be read from standard input do not match 'regExp'.
+
     """
     global _buffer
     if isEmpty():
@@ -115,9 +113,10 @@ def _readRegExp(regExp):
 #-----------------------------------------------------------------------
 
 def isEmpty():
-    """
-    Return True if no non-whitespace characters remain in standard
-    input. Otherwise return False.
+    """Return True if no non-whitespace characters remain in standard input.
+
+    Otherwise return False.
+
     """
     global _buffer
     while _buffer.strip() == '':
@@ -132,14 +131,15 @@ def isEmpty():
 #-----------------------------------------------------------------------
 
 def readInt():
-    """
-    Discard leading white space characters from standard input. Then
-    read from standard input a sequence of characters comprising an
+    """Discard leading white space characters from standard input.
+
+    Then read from standard input a sequence of characters comprising an
     integer. Convert the sequence of characters to an integer, and
     return the integer.  Raise an EOFError if no non-whitespace
-    characters remain in standard input. Raise a ValueError if the
-    next characters to be read from standard input cannot comprise
-    an integer.
+    characters remain in standard input. Raise a ValueError if the next
+    characters to be read from standard input cannot comprise an
+    integer.
+
     """
     s = _readRegExp(r'[-+]?(0[xX][\dA-Fa-f]+|0[0-7]*|\d+)')
     radix = 10
@@ -155,10 +155,12 @@ def readInt():
 #-----------------------------------------------------------------------
 
 def readAllInts():
-    """
-    Read all remaining strings from standard input, convert each to
-    an int, and return those ints in an array. Raise a ValueError if
-    any of the strings cannot be converted to an int.
+    """Read all remaining strings from standard input, convert each to an int,
+    and return those ints in an array.
+
+    Raise a ValueError if any of the strings cannot be converted to an
+    int.
+
     """
     strings = readAllStrings()
     ints = []
@@ -170,13 +172,14 @@ def readAllInts():
 #-----------------------------------------------------------------------
 
 def readFloat():
-    """
-    Discard leading white space characters from standard input. Then
-    read from standard input a sequence of characters comprising a
+    """Discard leading white space characters from standard input.
+
+    Then read from standard input a sequence of characters comprising a
     float. Convert the sequence of characters to a float, and return the
-    float.  Raise an EOFError if no non-whitespace characters remain
-    in standard input. Raise a ValueError if the next characters to be
-    read from standard input cannot comprise a float.
+    float.  Raise an EOFError if no non-whitespace characters remain in
+    standard input. Raise a ValueError if the next characters to be read
+    from standard input cannot comprise a float.
+
     """
     s = _readRegExp(r'[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?')
     return float(s)
@@ -184,10 +187,12 @@ def readFloat():
 #-----------------------------------------------------------------------
 
 def readAllFloats():
-    """
-    Read all remaining strings from standard input, convert each to
-    a float, and return those floats in an array. Raise a ValueError if
-    any of the strings cannot be converted to a float.
+    """Read all remaining strings from standard input, convert each to a float,
+    and return those floats in an array.
+
+    Raise a ValueError if any of the strings cannot be converted to a
+    float.
+
     """
     strings = readAllStrings()
     floats = []
@@ -199,19 +204,19 @@ def readAllFloats():
 #-----------------------------------------------------------------------
 
 def readBool():
-    """
-    Discard leading white space characters from standard input. Then
-    read from standard input a sequence of characters comprising a bool.
-    Convert the sequence of characters to a bool, and return the
-    bool.  Raise an EOFError if no non-whitespace characters remain
-    in standard input. Raise a ValueError if the next characters to be
-    read from standard input cannot comprise a bool.
+    """Discard leading white space characters from standard input. Then read
+    from standard input a sequence of characters comprising a bool. Convert the
+    sequence of characters to a bool, and return the bool.  Raise an EOFError
+    if no non-whitespace characters remain in standard input. Raise a
+    ValueError if the next characters to be read from standard input cannot
+    comprise a bool.
 
     These character sequences can comprise a bool:
     -- True
     -- False
     -- 1 (means true)
     -- 0 (means false)
+
     """
     s = _readRegExp(r'(True)|(False)|1|0')
     if (s == 'True') or (s == '1'):
@@ -221,10 +226,12 @@ def readBool():
 #-----------------------------------------------------------------------
 
 def readAllBools():
-    """
-    Read all remaining strings from standard input, convert each to
-    a bool, and return those bools in an array. Raise a ValueError if
-    any of the strings cannot be converted to a bool.
+    """Read all remaining strings from standard input, convert each to a bool,
+    and return those bools in an array.
+
+    Raise a ValueError if any of the strings cannot be converted to a
+    bool.
+
     """
     strings = readAllStrings()
     bools = []
@@ -236,11 +243,12 @@ def readAllBools():
 #-----------------------------------------------------------------------
 
 def readString():
-    """
-    Discard leading white space characters from standard input. Then
-    read from standard input a sequence of characters comprising a
-    string, and return the string. Raise an EOFError if no
-    non-whitespace characters remain in standard input.
+    """Discard leading white space characters from standard input.
+
+    Then read from standard input a sequence of characters comprising a
+    string, and return the string. Raise an EOFError if no non-
+    whitespace characters remain in standard input.
+
     """
     s = _readRegExp(r'\S+')
     return s
@@ -248,10 +256,8 @@ def readString():
 #-----------------------------------------------------------------------
 
 def readAllStrings():
-    """
-    Read all remaining strings from standard input, and return them in
-    an array.
-    """
+    """Read all remaining strings from standard input, and return them in an
+    array."""
     strings = []
     while not isEmpty():
         s = readString()
@@ -261,9 +267,10 @@ def readAllStrings():
 #-----------------------------------------------------------------------
 
 def hasNextLine():
-    """
-    Return True if standard input has a next line. Otherwise return
-    False.
+    """Return True if standard input has a next line.
+
+    Otherwise return False.
+
     """
     global _buffer
     if _buffer != '':
@@ -279,9 +286,10 @@ def hasNextLine():
 #-----------------------------------------------------------------------
 
 def readLine():
-    """
-    Read and return as a string the next line of standard input.
+    """Read and return as a string the next line of standard input.
+
     Raise an EOFError is there is no next line.
+
     """
     global _buffer
     if not hasNextLine():
@@ -293,10 +301,8 @@ def readLine():
 #-----------------------------------------------------------------------
 
 def readAllLines():
-    """
-    Read all remaining lines from standard input, and return them as
-    strings in an array.
-    """
+    """Read all remaining lines from standard input, and return them as strings
+    in an array."""
     lines = []
     while hasNextLine():
         line = readLine()
@@ -306,9 +312,7 @@ def readAllLines():
 #-----------------------------------------------------------------------
 
 def readAll():
-    """
-    Read and return as a string all remaining lines of standard input.
-    """
+    """Read and return as a string all remaining lines of standard input."""
     global _buffer
     s = _buffer
     _buffer = ''
@@ -340,9 +344,11 @@ def _testWrite():
 #-----------------------------------------------------------------------
 
 def _main():
-    """
-    For testing. The command-line argument should be the name of the
-    function that should be called.
+    """For testing.
+
+    The command-line argument should be the name of the function that
+    should be called.
+
     """
 
     map = {

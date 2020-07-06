@@ -9,31 +9,32 @@ from itu.algs4.stdlib.instream import InStream
 
 
 class SymbolDigraph:
-    """
-    The SymbolDigraph class representsclass represents a digraph, where the
-    vertex names are arbitrary strings.
-    By providing mappings between vertex names and integers,
-    it serves as a wrapper around the Digraph data type, which assumes the 
+    """The SymbolDigraph class representsclass represents a digraph, where the
+    vertex names are arbitrary strings. By providing mappings between vertex
+    names and integers, it serves as a wrapper around the Digraph data type,
+    which assumes the.
+
     vertex names are integers between 0 and V - 1.
     It also supports initializing a symbol digraph from a file.
-    
+
     This implementation uses an ST to map from strings to integers,
     an array to map from integers to strings, and a Digraph to store
     the underlying graph.
-    The index_of and contains operations take time 
+    The index_of and contains operations take time
     proportional to log V, where V is the number of vertices.
     The name_of operation takes constant time.
+
     """
 
     def __init__(self, filename, delimiter):
-        """
-        Initializes a digraph from a file using the specified delimiter.
-        Each line in the file contains
-        the name of a vertex, followed by a list of the names
-        of the vertices adjacent to that vertex, separated by the delimiter.
+        """Initializes a digraph from a file using the specified delimiter.
+        Each line in the file contains the name of a vertex, followed by a list
+        of the names of the vertices adjacent to that vertex, separated by the
+        delimiter.
 
         :param filename: the name of the file
         :param delimiter: the delimiter between fields
+
         """
         self._st = BinarySearchST()             # string -> index
 
@@ -65,28 +66,30 @@ class SymbolDigraph:
                 self._graph.add_edge(v, w)
 
     def contains(self, s):
-        """
-        Does the graph contain the vertex named s?
+        """Does the graph contain the vertex named s?
 
         :param s: the name of a vertex
-        :return:s true if s is the name of a vertex, and false otherwise        
+        :return:s true if s is the name of a vertex, and false otherwise
+
         """
         return self._st.contains(s)
 
     def index_of(self, s):
-        """
-        Returns the integer associated with the vertex named s.
+        """Returns the integer associated with the vertex named s.
+
         :param s: the name of a vertex
         :returns: the integer (between 0 and V - 1) associated with the vertex named s
+
         """
         return self._st.get(s)
     
     def name_of(self, v):
-        """
-        Returns the name of the vertex associated with the integer v.
-        @param  v the integer corresponding to a vertex (between 0 and V - 1) 
+        """Returns the name of the vertex associated with the integer v.
+
+        @param  v the integer corresponding to a vertex (between 0 and V - 1)
         @throws IllegalArgumentException unless 0 <= v < V
         @return the name of the vertex associated with the integer v
+
         """
         self._validateVertex(v)
         return self._keys[v]

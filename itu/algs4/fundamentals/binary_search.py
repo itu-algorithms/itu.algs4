@@ -17,11 +17,12 @@ The index_of operation takes logarithmic time in the worst case.
 
 
 def index_of(a: List[T], key: T):
-    """
-    Returns the index of the specified key in the specified array.
+    """Returns the index of the specified key in the specified array.
+
     :param a: the array of items, must be sorted in ascending order
     :param key: the search key
     :return: index of key in array if present -1 otherwise
+
     """
     lo = 0
     hi = len(a) - 1
@@ -37,10 +38,8 @@ def index_of(a: List[T], key: T):
 
 
 def main():
-    """
-    Reads strings from first input file and sorts them
-    Reads strings from second input file and prints every string not in first input file
-    """
+    """Reads strings from first input file and sorts them Reads strings from
+    second input file and prints every string not in first input file."""
     if len(sys.argv) == 3:
         sys.stdin = open(sys.argv[1])
         arr = stdio.readAllStrings()

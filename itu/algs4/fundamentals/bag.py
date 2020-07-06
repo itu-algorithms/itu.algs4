@@ -11,10 +11,8 @@ T = TypeVar('T')
 S = TypeVar('S')
 
 class Bag(Generic[T]):
-    """
-    The Bag class represents a bag (or multiset) of 
-    generic items. It supports insertion and iterating over the 
-    items in arbitrary order.
+    """The Bag class represents a bag (or multiset) of generic items. It
+    supports insertion and iterating over the items in arbitrary order.
 
     This implementation uses a singly linked list with a static nested class Node.
     See LinkedBag for the version from the
@@ -22,6 +20,7 @@ class Bag(Generic[T]):
 
     The add, is_empty, and size operations
     take constant time. Iteration takes time proportional to the number of items.
+
     """
     class Node(Generic[S]):
         # helper linked list class
@@ -30,26 +29,24 @@ class Bag(Generic[T]):
             self.item: Optional[S] = None
 
     def __init__(self) -> None:
-        """
-        Initializes an empty bag.
-        """
+        """Initializes an empty bag."""
         self._first: Optional[Bag.Node[T]] = None # beginning of bag
         self._n = 0        # number of elements in bag 
 
     def is_empty(self) -> bool:
-        """
-        Returns true if this bag is empty.
+        """Returns true if this bag is empty.
 
         :returns: true if this bag is empty
                   false otherwise
+
         """
         return self._first is None
 
     def size(self) -> int:
-        """
-        Returns the number of items in this bag.
+        """Returns the number of items in this bag.
 
         :returns: the number of items in this bag
+
         """
         return self._n
 
@@ -57,10 +54,10 @@ class Bag(Generic[T]):
         return self.size()
 
     def add(self, item: T) -> None:
-        """
-        Adds the item to this bag.
-        
+        """Adds the item to this bag.
+
         :param item: the item to add to this bag
+
         """
         oldfirst = self._first
         self._first = Bag.Node()
@@ -69,10 +66,11 @@ class Bag(Generic[T]):
         self._n += 1
 
     def __iter__(self) -> Iterator[T]:
-        """
-        Returns an iterator that iterates over the items in this bag in arbitrary order.
+        """Returns an iterator that iterates over the items in this bag in
+        arbitrary order.
 
         :returns: an iterator that iterates over the items in this bag in arbitrary order
+
         """
         current = self._first
         while current is not None:

@@ -1,17 +1,16 @@
 # Created for BADS 2018
 # See README.md for details
 # This is python3 
-"""
-The Shellsort module provides static methods for sorting an
-array using shellsort with Knuth's increment sequence (1, 4, 13, 40, ...).
-"""
+"""The Shellsort module provides static methods for sorting an array using
+shellsort with Knuth's increment sequence (1, 4, 13, 40, ...)."""
 import sys
 
 
 def sort(a):
-    """
-    Rearranges the array in ascending order using the natural order.
+    """Rearranges the array in ascending order using the natural order.
+
     :param a: the array to be sorted.
+
     """
     N = len(a)
     h = 1
@@ -38,20 +37,19 @@ def _show(a):
         print(item, end=' ')
     print()
 def is_sorted(a):
-    """
-    Returns true if a is sorted.
+    """Returns true if a is sorted.
+
     :param a: the array to be checked.
     :returns: True if a is sorted.
+
     """
     for i in range(1,len(a)):
         if _less(a[i], a[i-1]):
             return False
     return True
 def main():
-    """
-    Reads in a sequence of strings from standard input; Shellsorts them;
-    and prints them to standard output in ascending order.
-    """
+    """Reads in a sequence of strings from standard input; Shellsorts them; and
+    prints them to standard output in ascending order."""
     a = sys.argv[1:]
     sort(a)
     assert is_sorted(a)

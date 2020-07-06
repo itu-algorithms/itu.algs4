@@ -46,39 +46,34 @@ class Node(Generic[Key, Val]):
 
 class BST(Generic[Key, Val]):
     def __init__(self) -> None:
-        """
-        Initialises empty symbol table
-        """
+        """Initialises empty symbol table."""
         self._root: Optional[Node[Key, Val]] = None           # root of BST
 
     def is_empty(self) -> bool:
-        """
-        Returns true if this symbol table is empty
-        """
+        """Returns true if this symbol table is empty."""
         return self.size() == 0
 
     def contains(self, key: Key) -> bool:
-        """
-        Does this symbol table contain the given key?
+        """Does this symbol table contain the given key?
+
         :param key: the key to search for
         :return boolean: true if symbol table contains key, false otherwise
+
         """
         return self.get(key) != None
 
     def size(self) -> int:
-        """
-        Returns the number of key-value pairs in this symbol table
-        """
+        """Returns the number of key-value pairs in this symbol table."""
         return self._size(self._root)
         
     def __len__(self) -> int:
         return self.size()
 
     def _size(self, node: Optional[Node[Key, Val]]) -> int:
-        """
-        Returns the number of key-value pairs in BST rooted at node
+        """Returns the number of key-value pairs in BST rooted at node.
 
         :param node: The node which act as root
+
         """
         if node is None:
             return 0
@@ -86,12 +81,12 @@ class BST(Generic[Key, Val]):
             return node.size
 
     def get(self, key: Key) -> Optional[Val]:
-        """
-        Returns the value associated with the given key
+        """Returns the value associated with the given key.
 
         :param key: The key whose value is returned
         :return: the value associated with the given key if the key
         is in the symbol table, None otherwise
+
         """
         return self._get(self._root, key)
 
@@ -107,14 +102,14 @@ class BST(Generic[Key, Val]):
                 return node.value
 
     def put(self, key: Key, value: Optional[Val]) -> None:
-        """
-        Inserts the specified key-value pair into the symbol table,
+        """Inserts the specified key-value pair into the symbol table,
         overwriting the old value with the new value if the symbol table
-        already contains the specified key. Deletes the specified key (and
-        its associated value) from this symbol table if the specified value
-        is None.
+        already contains the specified key. Deletes the specified key (and its
+        associated value) from this symbol table if the specified value is
+        None.
 
         :param key, value: the key-value pair to be inserted
+
         """
         if value is None:
             self.delete(key)
@@ -136,10 +131,8 @@ class BST(Generic[Key, Val]):
             return node
 
     def delete_min(self) -> None:
-        """
-        Removes the smallest key and associated value from the symbol table
-        TODO exception?
-        """
+        """Removes the smallest key and associated value from the symbol table
+        TODO exception?"""
         if self.is_empty():
             raise NoSuchElementException("calls min() with empty symbol table")
         else:
@@ -155,9 +148,8 @@ class BST(Generic[Key, Val]):
             return node
 
     def delete_max(self) -> None:
-        """
-        Removes the largest key and associated value from the symbol table
-        """
+        """Removes the largest key and associated value from the symbol
+        table."""
         if self.is_empty():
             raise NoSuchElementException("calls max() with empty symbol table")
         else:
@@ -174,10 +166,8 @@ class BST(Generic[Key, Val]):
 
 
     def delete(self, key: Key) -> None:
-        """
-        Removes the specified key and its associated value from this symbol table
-        (if the key is in this symbol table)
-        """
+        """Removes the specified key and its associated value from this symbol
+        table (if the key is in this symbol table)"""
         self._root = self._delete(self._root, key)
 
     def _delete(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key,Val]]:
@@ -204,9 +194,7 @@ class BST(Generic[Key, Val]):
             return node
 
     def min(self) -> Key:
-        """
-        Returns the smallest key in the BST
-        """
+        """Returns the smallest key in the BST."""
         if self.is_empty():
             raise NoSuchElementException("calls min() with empty symbol table")
         else:
@@ -220,9 +208,7 @@ class BST(Generic[Key, Val]):
             return self._min(node.left)
 
     def max(self) -> Key:
-        """
-        Returns the larget key in the symbol table
-        """
+        """Returns the larget key in the symbol table."""
         if self.is_empty():
             raise NoSuchElementException("calls max() with empty symbol table")
         else:
@@ -236,10 +222,8 @@ class BST(Generic[Key, Val]):
             return self._max(node.right)
 
     def floor(self, key: Key) -> Key:
-        """
-        Returns the largest key in the symbol table less than or equal to key
-        Raises NoSuchElementException if no such key exists.
-        """
+        """Returns the largest key in the symbol table less than or equal to
+        key Raises NoSuchElementException if no such key exists."""
         if self.is_empty():
             raise NoSuchElementException("calls floor() with empty symbol table")
 
@@ -262,10 +246,8 @@ class BST(Generic[Key, Val]):
         return node
 
     def ceiling(self, key: Key) -> Key:
-        """
-        Returns the smallest key in the symbol table greater than or equal to key
-        Raises NoSuchElementException if no such key exists.
-        """
+        """Returns the smallest key in the symbol table greater than or equal
+        to key Raises NoSuchElementException if no such key exists."""
         if self.is_empty():
             raise NoSuchElementException("calls ceiling() with empty symbol table")
 
@@ -288,20 +270,18 @@ class BST(Generic[Key, Val]):
         return node
 
     def keys(self) -> Queue[Key]:
-        """
-        Returns all keys in the symbol table as a list.
-        """
+        """Returns all keys in the symbol table as a list."""
         if self.is_empty():
             return Queue()
         return self.range_keys(self.min(), self.max())
 
     def range_keys(self, lo: Key, hi: Key) -> Queue[Key]:
-        """
-        returns all keys in the symbol table in the given range as a list
+        """returns all keys in the symbol table in the given range as a list.
 
         :param lo: minimum endpoint
         :param hi: maximum endpoint
         :return: all keys in symbol table between lo (inclusive) and hi (inclusive)
+
         """
         queue: Queue[Key] = Queue()
         self._range_keys(self._root, queue, lo, hi)
@@ -318,11 +298,12 @@ class BST(Generic[Key, Val]):
             self._range_keys(node.right, queue, lo, hi)
             
     def select(self, k: int) -> Key:
-        """
-        Return the kth smallest key in the symbol table.
+        """Return the kth smallest key in the symbol table.
+
         :param k: the order statistic
         :return: the kth smallest key in the symbol table
         :raises IllegalArgumentException: unless k is between 0 and n-1
+
         """
         if k < 0 or k >= self.size():
             raise IllegalArgumentException("argument to select() is invalid: {}".format(k))
@@ -346,21 +327,24 @@ class BST(Generic[Key, Val]):
             return x
 
     def rank(self, key: Key) -> int:
-        """
-        Returns the number of keys in the symbol table strictly less than key.
+        """Returns the number of keys in the symbol table strictly less than
+        key.
+
         :param key: the key
         :return: the number of keys in the symbol table strictly less than key
         :rtype: int
         :raises IllegalArgumentException: if key is None
+
         """
         if key is None:
             raise IllegalArgumentException("argument to rank() is None")
         return self._rank(key, self._root)
 
     def _rank(self, key: Key, x: Optional[Node[Key, Val]]) -> int:
-        """
-        Returns the number of keys less than key in the subtree rooted at x.
+        """Returns the number of keys less than key in the subtree rooted at x.
+
         :rtype: int
+
         """
         if x is None:
             return 0
@@ -372,14 +356,15 @@ class BST(Generic[Key, Val]):
             return self._size(x.left)
 
     def size_range(self, lo: Key, hi: Key) -> int:
-        """
-        Returns the number of keys in the symbol table in the given range.
+        """Returns the number of keys in the symbol table in the given range.
+
         :param lo: minimum endpoint
         :param hi: maximum endpoint
         :return: the number of keys in the symbol table between lo
         (inclusive) and hi (inclusive)
         :rtype: int
         :raises IllegalArgumentException: if either lo or hi is None
+
         """
         if lo is None:
             return IllegalArgumentException("first argument to size() is None")
@@ -393,9 +378,7 @@ class BST(Generic[Key, Val]):
             return self.rank(hi) - self.rank(lo)
 
     def height(self) -> int:
-        """
-        Returns the height of the BST (for debugging)
-        """
+        """Returns the height of the BST (for debugging)"""
         return self._height(self._root)
 
     def _height(self, node: Optional[Node[Key, Val]]) -> int:
@@ -405,9 +388,7 @@ class BST(Generic[Key, Val]):
             return 1 + max(self._height(node.left), self._height(node.right))
 
     def level_order(self) -> Queue[Key]:
-        """
-        Returns the keys in the BST in level order (for debugging)
-        """
+        """Returns the keys in the BST in level order (for debugging)"""
         queue: Queue[Optional[Node[Key, Val]]] = Queue()
         keys: Queue[Key] =  Queue()
         queue.enqueue(self._root) 

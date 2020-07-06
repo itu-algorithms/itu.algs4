@@ -5,17 +5,19 @@ import sys
 
 
 class BoyerMoore:
-    """
-    The BoyerMoore class finds the first occurence of a pattern string
-    in a text string.
-    This implementation uses the Boyer-Moore algorithm (with the bad-character
-    rule, but not the strong good suffix rule).
+    """The BoyerMoore class finds the first occurence of a pattern string in a
+    text string.
+
+    This implementation uses the Boyer-Moore algorithm (with the bad-
+    character rule, but not the strong good suffix rule).
+
     """
     
     def __init__(self, pat):
-        """
-        Preprocesses the pattern string.
+        """Preprocesses the pattern string.
+
         :param pat: the pattern string
+
         """
         self.pat = pat
         M = len(pat)
@@ -25,12 +27,13 @@ class BoyerMoore:
             self.right[ord(pat[j])] = j
             
     def search(self, txt):
-        """
-        Returns the index of the first occurrrence of the pattern string
-        in the text string.
+        """Returns the index of the first occurrrence of the pattern string in
+        the text string.
+
         :param txt: the text string
-        :return: the index of the first occurrence of the pattern string 
+        :return: the index of the first occurrence of the pattern string
         in the text string; N if no such match
+
         """
         N = len(txt)
         M = len(self.pat)
@@ -51,11 +54,13 @@ class BoyerMoore:
         return N
     
 def main():
-    """
-    Takes a pattern string and an input string as command-line arguments;
-    searches for the pattern string in the text string; and prints
-    the first occurrence of the pattern string in the text string.
-    Will print the pattern after the end of the string if no match is found.
+    """Takes a pattern string and an input string as command-line arguments;
+    searches for the pattern string in the text string; and prints the first
+    occurrence of the pattern string in the text string.
+
+    Will print the pattern after the end of the string if no match is
+    found.
+
     """
     pat = sys.argv[1]
     txt = sys.argv[2]

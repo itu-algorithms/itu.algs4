@@ -6,27 +6,24 @@ from itu.algs4.fundamentals.stack import Stack
 
 
 class Cycle:
-    """
-    The Cycle class represents a data type for 
-    determining whether an undirected graph has a cycle.
-    The hasCycle operation determines whether the graph has
-    a cycle and, if so, the cycle operation returns one.
+    """The Cycle class represents a data type for determining whether an
+    undirected graph has a cycle. The hasCycle operation determines whether the
+    graph has a cycle and, if so, the cycle operation returns one.
 
-    This implementation uses depth-first search.
-    The constructor takes time proportional to V + E
-    (in the worst case),
-    where V is the number of vertices and E is the number of edges.
-    Afterwards, the hasCycle operation takes constant time
-    the cycle operation takes time proportional
-    to the length of the cycle.
+    This implementation uses depth-first search. The constructor takes
+    time proportional to V + E (in the worst case), where V is the
+    number of vertices and E is the number of edges. Afterwards, the
+    hasCycle operation takes constant time the cycle operation takes
+    time proportional to the length of the cycle.
+
     """
 
     def __init__(self, G):
-        """
-        Determines whether the undirected graph G has a cycle and,
-        if so, finds such a cycle.
-     
+        """Determines whether the undirected graph G has a cycle and, if so,
+        finds such a cycle.
+
         :param G: the undirected graph
+
         """
         if self._has_self_loop(G): return
         if self._has_parallel_edges(G): return
@@ -69,19 +66,19 @@ class Cycle:
         return False
 
     def has_cycle(self):
-        """
-        Returns true if the graph G has a cycle.
+        """Returns true if the graph G has a cycle.
 
         :returns: true if the graph has a cycle false otherwise
+
         """
         return self._cycle is not None   
     
     def cycle(self):
-        """
-        Returns a cycle in the graph G.
-        
+        """Returns a cycle in the graph G.
+
         :returns: a cycle if the graph G has a cycle,
             and null otherwise
+
         """
         return self._cycle
     

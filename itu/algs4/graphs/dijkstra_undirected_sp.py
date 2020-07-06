@@ -12,25 +12,27 @@ from itu.algs4.stdlib.instream import InStream
 
 
 class DijkstraUndirectedSP:
-    """
-    The DijkstraSP class represents a data type for solving the
-    single-source shortest paths problem in edge-weighted diagraphs
-    where the edge weights are nonnegative.
+    """The DijkstraSP class represents a data type for solving the single-
+    source shortest paths problem in edge-weighted diagraphs where the edge
+    weights are nonnegative.
+
     This implementation uses Dijkstra's algorithm with a binary heap.
-    The constructor takes time proportional to E log V,
-    where V is the number of vertices and E is the number of edges.
-    Each call to dist_to() and has_path_to() takes constant time
-    each call to path_to() takes time proportional to the number of
-    edges in the shortest path returned.
+    The constructor takes time proportional to E log V, where V is the
+    number of vertices and E is the number of edges. Each call to
+    dist_to() and has_path_to() takes constant time each call to
+    path_to() takes time proportional to the number of edges in the
+    shortest path returned.
+
     """
     def __init__(self, G, s):
-        """
-        Computes a shortest-paths tree from the source vertex s to every
+        """Computes a shortest-paths tree from the source vertex s to every
         other vertex in the edge-weighted graph G.
+
         :param G: the edge-weighted graph
         :param s: the source vertex
         :raises IllegalArgumentException: if an edge weight is negative
         :raises IllegalArgumentException: unless 0 <= s < V
+
         """
         for e in G.edges():
             if e.weight() < 0:
@@ -49,36 +51,39 @@ class DijkstraUndirectedSP:
                 self._relax(e, v)
 
     def dist_to(self, v):
-        """
-        Returns the length of a shortest path between the source vertex s and
-        vertex v.
+        """Returns the length of a shortest path between the source vertex s
+        and vertex v.
+
         :param v: the destination vertex
         :return: the length of a shortest path between the source vertex s and
         the vertex v. float('inf') is not such path
         :rtype: float
         :raises IllegalArgumentException: unless 0 <= v < V
+
         """
         return self._dist_to[v]
 
     def has_path_to(self, v):
-        """
-        Returns true if there is a path between the source vertex s and
+        """Returns true if there is a path between the source vertex s and
         vertex v.
+
         :param v: the destination vertex
         :return: True if there is a path between the source vertex
         s to vertex v. False otherwise
         :rtype: bool
+
         """
         return self._dist_to[v] < float('inf')
 
     def path_to(self, v):
-        """
-        Returns a shortest path between the source vertex s and vertex v.
+        """Returns a shortest path between the source vertex s and vertex v.
+
         :param v: the destination vertex
         :return: a shortest path between the source vertex s and vertex v.
         None if no such path
         :rtype: collections.iterable[Edge]
         :raises IllegalArgumentException: unless 0 <= v < V
+
         """
         self._validate_vertex(v)
         if not self.has_path_to(v):
@@ -94,19 +99,21 @@ class DijkstraUndirectedSP:
         return path
 
     def _validate_vertex(self, v):
-        """
-        Raises an IllegalArgumentException unless 0 <= v < V
+        """Raises an IllegalArgumentException unless 0 <= v < V.
+
         :param v: the vertex to validate
+
         """
         V = len(self._dist_to)
         if v < 0 or v >= V:
             raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, V-1))
 
     def _relax(self, e, v):
-        """
-        Relax edge e and update pq if changed
+        """Relax edge e and update pq if changed.
+
         :param e: the edge to relax
         :param v: the vertex e goes out from
+
         """
         w = e.other(v)
         if self._dist_to[v] + e.weight() < self._dist_to[w]:

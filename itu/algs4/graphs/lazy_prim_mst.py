@@ -10,30 +10,29 @@ from itu.algs4.sorting.min_pq import MinPQ
 
 
 class LazyPrimMST:
-    """
-    The LazyPrimMST class represents a data type for computing a
-    minimum spanning tree in an edge-weighted graph.
-    The edge weights can be positive, zero, or negative and need not
-    be distinct. If the graph is not connected, it computes a minimum
-    spanning forest, which is the union of minimum spanning trees
-    in each connected component. The weight() method returns the 
-    weight of a minimum spanning tree and the edges() method
-    returns its edges.
+    """The LazyPrimMST class represents a data type for computing a minimum
+    spanning tree in an edge-weighted graph. The edge weights can be positive,
+    zero, or negative and need not be distinct. If the graph is not connected,
+    it computes a minimum spanning forest, which is the union of minimum
+    spanning trees in each connected component. The weight() method returns the
+    weight of a minimum spanning tree and the edges() method returns its edges.
 
-    This implementation uses a lazy version of Prim's algorithm
-    with a binary heap of edges.
-    The constructor takes time proportional to E log E
-    and extra space (not including the graph) proportional to E,
+    This implementation uses a lazy version of Prim's algorithm with a
+    binary heap of edges. The constructor takes time proportional to E
+    log E and extra space (not including the graph) proportional to E,
     where V is the number of vertices and E is the number of edges.
-    Afterwards, the weight() method takes constant time
-    and the edges() method takes time proportional to V.
+    Afterwards, the weight() method takes constant time and the edges()
+    method takes time proportional to V.
+
     """
     FLOATING_POINT_EPSILON = 1E-12
 
     def __init__(self,  G):
-        """
-        Compute a minimum spanning tree (or forest) of an edge-weighted graph.
+        """Compute a minimum spanning tree (or forest) of an edge-weighted
+        graph.
+
         :param G: the edge-weighted graph
+
         """
         self._weight = 0.0                  # total weight of MST
         self._mst = Queue()                 # edges in the MST        
@@ -72,17 +71,20 @@ class LazyPrimMST:
                 self._pq.insert(e)
     
     def edges(self): 
-        """
-        Returns the edges in a minimum spanning tree (or forest).
+        """Returns the edges in a minimum spanning tree (or forest).
+
         :returns: the edges in a minimum spanning tree (or forest) as
             an iterable of edges
+
         """
         return self._mst
 
     def weight(self):
-        """
-        Returns the sum of the edge weights in a minimum spanning tree (or forest).
+        """Returns the sum of the edge weights in a minimum spanning tree (or
+        forest).
+
         :returns: the sum of the edge weights in a minimum spanning tree (or forest)
+
         """    
         return self._weight
     

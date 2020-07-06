@@ -2,12 +2,12 @@
 # See README.md for details
 # Python 3
 
-"""
-This module provides functions for sorting an array using bottom-up mergesort.
+"""This module provides functions for sorting an array using bottom-up
+mergesort.
 
-
-For additional documentation, see Section 2.1 of Algorithms, 4th Edition 
+For additional documentation, see Section 2.1 of Algorithms, 4th Edition
 by Robert Sedgewick and Kevin Wayne.
+
 """
 #  Sorts a sequence of strings from standard input using mergesort
 
@@ -45,10 +45,10 @@ def _merge(a, aux, lo, mid, hi):
             i += 1
 
 def sort(a):
-    """
-    Rearranges the array in ascending order, using the natural order.
-    
+    """Rearranges the array in ascending order, using the natural order.
+
     :param a: the array to be sorted
+
     """
     n = len(a)
     aux = [None]*n

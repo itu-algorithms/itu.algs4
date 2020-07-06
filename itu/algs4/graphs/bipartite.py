@@ -7,35 +7,31 @@ from itu.algs4.graphs.graph import Graph
 
 
 class Bipartite:
-    """
-    The Bipartite class represents a data type for 
-    determining whether an undirected graph is bipartite or whether
-    it has an odd-length cycle.
-    The isBipartite operation determines whether the graph is
-    bipartite. If so, the color operation determines a
-    bipartition if not, the oddCycle operation determines a
-    cycle with an odd number of edges.
-    
-    This implementation uses depth-first search.
-    The constructor takes time proportional to V + E
-    (in the worst case),
-    where V is the number of vertices and E is the number of edges.
-    Afterwards, the isBipartite and color operations
-    take constant time the oddCycle operation takes time proportional
-    to the length of the cycle.
-    See BipartiteX for a nonrecursive version that uses breadth-first
+    """The Bipartite class represents a data type for determining whether an
+    undirected graph is bipartite or whether it has an odd-length cycle. The
+    isBipartite operation determines whether the graph is bipartite. If so, the
+    color operation determines a bipartition if not, the oddCycle operation
+    determines a cycle with an odd number of edges.
+
+    This implementation uses depth-first search. The constructor takes
+    time proportional to V + E (in the worst case), where V is the
+    number of vertices and E is the number of edges. Afterwards, the
+    isBipartite and color operations take constant time the oddCycle
+    operation takes time proportional to the length of the cycle. See
+    BipartiteX for a nonrecursive version that uses breadth-first
     search.
+
     """
 
     class UnsupportedOperationException(Exception):
         pass
 
     def __init__(self, G):
-        """
-        Determines whether an undirected graph is bipartite and finds either a
-        bipartition or an odd-length cycle.
+        """Determines whether an undirected graph is bipartite and finds either
+        a bipartition or an odd-length cycle.
 
         :param G: the graph
+
         """
         self._is_bipartite = True       # is the graph bipartite?
         self._color = [False] * G.V()   # color[v] gives vertices on one side of bipartition
@@ -75,24 +71,24 @@ class Bipartite:
                 self._cycle.push(w)
             
     def is_bipartite(self):
-        """
-        Returns True if the graph is bipartite.
-        
+        """Returns True if the graph is bipartite.
+
         :returns: True if the graph is bipartite False otherwise
+
         """
         return self._is_bipartite
 
     def color(self, v):
-        """
-        Returns the side of the bipartite that vertex v is on.
+        """Returns the side of the bipartite that vertex v is on.
 
         :param v: the vertex
         :returns: the side of the bipartition that vertex v is on two vertices
                 are in the same side of the bipartition if and only if they have the
                 same color
-        :raises IllegalArgumentException: unless 0 <= v < V 
+        :raises IllegalArgumentException: unless 0 <= v < V
         :raises UnsupportedOperationException: if this method is called when the graph
                 is not bipartite
+
         """
         self._validateVertex(v)
         if not self._is_bipartite:
@@ -100,12 +96,12 @@ class Bipartite:
         return self._color[v]
 
     def odd_cycle(self):
-        """
-        Returns an odd-length cycle if the graph is not bipartite, and
-        None otherwise.
-        
+        """Returns an odd-length cycle if the graph is not bipartite, and None
+        otherwise.
+
         :returns: an odd-length cycle if the graph is not bipartite
                 (and hence has an odd-length cycle), and None otherwise
+
         """
         return self._cycle
 

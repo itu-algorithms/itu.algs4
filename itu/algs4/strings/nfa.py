@@ -11,16 +11,13 @@ from itu.algs4.graphs.directed_dfs import DirectedDFS
 
 
 class NFA:
-	"""
-	The NFA class provides a data type for creating a
-	nondeterministic finite state automaton (NFA) from a regular
-	expression and testing whether a given string is matched by that regular
-	expression.
-	It supports the following operations: concatenation, closure, binary or,
-	and parentheses, metacharacters (either in the text or pattern),
-	capturing capabilities, greedy or reluctant/lazy modifiers,
-	and other features in industrial-strength implementations
-	such as Java's Pattern and Matcher.
+	"""The NFA class provides a data type for creating a nondeterministic finite
+	state automaton (NFA) from a regular expression and testing whether a given
+	string is matched by that regular expression. It supports the following
+	operations: concatenation, closure, binary or, and parentheses, metacharacters
+	(either in the text or pattern), capturing capabilities, greedy or
+	reluctant/lazy modifiers, and other features in industrial-strength
+	implementations such as Java's Pattern and Matcher.
 
 	This implementation builds the NFA using a digraph and a stack
 	and simulates the NFA using digraph search (see the textbook for details).
@@ -31,12 +28,13 @@ class NFA:
 
 	For additional documentation, see section 5.4 of Algorithms, 4th Edition
 	by Robert Sedgewick and Kevin Wayne.
+
 	"""
 	def __init__(self, regex):
-		"""
-		Initializes the NFA from the specified regular expression.
+		"""Initializes the NFA from the specified regular expression.
 
 		:param regex: the regular expression
+
 		"""
 		self.regex = regex
 		m = len(regex)
@@ -69,12 +67,12 @@ class NFA:
 		self.graph = graph
 
 	def recognizes(self, txt):
-		"""
-		Returns True if the text is matched by the regular expression.
+		"""Returns True if the text is matched by the regular expression.
 
 		:param txt: the text
 		:returns: True if the text is matched by the regular expression;
 					False otherwise
+
 		"""
 		regex = self.regex
 		graph = self.graph
@@ -108,9 +106,7 @@ class NFA:
 				return True
 			return False
 def main():
-	"""
-	Unit tests the NFA data type
-	"""
+	"""Unit tests the NFA data type."""
 	regex = "({})".format(sys.argv[1])
 	txt = sys.argv[2]
 	nfa = NFA(regex)

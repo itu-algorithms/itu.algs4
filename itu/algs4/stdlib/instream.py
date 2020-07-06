@@ -1,9 +1,9 @@
 # code based on https://introcs.cs.princeton.edu/python/code/stdlib-python.zip as downloaded in dec 2017
 
-"""
-instream.py
+"""instream.py.
 
 The instream module defines the InStream class.
+
 """
 
 #-----------------------------------------------------------------------
@@ -20,29 +20,31 @@ else:
 
 class InStream:
 
-    """
-    An InStream object wraps around a text file or sys.stdin, and
-    supports reading from that stream.
+    """An InStream object wraps around a text file or sys.stdin, and supports
+    reading from that stream.
 
     Note:  Usually it's a bad idea to mix these three sets of methods:
 
     -- isEmpty(), readInt(), readFloat(), readBool(), readString()
 
     -- hasNextLine(), readLine()
-    
+
     -- readAll(), readAllInts(), readAllFloats(), readAllBools(),
        readAllStrings(), readAllLines()
 
     Usually it's better to use one set exclusively.
+
     """
 
     #-------------------------------------------------------------------
 
     def __init__(self, fileOrUrl=None):
-        """
-        Construct self to wrap around a stream. The stream can be
-        a file whose name is given as fileOrUrl, a resource whose URL
-        is given as fileOrUrl, or sys.stdin by default.
+        """Construct self to wrap around a stream.
+
+        The stream can be a file whose name is given as fileOrUrl, a
+        resource whose URL is given as fileOrUrl, or sys.stdin by
+        default.
+
         """
         self._buffer = ''
         self._stream = None
@@ -69,13 +71,14 @@ class InStream:
     #-------------------------------------------------------------------
 
     def _readRegExp(self, regExp):
-        """
-        Discard leading white space characters from the stream wrapped
-        by self.  Then read from the stream and return a string
-        matching regular expression regExp.  Raise an EOFError if no
-        non-whitespace characters remain in the stream. Raise a
-        ValueError if the next characters to be read from the stream
-        do not match regExp.
+        """Discard leading white space characters from the stream wrapped by
+        self.
+
+        Then read from the stream and return a string matching regular
+        expression regExp.  Raise an EOFError if no non-whitespace
+        characters remain in the stream. Raise a ValueError if the next
+        characters to be read from the stream do not match regExp.
+
         """
         if self.isEmpty():
             raise EOFError()
@@ -90,10 +93,8 @@ class InStream:
     #-------------------------------------------------------------------
 
     def isEmpty(self):
-        """
-        Return True iff no non-whitespace characters remain in the
-        stream wrapped by self.
-        """
+        """Return True iff no non-whitespace characters remain in the stream
+        wrapped by self."""
         while self._buffer.strip() == '':
             line = self._stream.readline()
             if sys.hexversion < 0x03000000 or self._readingWebPage:
@@ -106,14 +107,16 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readInt(self):
-        """
-        Discard leading white space characters from the stream wrapped
-        by self.  Then read from the stream a sequence of characters
-        comprising an integer.  Convert the sequence of characters to an
-        integer, and return the integer.  Raise an EOFError if no
-        non-whitespace characters remain in the stream.  Raise a
-        ValueError if the next characters to be read from the stream
-        cannot comprise an integer.
+        """Discard leading white space characters from the stream wrapped by
+        self.
+
+        Then read from the stream a sequence of characters comprising an
+        integer.  Convert the sequence of characters to an integer, and
+        return the integer.  Raise an EOFError if no non-whitespace
+        characters remain in the stream.  Raise a ValueError if the next
+        characters to be read from the stream cannot comprise an
+        integer.
+
         """
         s = self._readRegExp(r'[-+]?(0[xX][\dA-Fa-f]+|0[0-7]*|\d+)')
         radix = 10
@@ -129,11 +132,12 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readAllInts(self):
-        """
-        Read all remaining strings from the stream wrapped by self,
-        convert  each to an int, and return those ints in an array.
-        Raise a ValueError if any of the strings cannot be converted
-        to an int.
+        """Read all remaining strings from the stream wrapped by self, convert
+        each to an int, and return those ints in an array.
+
+        Raise a ValueError if any of the strings cannot be converted to
+        an int.
+
         """
         strings = self.readAllStrings()
         ints = []
@@ -145,14 +149,15 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readFloat(self):
-        """
-        Discard leading white space characters from the stream wrapped
-        by self.  Then read from the stream a sequence of characters
-        comprising a float.  Convert the sequence of characters to an
-        float, and return the float.  Raise an EOFError if no
-        non-whitespace characters remain in the stream.  Raise a
-        ValueError if the next characters to be read from the stream
-        cannot comprise a float.
+        """Discard leading white space characters from the stream wrapped by
+        self.
+
+        Then read from the stream a sequence of characters comprising a
+        float.  Convert the sequence of characters to an float, and
+        return the float.  Raise an EOFError if no non-whitespace
+        characters remain in the stream.  Raise a ValueError if the next
+        characters to be read from the stream cannot comprise a float.
+
         """
         s = self._readRegExp(r'[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?')
         return float(s)
@@ -160,11 +165,12 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readAllFloats(self):
-        """
-        Read all remaining strings from the stream wrapped by self,
-        convert each to a float, and return those floats in an array.
-        Raise a ValueError if any of the strings cannot be converted
-        to a float.
+        """Read all remaining strings from the stream wrapped by self, convert
+        each to a float, and return those floats in an array.
+
+        Raise a ValueError if any of the strings cannot be converted to
+        a float.
+
         """
         strings = self.readAllStrings()
         floats = []
@@ -176,14 +182,15 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readBool(self):
-        """
-        Discard leading white space characters from the stream wrapped
-        by self.  Then read from the stream a sequence of characters
-        comprising a bool.  Convert the sequence of characters to an
-        bool, and return the bool.  Raise an EOFError if no
-        non-whitespace characters remain in the stream.  Raise a
-        ValueError if the next characters to be read from the stream
-        cannot comprise an bool.
+        """Discard leading white space characters from the stream wrapped by
+        self.
+
+        Then read from the stream a sequence of characters comprising a
+        bool.  Convert the sequence of characters to an bool, and return
+        the bool.  Raise an EOFError if no non-whitespace characters
+        remain in the stream.  Raise a ValueError if the next characters
+        to be read from the stream cannot comprise an bool.
+
         """
         s = self._readRegExp(r'(True)|(False)|1|0')
         if (s == 'True') or (s == '1'):
@@ -193,11 +200,12 @@ class InStream:
     #-----------------------------------------------------------------------
 
     def readAllBools(self):
-        """
-        Read all remaining strings from the stream wrapped by self,
-        convert each to a bool, and return those bools in an array.
-        Raise a ValueError if any of the strings cannot be converted
-        to a bool.
+        """Read all remaining strings from the stream wrapped by self, convert
+        each to a bool, and return those bools in an array.
+
+        Raise a ValueError if any of the strings cannot be converted to
+        a bool.
+
         """
         strings = self.readAllStrings()
         bools = []
@@ -210,11 +218,13 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readString(self):
-        """
-        Discard leading white space characters from the stream wrapped
-        by self.  Then read from the stream a sequence of characters
-        comprising a string, and return the string. Raise an EOFError
-        if no non-whitespace characters remain in the stream.
+        """Discard leading white space characters from the stream wrapped by
+        self.
+
+        Then read from the stream a sequence of characters comprising a
+        string, and return the string. Raise an EOFError if no non-
+        whitespace characters remain in the stream.
+
         """
         s = self._readRegExp(r'\S+')
         return s
@@ -222,10 +232,8 @@ class InStream:
     #-----------------------------------------------------------------------
 
     def readAllStrings(self):
-        """
-        Read all remaining strings from the stream wrapped by self,
-        and return them in an array.
-        """
+        """Read all remaining strings from the stream wrapped by self, and
+        return them in an array."""
         strings = []
         while not self.isEmpty():
             s = self.readString()
@@ -235,9 +243,7 @@ class InStream:
     #-------------------------------------------------------------------
 
     def hasNextLine(self):
-        """
-        Return True iff the stream wrapped by self has a next line.
-        """
+        """Return True iff the stream wrapped by self has a next line."""
         if self._buffer != '':
             return True
         else:
@@ -251,9 +257,11 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readLine(self):
-        """
-        Read and return as a string the next line of the stream wrapped
-        by self.  Raise an EOFError is there is no next line.
+        """Read and return as a string the next line of the stream wrapped by
+        self.
+
+        Raise an EOFError is there is no next line.
+
         """
         if not self.hasNextLine():
             raise EOFError()
@@ -264,10 +272,8 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readAllLines(self):
-        """
-        Read all remaining lines from the stream wrapped by self, and
-        return them as strings in an array.
-        """
+        """Read all remaining lines from the stream wrapped by self, and return
+        them as strings in an array."""
         lines = []
         while self.hasNextLine():
             line = self.readLine()
@@ -277,10 +283,8 @@ class InStream:
     #-------------------------------------------------------------------
 
     def readAll(self):
-        """
-        Read and return as a string all remaining lines of the stream
-        wrapped by self.
-        """
+        """Read and return as a string all remaining lines of the stream
+        wrapped by self."""
         s = self._buffer
         self._buffer = ''
         for line in self._stream:
@@ -292,9 +296,7 @@ class InStream:
     #-------------------------------------------------------------------
 
     def __del__(self):
-        """
-        Close the stream wrapped by self.
-        """
+        """Close the stream wrapped by self."""
         if self._stream is not None:
             self._stream.close()
 
@@ -303,10 +305,12 @@ class InStream:
 #=======================================================================
 
 def _main():
-    """
-    For testing. The first command-line argument should be the name of
-    the method that should be called. The optional second command-line
-    argument should be the file or URL to read.
+    """For testing.
+
+    The first command-line argument should be the name of the method
+    that should be called. The optional second command-line argument
+    should be the file or URL to read.
+
     """
 
     from itu.algs4.stdlib import stdio

@@ -2,13 +2,13 @@
 # See README.md for details
 # Python 3
 
-"""
-This module implements the directed cycle algorithm for EdgeWeightedDigraphs described in 
-Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. This version
-works for both weighted and unweighted directed graphs, due to Python's duck-typing.
+"""This module implements the directed cycle algorithm for EdgeWeightedDigraphs
+described in Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne. This
+version works for both weighted and unweighted directed graphs, due to Python's
+duck-typing.
 
-For more
-information, see chapter 4.2 of the book.
+For more information, see chapter 4.2 of the book.
+
 """
 
 import sys
@@ -19,27 +19,28 @@ from itu.algs4.stdlib import instream
 
 
 class EdgeWeightedDirectedCycle:
-    """
-    The EdgeWeightedDirectedCycle class represents a data type for determining whether 
-    edge-weighted digraph has a directed cycle. The hasCycle operation determines whether 
-    the edge-weighted digraph has a directed cycle and, if so, the cycle operation returns one.
-    
-    This implementation uses depth-first search. The constructor takes time proportional to 
-    V + E (in the worst case), where V is the number of vertices and E is the number of edges. 
-    Afterwards, the hasCycle operation takes constant time; the cycle operation takes time 
+    """The EdgeWeightedDirectedCycle class represents a data type for
+    determining whether edge-weighted digraph has a directed cycle. The
+    hasCycle operation determines whether the edge-weighted digraph has a
+    directed cycle and, if so, the cycle operation returns one.
+
+    This implementation uses depth-first search. The constructor takes time proportional to
+    V + E (in the worst case), where V is the number of vertices and E is the number of edges.
+    Afterwards, the hasCycle operation takes constant time; the cycle operation takes time
     proportional to the length of the cycle.
 
     See Topological to compute a topological order if the edge-weighted digraph is acyclic.
 
     For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
+
     """    
     
     def __init__(self, edge_weighted_digraph):
-        """
-        Determines whether the edge weighted digraph has a directed cycle and, if so,
-        finds such a cycle.
-        
+        """Determines whether the edge weighted digraph has a directed cycle
+        and, if so, finds such a cycle.
+
         :digraph: the digraph
+
         """
         self._cycle = None
         self._on_stack = [False]*edge_weighted_digraph.V()
@@ -75,18 +76,19 @@ class EdgeWeightedDirectedCycle:
         self._on_stack[v] = False
     
     def has_cycle(self):
-        """
-        Does the edge weighted digraph have a directed cycle?
-        
+        """Does the edge weighted digraph have a directed cycle?
+
         :returns: true if there is a cycle, false otherwise
+
         """
         return self._cycle != None
     
     def cycle(self):
-        """
-        Returns a directed cycle if the edge weighted digraph has a directed cycle, and null otherwise.
-        
+        """Returns a directed cycle if the edge weighted digraph has a directed
+        cycle, and null otherwise.
+
         :returns: a directed cycle (as an iterable) if the digraph has a directed cycle, and null otherwise
+
         """
         return self._cycle
 

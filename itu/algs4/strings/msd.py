@@ -2,11 +2,11 @@
 # See README.md for details
 # Python 3
 
-"""
-This module provides functions for sorting arrays of strings using msd sort.
+"""This module provides functions for sorting arrays of strings using msd sort.
 
-For additional documentation, see Section 5.1 of Algorithms, 4th Edition 
+For additional documentation, see Section 5.1 of Algorithms, 4th Edition
 by Robert Sedgewick and Kevin Wayne.
+
 """
 
 cutoff = 15
@@ -56,11 +56,11 @@ def _sort(a, lo, hi, d, aux, radix):
         _sort(a, lo + count[r], lo + count[r+1] - 1, d+1, aux, radix)
 
 def sort(a, radix=256):
-    """
-    Rearranges the array of 32-bit integers in ascending order.
-    Currently assumes that the integers are nonnegative.
-    
+    """Rearranges the array of 32-bit integers in ascending order. Currently
+    assumes that the integers are nonnegative.
+
     :param a: the array to be sorted
+
     """
     n = len(a)
     aux = [None]*n

@@ -9,11 +9,10 @@ from itu.algs4.stdlib.instream import InStream
 
 
 class DirectedDFS:
-	"""
-	The DirectedDFS class represents a data type for
-	determining the vertices reachable from a given source vertex s
-	(or a set of source vertices) in a digraph. For versions that find the paths,
-	see DepthFirstDirectedPaths and BreadthFirstDirectedPaths.
+	"""The DirectedDFS class represents a data type for determining the vertices
+	reachable from a given source vertex s (or a set of source vertices) in a
+	digraph. For versions that find the paths, see DepthFirstDirectedPaths and
+	BreadthFirstDirectedPaths.
 
 	This implementation uses depth-first search.
 	The constructor takes time proportional to V + E (in the worst case),
@@ -21,15 +20,16 @@ class DirectedDFS:
 
 	For additional documentation, see Section 4.2 of Algorithms,
 	4th Edition by Robert Sedgewick and Kevin Wayne.
+
 	"""
 	def __init__(self, G, *s):
-		"""
-		Computes the vertices in digraph G that are
-		reachable from the source vertex s.
+		"""Computes the vertices in digraph G that are reachable from the source
+		vertex s.
 
 		:param G: the digraph
 		:param s: the source vertex/vertices
 		:raises ValueError: unless 0 <= s_ < V for every s_ in s
+
 		"""
 		self.marked = [False for i in range(0,G.V())]
 		self.reachables = 0
@@ -45,12 +45,11 @@ class DirectedDFS:
 				self._dfs(G, w)
 
 	def is_marked(self, v):
-		"""
-		Is there a directed path from the source vertex
-		and vertex v?
+		"""Is there a directed path from the source vertex and vertex v?
 
 		:param v: the vertex
 		:returns: True if there is a directed
+
 		"""
 		self._validate_vertex(v)
 		return self.marked[v]
@@ -71,9 +70,7 @@ class DirectedDFS:
 			raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
 
 def main():
-	"""
-	Unit tests the DirectedDFS data type.
-	"""
+	"""Unit tests the DirectedDFS data type."""
 	G = Digraph.from_stream(InStream(None))
 	sources = Bag()
 	for i in range(1,len(sys.argv)):

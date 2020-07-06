@@ -11,16 +11,17 @@ from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 from itu.algs4.stdlib import stdio
 
 if __name__ == '__main__':
-    """
-    The Arbitrage function provides a client that finds an arbitrage opportunity 
-    in a currency exchange table by constructing a complete-digraph representation 
-    of the exchange table and then finding a negative cycle in the digraph.
-    
-    This implementation uses the Bellman-Ford algorithm to find a negative cycle in 
-    the complete digraph. The running time is proportional to V3 in the worst case, 
+    """The Arbitrage function provides a client that finds an arbitrage
+    opportunity in a currency exchange table by constructing a complete-digraph
+    representation of the exchange table and then finding a negative cycle in
+    the digraph.
+
+    This implementation uses the Bellman-Ford algorithm to find a negative cycle in
+    the complete digraph. The running time is proportional to V3 in the worst case,
     where V is the number of currencies.
 
     For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
+
     """
     if len(sys.argv) > 1:
         try: 

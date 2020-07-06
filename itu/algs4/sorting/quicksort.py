@@ -2,15 +2,15 @@
 # see README.md for details
 # Python 3
 
-"""
-The quicksort module provides methods for sorting an array and selecting
-the ith smallest element in an array using quicksort.
+"""The quicksort module provides methods for sorting an array and selecting the
+ith smallest element in an array using quicksort.
 
 For additional documentation, see Section 2.3 of Algorithms, 4th Edition
 by Robert Sedgewick and Kevin Wayne.
 
 :original author: Robert Sedgewick and Kevin Wayne
 :original java code: https://algs4.cs.princeton.edu/23quicksort/Quick.java.html
+
 """
 
 import sys
@@ -19,9 +19,7 @@ from itu.algs4.stdlib import stdio, stdrandom
 
 
 def sort(array):
-    """
-    Rearranges the array in ascending order, using the natural order
-    """
+    """Rearranges the array in ascending order, using the natural order."""
     stdrandom.shuffle(array)
     _sort(array, 0, len(array) - 1)
 
@@ -68,15 +66,14 @@ def _partition(array, lo, hi):
     return j
 
 def select(array, k):
-    """
-    Rearranges the array so that array[k] contains the kth smalles key;
-    array[0] through array[k-1] are less than (or equal to) array[k];
-    and array[k+1] through array[n-1] are greather than (or equal to)
-    array[k]
+    """Rearranges the array so that array[k] contains the kth smalles key;
+    array[0] through array[k-1] are less than (or equal to) array[k]; and
+    array[k+1] through array[n-1] are greather than (or equal to) array[k]
 
     :param array: the array
     :param k: the rank of the key
     :return: the key of rank k
+
     """
     stdrandom.shuffle(array)
     lo = 0
