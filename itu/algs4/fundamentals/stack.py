@@ -2,15 +2,17 @@
 # See README.md for details
 # Python 3
 
-from typing import Generic, Iterator, List, Optional, Sequence, TypeVar
+from typing import Generic, Iterator, List, Optional, TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class Node(Generic[T]):
     # helper linked list class
     def __init__(self):
         self.item: T = None
         self.next: Optional[Node] = None
+
 
 class Stack(Generic[T]):
     """The Stack class represents a last-in-first-out (LIFO) stack of generic
@@ -70,7 +72,7 @@ class Stack(Generic[T]):
         :raises ValueError: if this stack is empty
 
         """
-        if self.is_empty(): 
+        if self.is_empty():
             raise ValueError("Stack underflow")
         assert self._first is not None
         item = self._first.item
@@ -78,7 +80,6 @@ class Stack(Generic[T]):
         self._first = self._first.next
         self._n -= 1
         return item
-
 
     def peek(self) -> T:
         """Returns (but does not remove) the item most recently added to this
@@ -88,7 +89,7 @@ class Stack(Generic[T]):
         :raises ValueError: if this stack is empty
 
         """
-        if self.is_empty(): 
+        if self.is_empty():
             raise ValueError("Stack underflow")
         assert self._first is not None
         item = self._first.item
@@ -119,6 +120,7 @@ class Stack(Generic[T]):
             assert item is not None
             yield item
             current = current.next
+
 
 class FixedCapacityStack(Generic[T]):
     def __init__(self, capacity: int):
@@ -175,13 +177,13 @@ class ResizingArrayStack(Generic[T]):
         self.n -= 1
         item = self.a[self.n]
         self.a[self.n] = None
-        if self.n > 0 and self.n <= len(self.a)//4:
-            self.resize(len(self.a)//2)
+        if self.n > 0 and self.n <= len(self.a) // 4:
+            self.resize(len(self.a) // 2)
         assert item is not None
         return item
 
     def __iter__(self) -> Iterator[T]:
-        i = self.n -1
+        i = self.n - 1
         while i >= 0:
             item = self.a[i]
             assert item is not None

@@ -1,9 +1,9 @@
 import sys
-from typing import Generic, List, TypeVar
+from typing import List, TypeVar
 
 from itu.algs4.stdlib import stdio
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 # Created for BADS 2018
 # See README.md for details
@@ -27,7 +27,7 @@ def index_of(a: List[T], key: T):
     lo = 0
     hi = len(a) - 1
     while hi >= lo:
-        mid = lo + (hi - lo)//2
+        mid = lo + (hi - lo) // 2
         if a[mid] < key:
             lo = mid + 1
         elif a[mid] > key:
@@ -51,5 +51,5 @@ def main():
                 print(key)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -2,13 +2,13 @@
 # see README.md for details
 # Python 3
 
-import sys
 from typing import Generic, Iterator, List, Optional, TypeVar
 
 from itu.algs4.errors.errors import NoSuchElementException
 from itu.algs4.stdlib import stdio
 
-Key = TypeVar('Key')
+Key = TypeVar("Key")
+
 
 class MaxPQ(Generic[Key]):
     """The MaxPQ class represents a priority queue of generic keys.
@@ -22,6 +22,7 @@ class MaxPQ(Generic[Key]):
     proportional to the specified capacity.
 
     """
+
     def __init__(self, _max: int = 1):
         """Initializes an empty priority queue with the given initial capacity.
 
@@ -101,9 +102,9 @@ class MaxPQ(Generic[Key]):
         :param k: Index of the item to be moved
 
         """
-        while 2*k <= self._n:
-            j = 2*k
-            if j < self._n and self._less(j, j+1):
+        while 2 * k <= self._n:
+            j = 2 * k
+            if j < self._n and self._less(j, j + 1):
                 j += 1
             if not self._less(k, j):
                 break
@@ -116,9 +117,9 @@ class MaxPQ(Generic[Key]):
         :param k: Index of the item to be moved
 
         """
-        while k > 1 and self._less(k//2, k):
-            self._exch(k, k//2)
-            k = k//2
+        while k > 1 and self._less(k // 2, k):
+            self._exch(k, k // 2)
+            k = k // 2
 
     def _resize(self, capacity: int):
         """Copies the contents of the heap to a new array of size capacity.
@@ -172,12 +173,12 @@ def main():
     pq = MaxPQ()
     while not stdio.isEmpty():
         item = stdio.readString()
-        if item != '-':
+        if item != "-":
             pq.insert(item)
         elif not pq.is_empty():
             print(pq.del_max())
     print("({} left on pq)".format(pq.size()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

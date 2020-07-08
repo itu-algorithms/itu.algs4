@@ -10,14 +10,14 @@ from itu.algs4.stdlib import stdio
 #  % python file_index.py ex*.txt
 #  age
 #   ex3.txt
-#   ex4.txt 
+#   ex4.txt
 # best
-#   ex1.txt 
+#   ex1.txt
 # was
 #   ex1.txt
 #   ex2.txt
 #   ex3.txt
-#   ex4.txt 
+#   ex4.txt
 #
 #  % python file_index.py *.txt
 #
@@ -31,18 +31,18 @@ from itu.algs4.stdlib import stdio
 """
 
 # key = word, value = set of files containing that word
-if __name__ == '__main__':
-    st = {} 
+if __name__ == "__main__":
+    st = {}
     args = sys.argv[1:]
 
     # create inverted index of all files
     print("Indexing files")
     for filename in args:
         print("  " + filename)
-        file = open(filename, 'r')
+        file = open(filename, "r")
         for line in file.readlines():
             for word in line.split():
-                if not word in st:
+                if word not in st:
                     st[word] = set()
                 s = st.get(word)
                 s.add(file)

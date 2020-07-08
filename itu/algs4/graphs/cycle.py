@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 from itu.algs4.fundamentals.stack import Stack
 
@@ -25,8 +25,10 @@ class Cycle:
         :param G: the undirected graph
 
         """
-        if self._has_self_loop(G): return
-        if self._has_parallel_edges(G): return
+        if self._has_self_loop(G):
+            return
+        if self._has_parallel_edges(G):
+            return
         self._marked = [False] * G.V()
         self._edgeTo = [0] * G.V()
         self._cycle = None
@@ -71,8 +73,8 @@ class Cycle:
         :returns: true if the graph has a cycle false otherwise
 
         """
-        return self._cycle is not None   
-    
+        return self._cycle is not None
+
     def cycle(self):
         """Returns a cycle in the graph G.
 
@@ -81,12 +83,13 @@ class Cycle:
 
         """
         return self._cycle
-    
+
     def _dfs(self, G, u, v):
         self._marked[v] = True
         for w in G.adj(v):
             # short circuit if cycle already found
-            if self._cycle is not None: return
+            if self._cycle is not None:
+                return
             if not self._marked[w]:
                 self._edgeTo[w] = v
                 self._dfs(G, v, w)
@@ -99,11 +102,13 @@ class Cycle:
                 self._cycle.push(w)
                 self._cycle.push(v)
 
+
 if __name__ == "__main__":
     import sys
-    from itu.algs4.stdlib.instream import InStream
+
+    from itu.algs4.graphs.graph import Graph
     from itu.algs4.stdlib import stdio
-    from itu.algs4.graphs.graph import Graph    
+    from itu.algs4.stdlib.instream import InStream
 
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)

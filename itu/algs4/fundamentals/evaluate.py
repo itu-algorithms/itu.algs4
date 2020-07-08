@@ -16,25 +16,37 @@ def evaluate():
     while not stdio.isEmpty():
         # Read token, push if operator
         s = stdio.readString()
-        if   s == "(": pass
-        elif s == "+":      ops.push(s)
-        elif s == "-":      ops.push(s)
-        elif s == "*":      ops.push(s)
-        elif s == "/":      ops.push(s)
-        elif s == "sqrt":   ops.push(s)
+        if s == "(":
+            pass
+        elif s == "+":
+            ops.push(s)
+        elif s == "-":
+            ops.push(s)
+        elif s == "*":
+            ops.push(s)
+        elif s == "/":
+            ops.push(s)
+        elif s == "sqrt":
+            ops.push(s)
         elif s == ")":
             # Pop, evaluate and push result if token is ")"
             op = ops.pop()
             v = vals.pop()
-            if   op == "+":     v = vals.pop() + v
-            elif op == "-":     v = vals.pop() - v
-            elif op == "*":     v = vals.pop() * v
-            elif op == "/":     v = vals.pop() / v
-            elif op == "sqrt":  v = math.sqrt(v)
+            if op == "+":
+                v = vals.pop() + v
+            elif op == "-":
+                v = vals.pop() - v
+            elif op == "*":
+                v = vals.pop() * v
+            elif op == "/":
+                v = vals.pop() / v
+            elif op == "sqrt":
+                v = math.sqrt(v)
             vals.push(v)
-        else:   
+        else:
             vals.push(float(s))
     stdio.writeln(vals.pop())
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -42,5 +54,5 @@ if __name__ == "__main__":
             sys.stdin = open(sys.argv[1])
         except IOError:
             print("File not found, using standard input instead")
-            
+
     evaluate()

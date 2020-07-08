@@ -1,5 +1,3 @@
-import sys
-
 from itu.algs4.stdlib import stdio
 
 # Created for BADS 2018
@@ -21,7 +19,7 @@ def sort(a):
     _n = len(a)
     for i in range(_n):
         _min = i
-        for j in range(i+1, _n):
+        for j in range(i + 1, _n):
             if a[j] < a[_min]:
                 _min = j
         _exch(a, i, _min)
@@ -56,5 +54,5 @@ def main():
     _show(a)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

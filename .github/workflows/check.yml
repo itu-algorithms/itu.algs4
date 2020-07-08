@@ -26,8 +26,8 @@ jobs:
         pytest --cov-report term-missing --cov itu.algs4
     - name: Lint
       run: |
-        flake8 examples tests
-        isort -rc -c --diff examples tests
+        flake8 examples tests itu
+        isort -c --diff examples tests itu
     - name: Typecheck
       run: |
         mypy

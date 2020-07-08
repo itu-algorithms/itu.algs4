@@ -17,7 +17,6 @@ through n-1. The is-connected-to relation must be an equivalence relation:
 
 """
 import sys
-from typing import *
 
 from itu.algs4.stdlib import stdio
 
@@ -45,13 +44,13 @@ class UF:
         """
         self._count = n
         self._parent = list(range(n))
-        self._rank = [0]*n
+        self._rank = [0] * n
 
     def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
+            raise ValueError("index {} is not between 0 and {}".format(p, n - 1))
 
     def union(self, p: int, q: int) -> None:
         """Merges the component containing site p with the component containing
@@ -87,7 +86,9 @@ class UF:
         """
         self._validate(p)
         while p != self._parent[p]:
-            self._parent[p] = self._parent[self._parent[p]] # path compression by halving
+            self._parent[p] = self._parent[
+                self._parent[p]
+            ]  # path compression by halving
             p = self._parent[p]
         return p
 
@@ -104,14 +105,15 @@ class UF:
     def count(self) -> int:
         return self._count
 
+
 class QuickUnionUF:
     """
     This is an implementation of the union-find data structure - see module documentation for
     more info.
 
-    This implementation uses quick union. Initializing a data structure with n sites takes 
-    linear time. Afterwards, the union, find, and connected operations take linear time 
-    (in the worst case) and the count operation takes constant time. For alternate implementations 
+    This implementation uses quick union. Initializing a data structure with n sites takes
+    linear time. Afterwards, the union, find, and connected operations take linear time
+    (in the worst case) and the count operation takes constant time. For alternate implementations
     of the same API, see UF, QuickFindUF, and WeightedQuickUnionUF.
 
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
@@ -131,7 +133,7 @@ class QuickUnionUF:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
+            raise ValueError("index {} is not between 0 and {}".format(p, n - 1))
 
     def union(self, p: int, q: int) -> None:
         """Merges the component containing site p with the component containing
@@ -175,16 +177,17 @@ class QuickUnionUF:
 
     def count(self) -> int:
         return self._count
-    
+
+
 class WeightedQuickUnionUF:
     """
     This is an implementation of the union-find data structure - see module documentation for
     more info.
 
-    This implementation uses weighted quick union by size (without path compression). 
-    Initializing a data structure with n sites takes linear time. Afterwards, the union, find, 
-    and connected operations take logarithmic time (in the worst case) and the count operation 
-    takes constant time. For alternate implementations of the same API, see UF, QuickFindUF, 
+    This implementation uses weighted quick union by size (without path compression).
+    Initializing a data structure with n sites takes linear time. Afterwards, the union, find,
+    and connected operations take logarithmic time (in the worst case) and the count operation
+    takes constant time. For alternate implementations of the same API, see UF, QuickFindUF,
     and QuickUnionUF.
 
     For additional documentation, see Section 1.5 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
@@ -199,13 +202,13 @@ class WeightedQuickUnionUF:
         """
         self._count = n
         self._parent = list(range(n))
-        self._size = [1]*n
+        self._size = [1] * n
 
     def _validate(self, p: int) -> None:
         # validate that p is a valid index
         n = len(self._parent)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
+            raise ValueError("index {} is not between 0 and {}".format(p, n - 1))
 
     def union(self, p: int, q: int) -> None:
         """Merges the component containing site p with the component containing
@@ -225,10 +228,10 @@ class WeightedQuickUnionUF:
             small, large = root_p, root_q
         else:
             small, large = root_q, root_p
-            
+
         self._parent[small] = large
         self._size[large] += self._size[small]
-      
+
         self._count -= 1
 
     def find(self, p: int) -> int:
@@ -257,6 +260,7 @@ class WeightedQuickUnionUF:
     def count(self) -> int:
         return self._count
 
+
 class QuickFindUF:
     """
     This is an implementation of the union-find data structure - see module documentation for
@@ -283,7 +287,7 @@ class QuickFindUF:
         # validate that p is a valid index
         n = len(self._id)
         if p < 0 or p >= n:
-            raise ValueError('index {} is not between 0 and {}'.format(p, n - 1))
+            raise ValueError("index {} is not between 0 and {}".format(p, n - 1))
 
     def union(self, p: int, q: int) -> None:
         """Merges the component containing site p with the component containing
@@ -296,8 +300,8 @@ class QuickFindUF:
         self._validate(p)
         self._validate(q)
 
-        p_id = self._id[p] # needed for correctness
-        q_id = self._id[q] # to reduce the number of array accesses
+        p_id = self._id[p]  # needed for correctness
+        q_id = self._id[q]  # to reduce the number of array accesses
 
         # p and q are already in the same component
         if p_id == q_id:
@@ -340,7 +344,7 @@ class QuickFindUF:
 # supplied as argument to the program, where each integer
 # in the pair represents some site; if the sites are in different
 # components, merge the two components and print the pair to standard output.
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) > 1:
         try:
             sys.stdin = open(sys.argv[1])
@@ -354,5 +358,5 @@ if __name__ == '__main__':
         if uf.connected(p, q):
             continue
         uf.union(p, q)
-        print('{} {}'.format(p, q))
-    print('number of components: {}'.format(uf.count()))
+        print("{} {}".format(p, q))
+    print("number of components: {}".format(uf.count()))

@@ -16,31 +16,31 @@ class DepthFirstOrder:
     For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 
     """
-    
+
     def __init__(self, digraph):
         """Determines a depth-first order for the digraph.
 
         :param digraph: the digraph to check
 
         """
-        self._pre  = [0]*digraph.V()
-        self._post = [0]*digraph.V()
-        self._preorder  = Queue()
+        self._pre = [0] * digraph.V()
+        self._post = [0] * digraph.V()
+        self._preorder = Queue()
         self._postorder = Queue()
-        self._marked = [False]*digraph.V()
-        
-        self._pre_counter  = 0
+        self._marked = [False] * digraph.V()
+
+        self._pre_counter = 0
         self._post_counter = 0
-        
+
         if isinstance(digraph, Digraph):
             dfs = self._dfs
         else:
             dfs = self._dfs_edge_weighted
-        
+
         for v in range(digraph.V()):
-            if (not self._marked[v]):
+            if not self._marked[v]:
                 dfs(digraph, v)
-    
+
     def post(self, v=None):
         """Either returns the postorder number of vertex v or, if v is None,
         returns the vertices in postorder.
@@ -55,7 +55,7 @@ class DepthFirstOrder:
         else:
             self._validate_vertex(v)
             return self._post[v]
-    
+
     def pre(self, v=None):
         """Either returns the preorder number of vertex v or, if v is None,
         returns the vertices in preorder.
@@ -69,8 +69,8 @@ class DepthFirstOrder:
             return self._preorder
         else:
             self._validate_vertex(v)
-            return self._pre[v]    
-        
+            return self._pre[v]
+
     def reverse_post(self):
         """Returns the vertices in reverse postorder.
 
@@ -81,7 +81,7 @@ class DepthFirstOrder:
         for v in self._postorder:
             reverse.push(v)
         return reverse
-    
+
     # run DFS in digraph G from vertex v and compute preorder/postorder
     def _dfs(self, digraph, v):
         self._marked[v] = True
@@ -94,7 +94,7 @@ class DepthFirstOrder:
         self._postorder.enqueue(v)
         self._post[v] = self._post_counter
         self._post_counter += 1
-    
+
     # run DFS in edge-weighted digraph G from vertex v and compute preorder/postorder
     def _dfs_edge_weighted(self, graph, v):
         self._marked[v] = True
@@ -107,14 +107,14 @@ class DepthFirstOrder:
                 self._dfs_edge_weighted(graph, w)
         self._postorder.enqueue(v)
         self._post[v] = self._post_counter
-        self._post_counter += 1    
-    
+        self._post_counter += 1
+
     # throw an IllegalArgumentException unless 0 <= v < V
     def _validate_vertex(self, v):
         V = len(self._marked)
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}", v, V-1)
-    
+            raise ValueError("vertex {} is not between 0 and {}", v, V - 1)
+
     # check that pre() and post() are consistent with pre(v) and post(v)
     def _check(self):
         # check that post(v) is consistent with post()

@@ -1,4 +1,3 @@
-import sys
 # Created for BADS 2018
 # See README.md for details
 # This is python3
@@ -7,7 +6,8 @@ from typing import Generic, List, Optional, TypeVar
 from itu.algs4.errors.errors import NoSuchElementException
 from itu.algs4.stdlib import stdio
 
-Key = TypeVar('Key')
+Key = TypeVar("Key")
+
 
 class MinPQ(Generic[Key]):
     """The MinPQ class represents a priority queue of generic keys.
@@ -21,6 +21,7 @@ class MinPQ(Generic[Key]):
     proportional to the specified capacity.
 
     """
+
     def __init__(self, _max: int = 1) -> None:
         """Initializes an empty priority queue with the given initial capacity.
 
@@ -100,9 +101,9 @@ class MinPQ(Generic[Key]):
         :param k: Index of the item to be moved
 
         """
-        while 2*k <= self._n:
-            j = 2*k
-            if j < self._n and self._greater(j, j+1):
+        while 2 * k <= self._n:
+            j = 2 * k
+            if j < self._n and self._greater(j, j + 1):
                 j += 1
             if not self._greater(k, j):
                 break
@@ -115,9 +116,9 @@ class MinPQ(Generic[Key]):
         :param k: Index of the item to be moved
 
         """
-        while k > 1 and self._greater(k//2, k):
-            self._exch(k, k//2)
-            k = k//2
+        while k > 1 and self._greater(k // 2, k):
+            self._exch(k, k // 2)
+            k = k // 2
 
     def _greater(self, i: int, j: int):
         """Check if item at index i is greater than item at index j on the
@@ -170,12 +171,12 @@ def main():
     pq = MinPQ()
     while not stdio.isEmpty():
         item = stdio.readString()
-        if item != '-':
+        if item != "-":
             pq.insert(item)
         elif not pq.is_empty():
             print(pq.del_min())
     print("({} left on pq)".format(pq.size()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

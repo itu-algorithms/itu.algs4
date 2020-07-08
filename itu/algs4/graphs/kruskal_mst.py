@@ -2,10 +2,8 @@ import sys
 
 from itu.algs4.fundamentals.queue import Queue
 from itu.algs4.fundamentals.uf import WeightedQuickUnionUF
-from itu.algs4.graphs.edge import Edge
 from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
 from itu.algs4.sorting.min_pq import MinPQ
-from itu.algs4.stdlib import stdio
 from itu.algs4.stdlib.instream import InStream
 
 # Created for BADS 2018
@@ -30,6 +28,7 @@ class KruskalMST:
     proportional to V.
 
     """
+
     def __init__(self, G):
         """Computes a minimum spanning tree (or forest) of an edge-weighted
         graph.
@@ -85,5 +84,5 @@ def main():
         print("{:.5f}".format(mst.weight()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

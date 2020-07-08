@@ -3,7 +3,6 @@
 # Python 3
 from itu.algs4.errors.errors import IllegalArgumentException, NoSuchElementException
 
-
 """
  The ST class represents an ordered symbol table of generic
  key-value pairs.

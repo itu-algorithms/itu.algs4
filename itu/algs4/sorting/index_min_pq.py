@@ -25,6 +25,7 @@ class IndexMinPQ:
     Construction takes time proportional to the specified capacity.
 
     """
+
     def __init__(self, max_n):
         """Initializes an empty indexed priority queue with indices between 0.
 
@@ -103,7 +104,9 @@ class IndexMinPQ:
         if not self.contains(i):
             raise IllegalArgumentException("index is not in the priority queue")
         if self.keys[i] <= key:
-            raise IllegalArgumentException("calling decrease_key() with given argument would not strictly decrease the key")
+            raise IllegalArgumentException(
+                "calling decrease_key() with given argument would not strictly decrease the key"
+            )
         self.keys[i] = key
         self._swim(self.qp[i])
 
@@ -122,7 +125,9 @@ class IndexMinPQ:
         if not self.contains(i):
             raise NoSuchElementException("index is not in the priority queue")
         if self.keys[i] >= key:
-            raise IllegalArgumentException("calling increase_key() with given argument would not strictly increase the key")
+            raise IllegalArgumentException(
+                "calling increase_key() with given argument would not strictly increase the key"
+            )
         self.keys[i] = key
         self._sink(self.qp[i])
 
@@ -181,7 +186,7 @@ class IndexMinPQ:
         self._sink(1)
         self.qp[_min] = -1
         self.keys[_min] = None
-        self.pq[self.n+1] = -1
+        self.pq[self.n + 1] = -1
         return _min
 
     def is_empty(self):
@@ -249,9 +254,9 @@ class IndexMinPQ:
         :param k: Index of the item on the heap to be moved
 
         """
-        while k > 1 and self._greater(k//2, k):
-            self._exch(k, k//2)
-            k = k//2
+        while k > 1 and self._greater(k // 2, k):
+            self._exch(k, k // 2)
+            k = k // 2
 
     def _sink(self, k):
         """Moves item at index k down to a legal position on the heap.
@@ -259,9 +264,9 @@ class IndexMinPQ:
         :param k: Index of the item on the heap to be moved
 
         """
-        while 2*k <= self.n:
-            j = 2*k
-            if j < self.n and self._greater(j, j+1):
+        while 2 * k <= self.n:
+            j = 2 * k
+            if j < self.n and self._greater(j, j + 1):
                 j += 1
             if not self._greater(k, j):
                 break
@@ -271,7 +276,7 @@ class IndexMinPQ:
     def __iter__(self):
         """Iterates over all the items in this priority queue in ascending
         order."""
-        copy = IndexMinPQ(len(self.pq)-1)
+        copy = IndexMinPQ(len(self.pq) - 1)
         for i in range(1, self.n + 1):
             copy.insert(self.pq[i], self.keys[self.pq[i]])
         while not copy.is_empty():
@@ -297,5 +302,5 @@ def main():
         pq.del_min()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,6 +1,7 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
+
 
 class CC:
     """The CC class represents a data type for determining the connected
@@ -31,13 +32,13 @@ class CC:
 
         """
         self._marked = [False] * G.V()  # marked[v] = has vertex v been marked?
-        self._id = [None] * G.V()       # id[v] = id of connected component containing v
-        self._size = [0] * G.V()        # size[id] = number of vertices in given component
-        self._count = 0                 # number of connected components
+        self._id = [None] * G.V()  # id[v] = id of connected component containing v
+        self._size = [0] * G.V()  # size[id] = number of vertices in given component
+        self._count = 0  # number of connected components
 
         for v in range(G.V()):
             if not self._marked[v]:
-                self._dfs(G, v) 
+                self._dfs(G, v)
                 self._count += 1
 
     def _dfs(self, G, v):
@@ -48,7 +49,7 @@ class CC:
         for w in G.adj(v):
             if not self._marked[w]:
                 self._dfs(G, w)
-    
+
     def id(self, v):
         """Returns the component id of the connected component containing
         vertex v.
@@ -57,7 +58,7 @@ class CC:
         :returns: the component id of the connected component containing vertex v
         :raises ValueError: unless 0 <= v < V
 
-        """    
+        """
         self._validate_vertex(v)
         return self._id[v]
 
@@ -101,18 +102,18 @@ class CC:
         # Raises a ValueError n unless 0 <= v < V
         V = len(self._marked)
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+            raise ValueError("vertex {} is not between 0 and {}".format(v, V - 1))
 
 
 class CCBook:
     def __init__(self, G):
         self._marked = [False] * G.V()  # marked[v] = has vertex v been marked?
-        self._id = [None] * G.V()       # id[v] = id of connected component containing v
-        self._count = 0                 # number of connected components
+        self._id = [None] * G.V()  # id[v] = id of connected component containing v
+        self._count = 0  # number of connected components
 
         for s in range(G.V()):
             if not self._marked[s]:
-                self._dfs(G, s) 
+                self._dfs(G, s)
                 self._count += 1
 
     def _dfs(self, G, v):
@@ -121,7 +122,7 @@ class CCBook:
         for w in G.adj(v):
             if not self._marked[w]:
                 self._dfs(G, w)
-    
+
     def connected(self, v, w):
         return self._id[v] == self._id[w]
 
@@ -129,14 +130,16 @@ class CCBook:
         return self._id[v]
 
     def count(self):
-        return self._count    
+        return self._count
+
 
 if __name__ == "__main__":
     import sys
+
     from itu.algs4.fundamentals.queue import Queue
-    from itu.algs4.stdlib.instream import InStream    
-    from itu.algs4.stdlib import stdio    
-    from itu.algs4.graphs.graph import Graph    
+    from itu.algs4.graphs.graph import Graph
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.stdlib.instream import InStream
 
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)

@@ -7,10 +7,11 @@ from ..errors.errors import NoSuchElementException
 # This is python3
 
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class Node(Generic[T]):
-    def __init__(self, item: T, next: Optional['Node[T]']) -> None:
+    def __init__(self, item: T, next: Optional["Node[T]"]) -> None:
         """Initializes a new node.
 
         :param item: the item to be stored in the node
@@ -19,6 +20,7 @@ class Node(Generic[T]):
         """
         self.item: T = item
         self.next: Optional[Node[T]] = next
+
 
 class Queue(Generic[T]):
     """The Queue class represents a first-in-first-out (FIFO) queue of generic
@@ -36,7 +38,7 @@ class Queue(Generic[T]):
     def __init__(self) -> None:
         """Initializes an empty queue."""
         self._first: Optional[Node[T]] = None
-        self._last : Optional[Node[T]] = None
+        self._last: Optional[Node[T]] = None
         self._n: int = 0
 
     def enqueue(self, item: T) -> None:
@@ -120,4 +122,4 @@ class Queue(Generic[T]):
         s = []
         for item in self:
             s.append("{} ".format(item))
-        return ''.join(s)
+        return "".join(s)

@@ -1,6 +1,7 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
+
 
 class SequentialSearchST:
     """The  SequentialSearchST class represents an (unordered) symbol table of
@@ -22,7 +23,7 @@ class SequentialSearchST:
     constant time.
 
     """
-    
+
     class Node:
         # a helper linked list data type
         def __init__(self, key, val, next):
@@ -32,9 +33,8 @@ class SequentialSearchST:
 
     def __init__(self):
         """Initializes an empty symbol table."""
-        self._n = 0         # number of key-value pairs
+        self._n = 0  # number of key-value pairs
         self._first = None  # the linked list of key-value pairs
-
 
     def size(self):
         """Returns the number of key-value pairs in this symbol table.
@@ -56,7 +56,7 @@ class SequentialSearchST:
         """
         return self.size() == 0
 
-    def contains(self, key):        
+    def contains(self, key):
         """" Returns true if this symbol table contains the specified key.
 
         :param  key the key
@@ -65,7 +65,8 @@ class SequentialSearchST:
         :raises ValueError: if key is None
 
         """
-        if key is None: raise ValueError("argument to contains() is None")
+        if key is None:
+            raise ValueError("argument to contains() is None")
         return self.get(key) is not None
 
     def get(self, key):
@@ -78,14 +79,15 @@ class SequentialSearchST:
         :raises ValueError: if key is None
 
         """
-        if key is None: raise ValueError("argument to get() is None")
+        if key is None:
+            raise ValueError("argument to get() is None")
         x = self._first
         while x is not None:
             if key == x.key:
                 return x.val
             x = x.next
         return None
-    
+
     def put(self, key, val):
         """Inserts the specified key-value pair into the symbol table,
         overwriting the old value with the new value if the symbol table
@@ -98,7 +100,8 @@ class SequentialSearchST:
         :raises ValueError: if key is None
 
         """
-        if key is None: raise ValueError("argument to put() is None")
+        if key is None:
+            raise ValueError("argument to put() is None")
         if val is None:
             self.delete(key)
             return
@@ -121,13 +124,15 @@ class SequentialSearchST:
         :raises ValueError: if key is None
 
         """
-        if key is None: raise ValueError("argument to delete() is None")
+        if key is None:
+            raise ValueError("argument to delete() is None")
         self._first = self._delete(self._first, key)
 
     def _delete(self, x, key):
         # delete key in linked list beginning at Node x
         # warning: function call stack too large if table is large
-        if x is None: return None
+        if x is None:
+            return None
         if key == x.key:
             self._n -= 1
             return x.next
@@ -158,6 +163,6 @@ if __name__ == "__main__":
         key = stdio.readString()
         st.put(key, i)
         i += 1
-        
+
     for s in st.keys():
         stdio.writef("%s %i\n", s, st.get(s))

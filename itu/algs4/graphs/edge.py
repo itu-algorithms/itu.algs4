@@ -16,6 +16,7 @@ class Edge:
     data type is by ascending order of weight.
 
     """
+
     def __init__(self, v, w, weight):
         """Initializes an edge between vertices v and w of the given weight.
 
@@ -104,5 +105,5 @@ def main():
     print(e)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

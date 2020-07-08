@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 import math
 import sys
 
@@ -26,7 +26,7 @@ class PrimMST:
 
     """
 
-    FLOATING_POINT_EPSILON = 1E-12
+    FLOATING_POINT_EPSILON = 1e-12
 
     def __init__(self, G):
         """Compute a minimum spanning tree (or forest) of an edge-weighted
@@ -35,20 +35,24 @@ class PrimMST:
         :param G: the edge-weighted graph
 
         """
-        self._edge_to = [None] * G.V()         # self._edge_to[v] = shortest edge from tree vertex to non-tree vertex
-        self._dist_to = [0.0] * G.V()       # self._dist_to[v] = weight of shortest such edge
-        self._marked = [False] * G.V()      # self._marked[v] = True if v on tree, False otherwise
+        self._edge_to = [
+            None
+        ] * G.V()  # self._edge_to[v] = shortest edge from tree vertex to non-tree vertex
+        self._dist_to = [0.0] * G.V()  # self._dist_to[v] = weight of shortest such edge
+        self._marked = [
+            False
+        ] * G.V()  # self._marked[v] = True if v on tree, False otherwise
         self._pq = IndexMinPQ(G.V())
-        
+
         for v in range(G.V()):
             self._dist_to[v] = math.inf
 
-        for v in range(G.V()):              # run from each vertex to find
-            if not self._marked[v]:         
-                 self._prim(G, v)                  # minimum spanning forest
+        for v in range(G.V()):  # run from each vertex to find
+            if not self._marked[v]:
+                self._prim(G, v)  # minimum spanning forest
 
         # check optimality conditions
-        assert  self._check(G)
+        assert self._check(G)
 
     # run Prim's algorithm in graph G, starting from vertex s
     def _prim(self, G, s):
@@ -57,19 +61,21 @@ class PrimMST:
         while not self._pq.is_empty():
             v = self._pq.del_min()
             self._scan(G, v)
-    
+
     def _scan(self, G, v):
-        # scan vertex v        
+        # scan vertex v
         self._marked[v] = True
         for e in G.adj(v):
             w = e.other(v)
-            if self._marked[w]: continue         # v-w is obsolete edge
+            if self._marked[w]:
+                continue  # v-w is obsolete edge
             if e.weight() < self._dist_to[w]:
                 self._dist_to[w] = e.weight()
                 self._edge_to[w] = e
-                if self._pq.contains(w):    self._pq.decrease_key(w, self._dist_to[w])
-                else:                       self._pq.insert(w, self._dist_to[w])
-
+                if self._pq.contains(w):
+                    self._pq.decrease_key(w, self._dist_to[w])
+                else:
+                    self._pq.insert(w, self._dist_to[w])
 
     def edges(self):
         """Returns the edges in a minimum spanning tree (or forest).
@@ -83,7 +89,7 @@ class PrimMST:
             e = self._edge_to[v]
             if e is not None:
                 mst.enqueue(e)
-        
+
         return mst
 
     def weight(self):
@@ -100,13 +106,15 @@ class PrimMST:
 
     def _check(self, G):
         # check optimality conditions (takes time proportional to E V lg* V)
-        
-        totalWeight = 0.0 # check weight
+
+        totalWeight = 0.0  # check weight
         for e in self.edges():
             totalWeight += e.weight()
-        
+
         if abs(totalWeight - self.weight()) > PrimMST.FLOATING_POINT_EPSILON:
-            error = "Weight of edges does not equal weight(): {} vs. {}\n".format(totalWeight, self.weight())
+            error = "Weight of edges does not equal weight(): {} vs. {}\n".format(
+                totalWeight, self.weight()
+            )
             print(error, file=sys.stderr)
             return False
 
@@ -128,15 +136,15 @@ class PrimMST:
                 print("Not a spanning forest", file=sys.stderr)
                 return False
 
-         # check that it is a minimal spanning forest (cut optimality conditions)
+        # check that it is a minimal spanning forest (cut optimality conditions)
         for e in self.edges():
             # all edges in MST except e
             uf = UF(G.V())
             for f in self.edges():
                 x = f.either()
                 y = f.other(x)
-                if f != e: 
-                    uf.union(x, y)            
+                if f != e:
+                    uf.union(x, y)
 
             # check that e is min weight edge in crossing cut
             for f in G.edges():
@@ -149,14 +157,15 @@ class PrimMST:
                         return False
         return True
 
+
 if __name__ == "__main__":
-    from itu.algs4.stdlib.instream import InStream
-    from itu.algs4.stdlib import stdio
     from itu.algs4.graphs.edge_weighted_graph import EdgeWeightedGraph
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.stdlib.instream import InStream
 
     In = InStream(sys.argv[1])
     G = EdgeWeightedGraph.from_stream(In)
     mst = PrimMST(G)
     for e in mst.edges():
-        stdio.writeln(e)    
-    stdio.writef("%.5f\n", mst.weight())    
+        stdio.writeln(e)
+    stdio.writef("%.5f\n", mst.weight())

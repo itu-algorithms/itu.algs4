@@ -1,7 +1,6 @@
 # Created for BADS 2018
 # See README.md for details
 # Python 3
-import sys
 
 from itu.algs4.errors.errors import (
     IllegalArgumentException,
@@ -9,11 +8,11 @@ from itu.algs4.errors.errors import (
     UnsupportedOperationException,
 )
 
-
 """
 Set implementation using Python's set() type.
 Does not allow duplicates.
 """
+
 
 class SET:
     # Initializes a new set that is an independent copy of the specified set, or an empty one.
@@ -42,13 +41,14 @@ class SET:
     # Returns the number of keys in this set.
     def size(self):
         return len(self._set)
-        
+
     def __len__(self):
         return self.size()
 
     # Returns true if this set is empty.
     def is_empty(self):
         return self.size() == 0
+
     # Returns all of the keys in this set, as an iterator.
     # To iterate over all of the keys in a set named set, use the
     # foreach notation: for key in set.
@@ -74,7 +74,9 @@ class SET:
             raise IllegalArgumentException("called ceiling() with None key")
         ceiling = None
         for k in self:
-            if (ceiling is None and k >= key) or (ceiling is not None and k>=key and k<ceiling):
+            if (ceiling is None and k >= key) or (
+                ceiling is not None and k >= key and k < ceiling
+            ):
                 ceiling = k
         if ceiling is None:
             raise NoSuchElementException("all keys are less than " + str(key))
@@ -86,7 +88,9 @@ class SET:
             raise IllegalArgumentException("called floor() with None key")
         floor = None
         for k in self:
-            if (floor is None and k <= key) or (floor is not None and k<=key and k>floor):
+            if (floor is None and k <= key) or (
+                floor is not None and k <= key and k > floor
+            ):
                 floor = k
         if floor is None:
             raise NoSuchElementException("all keys are greater than " + str(key))
@@ -117,7 +121,7 @@ class SET:
                 if self.contains(x):
                     c.add(x)
         return c
-     
+
     # Compares this set to the specified set.
     def __eq__(self, other):
         if other is None:
@@ -128,14 +132,16 @@ class SET:
 
     # This operation is not supported because sets are mutable.
     def hashCode(self):
-        raise UnsupportedOperationException("hashCode() is not supported because sets are mutable")
-    
+        raise UnsupportedOperationException(
+            "hashCode() is not supported because sets are mutable"
+        )
+
     # Returns a string representation of this set.
     def __repr__(self):
         s = []
         for item in self:
             s.append("{}".format(item))
-        return "{ " + ''.join(s) + " }"
+        return "{ " + "".join(s) + " }"
 
 
 def main():
@@ -144,7 +150,7 @@ def main():
 
     # insert some keys
     set.add("www.cs.princeton.edu")
-    set.add("www.cs.princeton.edu")    # overwrite old value
+    set.add("www.cs.princeton.edu")  # overwrite old value
     set.add("www.princeton.edu")
     set.add("www.math.princeton.edu")
     set.add("www.yale.edu")
@@ -161,7 +167,6 @@ def main():
     set.add("www.movies.com")
     set.add("www.cnn.com")
     set.add("www.iitb.ac.in")
-
 
     print(set.contains("www.cs.princeton.edu"))
     print(not set.contains("www.harvardsucks.com"))
@@ -187,5 +192,6 @@ def main():
     set2 = SET(set)
     print(set == set2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

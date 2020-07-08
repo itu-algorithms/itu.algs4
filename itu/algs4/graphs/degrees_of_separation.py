@@ -21,11 +21,10 @@ class DegreesOfSeparation:
     movie.
 
     """
-    
+
     def __init__(self):
         """this class shouldn't be instantiated."""
         pass
-
 
     @staticmethod
     def main(args):
@@ -39,7 +38,7 @@ class DegreesOfSeparation:
         :param args: the command-line arguments
 
         """
-        filename  = args[1]
+        filename = args[1]
         delimiter = args[2]
         source = args[3]
 
@@ -48,7 +47,7 @@ class DegreesOfSeparation:
         if not sg.contains(source):
             stdio.writeln("{} not in database".format(source))
             return
-        
+
         s = sg.index_of(source)
         bfs = BreadthFirstPaths(G, s)
 
@@ -58,12 +57,14 @@ class DegreesOfSeparation:
                 t = sg.index_of(sink)
                 if bfs.has_path_to(t):
                     for v in bfs.path_to(t):
-                      stdio.writef("\t%s\n", sg.name_of(v))
+                        stdio.writef("\t%s\n", sg.name_of(v))
                 else:
                     stdio.writeln("\tNot connected")
             else:
                 stdio.writeln("\tNot in database.")
-        
+
+
 if __name__ == "__main__":
     import sys
+
     DegreesOfSeparation.main(sys.argv)

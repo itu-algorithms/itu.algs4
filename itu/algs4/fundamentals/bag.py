@@ -1,14 +1,15 @@
 #!/python ??
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 #     See ResizingArrayBag for a version that uses a resizing array.
 
-from typing import Generic, Iterator, List, Optional, Sequence, TypeVar
+from typing import Generic, Iterator, Optional, TypeVar
 
-T = TypeVar('T')
-S = TypeVar('S')
+T = TypeVar("T")
+S = TypeVar("S")
+
 
 class Bag(Generic[T]):
     """The Bag class represents a bag (or multiset) of generic items. It
@@ -22,16 +23,17 @@ class Bag(Generic[T]):
     take constant time. Iteration takes time proportional to the number of items.
 
     """
+
     class Node(Generic[S]):
         # helper linked list class
         def __init__(self):
-            self.next: Optional[Node] = None
+            self.next: Optional[Bag.Node[T]] = None
             self.item: Optional[S] = None
 
     def __init__(self) -> None:
         """Initializes an empty bag."""
-        self._first: Optional[Bag.Node[T]] = None # beginning of bag
-        self._n = 0        # number of elements in bag 
+        self._first: Optional[Bag.Node[T]] = None  # beginning of bag
+        self._n = 0  # number of elements in bag
 
     def is_empty(self) -> bool:
         """Returns true if this bag is empty.
@@ -79,22 +81,23 @@ class Bag(Generic[T]):
             current = current.next
 
     def __repr__(self) -> str:
-        out = '{'
+        out = "{"
         for elem in self:
-            out += '{}, '.format(elem)
-        return out + '}'
+            out += "{}, ".format(elem)
+        return out + "}"
 
 
 # start of the script itself
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     from itu.algs4.stdlib import stdio
-    
+
     if len(sys.argv) > 1:
         try:
             sys.stdin = open(sys.argv[1])
         except IOError:
-            print("File not found, using standard input instead")    
+            print("File not found, using standard input instead")
 
     bag: Bag[str] = Bag()
     while not stdio.isEmpty():
@@ -102,6 +105,6 @@ if __name__ == '__main__':
         bag.add(item)
 
     stdio.writef("size of bag = %i\n", bag.size())
-    
+
     for s in bag:
         stdio.writeln(s)

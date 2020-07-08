@@ -9,6 +9,6 @@ class TwoSumFast:
         n = len(a)
         count = 0
         for i in range(n):
-            if binary_search.index_of(a, -a[i]) > i:            
+            if binary_search.index_of(a, -a[i]) > i:
                 count += 1
         return count

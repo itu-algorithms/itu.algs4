@@ -13,17 +13,20 @@ from ..fundamentals.queue import Queue
 # Typing ---
 
 
-Key = TypeVar('Key', bound = "Comparable")
-Val = TypeVar('Val')
+Key = TypeVar("Key", bound="Comparable")
+Val = TypeVar("Val")
+
 
 class Comparable(Protocol):
     @abstractmethod
     def __lt__(self: Key, other: Key) -> bool:
         pass
 
+
 # ---
 class Node(Generic[Key, Val]):
     """RedBlackBST helper node data type."""
+
     def __init__(self, key: Key, val: Val, color: bool, size: int):
         """Initializes a new node.
 
@@ -34,10 +37,11 @@ class Node(Generic[Key, Val]):
         """
         self.key: Key = key
         self.val: Val = val
-        self.left:  Optional[Node[Key, Val]] = None
+        self.left: Optional[Node[Key, Val]] = None
         self.right: Optional[Node[Key, Val]] = None
-        self.size:  int = size
+        self.size: int = size
         self.color: bool = color
+
 
 class RedBlackBST(Generic[Key, Val]):
     """The RedBlackBST class represents an ordered symbol table of generic key-
@@ -64,10 +68,9 @@ class RedBlackBST(Generic[Key, Val]):
     RED = True
     BLACK = False
 
-
     def __init__(self) -> None:
         """Initializes an empty symbol table."""
-        self._root : Optional[Node[Key, Val]] = None
+        self._root: Optional[Node[Key, Val]] = None
 
     def put(self, key: Key, val: Val) -> None:
         """Inserts the specified key-value pair into the symbol table,
@@ -113,7 +116,7 @@ class RedBlackBST(Generic[Key, Val]):
             h = self._rotate_left(h)
         assert h is not None
         if self._is_red(h.left):
-            assert h.left is not None # bc h.left is red
+            assert h.left is not None  # bc h.left is red
             if self._is_red(h.left.left):
                 h = self._rotate_right(h)
         assert h is not None
@@ -173,13 +176,13 @@ class RedBlackBST(Generic[Key, Val]):
             assert self._root is not None
             self._root.color = RedBlackBST.BLACK
 
-    def _delete_min(self, h: Node[Key, Val]) -> Optional[Node[Key,Val]]:
+    def _delete_min(self, h: Node[Key, Val]) -> Optional[Node[Key, Val]]:
         """Deletes the node with the minimum key rooted at h."""
         if h.left is None:
             return None
         if not self._is_red(h.left) and not self._is_red(h.left.left):
             h = self._move_red_left(h)
-        assert h.left is not None # because _move_red_left moved something to h.left
+        assert h.left is not None  # because _move_red_left moved something to h.left
         h.left = self._delete_min(h.left)
         return self._balance(h)
 
@@ -199,7 +202,7 @@ class RedBlackBST(Generic[Key, Val]):
             assert self._root is not None
             self._root.color = RedBlackBST.BLACK
 
-    def _delete_max(self, h: Node[Key, Val]) -> Optional[Node[Key,Val]]:
+    def _delete_max(self, h: Node[Key, Val]) -> Optional[Node[Key, Val]]:
         """Deletes the key-value pair with the maximum key rooted at h."""
         if self._is_red(h.left):
             h = self._rotate_right(h)
@@ -207,7 +210,7 @@ class RedBlackBST(Generic[Key, Val]):
             return None
         if not self._is_red(h.right) and not self._is_red(h.right.left):
             h = self._move_red_right(h)
-        assert h.right is not None # because _move_red_right moved something to h.right
+        assert h.right is not None  # because _move_red_right moved something to h.right
         h.right = self._delete_max(h.right)
         return self._balance(h)
 
@@ -240,14 +243,14 @@ class RedBlackBST(Generic[Key, Val]):
             assert h.left is not None
             if not self._is_red(h.left) and not self._is_red(h.left.left):
                 h = self._move_red_left(h)
-            assert h.left is not None # _move_red_left does what it should
+            assert h.left is not None  # _move_red_left does what it should
             h.left = self._delete(h.left, key)
         else:
             if self._is_red(h.left):
                 h = self._rotate_right(h)
             if key == h.key and h.right is None:
                 return None
-            assert h.right is not None # bc. key must be in the right subtree
+            assert h.right is not None  # bc. key must be in the right subtree
             if not self._is_red(h.right) and not self._is_red(h.right.left):
                 h = self._move_red_right(h)
             assert h.right is not None
@@ -299,7 +302,6 @@ class RedBlackBST(Generic[Key, Val]):
         """
         return self._root is None
 
-
     @classmethod
     def _is_red(self, x: Optional[Node[Key, Val]]) -> bool:
         """Is node x red?
@@ -312,7 +314,7 @@ class RedBlackBST(Generic[Key, Val]):
             return False
         return x.color == RedBlackBST.RED
 
-    def _rotate_left(self, h: Node[Key,Val]) -> Node[Key,Val]:
+    def _rotate_left(self, h: Node[Key, Val]) -> Node[Key, Val]:
         """Make a right-leaning link lean to the left.
 
         :param h:
@@ -320,7 +322,7 @@ class RedBlackBST(Generic[Key, Val]):
 
         """
         x = h.right
-        assert x is not None #  bc h has a right-leaning (red) link
+        assert x is not None  # bc h has a right-leaning (red) link
         h.right = x.left
         x.left = h
         x.color = h.color
@@ -329,7 +331,7 @@ class RedBlackBST(Generic[Key, Val]):
         h.size = self._size(h.left) + self._size(h.right) + 1
         return x
 
-    def _rotate_right(self, h: Node[Key, Val]) -> Node[Key,Val]:
+    def _rotate_right(self, h: Node[Key, Val]) -> Node[Key, Val]:
         """Make a left-leaning link lean to the right.
 
         :param h:
@@ -337,7 +339,7 @@ class RedBlackBST(Generic[Key, Val]):
 
         """
         x = h.left
-        assert x is not None # bc h has a left-leaning (red) link
+        assert x is not None  # bc h has a left-leaning (red) link
         h.left = x.right
         x.right = h
         x.color = h.color
@@ -376,7 +378,7 @@ class RedBlackBST(Generic[Key, Val]):
     def _move_red_right(self, h: Node[Key, Val]) -> Node[Key, Val]:
         """Assuming that h is red and both h.right and h.right.left are black,
         make h.right or one of its children red."""
-        assert h.left is not None # more is true: h.right.left exists and is not red
+        assert h.left is not None  # more is true: h.right.left exists and is not red
         self._flip_colors(h)
         if self._is_red(h.left.left):
             h = self._rotate_right(h)
@@ -483,14 +485,16 @@ class RedBlackBST(Generic[Key, Val]):
         self._keys(self._root, queue, lo, hi)
         return queue
 
-    def _keys(self, x: Optional[Node[Key, Val]], queue: Queue[Key], lo: Key, hi: Key) -> None:
+    def _keys(
+        self, x: Optional[Node[Key, Val]], queue: Queue[Key], lo: Key, hi: Key
+    ) -> None:
         """Adds the keys between lo and hi in the subtree rooted at x to the
         queue."""
         if x is None:
             return
         if lo < x.key:
             self._keys(x.left, queue, lo, hi)
-        if not x.key < lo  and x.key <=  hi:
+        if not x.key < lo and x.key <= hi:
             queue.enqueue(x.key)
         if hi > x.key:
             self._keys(x.right, queue, lo, hi)
@@ -504,8 +508,10 @@ class RedBlackBST(Generic[Key, Val]):
 
         """
         if k < 0 or k >= self.size():
-            raise IllegalArgumentException("argument to select() is invalid: {}".format(k))
-        assert self._root is not None # bc. 0 <= k < self.size()
+            raise IllegalArgumentException(
+                "argument to select() is invalid: {}".format(k)
+            )
+        assert self._root is not None  # bc. 0 <= k < self.size()
         x = self._select(self._root, k)
         return x.key
 
@@ -517,7 +523,7 @@ class RedBlackBST(Generic[Key, Val]):
             return self._select(x.left, k)
         elif t < k:
             assert x.right is not None
-            return self._select(x.right, k-t-1)
+            return self._select(x.right, k - t - 1)
         else:
             return x
 
@@ -619,7 +625,9 @@ class RedBlackBST(Generic[Key, Val]):
             raise NoSuchElementException("calls ceiling() with key > max")
         return x.key
 
-    def _ceiling(self, x: Optional[Node[Key, Val]], key: Key) -> Optional[Node[Key, Val]]:
+    def _ceiling(
+        self, x: Optional[Node[Key, Val]], key: Key
+    ) -> Optional[Node[Key, Val]]:
         """Returns the node with the smallest key in the subtree rooted at x
         greater than or equal to the given key."""
         if x is None:

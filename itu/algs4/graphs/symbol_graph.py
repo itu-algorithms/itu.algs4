@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 from itu.algs4.graphs.graph import Graph
 from itu.algs4.searching.binary_search_st import BinarySearchST
@@ -36,7 +36,7 @@ class SymbolGraph:
         :param delimiter: the delimiter between fields
 
         """
-        self._st = BinarySearchST()             # string -> index
+        self._st = BinarySearchST()  # string -> index
 
         # First pass builds the index by reading strings to associate
         # distinct strings with an index
@@ -50,13 +50,13 @@ class SymbolGraph:
         stdio.writef("Done reading %s\n", filename)
 
         # inverted index to get keys in an array
-        self._keys = [None] * self._st.size()   # index  -> string
+        self._keys = [None] * self._st.size()  # index  -> string
         for name in self._st.keys():
             self._keys[self._st.get(name)] = name
-    
+
         # second pass builds the graph by connecting first vertex on each
         # line to all others
-        self._graph = Graph(self._st.size())    # the underlying graph
+        self._graph = Graph(self._st.size())  # the underlying graph
         stream = InStream(filename)
         while stream.hasNextLine():
             a = stream.readLine().split(delimiter)
@@ -82,7 +82,7 @@ class SymbolGraph:
 
         """
         return self._st.get(s)
-    
+
     def name_of(self, v):
         """Returns the name of the vertex associated with the integer v.
 
@@ -97,17 +97,17 @@ class SymbolGraph:
     def graph(self):
         return self._graph
 
-
     def _validateVertex(self, v):
         # throw an IllegalArgumentException unless 0 <= v < V
         V = self._graph.V()
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+            raise ValueError("vertex {} is not between 0 and {}".format(v, V - 1))
+
 
 if __name__ == "__main__":
     import sys
 
-    filename  = sys.argv[1]    
+    filename = sys.argv[1]
     delimiter = sys.argv[2]
     sg = SymbolGraph(filename, delimiter)
     graph = sg.graph()
@@ -116,6 +116,6 @@ if __name__ == "__main__":
         if sg.contains(source):
             s = sg.index_of(source)
             for v in graph.adj(s):
-                stdio.writef("\t%s\n",sg.name_of(v))
+                stdio.writef("\t%s\n", sg.name_of(v))
         else:
             stdio.writef("input not contain '%i'", source)

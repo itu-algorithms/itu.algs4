@@ -24,6 +24,7 @@ class DijkstraUndirectedSP:
     shortest path returned.
 
     """
+
     def __init__(self, G, s):
         """Computes a shortest-paths tree from the source vertex s to every
         other vertex in the edge-weighted graph G.
@@ -38,7 +39,7 @@ class DijkstraUndirectedSP:
             if e.weight() < 0:
                 raise IllegalArgumentException("edge {} has negative weight".format(e))
 
-        self._dist_to = [float('inf')] * G.V()
+        self._dist_to = [float("inf")] * G.V()
         self._edge_to = [None] * G.V()
         self._dist_to[s] = 0.0
         self._validate_vertex(s)
@@ -73,7 +74,7 @@ class DijkstraUndirectedSP:
         :rtype: bool
 
         """
-        return self._dist_to[v] < float('inf')
+        return self._dist_to[v] < float("inf")
 
     def path_to(self, v):
         """Returns a shortest path between the source vertex s and vertex v.
@@ -106,7 +107,9 @@ class DijkstraUndirectedSP:
         """
         V = len(self._dist_to)
         if v < 0 or v >= V:
-            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, V-1))
+            raise IllegalArgumentException(
+                "vertex {} is not between 0 and {}".format(v, V - 1)
+            )
 
     def _relax(self, e, v):
         """Relax edge e and update pq if changed.
@@ -134,13 +137,13 @@ def main():
 
         for t in range(G.V()):
             if sp.has_path_to(t):
-                print("{} to {} ({:.2f})  ".format(s, t, sp.dist_to(t)), end='')
+                print("{} to {} ({:.2f})  ".format(s, t, sp.dist_to(t)), end="")
                 for e in sp.path_to(t):
-                    print(e, end='   ')
+                    print(e, end="   ")
                 print()
             else:
                 print("{} to {}         no path\n".format(s, t))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -16,6 +16,7 @@ class DirectedEdge:
     two endpoints of the directed edge and the weight.
 
     """
+
     def __init__(self, v, w, weight):
         """Initializes a directed edge from vertex v to vertex w with the given
         weight.
@@ -84,5 +85,5 @@ def main():
     print(e)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

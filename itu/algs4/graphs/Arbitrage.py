@@ -10,7 +10,7 @@ from itu.algs4.graphs.directed_edge import DirectedEdge
 from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
 from itu.algs4.stdlib import stdio
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """The Arbitrage function provides a client that finds an arbitrage
     opportunity in a currency exchange table by constructing a complete-digraph
     representation of the exchange table and then finding a negative cycle in
@@ -24,15 +24,15 @@ if __name__ == '__main__':
 
     """
     if len(sys.argv) > 1:
-        try: 
+        try:
             sys.stdin = open(sys.argv[1])
         except IOError:
             print("File not found, using standard input instead")
-    
+
     # V currencies
     V = stdio.readInt()
-    name = [None]*V
-    
+    name = [None] * V
+
     # Create complete network
     graph = EdgeWeightedDigraph(V)
     for v in range(V):
@@ -41,12 +41,12 @@ if __name__ == '__main__':
             rate = stdio.readFloat()
             edge = DirectedEdge(v, w, -math.log(rate))
             graph.add_edge(edge)
-    
+
     # find negative cycle
     spt = BellmanFordSP(graph, 0)
     if spt.has_negative_cycle():
         stake = 1000.0
         for edge in spt.negative_cycle():
-            print('{} {}', stake, name[edge.from_vertex()])
+            print("{} {}", stake, name[edge.from_vertex()])
             stake *= math.exp(-edge.weight())
-            print('{} {}')
+            print("{} {}")

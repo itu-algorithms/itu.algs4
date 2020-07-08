@@ -13,8 +13,6 @@ by Robert Sedgewick and Kevin Wayne.
 
 """
 
-import sys
-
 from itu.algs4.stdlib import stdio, stdrandom
 
 
@@ -23,13 +21,15 @@ def sort(array):
     stdrandom.shuffle(array)
     _sort(array, 0, len(array) - 1)
 
+
 # quicksort the subarray from array[lo] to array[hi]
 def _sort(array, lo, hi):
     if hi <= lo:
         return
     j = _partition(array, lo, hi)
-    _sort(array, lo, j-1)
-    _sort(array, j+1, hi)
+    _sort(array, lo, j - 1)
+    _sort(array, j + 1, hi)
+
 
 # partition the subarray array[lo..hi] so that
 # array[lo..j-1] <= array[j] <= array[j+1..hi]
@@ -40,14 +40,14 @@ def _partition(array, lo, hi):
     v = array[lo]
     while True:
 
-        while array[i+1] < v:
+        while array[i + 1] < v:
             i += 1
             if i == hi:
                 break
         i += 1
 
         # find item on hi to swap
-        while v < array[j-1]:
+        while v < array[j - 1]:
             j -= 1
             if j == lo:
                 break
@@ -64,6 +64,7 @@ def _partition(array, lo, hi):
 
     # now array[lo .. j-1] <= a[j] <= a[j+1 .. hi]
     return j
+
 
 def select(array, k):
     """Rearranges the array so that array[k] contains the kth smalles key;
@@ -88,6 +89,7 @@ def select(array, k):
             return array[i]
     return array[lo]
 
+
 # exchange array[i] and array[j]
 def _exch(array, i, j):
     swap = array[i]
@@ -99,14 +101,17 @@ def _exch(array, i, j):
 ##### Check if array is sorted - useful for debugging #####
 ###########################################################
 
+
 def is_sorted(array):
     return _is_sorted(array, 0, len(array) - 1)
 
+
 def _is_sorted(array, lo, hi):
     for i in range(lo + 1, hi + 1):
-        if array[i] < array[i-1]:
+        if array[i] < array[i - 1]:
             return False
     return True
+
 
 # print array to standard output
 def show(array):

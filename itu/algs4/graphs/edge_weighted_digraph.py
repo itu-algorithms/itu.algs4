@@ -27,6 +27,7 @@ class EdgeWeightedDigraph:
     proportional to the number of such edges.
 
     """
+
     def __init__(self, V):
         """Initializes an empty edge-weighted digraph with V vertices and 0
         edges.
@@ -36,7 +37,9 @@ class EdgeWeightedDigraph:
 
         """
         if V < 0:
-            raise IllegalArgumentException("Number of vertices in a Digraph must be nonnegative")
+            raise IllegalArgumentException(
+                "Number of vertices in a Digraph must be nonnegative"
+            )
         self._V = V
         self._E = 0
         self._indegree = [0] * V
@@ -83,7 +86,7 @@ class EdgeWeightedDigraph:
         E = stream.readInt()
         if g._E < 0:
             raise IllegalArgumentException("Number of edges must be nonnegative")
-        for i in range(E):
+        for _ in range(E):
             v = stream.readInt()
             w = stream.readInt()
             g._validate_vertex(v)
@@ -117,7 +120,9 @@ class EdgeWeightedDigraph:
 
         """
         if v < 0 or v >= self._V:
-            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, self._V-1))
+            raise IllegalArgumentException(
+                "vertex {} is not between 0 and {}".format(v, self._V - 1)
+            )
 
     def add_edge(self, e):
         """Adds the directed edge e to this edge-weighted digraph.
@@ -199,7 +204,7 @@ class EdgeWeightedDigraph:
             for e in self._adj[v]:
                 s.append("{}  ".format(e))
             s.append("\n")
-        return ''.join(s)
+        return "".join(s)
 
 
 def main():
@@ -211,5 +216,5 @@ def main():
         print(G)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

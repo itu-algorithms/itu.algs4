@@ -9,16 +9,19 @@ writing one- and two-dimensional arrays.
 
 from itu.algs4.stdlib import stdio
 
-#=======================================================================
+# =======================================================================
 # Array creation functions
-#=======================================================================
+# =======================================================================
+
 
 def create1D(length, value=None):
     """Create and return a 1D array containing length elements, each
     initialized to value."""
     return [value] * length
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def create2D(rowCount, colCount, value=None):
     """Create and return a 2D array having rowCount rows and colCount columns,
@@ -28,9 +31,11 @@ def create2D(rowCount, colCount, value=None):
         a[row] = [value] * colCount
     return a
 
-#=======================================================================
+
+# =======================================================================
 # Array writing functions
-#=======================================================================
+# =======================================================================
+
 
 def write1D(a):
     """Write array a to sys.stdout.
@@ -45,16 +50,18 @@ def write1D(a):
         # stdio.writef('%9.5f ', a[i])
         element = a[i]
         if isinstance(element, bool):
-            if element == True:
+            if element:
                 stdio.write(1)
             else:
-                stdio.write(0) 
+                stdio.write(0)
         else:
             stdio.write(element)
-        stdio.write(' ')
+        stdio.write(" ")
     stdio.writeln()
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def write2D(a):
     """Write two-dimensional array a to sys.stdout.
@@ -65,24 +72,26 @@ def write2D(a):
     """
     rowCount = len(a)
     colCount = len(a[0])
-    stdio.writeln(str(rowCount) + ' ' + str(colCount))
+    stdio.writeln(str(rowCount) + " " + str(colCount))
     for row in range(rowCount):
         for col in range(colCount):
-            #stdio.writef('%9.5f ', a[row][col])
+            # stdio.writef('%9.5f ', a[row][col])
             element = a[row][col]
             if isinstance(element, bool):
-                if element == True:
+                if element:
                     stdio.write(1)
                 else:
                     stdio.write(0)
             else:
                 stdio.write(element)
-            stdio.write(' ')
+            stdio.write(" ")
         stdio.writeln()
 
-#=======================================================================
+
+# =======================================================================
 # Array reading functions
-#=======================================================================
+# =======================================================================
+
 
 def readInt1D():
     """Read from sys.stdin and return an array of integers.
@@ -96,7 +105,9 @@ def readInt1D():
         a[i] = stdio.readInt()
     return a
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def readInt2D():
     """Read from sys.stdin and return a two-dimensional array of integers.
@@ -113,7 +124,9 @@ def readInt2D():
             a[row][col] = stdio.readInt()
     return a
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def readFloat1D():
     """Read from sys.stdin and return an array of floats.
@@ -127,7 +140,9 @@ def readFloat1D():
         a[i] = stdio.readFloat()
     return a
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def readFloat2D():
     """Read from sys.stdin and return a two-dimensional array of floats.
@@ -144,7 +159,9 @@ def readFloat2D():
             a[row][col] = stdio.readFloat()
     return a
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def readBool1D():
     """Read from sys.stdin and return an array of booleans.
@@ -158,7 +175,9 @@ def readBool1D():
         a[i] = stdio.readBool()
     return a
 
-#-----------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+
 
 def readBool2D():
     """Read from sys.stdin and return a two-dimensional array of booleans.
@@ -175,12 +194,15 @@ def readBool2D():
             a[row][col] = stdio.readBool()
     return a
 
-#=======================================================================
+
+# =======================================================================
+
 
 def _main():
     """For testing."""
     write2D(readFloat2D())
     write2D(readBool2D())
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     _main()

@@ -32,8 +32,8 @@ class DirectedCycle:
 
     For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 
-    """    
-    
+    """
+
     def __init__(self, digraph):
         """Determines whether the digraph has a directed cycle and, if so,
         finds such a cycle.
@@ -42,13 +42,13 @@ class DirectedCycle:
 
         """
         self._cycle = None
-        self._on_stack = [False]*digraph.V()
-        self._edge_to  = [0]*digraph.V()
-        self._marked = [False]*digraph.V()
+        self._on_stack = [False] * digraph.V()
+        self._edge_to = [0] * digraph.V()
+        self._marked = [False] * digraph.V()
         for v in range(digraph.V()):
             if not self._marked[v]:
-                self._dfs(digraph, v) 
-    
+                self._dfs(digraph, v)
+
     # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, digraph, v):
         self._on_stack[v] = True
@@ -70,17 +70,17 @@ class DirectedCycle:
                     x = self._edge_to[x]
                 self._cycle.push(w)
                 self._cycle.push(v)
-                
+
         self._on_stack[v] = False
-    
+
     def has_cycle(self):
         """Does the digraph have a directed cycle?
 
         :returns: true if there is a cycle, false otherwise
 
         """
-        return self._cycle != None
-    
+        return self._cycle is not None
+
     def cycle(self):
         """Returns a directed cycle if the digraph has a directed cycle, and
         null otherwise.
@@ -91,13 +91,12 @@ class DirectedCycle:
         return self._cycle
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
-    
+
     d = Digraph.from_stream(InStream(stream))
- 
+
     cyc = DirectedCycle(d)
     print(cyc.cycle())

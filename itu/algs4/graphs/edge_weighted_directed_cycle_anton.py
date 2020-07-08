@@ -33,8 +33,8 @@ class EdgeWeightedDirectedCycle:
 
     For additional documentation, see Section 4.4 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 
-    """    
-    
+    """
+
     def __init__(self, edge_weighted_digraph):
         """Determines whether the edge weighted digraph has a directed cycle
         and, if so, finds such a cycle.
@@ -43,20 +43,20 @@ class EdgeWeightedDirectedCycle:
 
         """
         self._cycle = None
-        self._on_stack = [False]*edge_weighted_digraph.V()
-        self._edge_to  = [None]*edge_weighted_digraph.V()
-        self._marked = [False]*edge_weighted_digraph.V()
+        self._on_stack = [False] * edge_weighted_digraph.V()
+        self._edge_to = [None] * edge_weighted_digraph.V()
+        self._marked = [False] * edge_weighted_digraph.V()
         for v in range(edge_weighted_digraph.V()):
             if not self._marked[v]:
-                self._dfs(edge_weighted_digraph, v) 
-    
+                self._dfs(edge_weighted_digraph, v)
+
     # check that algorithm computes either the topological order or finds a directed cycle
     def _dfs(self, graph, v):
         self._on_stack[v] = True
         self._marked[v] = True
         for edge in graph.adj(v):
             w = edge.to_vertex()
-            
+
             # short circuit if directed cycle found
             if self.has_cycle():
                 return
@@ -72,17 +72,17 @@ class EdgeWeightedDirectedCycle:
                     self._cycle.push(f)
                     f = self._edge_to[f.from_vertex()]
                 self._cycle.push(f)
-                
+
         self._on_stack[v] = False
-    
+
     def has_cycle(self):
         """Does the edge weighted digraph have a directed cycle?
 
         :returns: true if there is a cycle, false otherwise
 
         """
-        return self._cycle != None
-    
+        return self._cycle is not None
+
     def cycle(self):
         """Returns a directed cycle if the edge weighted digraph has a directed
         cycle, and null otherwise.
@@ -93,13 +93,12 @@ class EdgeWeightedDirectedCycle:
         return self._cycle
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
-    
+
     d = EdgeWeightedDigraph.from_stream(instream.InStream(stream))
- 
+
     cyc = EdgeWeightedDirectedCycle(d)
     print(cyc.cycle())

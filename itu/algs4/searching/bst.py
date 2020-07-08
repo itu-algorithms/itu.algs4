@@ -4,14 +4,14 @@
 
 import sys
 from abc import abstractmethod
-from typing import Generic, List, Optional, Sequence, TypeVar
+from typing import Generic, Optional, TypeVar
 
 from typing_extensions import Protocol
 
 from ..errors.errors import IllegalArgumentException, NoSuchElementException
 from ..fundamentals.queue import Queue
 
-sys.setrecursionlimit(10**5)
+sys.setrecursionlimit(10 ** 5)
 
 """
 The BST class represents an ordered symbol table of generic
@@ -28,26 +28,29 @@ For additional details and documentation, see Section 3.2 of Algorithms,
 """
 
 
-Val = TypeVar('Val')
-Key = TypeVar('Key', bound = 'Comparable')
+Val = TypeVar("Val")
+Key = TypeVar("Key", bound="Comparable")
+
 
 class Comparable(Protocol):
     @abstractmethod
     def __lt__(self: Key, other: Key) -> bool:
         pass
 
+
 class Node(Generic[Key, Val]):
     def __init__(self, key: Key, value: Optional[Val], size: int):
-        self.left:  Optional[Node[Key,Val]] = None      # root of left subtree
-        self.right: Optional[Node[Key,Val]] = None      # root of right subtree
-        self.key: Key = key         # sorted by key
-        self.value: Optional[Val] = value     # associated data
-        self.size: int = size       # number of nodes in subtree
+        self.left: Optional[Node[Key, Val]] = None  # root of left subtree
+        self.right: Optional[Node[Key, Val]] = None  # root of right subtree
+        self.key: Key = key  # sorted by key
+        self.value: Optional[Val] = value  # associated data
+        self.size: int = size  # number of nodes in subtree
+
 
 class BST(Generic[Key, Val]):
     def __init__(self) -> None:
         """Initialises empty symbol table."""
-        self._root: Optional[Node[Key, Val]] = None           # root of BST
+        self._root: Optional[Node[Key, Val]] = None  # root of BST
 
     def is_empty(self) -> bool:
         """Returns true if this symbol table is empty."""
@@ -60,12 +63,12 @@ class BST(Generic[Key, Val]):
         :return boolean: true if symbol table contains key, false otherwise
 
         """
-        return self.get(key) != None
+        return self.get(key) is not None
 
     def size(self) -> int:
         """Returns the number of key-value pairs in this symbol table."""
         return self._size(self._root)
-        
+
     def __len__(self) -> int:
         return self.size()
 
@@ -116,7 +119,9 @@ class BST(Generic[Key, Val]):
             return
         self._root = self._put(self._root, key, value)
 
-    def _put(self, node: Optional[Node[Key,Val]], key: Key, value: Optional[Val]) -> Node[Key, Val]:
+    def _put(
+        self, node: Optional[Node[Key, Val]], key: Key, value: Optional[Val]
+    ) -> Node[Key, Val]:
         if node is None:
             newnode: Node[Key, Val] = Node(key, value, 1)
             return newnode
@@ -164,13 +169,14 @@ class BST(Generic[Key, Val]):
         node.size = self._size(node.left) + self._size(node.right) + 1
         return node
 
-
     def delete(self, key: Key) -> None:
         """Removes the specified key and its associated value from this symbol
         table (if the key is in this symbol table)"""
         self._root = self._delete(self._root, key)
 
-    def _delete(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key,Val]]:
+    def _delete(
+        self, node: Optional[Node[Key, Val]], key: Key
+    ) -> Optional[Node[Key, Val]]:
         if node is None:
             return None
         else:
@@ -233,7 +239,9 @@ class BST(Generic[Key, Val]):
         else:
             return node.key
 
-    def _floor(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key, Val]]:
+    def _floor(
+        self, node: Optional[Node[Key, Val]], key: Key
+    ) -> Optional[Node[Key, Val]]:
         if node is None:
             return None
         elif key == node.key:
@@ -257,7 +265,9 @@ class BST(Generic[Key, Val]):
         else:
             return node.key
 
-    def _ceiling(self, node: Optional[Node[Key,Val]], key: Key) -> Optional[Node[Key, Val]]:
+    def _ceiling(
+        self, node: Optional[Node[Key, Val]], key: Key
+    ) -> Optional[Node[Key, Val]]:
         if node is None:
             return None
         elif key == node.key:
@@ -287,7 +297,9 @@ class BST(Generic[Key, Val]):
         self._range_keys(self._root, queue, lo, hi)
         return queue
 
-    def _range_keys(self, node: Optional[Node[Key, Val]], queue: Queue[Key], lo: Key, hi: Key) -> None:
+    def _range_keys(
+        self, node: Optional[Node[Key, Val]], queue: Queue[Key], lo: Key, hi: Key
+    ) -> None:
         if node is None:
             return
         elif lo < node.key:
@@ -296,7 +308,7 @@ class BST(Generic[Key, Val]):
             queue.enqueue(node.key)
         if hi > node.key:
             self._range_keys(node.right, queue, lo, hi)
-            
+
     def select(self, k: int) -> Key:
         """Return the kth smallest key in the symbol table.
 
@@ -306,7 +318,9 @@ class BST(Generic[Key, Val]):
 
         """
         if k < 0 or k >= self.size():
-            raise IllegalArgumentException("argument to select() is invalid: {}".format(k))
+            raise IllegalArgumentException(
+                "argument to select() is invalid: {}".format(k)
+            )
         assert self._root is not None
         x = self._select(self._root, k)
         return x.key
@@ -322,7 +336,7 @@ class BST(Generic[Key, Val]):
             return self._select(x.left, k)
         elif t < k:
             assert x.right is not None
-            return self._select(x.right, k-t-1)
+            return self._select(x.right, k - t - 1)
         else:
             return x
 
@@ -390,8 +404,8 @@ class BST(Generic[Key, Val]):
     def level_order(self) -> Queue[Key]:
         """Returns the keys in the BST in level order (for debugging)"""
         queue: Queue[Optional[Node[Key, Val]]] = Queue()
-        keys: Queue[Key] =  Queue()
-        queue.enqueue(self._root) 
+        keys: Queue[Key] = Queue()
+        queue.enqueue(self._root)
         while len(queue) > 0:
             node = queue.dequeue()
             if node is None:

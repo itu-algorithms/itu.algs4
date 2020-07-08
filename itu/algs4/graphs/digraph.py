@@ -36,6 +36,7 @@ class Digraph:
     time proportional to the number of such vertices.
 
     """
+
     def __init__(self, V):
         """Initializes an empty graph with V vertices and 0 edges. param V the
         number of vertices.
@@ -44,13 +45,14 @@ class Digraph:
         :raises: ValueError if V < 0
 
         """
-        if V < 0: raise ValueError("Number of vertices must be nonnegative")
-        self._V = V     # number of vertices
-        self._E = 0     # number of edges
+        if V < 0:
+            raise ValueError("Number of vertices must be nonnegative")
+        self._V = V  # number of vertices
+        self._E = 0  # number of edges
         self._adj = []  # adjacency lists
 
         for _ in range(V):
-            self._adj.append(Bag()) # Initialize all lists to empty bags.
+            self._adj.append(Bag())  # Initialize all lists to empty bags.
 
     @staticmethod
     def from_stream(stream):
@@ -65,18 +67,20 @@ class Digraph:
         :raises ValueError: if the input stream is in the wrong format
 
         """
-        V = stream.readInt()        # read V
-        if V < 0: raise ValueError("Number of vertices must be nonnegative")
-        g = Digraph(V)                # construct this graph
-        E = stream.readInt()        # read E    
-        if E < 0: raise ValueError("Number of edges in a Graph must be nonnegative")
+        V = stream.readInt()  # read V
+        if V < 0:
+            raise ValueError("Number of vertices must be nonnegative")
+        g = Digraph(V)  # construct this graph
+        E = stream.readInt()  # read E
+        if E < 0:
+            raise ValueError("Number of edges in a Graph must be nonnegative")
         for _ in range(E):
             # Add an edge
-            v = stream.readInt()    # read a vertex,
-            w = stream.readInt()        # read another vertex,
+            v = stream.readInt()  # read a vertex,
+            w = stream.readInt()  # read another vertex,
             g._validateVertex(v)
             g._validateVertex(w)
-            g.add_edge(v, w)             # and add edge connecting them.
+            g.add_edge(v, w)  # and add edge connecting them.
         return g
 
     @staticmethod
@@ -126,7 +130,7 @@ class Digraph:
         :raises ValueError: unless both 0 <= v < V and 0 <= w < V
 
         """
-        self._adj[v].add(w)         # add w to v's list
+        self._adj[v].add(w)  # add w to v's list
         self._E += 1
 
     def adj(self, v):
@@ -137,7 +141,7 @@ class Digraph:
         :raises ValueError: unless  0 <= v < V
 
         """
-        self._validateVertex(v)        
+        self._validateVertex(v)
         return self._adj[v]
 
     def degree(self, v):
@@ -150,7 +154,7 @@ class Digraph:
         """
         self._validateVertex(v)
         return self._adj[v].size()
-    
+
     def reverse(self):
         """Returns the reverse of the digraph.
 
@@ -177,14 +181,13 @@ class Digraph:
                 s.append("%d " % (w))
             s.append("\n")
 
-        return ''.join(s)
-    
-    
+        return "".join(s)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Create stream from file or the standard input,
     # depending on whether a file name was passed.
     stream = sys.argv[1] if len(sys.argv) > 1 else None
-    
+
     d = Digraph.from_stream(InStream(stream))
     print(d)

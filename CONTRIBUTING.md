@@ -21,14 +21,15 @@ python3 -m unittest tests/test_bst.py
 pytest tests/test_stack.py
 ```
 
-## Linter
+## Linter   
 
-Run `flake8` to lint all code. We currently only enforce linting on [examples/](examples) and [tests/](tests).
+Run `flake8` to lint all code. Run `black .` to automatically fix some linting error.
 Moreover, run
 ```
-isort
+isort -y
 ```
 to sort import statements.
+We enforce linting on [examples/](examples), [tests/](tests), and [itu/](itu).
 
 ## Types
 

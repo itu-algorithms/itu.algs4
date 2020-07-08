@@ -28,6 +28,7 @@ class EdgeWeightedGraph:
     takes time proportional to the number of such edges.
 
     """
+
     def __init__(self, V):
         """Initializes an empty edge-weighted graph with V vertices and 0
         edges.
@@ -81,7 +82,7 @@ class EdgeWeightedGraph:
         E = stream.readInt()
         if E < 0:
             raise IllegalArgumentException("Number of edges must be nonnegative")
-        for i in range(E):
+        for _ in range(E):
             v = stream.readInt()
             w = stream.readInt()
             g._validate_vertex(v)
@@ -159,7 +160,7 @@ class EdgeWeightedGraph:
                 if e.other(v) > v:
                     edges.add(e)
                 elif e.other(v) is v:
-                    if self_loops % 2 is 0:
+                    if self_loops % 2 == 0:
                         edges.add(e)
                     self_loops += 1
         return edges
@@ -171,7 +172,9 @@ class EdgeWeightedGraph:
 
         """
         if v < 0 or v >= self._V:
-            raise IllegalArgumentException("vertex {} is not between 0 and {}".format(v, self._V-1))
+            raise IllegalArgumentException(
+                "vertex {} is not between 0 and {}".format(v, self._V - 1)
+            )
 
     def __repr__(self):
         """Returns a string representation of the edge-weighted graph.
@@ -187,7 +190,7 @@ class EdgeWeightedGraph:
             for e in self._adj[v]:
                 s.append("{}: ".format(e))
             s.append("\n")
-        return ''.join(s)
+        return "".join(s)
 
 
 def main():
@@ -199,5 +202,5 @@ def main():
         print(G)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

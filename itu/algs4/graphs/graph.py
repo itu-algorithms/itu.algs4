@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 from itu.algs4.fundamentals.bag import Bag
 from itu.algs4.fundamentals.stack import Stack
@@ -25,6 +25,7 @@ class Graph:
     time proportional to the number of such vertices.
 
     """
+
     def __init__(self, V):
         """Initializes an empty graph with V vertices and 0 edges. param V the
         number of vertices.
@@ -33,13 +34,14 @@ class Graph:
         :raises: ValueError if V < 0
 
         """
-        if V < 0: raise ValueError("Number of vertices must be nonnegative")
-        self._V = V     # number of vertices
-        self._E = 0     # number of edges
+        if V < 0:
+            raise ValueError("Number of vertices must be nonnegative")
+        self._V = V  # number of vertices
+        self._E = 0  # number of edges
         self._adj = []  # adjacency lists
 
         for _ in range(V):
-            self._adj.append(Bag()) # Initialize all lists to empty bags.
+            self._adj.append(Bag())  # Initialize all lists to empty bags.
 
     @staticmethod
     def from_stream(stream):
@@ -54,18 +56,20 @@ class Graph:
         :raises ValueError: if the input stream is in the wrong format
 
         """
-        V = stream.readInt()        # read V
-        if V < 0: raise ValueError("Number of vertices must be nonnegative")
-        g = Graph(V)                # construct this graph
-        E = stream.readInt()        # read E    
-        if E < 0: raise ValueError("Number of edges in a Graph must be nonnegative")
+        V = stream.readInt()  # read V
+        if V < 0:
+            raise ValueError("Number of vertices must be nonnegative")
+        g = Graph(V)  # construct this graph
+        E = stream.readInt()  # read E
+        if E < 0:
+            raise ValueError("Number of edges in a Graph must be nonnegative")
         for _ in range(E):
             # Add an edge
-            v = stream.readInt()    # read a vertex,
-            w = stream.readInt()        # read another vertex,
+            v = stream.readInt()  # read a vertex,
+            w = stream.readInt()  # read another vertex,
             g._validateVertex(v)
             g._validateVertex(w)
-            g.add_edge(v, w)             # and add edge connecting them.
+            g.add_edge(v, w)  # and add edge connecting them.
         return g
 
     @staticmethod
@@ -115,8 +119,8 @@ class Graph:
         :raises ValueError: unless both 0 <= v < V and 0 <= w < V
 
         """
-        self._adj[v].add(w)         # add w to v's list
-        self._adj[w].add(v)         # add v to w's list
+        self._adj[v].add(w)  # add w to v's list
+        self._adj[w].add(v)  # add v to w's list
         self._E += 1
 
     def adj(self, v):
@@ -127,7 +131,7 @@ class Graph:
         :raises ValueError: unless  0 <= v < V
 
         """
-        self._validateVertex(v)        
+        self._validateVertex(v)
         return self._adj[v]
 
     def degree(self, v):
@@ -155,12 +159,14 @@ class Graph:
                 s.append("%d " % (w))
             s.append("\n")
 
-        return ''.join(s)
+        return "".join(s)
+
 
 if __name__ == "__main__":
-    from itu.algs4.stdlib.instream import InStream
-    from itu.algs4.stdlib import stdio
     import sys
+
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.stdlib.instream import InStream
 
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)

@@ -33,7 +33,7 @@ class Topological:
     For additional documentation, see Section 4.2 of Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 
     """
-    
+
     def __init__(self, digraph):
         """Determines whether the digraph (or edge weighted digraph) has a
         topological order and, if so, finds such a topological order.
@@ -42,7 +42,7 @@ class Topological:
 
         """
         self._order = None
-        
+
         if isinstance(digraph, Digraph):
             finder = DirectedCycle(digraph)
         else:
@@ -51,12 +51,12 @@ class Topological:
         if not finder.has_cycle():
             dfs = DepthFirstOrder(digraph)
             self._order = dfs.reverse_post()
-            self._rank = [0]*digraph.V()
+            self._rank = [0] * digraph.V()
             i = 0
             for v in self._order:
                 self._rank[v] = i
                 i += 1
-    
+
     def order(self):
         """Returns a topological order if the digraph has a topologial order,
         and None otherwise.
@@ -66,7 +66,7 @@ class Topological:
 
         """
         return self._order
-    
+
     def has_order(self):
         """Does the digraph have a topological order?
 
@@ -74,8 +74,8 @@ class Topological:
                  is a DAG), and False otherwise
 
         """
-        return self._order != None
-    
+        return self._order is not None
+
     def rank(self, v):
         """The the rank of vertex v in the topological order -1 if the digraph
         is not a DAG.
@@ -89,21 +89,21 @@ class Topological:
             return self._rank[v]
         else:
             return -1
-    
+
     def _validate_vertex(self, v):
-        # throw an IllegalArgumentException unless 0 <= v < V        
+        # throw an IllegalArgumentException unless 0 <= v < V
         V = len(self._rank)
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}", v, (V-1))
+            raise ValueError("vertex {} is not between 0 and {}", v, (V - 1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
-    from itu.algs4.stdio.instream import InStream
-    from itu.algs4.stdlib import stdio
-    from itu.algs4.graphs.symbol_digraph import SymbolDigraph
 
-    filename  = sys.argv[1]
+    from itu.algs4.graphs.symbol_digraph import SymbolDigraph
+    from itu.algs4.stdlib import stdio
+
+    filename = sys.argv[1]
     delimiter = sys.argv[2]
     sg = SymbolDigraph(filename, delimiter)
     topological = Topological(sg.digraph())

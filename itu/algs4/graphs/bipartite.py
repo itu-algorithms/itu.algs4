@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 from itu.algs4.fundamentals.stack import Stack
 from itu.algs4.graphs.graph import Graph
@@ -33,43 +33,48 @@ class Bipartite:
         :param G: the graph
 
         """
-        self._is_bipartite = True       # is the graph bipartite?
-        self._color = [False] * G.V()   # color[v] gives vertices on one side of bipartition
+        self._is_bipartite = True  # is the graph bipartite?
+        self._color = [
+            False
+        ] * G.V()  # color[v] gives vertices on one side of bipartition
         self._marked = [False] * G.V()  # marked[v] = True if v has been visited in DFS
-        self._edge_to = [0] * G.V()      # edgeTo[v] = last edge on path to v
-        self._cycle = None              # odd-length cycle
-        
+        self._edge_to = [0] * G.V()  # edgeTo[v] = last edge on path to v
+        self._cycle = None  # odd-length cycle
+
         for v in range(G.V()):
             if not self._marked[v]:
                 self._dfs(G, v)
 
         assert self._check(G)
-    
+
     def _dfs(self, G, v):
         self._marked[v] = True
 
         for w in G.adj(v):
             # short circuit if odd-length cycle found
-            if self._cycle is not None: return
+            if self._cycle is not None:
+                return
 
             # found uncolored vertex, so recur
             if not self._marked[w]:
                 self._edge_to[w] = v
                 self._color[w] = not self._color[v]
-                self._dfs(G, w)             
+                self._dfs(G, w)
 
             # if v-w create an odd-length cycle, find it
             elif self._color[w] == self._color[v]:
                 self._is_bipartite = False
                 self._cycle = Stack()
-                self._cycle.push(w)  # don't need this unless you want to include start vertex twice
+                self._cycle.push(
+                    w
+                )  # don't need this unless you want to include start vertex twice
                 x = v
                 while x != w:
                     self._cycle.push(x)
                     x = self._edge_to[x]
 
                 self._cycle.push(w)
-            
+
     def is_bipartite(self):
         """Returns True if the graph is bipartite.
 
@@ -107,11 +112,13 @@ class Bipartite:
 
     def _check(self, G):
         # graph is bipartite
-        if self._is_bipartite: 
+        if self._is_bipartite:
             for v in range(G.V()):
                 for w in G.adj(v):
                     if self._color[v] == self._color[w]:
-                        error = "edge {}-{} with {} and {} in same side of bipartition\n".format(v, w, v, w)
+                        error = "edge {}-{} with {} and {} in same side of bipartition\n".format(
+                            v, w, v, w
+                        )
                         print(error, file=sys.stderr)
                         return False
         # graph has an odd-length cycle
@@ -123,25 +130,26 @@ class Bipartite:
                 if first == -1:
                     first = v
                 last = v
-            
+
             if first != last:
                 error = "cycle begins with {} and ends with {}\n".format(first, last)
                 print(error, file=sys.stderr)
                 return False
         return True
-    
+
     def _validateVertex(self, v):
-        # raise an ValueError unless 0 <= v < V    
+        # raise an ValueError unless 0 <= v < V
         V = len(self._marked)
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+            raise ValueError("vertex {} is not between 0 and {}".format(v, V - 1))
 
 
 if __name__ == "__main__":
-    from itu.algs4.stdlib.instream import InStream
-    from itu.algs4.stdlib import stdio
     import sys
-    
+
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.stdlib.instream import InStream
+
     In = InStream(sys.argv[1])
     G = Graph.from_stream(In)
     stdio.writeln(G)

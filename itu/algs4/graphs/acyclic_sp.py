@@ -1,6 +1,6 @@
 # Created for BADS 2018
 # see README.md for details
-# This is python3 
+# This is python3
 
 import math
 
@@ -32,8 +32,8 @@ class AcyclicSP:
         :raises ValueError: unless 0 <= s < V
 
         """
-        self._dist_to = [0] * G.V()         # _dist_to[v] = distance  of shortest s->v path
-        self._edge_to = [None] * G.V()      # _edge_to[v] = last edge on shortest s->v path
+        self._dist_to = [0] * G.V()  # _dist_to[v] = distance  of shortest s->v path
+        self._edge_to = [None] * G.V()  # _edge_to[v] = last edge on shortest s->v path
 
         self._validate_vertex(s)
 
@@ -49,7 +49,7 @@ class AcyclicSP:
         for v in topological.order():
             for e in G.adj(v):
                 self._relax(e)
-                
+
     def _relax(self, e):
         v = e.from_vertex()
         w = e.to_vertex()
@@ -57,7 +57,7 @@ class AcyclicSP:
         if self._dist_to[w] > self._dist_to[v] + e.weight():
             self._dist_to[w] = self._dist_to[v] + e.weight()
             self._edge_to[w] = e
-        
+
     def dist_to(self, v):
         """Returns the length of a shortest path from the source vertex s to
         vertex v.
@@ -70,8 +70,7 @@ class AcyclicSP:
         """
         self._validate_vertex(v)
         return self._dist_to[v]
-    
-    
+
     def has_path_to(self, v):
         """Is there a path from the source vertex s to vertex v?
 
@@ -83,7 +82,7 @@ class AcyclicSP:
         """
         self._validate_vertex(v)
         return self._dist_to[v] < math.inf
-    
+
     def path_to(self, v):
         """Returns a shortest path from the source vertex s to vertex v.
 
@@ -94,25 +93,28 @@ class AcyclicSP:
 
         """
         self._validate_vertex(v)
-        if not self.has_path_to(v): return None
-        path =  Stack()
+        if not self.has_path_to(v):
+            return None
+        path = Stack()
         e = self._edge_to[v]
         while e is not None:
             path.push(e)
-            e = self._edge_to[e.from_vertex()]        
+            e = self._edge_to[e.from_vertex()]
         return path
-    
+
     def _validate_vertex(self, v):
         # raise an ValueError unless 0 <= v < V
         V = len(self._dist_to)
         if v < 0 or v >= V:
-            raise ValueError("vertex {} is not between 0 and {}".format(v, V-1))
+            raise ValueError("vertex {} is not between 0 and {}".format(v, V - 1))
+
 
 if __name__ == "__main__":
     import sys
-    from itu.algs4.stdlib.instream import InStream
-    from itu.algs4.stdlib import stdio
+
     from itu.algs4.graphs.edge_weighted_digraph import EdgeWeightedDigraph
+    from itu.algs4.stdlib import stdio
+    from itu.algs4.stdlib.instream import InStream
 
     In = InStream(sys.argv[1])
     s = int(sys.argv[2])

@@ -2,10 +2,7 @@
 # See README.md for details
 # Python 3
 
-import sys
-
 from itu.algs4.stdlib import stdio
-
 
 """
 The heap module provides a function for heapsorting an array.
@@ -19,7 +16,7 @@ def sort(pq):
 
     """
     n = len(pq)
-    for k in range(n//2, 0, -1):
+    for k in range(n // 2, 0, -1):
         _sink(pq, k, n)
     while n > 1:
         _exch(pq, 1, n)
@@ -34,9 +31,9 @@ def _sink(pq, k, n):
     :param n: Amount of items left on the heap
 
     """
-    while 2*k <= n:
-        j = 2*k
-        if j < n and _less(pq, j, j+1):
+    while 2 * k <= n:
+        j = 2 * k
+        if j < n and _less(pq, j, j + 1):
             j += 1
         if not _less(pq, k, j):
             break
@@ -66,7 +63,7 @@ def _exch(pq, i, j):
     :param j: index of the second item
 
     """
-    pq[i-1], pq[j-1] = pq[j-1], pq[i-1]
+    pq[i - 1], pq[j - 1] = pq[j - 1], pq[i - 1]
 
 
 def _show(pq):
@@ -87,5 +84,5 @@ def main():
     _show(a)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
