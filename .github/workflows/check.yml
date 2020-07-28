@@ -1,6 +1,6 @@
 name: check
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -31,3 +31,9 @@ jobs:
     - name: Typecheck
       run: |
         mypy
+    - name: Documentation
+      run: |
+        pip install sphinx
+        cd docs
+        mkdir _target && mkdir _static
+        sphinx-build . _target/
