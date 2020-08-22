@@ -1,4 +1,3 @@
-#!/python ??
 # Created for BADS 2018
 # see README.md for details
 # This is python3
