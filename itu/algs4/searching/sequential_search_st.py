@@ -57,7 +57,7 @@ class SequentialSearchST:
         return self.size() == 0
 
     def contains(self, key):
-        """" Returns true if this symbol table contains the specified key.
+        """Returns true if this symbol table contains the specified key.
 
         :param  key the key
         :returns: true if this symbol table contains key

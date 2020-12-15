@@ -22,14 +22,16 @@ ST_IMPLEMENTATIONS = [
 
 
 @pytest.mark.parametrize(
-    "st", [constructor() for constructor in ST_IMPLEMENTATIONS],
+    "st",
+    [constructor() for constructor in ST_IMPLEMENTATIONS],
 )
 def test_is_empty(st):
     assert st.is_empty()
 
 
 @pytest.mark.parametrize(
-    "st", [constructor() for constructor in ST_IMPLEMENTATIONS],
+    "st",
+    [constructor() for constructor in ST_IMPLEMENTATIONS],
 )
 def test_delete(st):
     st.put("key1", "val1")
@@ -42,7 +44,8 @@ def test_delete(st):
 
 
 @pytest.mark.parametrize(
-    "st", [constructor() for constructor in ST_IMPLEMENTATIONS],
+    "st",
+    [constructor() for constructor in ST_IMPLEMENTATIONS],
 )
 def old_tests(st):
     st.put("one", 1)

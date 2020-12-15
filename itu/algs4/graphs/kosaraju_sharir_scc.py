@@ -36,9 +36,9 @@ from itu.algs4.stdlib.instream import InStream
 class KosarajuSharirSCC:
 
     """
-     * Computes the strong components of the digraph G.
-     * @param G the digraph
-     """
+    * Computes the strong components of the digraph G.
+    * @param G the digraph
+    """
 
     def __init__(self, G):
         self._marked = [False] * G.V()  # marked[v] = has vertex v been visited?

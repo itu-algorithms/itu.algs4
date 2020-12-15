@@ -42,9 +42,9 @@ from itu.algs4.stdlib.instream import InStream
 
 class TransitiveClosure:
     """
-     * Computes the transitive closure of the digraph G.
-     * @param G the digraph
-     """
+    * Computes the transitive closure of the digraph G.
+    * @param G the digraph
+    """
 
     def __init__(self, G):
         self._tc = [None] * G.V()  # tc[v] = reachable from v

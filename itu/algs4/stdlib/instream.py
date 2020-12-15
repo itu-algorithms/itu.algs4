@@ -54,6 +54,7 @@ class InStream:
         if fileOrUrl is None:
             # To change the mode of sys.stdin:
             from itu.algs4.stdlib import stdio  # noqa: F401
+
             self._stream = sys.stdin
             return
 
