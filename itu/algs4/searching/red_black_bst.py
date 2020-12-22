@@ -387,7 +387,7 @@ class RedBlackBST(Generic[Key, Val]):
 
     def _balance(self, h: Node[Key, Val]) -> Node[Key, Val]:
         """Restore red-black tree invariant."""
-        if self._is_red(h.right):
+        if self._is_red(h.right) and not self._is_red(h.left):
             h = self._rotate_left(h)
         if self._is_red(h.left):
             assert h.left is not None
