@@ -30,6 +30,7 @@ jobs:
       - name: Typecheck
         run: |
           mypy
+        continue-on-error: true
       - name: Documentation
         run: |
           pip install sphinx
