@@ -126,7 +126,7 @@ class SET:
     def __eq__(self, other):
         if other is None:
             return False
-        if type(other) != type(self):
+        if type(other) is not type(self):
             return False
         return self._set == other._set
 
