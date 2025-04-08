@@ -22,6 +22,9 @@ class Comparable(Protocol):
     def __lt__(self: Key, other: Key) -> bool:
         pass
 
+    def __le__(self: Key, other: Key) -> bool:
+        return self < other or self == other
+
 
 # ---
 class Node(Generic[Key, Val]):
