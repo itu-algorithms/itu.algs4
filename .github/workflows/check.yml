@@ -29,7 +29,7 @@ jobs:
           isort -c --diff examples tests itu
       - name: Typecheck
         run: |
-          mypy
+          mypy --config-file setup.cfg
       - name: Documentation
         run: |
           pip install sphinx
