@@ -4,7 +4,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -12,28 +11,28 @@ jobs:
         python-version: [3.6, 3.7, 3.8]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install
-      run: |
-        pip install --upgrade -e .[dev]
-    - name: Test
-      run: |
-        pytest --cov-report term-missing --cov itu.algs4
-    - name: Lint
-      run: |
-        flake8 examples tests itu
-        isort -c --diff examples tests itu
-    - name: Typecheck
-      run: |
-        mypy
-    - name: Documentation
-      run: |
-        pip install sphinx
-        cd docs
-        mkdir _target && mkdir _static
-        sphinx-build . _target/
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          pip install --upgrade -e .[dev]
+      - name: Test
+        run: |
+          pytest --cov-report term-missing --cov itu.algs4
+      - name: Lint
+        run: |
+          flake8 examples tests itu
+          isort -c --diff examples tests itu
+      - name: Typecheck
+        run: |
+          mypy
+      - name: Documentation
+        run: |
+          pip install sphinx
+          cd docs
+          mkdir _target && mkdir _static
+          sphinx-build . _target/
