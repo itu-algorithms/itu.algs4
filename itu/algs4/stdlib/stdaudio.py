@@ -37,7 +37,6 @@ def wait():
     # Can have at most one sound in the queue.  So must wait for the
     # queue to become empty before adding a new sound to the queue.
 
-    global _channel
     clock = pygame.time.Clock()
     while _channel.get_queue() is not None:
         # while pygame.mixer.get_busy():
@@ -47,7 +46,6 @@ def wait():
 def playSample(s):
     """Play sound sample s."""
     global _myBuffer
-    global _channel
     _myBuffer.append(s)
     if len(_myBuffer) > _MY_BUFFER_MAX_LENGTH:
         temp = []

@@ -395,7 +395,6 @@ def filledCircle(x, y, r):
 def rectangle(x, y, w, h):
     """Draw on the background canvas a rectangle of width w and height h whose
     lower left point is (x, y)."""
-    global _surface
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -420,7 +419,6 @@ def rectangle(x, y, w, h):
 def filledRectangle(x, y, w, h):
     """Draw on the background canvas a filled rectangle of width w and height h
     whose lower left point is (x, y)."""
-    global _surface
     _makeSureWindowCreated()
     x = float(x)
     y = float(y)
@@ -456,7 +454,6 @@ def filledSquare(x, y, r):
 def polygon(x, y):
     """Draw on the background canvas a polygon with coordinates (x[i],
     y[i])."""
-    global _surface
     _makeSureWindowCreated()
     # Scale X and Y values.
     xScaled = []
@@ -477,7 +474,6 @@ def polygon(x, y):
 def filledPolygon(x, y):
     """Draw on the background canvas a filled polygon with coordinates (x[i],
     y[i])."""
-    global _surface
     _makeSureWindowCreated()
     # Scale X and Y values.
     xScaled = []
@@ -513,7 +509,6 @@ def picture(pic, x=None, y=None):
     midpoint of the background canvas.
 
     """
-    global _surface
     _makeSureWindowCreated()
     # By default, draw pic at the middle of the surface.
     if x is None:
@@ -671,7 +666,6 @@ def _checkForEvents():
     If a key has been typed, then put that key in a queue.
 
     """
-    global _surface
     global _keysTyped
 
     # -------------------------------------------------------------------
@@ -717,14 +711,12 @@ def hasNextKeyTyped():
     Otherwise return False.
 
     """
-    global _keysTyped
     return _keysTyped != []
 
 
 def nextKeyTyped():
     """Remove the first key from the queue of keys that the the user typed, and
     return that key."""
-    global _keysTyped
     return _keysTyped.pop()
 
 
@@ -753,7 +745,6 @@ def mouseX():
     mouseX() shouldn't be called until mousePressed() returns True.
 
     """
-    global _mousePos
     if _mousePos:
         return _userX(_mousePos[0])
     raise Exception("Can't determine mouse position if a click hasn't happened")
@@ -767,7 +758,6 @@ def mouseY():
     mouseY() shouldn't be called until mousePressed() returns True.
 
     """
-    global _mousePos
     if _mousePos:
         return _userY(_mousePos[1])
     raise Exception("Can't determine mouse position if a click hasn't happened")

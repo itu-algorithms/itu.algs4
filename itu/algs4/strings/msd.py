@@ -28,8 +28,6 @@ def _insertion(a, lo, hi, d):
 
 # sort from a[lo] to a[hi], starting at the dth character
 def _sort(a, lo, hi, d, aux, radix):
-    global cutoff
-
     if hi <= lo + cutoff:
         _insertion(a, lo, hi, d)
         return
