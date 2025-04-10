@@ -12,7 +12,7 @@ It was first created in 2018 by teaching assistants and instructors at [ITU Cope
 
 ## Installation
 
-This library requires a functioning Python 3 environment, for example the one provided by [Anaconda](https://www.anaconda.com/distribution/).
+This library requires a functioning Python 3 environment; for example, the one provided by [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/main) or [Anaconda](https://www.anaconda.com/docs/getting-started/anaconda/main).
 
 Some optional visual and auditory features depend on the [numpy](http://numpy.org) and [pygame](https://pygame.org) packages. These features are not used in the ITU course, and you shouldn't spend extra time on installing those packages unless you already have them or want to play around with the those parts on your own.
 
@@ -93,7 +93,7 @@ The Python package `itu.algs4` has a hierarchical structure with seven sub-packa
 - [itu.algs4.stdlib](itu/algs4/stdlib)
 - [itu.algs4.errors](itu/algs4/errors)
 
-While deep nesting of packages is normally [discouraged](https://www.python.org/dev/peps/pep-0423/#avoid-deep-nesting) in Python, an important design goal of `itu.algs4` was to mirror the structure of the original Java code.
+While deep nesting of packages is normally [discouraged](https://peps.python.org/pep-0423/#avoid-deep-nesting) in Python, an important design goal of `itu.algs4` was to mirror the structure of the original Java code.
 The first five packages correspond to the first five chapters of [Algorithms, 4th Edition](https://algs4.cs.princeton.edu/home/). The `stdlib` package is based on the one from the related book [Introduction to Programming in Python](https://introcs.cs.princeton.edu/python/). The package `errors` contains some exception classes.
 
 All filenames and package names have been written in lower_case style with underscores instead of the CamelCase style of the Java version. For example `EdgeWeightedDigraph.java` has been renamed to `edge_weighted_digraph.py`. Class names still use CamelCase though, which is consistent with naming conventions in Python.
