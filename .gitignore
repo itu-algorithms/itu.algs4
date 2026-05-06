@@ -1,3 +1,8 @@
 *.pyc
 .vs/
 algs4-data/
+.mypy_cache
+.pytest_cache
+.ruff_cache
+itu.algs4.egg-info
+__pycache__
